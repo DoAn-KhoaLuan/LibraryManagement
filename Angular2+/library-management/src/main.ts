@@ -10,7 +10,6 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
-<<<<<<< HEAD
 
 toastr.options = {
   "closeButton": false,
@@ -28,5 +27,3 @@ toastr.options = {
   "hideEasing": "linear",
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"  };
-=======
->>>>>>> master
