@@ -1,6 +1,15 @@
-<div class="test card ">
-  <div class="card-body">
-    <h5 class="card-title m-5">Title</h5>
-    <p class="card-text">Content</p>
-  </div>
-</div>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
