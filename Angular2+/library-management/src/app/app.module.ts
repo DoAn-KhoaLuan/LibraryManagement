@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { ModalControllerModule } from './core/modal-controller/modal-controller.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     MaterialModule,
     BrowserAnimationsModule  ,
-    FormsModule
+    FormsModule,
+    ModalControllerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
