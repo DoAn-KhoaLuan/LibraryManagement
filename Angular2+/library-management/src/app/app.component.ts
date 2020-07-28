@@ -6,6 +6,7 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  title = 'library-management';
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   ngOnInit() {
