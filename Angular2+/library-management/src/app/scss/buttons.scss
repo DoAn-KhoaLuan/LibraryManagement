@@ -1,0 +1,46 @@
+.btn-app {
+  min-width: 150px;
+  padding: 10px 20px;
+  background-color: var(--app-color);
+  color: #fff;
+  width: fit-content;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  transition: 0.3s;
+  &:active {
+    background-color: #174b86;
+    opacity: 1;
+  }
+  .btn-block {
+    width: auto !important;
+  }
+}
+
+.btn-outline-app {
+  min-width: 150px;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: var(--app-color);
+  border: 1px solid var(--app-color);
+  border-radius: 15px;
+  text-align: center;
+  width: fit-content;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  &:active {
+    background-color: var(--app-color);
+    color: #fff;
+  }
+  .btn-block {
+    width: auto !important;
+  }
+}
+

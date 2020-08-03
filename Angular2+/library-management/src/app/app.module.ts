@@ -7,6 +7,10 @@ import { MaterialModule } from './shared/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ModalControllerModule } from './core/modal-controller/modal-controller.module';
+import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,9 +24,11 @@ import { ModalControllerModule } from './core/modal-controller/modal-controller.
     MaterialModule,
     BrowserAnimationsModule  ,
     FormsModule,
-    ModalControllerModule
+    ModalControllerModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    AkitaNgRouterStoreModule
   ],
-  providers: [],
+  providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }}],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
