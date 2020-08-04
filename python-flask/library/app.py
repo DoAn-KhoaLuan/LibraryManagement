@@ -1,34 +1,63 @@
+from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
-from flask import Flask, render_template
-import pymysql
-import secrets
-
-conn = "mysql+pymysql://{0}:{1}@{2}/{3}".format(secrets.dbuser, secrets.dbpass, secrets.dbhost, secrets.dbname)
+from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
-app.config['SECRETS_KEY'] = 'superSecretsKey'
-app.config['SQLALCHEMY_DATABASE_URI'] = conn
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/flaskmysql'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 
-class Books(db.Model):
+class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(255))
-    last_name = db.Column(db.String(255))
+    title = db.Column(db.String(70), unique=True)
+    description = db.Column(db.String(100))
 
-    def __repr__(self):
-        return"id: {0} | first_name: {1} | last_name: {2}".format(self.id, self.first_name, self.last_name)
+    def __init__(self, title, description):
+        self.title = title
+        self.description = description
+
+    def serialize(self):
+        return {"id": self.id, "title": self.title, "description": self.description}
 
 
-@app.route("/")
-def index():
-    book = Books(first_name="nha gia kim", last_name="abc")
-    db.session.add(book)
+db.create_all()
+
+
+@app.route('/tasks', methods=['POST'])
+def create_task():
+    data=request.get_json()
+    title = data['title']
+    description = data['description']
+    new_task = Task(title, description)
+    db.session.add(new_task)
     db.session.commit()
-    return "hello world"
+    return 'sdfds'
+
+
+@app.route('/tasks', methods=['GET'])
+def get_task():
+    return jsonify(list(map(lambda task: task.serialize(), Task.query.all())))
+
+
+@app.route('/delete', methods=['DELETE'])
+def delete_task():
+    deletedTask = Task.query.filter_by(id=request.json["id"]).first()
+    db.session.delete(deletedTask)
+    db.session.commit()
+    return jsonify({"result": True})
+
+
+@app.route('/update', methods=['PUT'])
+def update_task():
+    update_task = Task.query.filter_by(id=request.json["id"]).first()
+    update_task.description = request.json['description']
+    update_task.title = request.json['title']
+    db.session.commit()
+    return jsonify({"result": True})
 
 
 if __name__ == "__main__":
-    db.create_all()
     app.run(debug=True)
