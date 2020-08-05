@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  arr = ['21' ,'21' ,'41','121','21'];
 
   constructor() { }
 

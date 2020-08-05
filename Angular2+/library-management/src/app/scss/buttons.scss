@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   border: 1px solid #fff;
-  border-radius: 15px;
+  border-radius: 5px;
   transition: 0.3s;
   &:active {
     background-color: #174b86;
@@ -27,7 +27,7 @@
   background-color: #fff;
   color: var(--app-color);
   border: 1px solid var(--app-color);
-  border-radius: 15px;
+  border-radius: 5px;
   text-align: center;
   width: fit-content;
   cursor: pointer;
@@ -38,6 +38,7 @@
   &:active {
     background-color: var(--app-color);
     color: #fff;
+    border: 1px solid #fff;
   }
   .btn-block {
     width: auto !important;

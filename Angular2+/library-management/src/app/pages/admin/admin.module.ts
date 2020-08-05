@@ -1,3 +1,6 @@
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from './../../shared/material.module';
+import { BookManagementComponent } from './admin-subpages/book-management/book-management.component';
 import { SidebarMenuModule } from './../components/sidebar-menu/sidebar-menu.module';
 import { AdminRoutingModule } from './admin-routing.service';
 import { NgModule } from '@angular/core';
@@ -8,8 +11,11 @@ import { AdminComponent } from './admin.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SidebarMenuModule
+    SidebarMenuModule, 
+    MaterialModule,
+
   ],
-  declarations: [AdminComponent]
+  declarations: [AdminComponent, BookManagementComponent],
+  exports: [BookManagementComponent]
 })
 export class AdminModule { }

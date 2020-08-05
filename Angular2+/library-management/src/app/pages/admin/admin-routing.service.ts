@@ -1,21 +1,26 @@
-import { UserComponent } from './../user/user.component';
+import { MaterialModule } from './../../shared/material.module';
+import { FormsModule } from '@angular/forms';
+import { CreateBookComponent } from './admin-subpages/book-management/components/create-book/create-book.component';
+import { BookManagementComponent } from './admin-subpages/book-management/book-management.component';
 import { BookStoreComponent } from './../book-store/book-store.component';
+import { LoginComponent } from './admin-subpages/login/login.component';
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { SidebarMenuModule } from '../components/sidebar-menu/sidebar-menu.module';
 
 const routes: Routes = [
     { path: '', component: AdminComponent, children: [
-        { path: 'test', component: BookStoreComponent}//localhost:4200/admin/test
+        { path: 'book-management', component: BookManagementComponent, children:[
+            // { path: 'book-list',  },
+            { path: 'create-book', component: CreateBookComponent}
+        ]}
     ] 
-    },//localhost:4200/admin/
-    // { path: 'test', component: BookStoreComponent}//localhost:4200/admin/test
+    }
 ];
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes), ],
-    exports: [RouterModule],
-    declarations: [],
+    imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule],
+    exports: [RouterModule, CreateBookComponent],
+    declarations: [LoginComponent, CreateBookComponent],
 })
 export class AdminRoutingModule { }
