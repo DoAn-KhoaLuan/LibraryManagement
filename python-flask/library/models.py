@@ -40,16 +40,15 @@ class Books(db.Model):
                 "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking}
 
 
-class BorrowTicketsDetails(db.Model):
-    book_id = db.Column(db.Integer, primary_key=True, nullable=False )
-    borrow_ticket_id = db.Column(db.Integer, primary_key=True, nullable=False)
-
-    def serialize(self):
-        return {"book_id": self.book_id, "borrow_ticket_id": self.borrow_ticket_id}
 
 
-class BorrowTickets(db.Model):
-    borrow_ticket_id = db.Column(db.Integer, primary_key=True, nullable=False)
+Borrowticketsdetails = db.Table('borrow_ticket_details',
+                                db.Column('book_id', db.Integer, db.ForeignKey('books.book_id'), primary_key=True),
+                                db.Column('borrow_ticket_id', db.Integer, db.ForeignKey('borrowtickets.borrow_ticket_id'), primary_key=True)
+                                )
+
+class Borrowtickets(db.Model):
+    borrow_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), primary_key=True, nullable=False)
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), primary_key=True, nullable=False)
     quantity = db.Column(db.Integer)
@@ -58,7 +57,7 @@ class BorrowTickets(db.Model):
     return_date = db.Column(db.DateTime)
     status = db.Column(db.Boolean)
     note = db.Column(db.String(1500))
-
+    books = db.relationship('Books', secondary='Borrowticketsdetails', lazy='subquery', backref=db.backref('borrowticket', lazy=True))
     def serialize(self):
         return {"borrow_ticket_id": self.borrow_ticket_id, "customer_id": self.customer_id, "note": self.note,
                 "employee_id": self.employee_id, "quantity": self.quantity, "borrow_date": self.borrow_date,
@@ -90,7 +89,7 @@ class Customers(db.Model):
     address = db.Column(db.String(1500))
     gender = db.Column(db.Boolean)
     note = db.Column(db.String(1500))
-    borrow_tickets = db.relationship('BorrowTickets', backref='borrow_ticket', lazy=True)
+    borrow_tickets = db.relationship('Borrowtickets', backref='borrow_ticket', lazy=True)
     orders = db.relationship('Orders', backref='order', lazy=True)
 
     def serialize(self):
@@ -116,8 +115,8 @@ class Employees(db.Model):
     note = db.Column(db.String(1500))
     schedules = db.relationship('Schedules', backref='employee', lazy=True)
     orders = db.relationship('Orders', backref='order', lazy=True)
-    borrow_tickets = db.relationship('BorrowTickets', backref='borrow_ticket', lazy=True)
-    stocktake_tickets = db.relationship('StocktakeTickets', backref='stocktake_ticket', lazy=True)
+    borrow_tickets = db.relationship('Borrowtickets', backref='borrow_ticket', lazy=True)
+    stocktake_tickets = db.relationship('Stocktaketickets', backref='stocktake_ticket', lazy=True)
     def serialize(self):
         return {"employee_id": self.employee_id, "identity_id": self.identity_id, "note": self.note,
                 "account_id": self.account_id, "last_name": self.last_name, "first_name": self.first_name,
@@ -125,7 +124,7 @@ class Employees(db.Model):
                 "image": self.image, "basic_rate": self.basic_rate}
 
 
-class OrderDetails(db.Model):
+class Orderdetails(db.Model):
     order_id = db.Column(db.Integer, primary_key=True, nullable=False)
     book_id = db.Column(db.Integer, primary_key=True, nullable=False)
     retail_price = db.Column(db.Float)
@@ -179,7 +178,7 @@ class Schedules(db.Model):
                 "actual_hours": self.actual_hours, "expected_hours": self.expected_hours, "salary": self.salary}
 
 
-class StocktakeTicketDetails(db.Model):
+class Stocktaketicketdetails(db.Model):
     Stocktake_ticket_id = db.Column(db.Integer, primary_key=True, nullable=False)
     book_id = db.Column(db.Integer, nullable=False)
     new_quantity = db.Column(db.Integer)
@@ -190,7 +189,7 @@ class StocktakeTicketDetails(db.Model):
                 "new_quantity": self.new_quantity, "old_quantity": self.old_quantity}
 
 
-class StocktakeTickets(db.Model):
+class Stocktaketickets(db.Model):
     stocktake_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), primary_key=True, nullable=False)
     total_quantity = db.Column(db.Integer)
