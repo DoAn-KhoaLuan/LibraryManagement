@@ -39,6 +39,8 @@ class Books(db.Model):
                 "page_number": self.page_number, "description": self.description, "cost-price": self.cost_price,
                 "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking}
 
+    def __repr__(self):
+        return f"Book('{self.book_name}','{self.supplier_id}' )"
 
 
 
