@@ -7,8 +7,8 @@ class Accounts(db.Model):
     account_name = db.Column(db.String(50), nullable=False)
     account_password = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(50))
-    customers = db.relationship('Customers', backref='customer', uselist=False)
-    employees = db.relationship('Employees', backref='employee', uselist=False)
+    customers = db.relationship('Customers', backref='account', uselist=False)
+    employees = db.relationship('Employees', backref='account', uselist=False)
 
     def serialize(self):
         return {"account_id": self.account_id, "account_name": self.account_name, "note": self.note,
@@ -57,7 +57,7 @@ class Borrowtickets(db.Model):
     return_date = db.Column(db.DateTime)
     status = db.Column(db.Boolean)
     note = db.Column(db.String(1500))
-    books = db.relationship('Books', secondary='Borrowticketsdetails', lazy='subquery', backref=db.backref('borrowticket', lazy=True))
+    books = db.relationship('Books', secondary='borrow_ticket_details', lazy='subquery', backref=db.backref('borrowticket', lazy=True))
     def serialize(self):
         return {"borrow_ticket_id": self.borrow_ticket_id, "customer_id": self.customer_id, "note": self.note,
                 "employee_id": self.employee_id, "quantity": self.quantity, "borrow_date": self.borrow_date,
@@ -69,7 +69,7 @@ class Categories(db.Model):
     category_name = db.Column(db.String(50))
     description = db.Column(db.String(1500))
     note = db.Column(db.String(1500))
-    books = db.relationship('Books', backref="book", lazy=True)
+    books = db.relationship('Books', backref="category", lazy=True)
 
     def serialize(self):
         return {"category_id": self.category_id, "category_name": self.category_name, "note": self.note,
@@ -89,8 +89,8 @@ class Customers(db.Model):
     address = db.Column(db.String(1500))
     gender = db.Column(db.Boolean)
     note = db.Column(db.String(1500))
-    borrow_tickets = db.relationship('Borrowtickets', backref='borrow_ticket', lazy=True)
-    orders = db.relationship('Orders', backref='order', lazy=True)
+    borrow_tickets = db.relationship('Borrowtickets', backref='customer', lazy=True)
+    orders = db.relationship('Orders', backref='customers', lazy=True)
 
     def serialize(self):
         return {"customer_id": self.customer_id, "identity_id": self.identity_id, "note": self.note,
@@ -114,9 +114,9 @@ class Employees(db.Model):
     basic_rate = db.Column(db.Float)
     note = db.Column(db.String(1500))
     schedules = db.relationship('Schedules', backref='employee', lazy=True)
-    orders = db.relationship('Orders', backref='order', lazy=True)
-    borrow_tickets = db.relationship('Borrowtickets', backref='borrow_ticket', lazy=True)
-    stocktake_tickets = db.relationship('Stocktaketickets', backref='stocktake_ticket', lazy=True)
+    orders = db.relationship('Orders', backref='employee', lazy=True)
+    borrow_tickets = db.relationship('Borrowtickets', backref='employee', lazy=True)
+    stocktake_tickets = db.relationship('Stocktaketickets', backref='employee', lazy=True)
     def serialize(self):
         return {"employee_id": self.employee_id, "identity_id": self.identity_id, "note": self.note,
                 "account_id": self.account_id, "last_name": self.last_name, "first_name": self.first_name,
@@ -207,7 +207,7 @@ class Suppliers(db.Model):
     phone = db.Column(db.String(50))
     email = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(1500))
-    books = db.relationship('Books', backref='book', lazy=True)
+    books = db.relationship('Books', backref='supplier', lazy=True)
 
     def serialize(self):
         return {"supplier_id": self.supplier_id, "contact_name": self.contact_name, "note": self.note,
