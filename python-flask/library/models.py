@@ -18,11 +18,11 @@ class Accounts(db.Model):
 
 class Books(db.Model):
     __tablename__ = "books"
-    book_id = db.Column(db.Integer, autoincrement=True, nullable=False, primary_key=True)
+    book_id = db.Column(db.Integer, autoincrement=True, nullable=False, primary_key = True )
     book_name = db.Column(db.String(50), nullable=False)
-    #supplier_id = db.Column(db.Integer, nullable=False)
-    #category_id = db.Column(db.Integer, nullable=False)
-    #author_id = db.Column(db.Integer, nullable=False)
+    #supplier_id = db.Column(db.Integer, db.ForeignKey('suppliers.supplier_id'), nullable=False)
+    #category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'), nullable=False)
+    #author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'), nullable=False)
     old_amount = db.Column(db.Integer)
     new_amount = db.Column(db.Integer)
     image = db.Column(db.String(50))
@@ -33,7 +33,6 @@ class Books(db.Model):
     discount = db.Column(db.Float)
     ranking = db.Column(db.String(50))
     note = db.Column(db.String(1500))
-
 
     def serialize(self):
         return {"book_id": self.book_id, "book_name": self.book_name, "note": self.note,
@@ -64,7 +63,6 @@ class BorrowTickets(db.Model):
     status = db.Column(db.Boolean)
     note = db.Column(db.String(1500))
 
-
     def serialize(self):
         return {"borrow_ticket_id": self.borrow_ticket_id, "customer_id": self.customer_id, "note": self.note,
                 "employee_id": self.employee_id, "quantity": self.quantity, "borrow_date": self.borrow_date,
@@ -77,7 +75,7 @@ class Categories(db.Model):
     category_name = db.Column(db.String(50))
     description = db.Column(db.String(1500))
     note = db.Column(db.String(1500))
-    book = db.relationship('Books', backref='category', lazy=True)
+    #book = db.relationship('Books', backref='category', lazy=True)
 
     def serialize(self):
         return {"category_id": self.category_id, "category_name": self.category_name, "note": self.note,
@@ -221,7 +219,7 @@ class Suppliers(db.Model):
     phone = db.Column(db.String(50))
     email = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(1500))
-    book = db.relationship('Books', backref='supplier', lazy=True)
+    #book = db.relationship('Books', backref='supplier', lazy=True)
 
     def serialize(self):
         return {"supplier_id": self.supplier_id, "contact_name": self.contact_name, "note": self.note,
@@ -233,7 +231,7 @@ class Authors (db.Model):
     author_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
-    book = db.relationship('Books', backref='author', lazy=True)
+    #book = db.relationship('Books', backref='author', lazy=True)
 
     def serialize(self):
         return {"author_id": self.author_id, "first_name": self.first_name, "last_name": self.last_name}
