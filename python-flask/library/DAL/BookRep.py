@@ -1,7 +1,6 @@
 from library.DAL import models
 from flask import jsonify, json
-def GetAllBooks():
-    print("day la lop Rep")
-    allBooks = models.Books.query.all()
-    # print(jsonify(list(map(lambda task: task.serialize(), models.Books.query.all()))))
+def GetAllBooks(req):
+    print("rep")
+    allBooks = models.Books.query.paginate(page = req.page, per_page=req.per_page).items
     return jsonify(list(map(lambda task: task.serialize(), allBooks)))
