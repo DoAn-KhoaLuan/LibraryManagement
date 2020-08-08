@@ -6,7 +6,13 @@ class GetItemsByPageRsp():
 
     def serialize(self):
         return {
+<<<<<<< refs/remotes/origin/master
             "has_next": self.has_next,
             "has_prev": self.has_prev,
             "items": self.items,
+=======
+            "has_next" : self.has_next,
+            "has_prev" : self.has_prev,
+            "self.items" : self.items,
+>>>>>>> update(BE):
         }
