@@ -43,9 +43,9 @@ class Books(db.Model):
                 "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking}
 
     def __repr__(self):
-        return f"Book('{self.book_id}', '{self.book_name}','{self.note}', '{self.supplier_id}', '{self.category_id},' " \
-               f"'{self.author_id}', '{self.old_amount}', '{self.new_amount}', '{self.image}', '{self.page_number}', " \
-               f"'{self.description}', '{self.cost_price}', '{self.retail_price}', '{self.discount}', '{self.ranking})'"
+        return f"('book_id':{self.book_id},'book_name': {self.book_name},'note : {self.note},'supplier_id': {self.supplier_id},'category_id': {self.category_id}, " \
+               f"'author_id': {self.author_id},'old_amount': {self.old_amount},'new_amount': {self.new_amount},'image': {self.image},'page_number': {self.page_number}, " \
+               f"'description ':{self.description},'cost_price': {self.cost_price},'retail_price': {self.retail_price},'discount': {self.discount},'ranking': {self.ranking})"
 Borrowticketsdetails = db.Table('borrow_ticket_details',
                                 db.Column('book_id', db.Integer, db.ForeignKey('books.book_id'), primary_key=True),
                                 db.Column('borrow_ticket_id', db.Integer, db.ForeignKey('borrowtickets.borrow_ticket_id'), primary_key=True)
