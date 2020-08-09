@@ -3,4 +3,3 @@ class PageReq():
         self.page = req['page']
         self.per_page = req['per_page']
 
-
