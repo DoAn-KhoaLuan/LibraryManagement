@@ -10,6 +10,11 @@ from library.Common.Rsp.SingleRsp import ErrorRsp
 
 @app.route('/', methods=['GET'])
 def index():
+    return jsonify({"gia tri 1": "sadsadas"})
+
+
+@app.route('/admin/book-management/get-books', methods=['GET'])
+def GetBooks():
     try:
         req = GetItemsByPageReq(request.json)
         result = BookSvc.GetBooksByPage(req)
