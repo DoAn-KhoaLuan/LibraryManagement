@@ -10,7 +10,7 @@ def GetBooksByPage(req):
     has_next = book_pagination.has_next
     has_prev = book_pagination.has_prev
     books = ConvertModelListToDictList(book_pagination.items)
-
+    print(type(books))
     return has_next, has_prev, books
 
 
@@ -68,6 +68,6 @@ def SearchBookById(req):
 
 
 def SearchBookByName(req):
-    book = models.Books.query.filter(models.Books.book_name.contains(req.book_name)).all()
-    db.session.commit()
-    return book
+    model_books = models.Books.query.filter(models.Books.book_name.contains(req.book_name)).all()
+    books = ConvertModelListToDictList(model_books)
+    return books

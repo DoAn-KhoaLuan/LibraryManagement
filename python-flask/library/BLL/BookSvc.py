@@ -35,5 +35,5 @@ def SearchBookById(req):
 
 
 def SearchBookByName(req):
-    book = BookRep.SearchBookByName(req)
-    return book
+    books = BookRep.SearchBookByName(req)
+    return books
