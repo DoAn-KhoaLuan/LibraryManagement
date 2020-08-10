@@ -2,6 +2,7 @@ from library import db
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
+from library.Common.util import ConvertModelListToDictList
 
 
 def GetBooksByPage(req):
@@ -58,3 +59,15 @@ def UpdateBook(req):
     db.session.add(book)
     db.session.commit()
     return req
+
+
+def SearchBookById(req):
+    book = models.Books.query.get(req.book_id)
+    db.session.commit()
+    return book
+
+
+def SearchBookByName(req):
+    book = models.Books.query.filter(models.Books.book_name.contains(req.book_name)).all()
+    db.session.commit()
+    return book

@@ -8,7 +8,7 @@ class CreateBookReq(object):
         self.new_amount = req['new_amount']
         self.image = req['image']
         self.page_number = req['page_number']
-        self. description = req['description']
+        self.description = req['description']
         self.cost_price = req['cost_price']
         self.retail_price = req['retail_price']
         self.discount = req['discount']
@@ -35,9 +35,15 @@ class UpdateBookReq():
         self.cost_price = req['cost_price']
         self.retail_price = req['retail_price']
         self.discount = req['discount']
-<<<<<<< HEAD
+        self.ranking = req['ranking']
         self.ranking = req['ranking']
 
-=======
-        self.ranking = req['ranking']
->>>>>>> feat(BE)Book
+
+class SearchBookByIdReq:
+    def __init__(self, req):
+        self.book_id = req['book_id']
+
+
+class SearchBookByNameReq():
+    def __init__(self, req):
+        self.book_name = req['book_name']

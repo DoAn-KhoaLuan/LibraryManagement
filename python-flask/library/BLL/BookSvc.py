@@ -27,3 +27,13 @@ def DeleteBookById(req):
 def UpdateBook(req):
     book = BookRep.UpdateBook(req)
     return book
+
+
+def SearchBookById(req):
+    book = BookRep.SearchBookById(req)
+    return book
+
+
+def SearchBookByName(req):
+    book = BookRep.SearchBookByName(req)
+    return book
