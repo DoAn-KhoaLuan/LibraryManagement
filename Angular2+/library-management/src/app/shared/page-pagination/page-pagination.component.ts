@@ -21,7 +21,7 @@ export class PagePaginationComponent implements OnInit {
   @Input() currentPage: number;
   // @Output() settings = new EventEmitter<PaginationOpt>();
   currentPaginationOpt: PaginationOpt = {
-    nextDisabled: false,
+    nextDisabled: true,
     previousDisabled: true,
     hidePerpage: true,
   };
@@ -29,8 +29,11 @@ export class PagePaginationComponent implements OnInit {
 
   ngOnInit() {
     this.paginationOpt.subscribe(data => {
-      this.currentPaginationOpt = data;
+      this.currentPaginationOpt.nextDisabled = data.nextDisabled;
+      this.currentPaginationOpt.previousDisabled = data.previousDisabled;
+      this.currentPaginationOpt.hidePerpage = data.hidePerpage;
     })
+    
   }
 
   nav($e, direction) {

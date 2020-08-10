@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from './../../shared/material.module';
 import { BookManagementComponent } from './admin-subpages/book-management/book-management.component';
@@ -13,7 +14,6 @@ import { AdminComponent } from './admin.component';
     AdminRoutingModule,
     SidebarMenuModule, 
     MaterialModule,
-
   ],
   declarations: [AdminComponent, BookManagementComponent],
   exports: [BookManagementComponent]
