@@ -35,5 +35,9 @@ class UpdateBookReq():
         self.cost_price = req['cost_price']
         self.retail_price = req['retail_price']
         self.discount = req['discount']
+<<<<<<< HEAD
         self.ranking = req['ranking']
 
+=======
+        self.ranking = req['ranking']
+>>>>>>> feat(BE)Book
