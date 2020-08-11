@@ -8,7 +8,7 @@ from library.Common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateB
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
-
+from library.Common.util import ConvertModelListToJson, ConvertModelListToDictList
 from library.Common.Rsp.SingleRsp import ErrorRsp
 
 
@@ -52,7 +52,9 @@ def UpdateBook():
 def SearchBookById():
     req = SearchBookByIdReq(request.json)
     result = BookSvc.SearchBookById(req)
+
     res = SearchBookByIdRsp(result).serialize()
+
     return jsonify(res)
 
 
@@ -60,6 +62,5 @@ def SearchBookById():
 def SearchBookByName():
     req = SearchBookByNameReq(request.json)
     result = BookSvc.SearchBookByName(req)
-
     res = SearchBookByNameRsp(result).serialize()
     return jsonify(res)
