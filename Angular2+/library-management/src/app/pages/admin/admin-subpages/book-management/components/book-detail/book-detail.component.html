@@ -1,0 +1,99 @@
+<ng-container>
+  <div class="d-flex justify-content-center align-items-center text-app font-weight-bold">
+    <h1 class="font-weight-bold">Thông tin chi tiết sách <span>{{book.book_name}}</span></h1>
+  </div>
+
+  <div class="d-flex flex-row p-5 mb-4">
+    <div class="avatar col-3 mb-4">
+      <div class="d-flex flex-column">
+        <img src='assets/images/default-book.png' style="height: 390px; width: 390px; object-fit: cover;" alt="Avatar" />
+        <b class="mt-3">Hình ảnh thực tế từ khách hàng</b>
+        <div class="d-flex flex-row justify-content-center">
+          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar" class="p-1 m-2 real-avatar" />
+          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar" class="p-1 m-2 real-avatar" />
+          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
+          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
+        </div>
+        <h1 class="text-app text-left font-weight-bold text-center my-4">Mã sách: {{book?.studentCode}}</h1>
+      </div>
+     
+    </div>
+    <div class=" col-9 pt-4 d-flex flex-column">
+      <div class="d-flex flex-row ">
+        <div class="title-info mr-4">
+          <p class="font-weight-bold">Mã sách: </p>
+          <p class="font-weight-bold">Tên sách: </p>
+          <p class="font-weight-bold">Tác giả: </p>
+          <p class="font-weight-bold">Nhà cung cấp: </p>
+          <p class="font-weight-bold">Thể loại: </p>
+          <p class="font-weight-bold">Số trang: </p>
+          <p class="font-weight-bold">Giá vốn: </p>
+          <p class="font-weight-bold">Giá bán: </p>
+          <p class="font-weight-bold">Giảm giá: </p>
+          <p class="font-weight-bold">Đánh giá: </p>
+          <p class="font-weight-bold">Tóm tắt: </p>
+          <p class="font-weight-bold">Ghi chú: </p>
+          
+        </div>
+        <ng-container>
+          <div class="detail-info">
+            <p>{{book?.retail_price | vnd}}</p>
+            <p>{{book?.birthDate | date: 'dd/MM/yyyy'}}</p>
+            <p>{{book?.gender}}</p>
+            <p>{{book?.retail_price | vnd}}</p>
+            <p>{{book?.address}}</p>
+            <p>{{book?.phone}}</p>
+            <p>{{book?.notes}}</p>
+          </div>
+        </ng-container>
+        <!-- <ng-template #editReader>
+          <div class="detail-info w-100">
+            <input type="text" class="form-control" placeholder="Nhập họ tên" autofocus value=""
+              [(ngModel)]="book.bookName" />
+            <input type="date" value="2020-06-01" class="form-control" [(ngModel)]="book.birthDate">
+            <select id="gender" name="male" class="form-control" [(ngModel)]="book.gender">
+              <option value="male">Nam</option>
+              <option value="female">Nữ</option>
+            </select>
+            <input type="text" class="form-control" placeholder="Nhập email" [(ngModel)]="book.email" />
+            <input type="text" class="form-control" placeholder="Nhập địa chỉ, nơi ở" [(ngModel)]="book.address" />
+            <input type="tel" class="form-control" placeholder="Nhập số điện thoại "
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" [(ngModel)]="book.phone" />
+            <textarea class="form-control mb-2" name="message" rows="5" cols="30"
+              [(ngModel)]="book.notes">The cat was playing in the garden.</textarea>
+          </div>
+        </ng-template> -->
+      </div>
+      <div class="mt-auto">
+        <div class="row">
+          <div class="col-4">
+            <div class="btn btn-outline-app" (click)="goBack()"> <i class="fa fa-arrow-left pr-1" aria-hidden="true">
+              </i> Quay lại</div>
+          </div>
+          <ng-container>
+            <div class="d-flex flex-row ml-auto">
+              <div class="btn-danger  align-self-center mr-2">
+                <i class="fas fa-trash-alt trash-icon"></i>
+                <span class="ml-1" style="width: 60px;">Xóa bỏ</span>
+              </div>
+              <div class="btn-app  align-self-center">
+                <i class="fas fa-tools mr-2 "></i>
+                <span>Cập nhật</span>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #editButtons>
+            <div class="d-flex flex-row ml-auto">
+              <div class="btn  btn-outline-danger d-flex justify-content-center align-items-center mr-2">
+                Hủy
+              </div>
+              <div class="btn btn-app btn-outline-app align-self-center">
+                <span class="ml-1">Xác nhận</span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

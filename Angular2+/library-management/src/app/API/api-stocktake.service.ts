@@ -1,3 +1,4 @@
+import { HttpService } from './../services/http.service';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ApiAppService } from "./api-app.service";
@@ -7,7 +8,7 @@ import { ApiAppService } from "./api-app.service";
 })
 export class ApiStocktakeService {
   baseURL: string;
-  constructor(private http: HttpClient, private apiAppService: ApiAppService) {
+  constructor(private http: HttpService, private apiAppService: ApiAppService) {
     this.baseURL = this.apiAppService.baseURL;
   }
   async GetStocktakes(req) {
