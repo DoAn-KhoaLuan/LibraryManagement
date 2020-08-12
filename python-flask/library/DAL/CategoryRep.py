@@ -1,5 +1,7 @@
 from library import db
-from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq
+from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
+    SearchCategoryByIdReq, SearchCategoryByNameReq
+from library.Common.Rsp.CategoryRsp import SearchCategoryByNameRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
@@ -25,10 +27,28 @@ def CreateCategory(new_cate: CreateCategoryReq):
 
 def UpdateCategory(update_cate: UpdateCategoryReq):
     update_category = db.session.query(Categories).filter(Categories.category_id == update_cate.category_id).first()
-
     update_category.category_name = update_cate.category_name
     update_category.description = update_cate.description
     update_category.note = update_cate.note
     db.session.add(update_category)
     db.session.commit()
     return update_category.serialize()
+
+
+def DeleteCategoryById(req: DeleteCategoryByIdReq):
+    delete_category = models.Categories.query.get(req.category_id)
+    db.session.delete(delete_category)
+    db.session.commit()
+    return delete_category.serialize()
+
+
+def SearchCategoryById(req: SearchCategoryByIdReq):
+    search_category = models.Categories.query.get(req.category_id)
+    return search_category.serialize()
+
+
+def SearchCategoryByName(req: SearchCategoryByNameReq):
+    search_category = models.Categories.query.filter(models.Categories.category_name.contains(req.category_name)).all()
+    categories = ConvertModelListToDictList(search_category)
+    res = SearchCategoryByNameRsp(categories)
+    return res.serialize()

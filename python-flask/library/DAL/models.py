@@ -1,9 +1,11 @@
+import datetime
+
 from library import db
 
 
 class Accounts(db.Model):
     account_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.role_id'), nullable=False)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.role_id'))
     account_name = db.Column(db.String(50), nullable=False)
     account_password = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(50))
@@ -13,16 +15,17 @@ class Accounts(db.Model):
 
     def serialize(self):
         return {"account_id": self.account_id, "account_name": self.account_name, "note": self.note,
-                "account_password": self.account_password, "delete_at": self.delete_at}
+                "account_password": self.account_password, "delete_at": self.delete_at,}
 
     def __repr__(self):
         return f"Account('{self.account_id}','{self.account_name}','{self.note}','{self.account_password}', '{self.delete_at}')"
 
+
 class Books(db.Model):
-    book_id = db.Column(db.Integer, autoincrement=True, nullable=False, primary_key = True )
+    book_id = db.Column(db.Integer, autoincrement=True, nullable=False, primary_key=True)
     book_name = db.Column(db.String(50), nullable=False)
-    supplier_id = db.Column(db.Integer, db.ForeignKey('suppliers.supplier_id'), nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'), nullable=False)
+    supplier_id = db.Column(db.Integer, db.ForeignKey('suppliers.supplier_id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
     author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'))
     old_amount = db.Column(db.Integer)
     new_amount = db.Column(db.Integer)
@@ -37,26 +40,33 @@ class Books(db.Model):
     note = db.Column(db.String(1500))
     orderdetails = db.relationship('Orderdetails', backref="book", lazy=True)
     stocktaketicketdetails = db.relationship('Stocktaketicketdetails', backref="book", lazy=True)
+
     def serialize(self):
         return {"book_id": self.book_id, "book_name": self.book_name, "note": self.note,
-                "supplier": self.supplier.serialize(), "category": self.category.serialize(), "author": self.author.serialize(),
+                "supplier": self.supplier.serialize(), "category": self.category.serialize(),
+                "author": self.author.serialize(),
                 "old_amount": self.old_amount, "new_amount": self.new_amount, "image": self.image,
                 "page_number": self.page_number, "description": self.description, "cost-price": self.cost_price,
-                "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking, "delete_at": self.delete_at}
+                "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking,
+                "delete_at": self.delete_at}
 
     def __repr__(self):
         return f"('book_id':{self.book_id},'book_name': {self.book_name},'note : {self.note},'supplier': {self.supplier.serialize()},'category': {self.category.serialize()}, " \
                f"'author': {self.author.serialize()},'old_amount': {self.old_amount},'new_amount': {self.new_amount},'image': {self.image},'page_number': {self.page_number}, " \
                f"'description ':{self.description},'cost_price': {self.cost_price},'retail_price': {self.retail_price},'discount': {self.discount},'ranking': {self.ranking})"
+
+
 Borrowticketsdetails = db.Table('borrow_ticket_details',
                                 db.Column('book_id', db.Integer, db.ForeignKey('books.book_id'), primary_key=True),
-                                db.Column('borrow_ticket_id', db.Integer, db.ForeignKey('borrowtickets.borrow_ticket_id'), primary_key=True)
+                                db.Column('borrow_ticket_id', db.Integer,
+                                          db.ForeignKey('borrowtickets.borrow_ticket_id'), primary_key=True)
                                 )
+
 
 class Borrowtickets(db.Model):
     borrow_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), primary_key=True, nullable=False)
-    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), primary_key=True, nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), primary_key=True)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), primary_key=True)
     quantity = db.Column(db.Integer)
     borrow_date = db.Column(db.DateTime)
     appointment_date = db.Column(db.DateTime)
@@ -64,11 +74,14 @@ class Borrowtickets(db.Model):
     status = db.Column(db.Boolean)
     delete_at = db.Column(db.DateTime)
     note = db.Column(db.String(1500))
-    books = db.relationship('Books', secondary='borrow_ticket_details', lazy='subquery', backref=db.backref('borrowticket', lazy=True))
+    books = db.relationship('Books', secondary='borrow_ticket_details', lazy='subquery',
+                            backref=db.backref('borrowticket', lazy=True))
+
     def serialize(self):
         return {"borrow_ticket_id": self.borrow_ticket_id, "customer_id": self.customer_id, "note": self.note,
                 "employee_id": self.employee_id, "quantity": self.quantity, "borrow_date": self.borrow_date,
-                "appointment_date": self.appointment_date, "return_date": self.return_date, "status": self.status, "delete_at": self.delete_at}
+                "appointment_date": self.appointment_date, "return_date": self.return_date, "status": self.status,
+                "delete_at": self.delete_at}
 
     def __repr__(self):
         return f"Borrowticket('{self.borrow_ticket_id}','{self.customer_id}','{self.note}','{self.employee_id}'," \
@@ -94,7 +107,7 @@ class Categories(db.Model):
 class Customers(db.Model):
     customer_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
     identity_id = db.Column(db.String(50), nullable=False)
-    account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'),  nullable=False, unique=True)
+    account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     student_code = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     first_name = db.Column(db.String(50))
@@ -119,10 +132,11 @@ class Customers(db.Model):
                f"'{self.student_code}','{self.first_name}','{self.last_name}','{self.email}','{self.birth_date}','{self.address}'," \
                f"'{self.gender}','{self.phone}', '{self.delete_at}')"
 
+
 class Employees(db.Model):
     employee_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
     identity_id = db.Column(db.String(50), nullable=False)
-    account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), nullable=False, unique=True)
+    account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     last_name = db.Column(db.String(50), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     phone = db.Column(db.String(50), nullable=False)
@@ -138,16 +152,18 @@ class Employees(db.Model):
     orders = db.relationship('Orders', backref='employee', lazy=True)
     borrow_tickets = db.relationship('Borrowtickets', backref='employee', lazy=True)
     stocktake_tickets = db.relationship('Stocktaketickets', backref='employee', lazy=True)
+
     def serialize(self):
         return {"employee_id": self.employee_id, "identity_id": self.identity_id, "note": self.note,
                 "account_id": self.account_id, "last_name": self.last_name, "first_name": self.first_name,
                 "phone": self.phone, "birth_day": self.birth_date, "address": self.address, "gender": self.gender,
-                "image": self.image, "basic_rate": self.basic_rate, "delete_at":self.delete_at}
+                "image": self.image, "basic_rate": self.basic_rate, "delete_at": self.delete_at}
 
     def __repr__(self):
         return f"Employee('{self.employee_id}','{self.identity_id}','{self.note}','{self.account_id}','{self.first_name}'" \
                f",'{self.last_name}','{self.phone}','{self.birth_date}','{self.address}','{self.gender}','{self.image}'" \
                f",'{self.basic_rate}', '{self.delete_at}')"
+
 
 class Orderdetails(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id'), primary_key=True, nullable=False)
@@ -167,10 +183,12 @@ class Orderdetails(db.Model):
     def __repr__(self):
         return f"Orderdetail('{self.order_id}','{self.book_id}','{self.note}','{self.retail_price}','{self.quantity}'," \
                f"'{self.discount}','{self.note}', {self.delete_at})"
+
+
 class Orders(db.Model):
     order_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), nullable=False)
-    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'))
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     order_date = db.Column(db.DateTime)
     total = db.Column(db.Float)
     type = db.Column(db.String(50))
@@ -186,12 +204,14 @@ class Orders(db.Model):
         return f"Order('{self.order_id}', '{self.customer_id}', '{self.note}', '{self.order_date}', '{self.total}', " \
                f"'{self.type}', '{self.delete_at}')"
 
+
 class Roles(db.Model):
     role_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     role_name = db.Column(db.String(50))
     note = db.Column(db.String(1500))
     delete_at = db.Column(db.DateTime)
     accounts = db.relationship('Accounts', backref="role", lazy=True)
+
     def serialize(self):
         return {"role_id": self.role_id, "role_name": self.role_name, "note": self.note, "delete_at": self.delete_at}
 
@@ -201,7 +221,7 @@ class Roles(db.Model):
 
 class Schedules(db.Model):
     schedule_id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
-    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), nullable=False)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     date = db.Column(db.DateTime, nullable=False)
     time_from = db.Column(db.DateTime, nullable=False)
     time_to = db.Column(db.DateTime, nullable=False)
@@ -213,7 +233,8 @@ class Schedules(db.Model):
     def serialize(self):
         return {"id": self.schedule_id, "role_name": self.employee_id, "date": self.date,
                 "time_from": self.time_from, "time_to": self.time_to, "note": self.note,
-                "actual_hours": self.actual_hours, "expected_hours": self.expected_hours, "salary": self.salary, "delete_at": self.delete_at}
+                "actual_hours": self.actual_hours, "expected_hours": self.expected_hours, "salary": self.salary,
+                "delete_at": self.delete_at}
 
     def __repr__(self):
         return f"Schedule('{self.schedule_id}','{self.employee_id}','{self.date}','{self.time_from}','{self.time_to}'," \
@@ -221,7 +242,8 @@ class Schedules(db.Model):
 
 
 class Stocktaketicketdetails(db.Model):
-    Stocktake_ticket_id = db.Column(db.Integer, db.ForeignKey('stocktaketickets.stocktake_ticket_id'), primary_key=True, nullable=False)
+    Stocktake_ticket_id = db.Column(db.Integer, db.ForeignKey('stocktaketickets.stocktake_ticket_id'), primary_key=True,
+                                    nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), primary_key=True, nullable=False)
     new_quantity = db.Column(db.Integer)
     old_quantity = db.Column(db.Integer)
@@ -234,6 +256,7 @@ class Stocktaketicketdetails(db.Model):
     def __repr__(self):
         return f"Stocktaketicketdetail('{self.Stocktake_ticket_id}','{self.book_id}','{self.new_quantity}'," \
                f"'{self.old_quantity}', '{self.delete_at}')"
+
 
 class Stocktaketickets(db.Model):
     stocktake_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
@@ -269,7 +292,8 @@ class Suppliers(db.Model):
         return f"Supplier('{self.supplier_id}','{self.contact_name}','{self.note}','{self.address}','{self.phone}'," \
                f"'{self.email}', '{self.delete_at}')"
 
-class Authors (db.Model):
+
+class Authors(db.Model):
     author_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     author_name = db.Column(db.String(50))
 
