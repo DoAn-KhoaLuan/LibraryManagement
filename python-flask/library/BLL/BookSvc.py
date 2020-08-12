@@ -37,3 +37,18 @@ def SearchBookById(req):
 def SearchBookByName(req):
     books = BookRep.SearchBookByName(req)
     return books
+
+
+def SearchBookByAuthorId(req):
+    books = BookRep.SearchBookByAuthorId(req)
+    return books
+
+
+def SearchBookByCategoryId(req):
+    books = BookRep.SearchBookByCategoryId(req)
+    return books
+
+
+def SearchBookBySupplierId(req):
+    books = BookRep.SearchBookBySupplierId(req)
+    return books

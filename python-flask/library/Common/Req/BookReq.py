@@ -47,3 +47,18 @@ class SearchBookByIdReq:
 class SearchBookByNameReq():
     def __init__(self, req):
         self.book_name = req['book_name']
+
+
+class SearchBookByAuthorIdReq():
+    def __init__(self, req):
+        self.author_id = req['author_id']
+
+
+class SearchBookByCategoryIdReq():
+    def __init__(self, req):
+        self.category_id = req['category_id']
+
+
+class SearchBookBySupplierIdReq():
+    def __init__(self, req):
+        self.supplier_id = req['supplier_id']

@@ -22,7 +22,7 @@ class Books(db.Model):
     book_name = db.Column(db.String(50), nullable=False)
     supplier_id = db.Column(db.Integer, db.ForeignKey('suppliers.supplier_id'), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'), nullable=False)
-    author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id') ,nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'))
     old_amount = db.Column(db.Integer)
     new_amount = db.Column(db.Integer)
     image = db.Column(db.String(50))
@@ -37,14 +37,14 @@ class Books(db.Model):
     stocktaketicketdetails = db.relationship('Stocktaketicketdetails', backref="book", lazy=True)
     def serialize(self):
         return {"book_id": self.book_id, "book_name": self.book_name, "note": self.note,
-                "supplier_id": self.supplier_id, "category_id": self.category_id, "author_id": self.author_id,
+                "supplier": self.supplier.serialize(), "category": self.category.serialize(), "author": self.author.serialize(),
                 "old_amount": self.old_amount, "new_amount": self.new_amount, "image": self.image,
                 "page_number": self.page_number, "description": self.description, "cost-price": self.cost_price,
                 "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking}
 
     def __repr__(self):
-        return f"('book_id':{self.book_id},'book_name': {self.book_name},'note : {self.note},'supplier_id': {self.supplier_id},'category_id': {self.category_id}, " \
-               f"'author_id': {self.author_id},'old_amount': {self.old_amount},'new_amount': {self.new_amount},'image': {self.image},'page_number': {self.page_number}, " \
+        return f"('book_id':{self.book_id},'book_name': {self.book_name},'note : {self.note},'supplier': {self.supplier.serialize()},'category': {self.category.serialize()}, " \
+               f"'author': {self.author.serialize()},'old_amount': {self.old_amount},'new_amount': {self.new_amount},'image': {self.image},'page_number': {self.page_number}, " \
                f"'description ':{self.description},'cost_price': {self.cost_price},'retail_price': {self.retail_price},'discount': {self.discount},'ranking': {self.ranking})"
 Borrowticketsdetails = db.Table('borrow_ticket_details',
                                 db.Column('book_id', db.Integer, db.ForeignKey('books.book_id'), primary_key=True),
@@ -253,12 +253,12 @@ class Suppliers(db.Model):
 
 class Authors (db.Model):
     author_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
-    first_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50))
+    author_name = db.Column(db.String(50))
+
     books = db.relationship('Books', backref='author', lazy=True)
 
     def serialize(self):
-        return {"author_id": self.author_id, "first_name": self.first_name, "last_name": self.last_name}
+        return {"author_id": self.author_id, "author_name": self.author_name}
 
     def __repr__(self):
-        return f"Author('{self.author_id}','{self.first_name}','{self.last_name}')"
+        return f"Author('{self.author_id}','{self.author_name}')"

@@ -2,7 +2,7 @@ from library import db
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
-from library.Common.util import ConvertModelListToDictList, ConvertModelListToJson
+from library.Common.util import ConvertModelListToDictList
 
 
 def GetBooksByPage(req):
@@ -63,19 +63,29 @@ def UpdateBook(req):
 
 def SearchBookById(req):
     book = models.Books.query.get(req.book_id)
-    print(book)
     db.session.commit()
     return book
 
 
 def SearchBookByName(req):
-<<<<<<< Updated upstream
     model_books = models.Books.query.filter(models.Books.book_name.contains(req.book_name)).all()
     books = ConvertModelListToDictList(model_books)
-=======
-    book = models.Books.query.filter(models.Books.book_name == req.book_name).all()
+    return books
 
-    books = ConvertModelListToDictList(book)
-    print(books)
->>>>>>> Stashed changes
+
+def SearchBookByAuthorId(req):
+    model_books = models.Books.query.filter(models.Books.author_id.contains(req.author_id)).all()
+    books = ConvertModelListToDictList(model_books)
+    return books
+
+
+def SearchBookByCategoryId(req):
+    model_books = models.Books.query.filter(models.Books.category_id.contains(req.category_id)).all()
+    books = ConvertModelListToDictList(model_books)
+    return books
+
+
+def SearchBookBySupplierId(req):
+    model_books = models.Books.query.filter(models.Books.supplier_id.contains(req.supplier_id)).all()
+    books = ConvertModelListToDictList(model_books)
     return books

@@ -8,5 +8,5 @@ class GetItemsByPageRsp():
         return {
             "has_next": self.has_next,
             "has_prev": self.has_prev,
-            "self.items": self.items,
+            "items": self.items,
         }

@@ -85,3 +85,27 @@ class SearchBookByNameRsp():
 
     def serialize(self):
         return {"books": self.books}
+
+
+class SearchBookByAuthorIdRsp():
+    def __init__(self, books):
+        self.books = books
+
+    def serialize(self):
+        return {"books": self.books}
+
+
+class SearchBookByCategoryIdRsp():
+    def __init__(self, books):
+        self.books = books
+
+    def serialize(self):
+        return {"books": self.books}
+
+
+class SearchBookBySupplierIdRsp():
+    def __init__(self, books):
+        self.books = books
+
+    def serialize(self):
+        return {"books": self.books}

@@ -1,14 +1,17 @@
 from library import app
 from library.BLL import BookSvc
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
+
 from library.Common.Req.BookReq import CreateBookReq, DeleteBookByIdReq, UpdateBookReq, SearchBookByIdReq, \
-    SearchBookByNameReq
+    SearchBookByNameReq, SearchBookByAuthorIdReq, SearchBookByCategoryIdReq, SearchBookBySupplierIdReq
+
 from library.Common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateBookRsp, SearchBookByIdRsp, \
-    SearchBookByNameRsp
+    SearchBookByNameRsp, SearchBookByAuthorIdRsp, SearchBookByCategoryIdRsp, SearchBookBySupplierIdRsp
+
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
-from library.Common.util import ConvertModelListToJson, ConvertModelListToDictList
+
 from library.Common.Rsp.SingleRsp import ErrorRsp
 
 
@@ -52,9 +55,7 @@ def UpdateBook():
 def SearchBookById():
     req = SearchBookByIdReq(request.json)
     result = BookSvc.SearchBookById(req)
-
     res = SearchBookByIdRsp(result).serialize()
-
     return jsonify(res)
 
 
@@ -62,5 +63,30 @@ def SearchBookById():
 def SearchBookByName():
     req = SearchBookByNameReq(request.json)
     result = BookSvc.SearchBookByName(req)
+
     res = SearchBookByNameRsp(result).serialize()
+    return jsonify(res)
+
+
+@app.route('/admin/book-management/search-book-by-author-id', methods=['POST'])
+def SearchBookByAuthorId():
+    req = SearchBookByAuthorIdReq(request.json)
+    result = BookSvc.SearchBookByAuthorId(req)
+    res = SearchBookByAuthorIdRsp(result).serialize()
+    return jsonify(res)
+
+
+@app.route('/admin/book-management/search-book-by-category-id', methods=['POST'])
+def SearchBookByCategoryId():
+    req = SearchBookByCategoryIdReq(request.json)
+    result = BookSvc.SearchBookByCategoryId(req)
+    res = SearchBookByCategoryIdRsp(result).serialize()
+    return jsonify(res)
+
+
+@app.route('/admin/book-management/search-book-by-supplier-id', methods=['POST'])
+def SearchBookBySupplierId():
+    req = SearchBookBySupplierIdReq(request.json)
+    result = BookSvc.SearchBookBySupplierId(req)
+    res = SearchBookBySupplierIdRsp(result).serialize()
     return jsonify(res)
