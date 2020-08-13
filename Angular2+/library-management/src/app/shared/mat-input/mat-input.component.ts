@@ -13,6 +13,7 @@ export class MatInputComponent implements OnInit {
   @Input() placeholder : string ="Placeholder mặc định";
   @Input() options: string[];
   @Input() canAdd : boolean = false;
+  @Input() label: string = "Label mặc định"
   @Output() openModal = new EventEmitter();
 
   myControl = new FormControl();

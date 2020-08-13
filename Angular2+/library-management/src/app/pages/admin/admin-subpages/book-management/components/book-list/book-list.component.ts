@@ -29,7 +29,7 @@ export class BookListComponent implements OnInit {
 
   async ngOnInit() {
     let res = await this.ApiBookService.GetBooks(this.filter_page)
-    this.book_list = res['self.items'];
+    this.book_list = res['items'];
     this.has_next = res['has_next']
     this.has_prev = res['has_prev']
     this.setupPagination()
@@ -57,7 +57,7 @@ export class BookListComponent implements OnInit {
   }
   async onRequestNewPage() {
     let res = await this.ApiBookService.GetBooks(this.filter_page)
-    this.book_list = res['self.items'];
+    this.book_list = res['items'];
     this.has_next = res['has_next']
     this.has_prev = res['has_prev']
     this.setupPagination()
