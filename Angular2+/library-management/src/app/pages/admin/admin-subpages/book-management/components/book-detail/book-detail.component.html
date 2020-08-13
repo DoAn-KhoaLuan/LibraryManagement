@@ -19,8 +19,16 @@
      
     </div>
     <div class=" col-9 pt-4 d-flex flex-column">
-      <div class="d-flex flex-row ">
-        <div class="title-info mr-4">
+      <div class="d-flex flex-column">
+        <div class="row">
+          <div class="col-1 text-center"><b>sadsad</b></div>
+          <div class="col-9">đâsdsa</div>
+        </div>
+        <div class="row">
+          <div class="col-3">sadsad</div>
+          <div class="col-9">đâsdsa</div>
+        </div>
+        <!-- <div class="title-info mr-4">
           <p class="font-weight-bold">Mã sách: </p>
           <p class="font-weight-bold">Tên sách: </p>
           <p class="font-weight-bold">Tác giả: </p>
@@ -30,39 +38,44 @@
           <p class="font-weight-bold">Giá vốn: </p>
           <p class="font-weight-bold">Giá bán: </p>
           <p class="font-weight-bold">Giảm giá: </p>
-          <p class="font-weight-bold">Đánh giá: </p>
           <p class="font-weight-bold">Tóm tắt: </p>
           <p class="font-weight-bold">Ghi chú: </p>
           
         </div>
         <ng-container>
           <div class="detail-info">
-            <p>{{book?.retail_price | vnd}}</p>
-            <p>{{book?.birthDate | date: 'dd/MM/yyyy'}}</p>
-            <p>{{book?.gender}}</p>
-            <p>{{book?.retail_price | vnd}}</p>
-            <p>{{book?.address}}</p>
-            <p>{{book?.phone}}</p>
-            <p>{{book?.notes}}</p>
+            <p>{{book?.book_id || '-'}}</p>
+            <p>{{book?.book_name || '-'}}</p>
+            <p>{{book?.author?.author_name || '-'}}</p>
+            <p>{{book?.supplier?.contact_name | vnd}} đồng</p>
+            <p>{{book?.category?.category_name || '-'}}</p>
+            <p>{{book?.category?.page_number || 0}} trang</p>
+            <p>{{book?.cost_price || 0 }}</p>
+            <p>{{book?.retail_price || 0}}</p>
+            <p>{{book?.discount }}</p>
+            <p>{{book?.description || '-'}}</p>
+            <p>{{book?.notes || '-'}}</p>
           </div>
-        </ng-container>
-        <!-- <ng-template #editReader>
+        </ng-container> -->
+        <!-- <div>
           <div class="detail-info w-100">
+            <app-mat-input type="input" placeholder="Nhập vào tên sách" label="Tên sách">
+            </app-mat-input>
             <input type="text" class="form-control" placeholder="Nhập họ tên" autofocus value=""
-              [(ngModel)]="book.bookName" />
-            <input type="date" value="2020-06-01" class="form-control" [(ngModel)]="book.birthDate">
-            <select id="gender" name="male" class="form-control" [(ngModel)]="book.gender">
+              />
+            <input type="date" value="2020-06-01" class="form-control" >
+            <select id="gender" name="male" class="form-control">
               <option value="male">Nam</option>
               <option value="female">Nữ</option>
             </select>
-            <input type="text" class="form-control" placeholder="Nhập email" [(ngModel)]="book.email" />
-            <input type="text" class="form-control" placeholder="Nhập địa chỉ, nơi ở" [(ngModel)]="book.address" />
+            <input type="text" class="form-control" placeholder="Nhập email" />
+            <input type="text" class="form-control" placeholder="Nhập địa chỉ, nơi ở"/>
             <input type="tel" class="form-control" placeholder="Nhập số điện thoại "
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" [(ngModel)]="book.phone" />
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
             <textarea class="form-control mb-2" name="message" rows="5" cols="30"
-              [(ngModel)]="book.notes">The cat was playing in the garden.</textarea>
+             >The cat was playing in the garden.</textarea>
           </div>
-        </ng-template> -->
+        </div> -->
       </div>
       <div class="mt-auto">
         <div class="row">
