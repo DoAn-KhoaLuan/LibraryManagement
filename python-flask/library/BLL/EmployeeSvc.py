@@ -13,12 +13,12 @@ def GetEmployeesByPage(req):
 
 def CreateEmployee(req):
     create_employee = EmployeeRep.CreateEmployee(req)
-    return create_employee.serialize()
+    return create_employee
 
 
 def UpdateEmployee(req):
     update_employee = EmployeeRep.UpdateEmployee(req)
-    return update_employee.serialize()
+    return update_employee
 
 
 def DeleteEmployee(req):
@@ -33,4 +33,18 @@ def SearchEmployeeById(req):
 
 def SearchEmployeeByIdentityId(req):
     search_employee = EmployeeRep.SearchEmployeeIdByIdentityId(req)
+    return search_employee
+
+
+def SearchEmployeeByAccountId(req):
+    search_employee = EmployeeRep.SearchEmployeeIdByAccountId(req)
+    return search_employee
+
+
+def SearchEmployeeByName(req):
+    search_employee = EmployeeRep.SearchEmployeeIdByName(req)
+    return search_employee
+
+def SearchEmployeeByPhone(req):
+    search_employee = EmployeeRep.SearchEmployeeIdByPhone(req)
     return search_employee

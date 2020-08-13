@@ -1,12 +1,17 @@
+from datetime import datetime
+from time import gmtime, strftime
 from library import db
 from library.Common.Req import GetItemsByPageReq
 from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, \
-    SearchEmployeeByIdReq, SearchEmployeeByIdentityIdReq
-from library.Common.Rsp.EmployeeRsp import SearchEmployeeByIdentityIdRsp
+    SearchEmployeeByIdReq, SearchEmployeeByIdentityIdReq, SearchEmployeeByAccountIdReq, SearchEmployeeByNameReq, \
+    SearchEmployeeByPhoneReq
+from library.Common.Rsp.EmployeeRsp import SearchEmployeeByIdentityIdRsp, SearchEmployeeByAccountIdRsp, \
+    SearchEmployeeByNameRsp, SearchEmployeeByPhoneRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
 from library.DAL.models import Accounts
+from datetime import datetime
 
 
 def GetEmployeesbyPage(req: GetItemsByPageReq):
@@ -33,7 +38,7 @@ def CreateEmployee(req: CreateEmployeeReq):
                                        delete_at=req.delete_at)
     db.session.add(create_employee)
     db.session.commit()
-    return req
+    return create_employee.serialize()
 
 
 def UpdateEmployee(req: UpdateEmployeeReq):
@@ -52,13 +57,15 @@ def UpdateEmployee(req: UpdateEmployeeReq):
     update_employee.note = req.note
     update_employee.delete_at = req.delete_at
     db.session.commit()
-    return req
+    return update_employee.serialize()
 
 
 def DeleteEmployee(req: DeleteEmployeeReq):
     delete_employee = models.Employees.query.get(req.employee_id)
-    db.session.delete(delete_employee)
+    delete_employee.delete_at = datetime.now()
+    db.session.add(delete_employee)
     db.session.commit()
+
     return delete_employee.serialize()
 
 
@@ -72,3 +79,25 @@ def SearchEmployeeIdByIdentityId(req: SearchEmployeeByIdentityIdReq):
     employees = ConvertModelListToDictList(search_employee)
     res = SearchEmployeeByIdentityIdRsp(employees).serialize()
     return res
+
+
+def SearchEmployeeIdByAccountId(req: SearchEmployeeByAccountIdReq):
+    search_employee = models.Employees.query.filter(models.Employees.account_id.contains(req.account_id)).all()
+    employees = ConvertModelListToDictList(search_employee)
+    res = SearchEmployeeByAccountIdRsp(employees).serialize()
+    return res
+
+
+def SearchEmployeeIdByName(req: SearchEmployeeByNameReq):
+    search_employee = models.Employees.query.filter(models.Employees.first_name == req.first_name,
+                                                    models.Employees.last_name == req.last_name).all()
+    employees = ConvertModelListToDictList(search_employee)
+    res = SearchEmployeeByNameRsp(employees).serialize()
+    return res
+
+def SearchEmployeeIdByPhone(req: SearchEmployeeByPhoneReq):
+    search_employee = models.Employees.query.filter(models.Employees.phone.contains(req.phone)).all()
+    employees = ConvertModelListToDictList(search_employee)
+    res = SearchEmployeeByPhoneRsp(employees).serialize()
+    return res
+
