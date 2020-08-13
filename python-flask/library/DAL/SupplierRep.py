@@ -46,7 +46,7 @@ def SearchSupplierById(req: SearchSupplierByIdReq):
 
 
 def SearchSupplierByContactName(req: SearchSupplierByContactNameReq):
-    seach_supplier = Suppliers.query.filter(Suppliers.contact_name.contains(req.contact_name)).all()
-    suppliers = ConvertModelListToDictList(seach_supplier)
+    search_supplier = Suppliers.query.filter(Suppliers.contact_name.contains(req.contact_name)).all()
+    suppliers = ConvertModelListToDictList(search_supplier)
     res = SearchSupplierByContactNameRsp(suppliers).serialize()
     return res
