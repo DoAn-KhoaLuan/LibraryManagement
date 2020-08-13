@@ -8,17 +8,20 @@ from library.DAL.models import Categories
 
 
 def GetCategoriesByPage(req):
-    category_pagination = models.Categories.query.paginate(page = req.page, per_page=req.per_page)
+    category_pagination = models.Categories.query.paginate(page=req.page, per_page=req.per_page)
     has_next = category_pagination.has_next
     has_prev = category_pagination.has_prev
     categories = ConvertModelListToDictList(category_pagination.items)
     return has_next, has_prev, categories
 
+
 def CreateCategory(new_cate: CreateCategoryReq):
-    new_category = models.Categories(category_name=new_cate.category_name, description=new_cate.description, note=new_cate.note)
+    new_category = models.Categories(category_name=new_cate.category_name, description=new_cate.description,
+                                     note=new_cate.note)
     db.session.add(new_category)
     db.session.flush()
     return new_category.serialize()
+
 
 def UpdateCategory(update_cate: UpdateCategoryReq):
     update_category = db.session.query(Categories).filter(Categories.category_id == update_cate.category_id).first()
