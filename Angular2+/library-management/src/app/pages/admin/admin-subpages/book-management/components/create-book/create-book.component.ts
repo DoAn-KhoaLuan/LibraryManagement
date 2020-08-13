@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-book.component.scss']
 })
 export class CreateBookComponent implements OnInit {
-  constructor(private fb : FormBuilder) { }
+
+  createBookForm = this.fb.group({
+    book_name: [''],
+    author_name: [''],
+    contact_name: [''],
+    category_name: [''],
+    page_number: [''],
+    cost_price: [''],
+    retail_price: [''],
+    discount: [''],
+    description: [''],
+    note: [''],
+  });
+
+  constructor(private fb : FormBuilder, private router: Router) { }
 
   ngOnInit() {
+    this.createBookForm.valueChanges.subscribe(data => {
+      console.log(data)
+    })
   }
   async onCreateUser() {
     // const newReader = {...this.reader};
@@ -22,7 +40,26 @@ export class CreateBookComponent implements OnInit {
     // }
   }
 
-  onReset() {
-   
+  resetDataForm() {
+    this.createBookForm.patchValue({
+      'book_name': '',
+      'author_name': '',
+      'contact_name': '',
+      'category_name': '',
+      'page_number': '',
+      'cost_price': '',
+      'retail_price': '',
+      'discount': '',
+      'description': '',
+      'note': '',
+    });
   }
+
+  onCreateBook() {
+
+  }
+
+  goBack() {
+    this.router.navigateByUrl('admin/book-management/book-list')
+  }  
 }

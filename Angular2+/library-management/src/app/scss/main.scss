@@ -1,6 +1,8 @@
 @import 'buttons.scss';
 @import 'variables.scss'; 
 @import 'admin.scss'; 
+@import 'app.scss';
+@import 'modal.scss';
 :root {
     font-size: 14px;
     font-family: "Times New Roman", Times, serif !important;
@@ -8,3 +10,4 @@
 body {
     font-family: "Times New Roman", Times, serif;
 }
+

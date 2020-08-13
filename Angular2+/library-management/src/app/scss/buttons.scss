@@ -87,5 +87,10 @@
   .btn-block {
     width: auto !important;
   }
+  .btn-outline {
+    border: 1px solid rgb(255, 0, 0);
+    background-color: transparent;
+    color: rgb(255, 0, 0);
+  }
 }
 

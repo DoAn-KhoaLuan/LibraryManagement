@@ -1,3 +1,4 @@
+import { ConfirmDeleteModalComponent } from './admin-subpages/book-management/components/book-detail/confirm-delete-modal/confirm-delete-modal.component';
 import { PipeModule } from 'src/app/pipes/pipe/pipe.module';
 import { BookDetailComponent } from './admin-subpages/book-management/components/book-detail/book-detail.component';
 import { PaginationModule } from './../../shared/page-pagination/page-pagination.module';
@@ -30,6 +31,6 @@ const routes: Routes = [
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
     exports: [RouterModule, CreateBookComponent],
-    declarations: [LoginComponent, CreateBookComponent, BookListComponent, BookRowComponent, BookDetailComponent],
+    declarations: [LoginComponent, CreateBookComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent],
 })
 export class AdminRoutingModule { }
