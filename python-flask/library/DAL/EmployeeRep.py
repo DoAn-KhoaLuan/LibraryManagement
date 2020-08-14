@@ -1,5 +1,3 @@
-from datetime import datetime
-from time import gmtime, strftime
 from library import db
 from library.Common.Req import GetItemsByPageReq
 from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, \
@@ -10,7 +8,6 @@ from library.Common.Rsp.EmployeeRsp import SearchEmployeeByIdentityIdRsp, Search
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
-from library.DAL.models import Accounts
 from datetime import datetime
 
 
