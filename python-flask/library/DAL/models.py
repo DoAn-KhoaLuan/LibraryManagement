@@ -112,7 +112,7 @@ class Customers(db.Model):
     student_code = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     first_name = db.Column(db.String(50))
-    email = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     birth_date = db.Column(db.DateTime)
     address = db.Column(db.String(1500))
@@ -176,7 +176,7 @@ class Orderdetails(db.Model):
     discount = db.Column(db.Float)
     total = db.Column(db.Float)
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime)
+    delete_at = db.Column(db.DateTime, default=null)
 
     def serialize(self):
         return {"order_id": self.order.serialize(), "book_id": self.book.serialize(), "note": self.note,
