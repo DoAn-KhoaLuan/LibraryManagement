@@ -1,8 +1,9 @@
 from library import app
 from library.BLL import BookSvc, CategorySvc
 from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
-    SearchCategoryByIdReq, SearchCategoryByNameReq
+    SearchCategoryReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.Common.Rsp.CategoryRsp import SearchCategoryRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
@@ -40,15 +41,10 @@ def DeleteCategory():
     return jsonify(deleted_category)
 
 
-@app.route('/admin/category-management/search-category-by-id', methods=['POST'])
-def SearchCategoryById():
-    req = SearchCategoryByIdReq(request.json)
-    search_category_by_id = CategorySvc.SearchCategoryById(req)
-    return jsonify(search_category_by_id)
+@app.route('/admin/category-management/search-category', methods=['POST'])
+def SearchCategory():
+    req = SearchCategoryReq(request.json)
+    search_category = CategorySvc.SearchCategory(req)
+    res = SearchCategoryRsp(search_category).serialize()
+    return jsonify(res['categories'])
 
-
-@app.route('/admin/category-management/search-category-by-name', methods=['POST'])
-def SearchCategoryByName():
-    req = SearchCategoryByNameReq(request.json)
-    search_category_by_name = CategorySvc.SearchCategoryByName(req)
-    return jsonify(search_category_by_name)

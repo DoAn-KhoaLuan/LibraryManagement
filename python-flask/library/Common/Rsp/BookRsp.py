@@ -79,7 +79,7 @@ class SearchBookByIdRsp():
                 "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking}
 
 
-class SearchBookByNameRsp():
+class SearchBookRsp():
     def __init__(self, books):
         self.books = books
 
@@ -87,25 +87,3 @@ class SearchBookByNameRsp():
         return {"books": self.books}
 
 
-class SearchBookByAuthorIdRsp():
-    def __init__(self, books):
-        self.books = books
-
-    def serialize(self):
-        return {"books": self.books}
-
-
-class SearchBookByCategoryIdRsp():
-    def __init__(self, books):
-        self.books = books
-
-    def serialize(self):
-        return {"books": self.books}
-
-
-class SearchBookBySupplierIdRsp():
-    def __init__(self, books):
-        self.books = books
-
-    def serialize(self):
-        return {"books": self.books}

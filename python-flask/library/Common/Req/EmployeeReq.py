@@ -38,24 +38,8 @@ class DeleteEmployeeReq():
         self.employee_id = req['employee_id']
 
 
-class SearchEmployeeByIdReq():
+class SearchEmployeeReq():
     def __init__(self, req):
-        self.employee_id = req['employee_id']
-
-class SearchEmployeeByIdentityIdReq():
-    def __init__(self, req):
-        self.identity_id = req['identity_id']
+       self.keyword = req['keyword'] if 'keyword' in req else None
 
 
-class SearchEmployeeByAccountIdReq():
-    def __init__(self, req):
-        self.account_id = req['account_id']
-
-class SearchEmployeeByNameReq():
-    def __init__(self, req):
-        self.first_name = req['first_name']
-        self.last_name = req['last_name']
-
-class SearchEmployeeByPhoneReq():
-    def __init__(self, req):
-        self.phone = req['phone']

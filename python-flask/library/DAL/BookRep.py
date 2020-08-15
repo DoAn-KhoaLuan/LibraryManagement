@@ -1,4 +1,7 @@
+from sqlalchemy import or_
+
 from library import db
+from library.Common.Req.BookReq import SearchBookReq
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
@@ -61,31 +64,11 @@ def UpdateBook(req):
     return req
 
 
-def SearchBookById(req):
-    book = models.Books.query.get(req.book_id)
-    db.session.commit()
-    return book
-
-
-def SearchBookByName(req):
-    model_books = models.Books.query.filter(models.Books.book_name.contains(req.book_name)).all()
-    books = ConvertModelListToDictList(model_books)
-    return books
-
-
-def SearchBookByAuthorId(req):
-    model_books = models.Books.query.filter(models.Books.author_id.contains(req.author_id)).all()
-    books = ConvertModelListToDictList(model_books)
-    return books
-
-
-def SearchBookByCategoryId(req):
-    model_books = models.Books.query.filter(models.Books.category_id.contains(req.category_id)).all()
-    books = ConvertModelListToDictList(model_books)
-    return books
-
-
-def SearchBookBySupplierId(req):
-    model_books = models.Books.query.filter(models.Books.supplier_id.contains(req.supplier_id)).all()
+def SearchBook(req: SearchBookReq):
+    model_books = models.Books.query.filter(or_(models.Books.book_id == req.keyword,
+                                                models.Books.book_name == req.keyword,
+                                                models.Books.author_id == req.keyword,
+                                                models.Books.category_id == req.keyword,
+                                                models.Books.supplier_id == req.keyword)).all()
     books = ConvertModelListToDictList(model_books)
     return books

@@ -1,7 +1,6 @@
-class SearchSupplierByContactNameRsp():
+class SearchSupplierRsp():
     def __init__(self, suppliers):
         self.suppliers = suppliers
 
-
     def serialize(self):
-        return {"Supplier": self.suppliers}
+        return {"suppliers": self.suppliers}

@@ -3,9 +3,9 @@ from flask import request, jsonify
 from library import app
 from library.BLL import SupplierSvc
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, SearchSupplierByIdReq, \
-    SearchSupplierByContactNameReq
+from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, SearchSupplierReq
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.Common.Rsp.SupplierRsp import SearchSupplierRsp
 
 
 @app.route('/admin/supplier-management/get-suppliers', methods=['GET', 'POST'])
@@ -31,15 +31,11 @@ def UpdateSupplier():
     return jsonify(result)
 
 
-@app.route('/admin/supplier-management/search-supplier-by-id', methods=['POST'])
-def SearchSupplierById():
-    req = SearchSupplierByIdReq(request.json)
-    result = SupplierSvc.SearchSupplierById(req)
-    return jsonify(result)
+@app.route('/admin/supplier-management/search-supplier', methods=['POST'])
+def SearchSupplier():
+    req = SearchSupplierReq(request.json)
+    result = SupplierSvc.SearchSupplier(req)
+    res = SearchSupplierRsp(result).serialize()
+    return jsonify(res['suppliers'])
 
 
-@app.route('/admin/supplier-management/search-supplier-by-contact-name', methods=['POST'])
-def SearchSupplierByContactName():
-    req = SearchSupplierByContactNameReq(request.json)
-    result = SupplierSvc.SearchSupplierByContactName(req)
-    return jsonify(result)

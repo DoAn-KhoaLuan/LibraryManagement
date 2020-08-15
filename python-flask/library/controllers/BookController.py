@@ -2,11 +2,9 @@ from library import app
 from library.BLL import BookSvc
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
 
-from library.Common.Req.BookReq import CreateBookReq, DeleteBookByIdReq, UpdateBookReq, SearchBookByIdReq, \
-    SearchBookByNameReq, SearchBookByAuthorIdReq, SearchBookByCategoryIdReq, SearchBookBySupplierIdReq
+from library.Common.Req.BookReq import CreateBookReq, DeleteBookByIdReq, UpdateBookReq, SearchBookReq
 
-from library.Common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateBookRsp, SearchBookByIdRsp, \
-    SearchBookByNameRsp, SearchBookByAuthorIdRsp, SearchBookByCategoryIdRsp, SearchBookBySupplierIdRsp
+from library.Common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateBookRsp, SearchBookRsp
 
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
@@ -51,42 +49,11 @@ def UpdateBook():
     return jsonify(res)
 
 
-@app.route('/admin/book-management/search-book-by-id', methods=['POST'])
-def SearchBookById():
-    req = SearchBookByIdReq(request.json)
-    result = BookSvc.SearchBookById(req)
-    res = SearchBookByIdRsp(result).serialize()
+@app.route('/admin/book-management/search-book', methods=['POST'])
+def SearchBook():
+    req = SearchBookReq(request.json)
+    result = BookSvc.SearchBook(req)
+    res = SearchBookRsp(result).serialize()
     return jsonify(res)
 
 
-@app.route('/admin/book-management/search-book-by-name', methods=['POST'])
-def SearchBookByName():
-    req = SearchBookByNameReq(request.json)
-    result = BookSvc.SearchBookByName(req)
-
-    res = SearchBookByNameRsp(result).serialize()
-    return jsonify(res)
-
-
-@app.route('/admin/book-management/search-book-by-author-id', methods=['POST'])
-def SearchBookByAuthorId():
-    req = SearchBookByAuthorIdReq(request.json)
-    result = BookSvc.SearchBookByAuthorId(req)
-    res = SearchBookByAuthorIdRsp(result).serialize()
-    return jsonify(res)
-
-
-@app.route('/admin/book-management/search-book-by-category-id', methods=['POST'])
-def SearchBookByCategoryId():
-    req = SearchBookByCategoryIdReq(request.json)
-    result = BookSvc.SearchBookByCategoryId(req)
-    res = SearchBookByCategoryIdRsp(result).serialize()
-    return jsonify(res)
-
-
-@app.route('/admin/book-management/search-book-by-supplier-id', methods=['POST'])
-def SearchBookBySupplierId():
-    req = SearchBookBySupplierIdReq(request.json)
-    result = BookSvc.SearchBookBySupplierId(req)
-    res = SearchBookBySupplierIdRsp(result).serialize()
-    return jsonify(res)

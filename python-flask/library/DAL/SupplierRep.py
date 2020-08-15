@@ -1,8 +1,8 @@
+from sqlalchemy import or_
+
 from library.Common.Req import GetItemsByPageReq
 from library import db
-from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, SearchSupplierByIdReq, \
-    SearchSupplierByContactNameReq
-from library.Common.Rsp.SupplierRsp import SearchSupplierByContactNameRsp
+from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, SearchSupplierReq
 from library.DAL.models import Suppliers
 from library.Common.util import ConvertModelListToDictList
 
@@ -40,13 +40,10 @@ def UpdateSupplier(req: UpdateSupplierReq):
     return update_supplier.serialize()
 
 
-def SearchSupplierById(req: SearchSupplierByIdReq):
-    search_supplier = Suppliers.query.get(req.supplier_id)
-    return search_supplier.serialize()
-
-
-def SearchSupplierByContactName(req: SearchSupplierByContactNameReq):
-    search_supplier = Suppliers.query.filter(Suppliers.contact_name.contains(req.contact_name)).all()
+def SearchSupplier(req: SearchSupplierReq):
+    search_supplier = Suppliers.query.filter(or_(Suppliers.supplier_id == req.keyword,
+                                                 Suppliers.contact_name == req.keyword)).all()
     suppliers = ConvertModelListToDictList(search_supplier)
-    res = SearchSupplierByContactNameRsp(suppliers).serialize()
-    return res
+    return suppliers
+
+
