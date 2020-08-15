@@ -120,7 +120,7 @@ class Customers(db.Model):
     note = db.Column(db.String(1500))
     delete_at = db.Column(db.DateTime, default=None)
     borrow_tickets = db.relationship('Borrowtickets', backref='customer', lazy=True)
-    orders = db.relationship('Orders', backref='customers', lazy=True)
+    orders = db.relationship('Orders', backref='customer', lazy=True)
 
     def serialize(self):
         return {"customer_id": self.customer_id, "identity_id": self.identity_id, "note": self.note,

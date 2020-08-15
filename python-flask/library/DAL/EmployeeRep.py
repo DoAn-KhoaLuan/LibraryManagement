@@ -10,7 +10,6 @@ from library.Common.Rsp.EmployeeRsp import SearchEmployeeRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
-from library.DAL.models import Accounts
 from datetime import datetime
 
 
