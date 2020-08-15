@@ -1,9 +1,8 @@
 from library import app
 from library.BLL import EmployeeSvc
-from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, \
-    SearchEmployeeByIdReq, SearchEmployeeByIdentityIdReq, SearchEmployeeByAccountIdReq, SearchEmployeeByNameReq, \
-    SearchEmployeeByPhoneReq
+from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq,SearchEmployeeReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.Common.Rsp.EmployeeRsp import SearchEmployeeRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
@@ -41,36 +40,10 @@ def DeleteEmployee():
     return jsonify(result)
 
 
-@app.route('/admin/employee-management/search-employee-by-id', methods=['POST'])
-def SearchEmployeeById():
-    req = SearchEmployeeByIdReq(request.json)
-    result = EmployeeSvc.SearchEmployeeById(req)
-    return jsonify(result)
-
-
-@app.route('/admin/employee-management/search-employee-by-identity-id', methods=['POST'])
-def SearchEmployeeByIdentityId():
-    req = SearchEmployeeByIdentityIdReq(request.json)
-    result = EmployeeSvc.SearchEmployeeByIdentityId(req)
-    return jsonify(result)
-
-
-@app.route('/admin/employee-management/search-employee-by-account-id', methods=['POST'])
-def SearchEmployeeByAccountId():
-    req = SearchEmployeeByAccountIdReq(request.json)
-    result = EmployeeSvc.SearchEmployeeByAccountId(req)
-    return jsonify(result)
-
-
-@app.route('/admin/employee-management/search-employee-by-name', methods=['POST'])
+@app.route('/admin/employee-management/search-employee', methods=['POST'])
 def SearchEmployeeByName():
-    req = SearchEmployeeByNameReq(request.json)
-    result = EmployeeSvc.SearchEmployeeByName(req)
-    return jsonify(result)
+    req = SearchEmployeeReq(request.json)
+    result = EmployeeSvc.SearchEmployee(req)
+    res = SearchEmployeeRsp(result).serialize()
+    return jsonify(res['employees'])
 
-
-@app.route('/admin/employee-management/search-employee-by-phone', methods=['POST'])
-def SearchEmployeeByPhone():
-    req = SearchEmployeeByPhoneReq(request.json)
-    result = EmployeeSvc.SearchEmployeeByPhone(req)
-    return jsonify(result)

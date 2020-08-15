@@ -1,10 +1,15 @@
+<<<<<<< refs/remotes/origin/Customers
+=======
+from datetime import datetime
+from time import gmtime, strftime
+
+from sqlalchemy import or_
+
+>>>>>>> feat(BE)
 from library import db
 from library.Common.Req import GetItemsByPageReq
-from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, \
-    SearchEmployeeByIdReq, SearchEmployeeByIdentityIdReq, SearchEmployeeByAccountIdReq, SearchEmployeeByNameReq, \
-    SearchEmployeeByPhoneReq
-from library.Common.Rsp.EmployeeRsp import SearchEmployeeByIdentityIdRsp, SearchEmployeeByAccountIdRsp, \
-    SearchEmployeeByNameRsp, SearchEmployeeByPhoneRsp
+from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeeReq
+from library.Common.Rsp.EmployeeRsp import SearchEmployeeRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
@@ -67,35 +72,15 @@ def DeleteEmployee(req: DeleteEmployeeReq):
     return delete_employee.serialize()
 
 
-def SearchEmployeeById(req: SearchEmployeeByIdReq):
-    search_employee = models.Employees.query.get(req.employee_id)
-    return search_employee
-
-
-def SearchEmployeeIdByIdentityId(req: SearchEmployeeByIdentityIdReq):
-    search_employee = models.Employees.query.filter(models.Employees.identity_id.contains(req.identity_id)).all()
+def SearchEmployee(req: SearchEmployeeReq):
+    search_employee = models.Employees.query.filter(or_(models.Employees.first_name == req.keyword,
+                                                        models.Employees.last_name == req.keyword,
+                                                        models.Employees.identity_id == req.keyword,
+                                                        models.Employees.account_id == req.keyword,
+                                                        models.Employees.phone == req.keyword,
+                                                        models.Employees.employee_id == req.keyword)).all()
     employees = ConvertModelListToDictList(search_employee)
-    res = SearchEmployeeByIdentityIdRsp(employees).serialize()
-    return res
+    return employees
 
 
-def SearchEmployeeIdByAccountId(req: SearchEmployeeByAccountIdReq):
-    search_employee = models.Employees.query.filter(models.Employees.account_id.contains(req.account_id)).all()
-    employees = ConvertModelListToDictList(search_employee)
-    res = SearchEmployeeByAccountIdRsp(employees).serialize()
-    return res
-
-
-def SearchEmployeeIdByName(req: SearchEmployeeByNameReq):
-    search_employee = models.Employees.query.filter(models.Employees.first_name == req.first_name,
-                                                    models.Employees.last_name == req.last_name).all()
-    employees = ConvertModelListToDictList(search_employee)
-    res = SearchEmployeeByNameRsp(employees).serialize()
-    return res
-
-def SearchEmployeeIdByPhone(req: SearchEmployeeByPhoneReq):
-    search_employee = models.Employees.query.filter(models.Employees.phone.contains(req.phone)).all()
-    employees = ConvertModelListToDictList(search_employee)
-    res = SearchEmployeeByPhoneRsp(employees).serialize()
-    return res
 

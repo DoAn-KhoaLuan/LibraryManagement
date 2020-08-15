@@ -26,11 +26,6 @@ def UpdateAuthor(req):
     return author
 
 
-def SearchAuthorById(req):
-    author = AuthorRep.SearchAuthorById(req)
-    return author
-
-
-def SearchAuthorByName(req):
-    author = AuthorRep.SearchAuthorByName(req)
+def SearchAuthor(req):
+    author = AuthorRep.SearchAuthor(req)
     return author

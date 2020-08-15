@@ -1,5 +1,4 @@
-from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
-    SearchCategoryByIdReq, SearchCategoryByNameReq
+from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, SearchCategoryReq
 from library.DAL import CategoryRep
 
 
@@ -27,10 +26,7 @@ def DeleteCategoryById(req: DeleteCategoryByIdReq):
     delete_category = CategoryRep.DeleteCategoryById(req)
     return delete_category
 
-def SearchCategoryById(req: SearchCategoryByIdReq):
-    search_category = CategoryRep.SearchCategoryById(req)
-    return  search_category
-
-def SearchCategoryByName(req: SearchCategoryByNameReq):
-    search_category = CategoryRep.SearchCategoryByName(req)
+def SearchCategory(req: SearchCategoryReq):
+    search_category = CategoryRep.SearchCategory(req)
     return search_category
+

@@ -19,11 +19,8 @@ class UpdateSupplierReq():
         self.delete_at = req['delete_at']
 
 
-class SearchSupplierByIdReq():
+class SearchSupplierReq():
     def __init__(self, req):
-        self.supplier_id = req['supplier_id']
+        self.keyword = req['keyword'] if 'keyword' in req else None
 
 
-class SearchSupplierByContactNameReq():
-    def __init__(self, req):
-        self.contact_name = req['contact_name']

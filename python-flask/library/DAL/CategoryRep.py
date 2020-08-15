@@ -1,7 +1,9 @@
+from sqlalchemy import or_
+
 from library import db
 from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
-    SearchCategoryByIdReq, SearchCategoryByNameReq
-from library.Common.Rsp.CategoryRsp import SearchCategoryByNameRsp
+    SearchCategoryReq
+
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
@@ -42,13 +44,10 @@ def DeleteCategoryById(req: DeleteCategoryByIdReq):
     return delete_category.serialize()
 
 
-def SearchCategoryById(req: SearchCategoryByIdReq):
-    search_category = models.Categories.query.get(req.category_id)
-    return search_category.serialize()
-
-
-def SearchCategoryByName(req: SearchCategoryByNameReq):
-    search_category = models.Categories.query.filter(models.Categories.category_name.contains(req.category_name)).all()
+def SearchCategory(req: SearchCategoryReq):
+    search_category = models.Categories.query.filter(or_(models.Categories.category_id == req.keyword,
+                                                         models.Categories.category_name == req.keyword)).all()
     categories = ConvertModelListToDictList(search_category)
-    res = SearchCategoryByNameRsp(categories)
-    return res.serialize()
+    return categories
+
+

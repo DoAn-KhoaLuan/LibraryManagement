@@ -3,10 +3,9 @@ from library.BLL import AuthorSvc
 from flask import jsonify, request, make_response
 import json
 
-from library.Common.Req.AuthorReq import CreateAuthorReq, DeleteAuthorByIdReq, UpdateAuthorReq, SearchAuthorByIdReq, \
-    SearchAuthorByNameReq
+from library.Common.Req.AuthorReq import CreateAuthorReq, DeleteAuthorByIdReq, UpdateAuthorReq, SearchAuthorReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Rsp.AuthorRsp import CreateAuthorRsp
+from library.Common.Rsp.AuthorRsp import CreateAuthorRsp, SearchAuthorRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from library.Common.Rsp.SingleRsp import ErrorRsp
 
@@ -42,15 +41,9 @@ def UpdateAuthor():
     return jsonify(result)
 
 
-@app.route('/admin/author-management/search-author-by-id', methods=['POST'])
-def SearchAuthorById():
-    req = SearchAuthorByIdReq(request.json)
-    result = AuthorSvc.SearchAuthorById(req)
-    return jsonify(result)
-
-
-@app.route('/admin/author-management/search-author-by-name', methods=['POST'])
-def SearchAuthorByName():
-    req = SearchAuthorByNameReq(request.json)
-    result = AuthorSvc.SearchAuthorByName(req)
-    return jsonify(result)
+@app.route('/admin/author-management/search-author', methods=['POST'])
+def SearchAuthor():
+    req = SearchAuthorReq(request.json)
+    result = AuthorSvc.SearchAuthor(req)
+    res = SearchAuthorRsp(result).serialize()
+    return jsonify(res['authors'])

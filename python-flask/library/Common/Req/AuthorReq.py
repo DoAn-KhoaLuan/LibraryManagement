@@ -14,11 +14,6 @@ class UpdateAuthorReq():
         self.author_name = req['author_name']
 
 
-class SearchAuthorByIdReq():
+class SearchAuthorReq:
     def __init__(self, req):
-        self.author_id = req['author_id']
-
-
-class SearchAuthorByNameReq():
-    def __init__(self, req):
-        self.author_name = req['author_name']
+        self.keyword = req['keyword'] if 'keyword' in req else None

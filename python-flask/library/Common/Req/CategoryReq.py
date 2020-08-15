@@ -18,13 +18,9 @@ class DeleteCategoryByIdReq():
         self.category_id = req['category_id']
 
 
-class SearchCategoryByIdReq():
+class SearchCategoryReq():
     def __init__(self, req):
-        self.category_id = req['category_id']
-
-class SearchCategoryByNameReq():
-    def __init__(self, req):
-        self.category_name = req['category_name']
+        self.keyword = req['keyword'] if 'keyword' in req else None
 
 
 

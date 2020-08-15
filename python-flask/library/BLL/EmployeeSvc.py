@@ -26,25 +26,7 @@ def DeleteEmployee(req):
     return delete_employee
 
 
-def SearchEmployeeById(req):
-    search_employee = EmployeeRep.SearchEmployeeById(req)
-    return search_employee.serialize()
-
-
-def SearchEmployeeByIdentityId(req):
-    search_employee = EmployeeRep.SearchEmployeeIdByIdentityId(req)
+def SearchEmployee(req):
+    search_employee = EmployeeRep.SearchEmployee(req)
     return search_employee
 
-
-def SearchEmployeeByAccountId(req):
-    search_employee = EmployeeRep.SearchEmployeeIdByAccountId(req)
-    return search_employee
-
-
-def SearchEmployeeByName(req):
-    search_employee = EmployeeRep.SearchEmployeeIdByName(req)
-    return search_employee
-
-def SearchEmployeeByPhone(req):
-    search_employee = EmployeeRep.SearchEmployeeIdByPhone(req)
-    return search_employee

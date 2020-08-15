@@ -1,6 +1,8 @@
+from sqlalchemy import or_
+
 from library import db
-from library.Common.Rsp.AuthorRsp import DeleteAuthorByIdRsp, UpdateAuthorRsp, SearchAuthorByIdRsp, \
-    SearchAuthorByNameRsp
+from library.Common.Req.AuthorReq import SearchAuthorReq
+from library.Common.Rsp.AuthorRsp import DeleteAuthorByIdRsp, UpdateAuthorRsp,SearchAuthorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
@@ -39,14 +41,9 @@ def UpdateAuthor(req):
     return res
 
 
-def SearchAuthorById(req):
-    author = models.Authors.query.get(req.author_id)
-    res = SearchAuthorByIdRsp(author).serialize()
-    return res
-
-
-def SearchAuthorByName(req):
-    author = models.Authors.query.filter(models.Authors.author_name.contains(req.author_name)).all()
+def SearchAuthor(req: SearchAuthorReq):
+    author = models.Authors.query.filter(or_(models.Authors.author_id == req.keyword,
+                                             models.Authors.author_name == req.keyword)).all()
     authors = ConvertModelListToDictList(author)
-    res = SearchAuthorByNameRsp(authors).serialize()
-    return res
+
+    return authors

@@ -23,15 +23,7 @@ class UpdateAuthorRsp():
         return {"author_id": self.author_id, "author_name": self.author_name}
 
 
-class SearchAuthorByIdRsp():
-    def __init__(self, req):
-        self.author_name = req.author_name
-
-    def serialize(self):
-        return {"author_name": self.author_name}
-
-
-class SearchAuthorByNameRsp():
+class SearchAuthorRsp():
     def __init__(self, authors):
         self.authors = authors
 

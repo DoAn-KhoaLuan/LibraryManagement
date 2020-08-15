@@ -29,26 +29,8 @@ def UpdateBook(req):
     return book
 
 
-def SearchBookById(req):
-    book = BookRep.SearchBookById(req)
+def SearchBook(req):
+    book = BookRep.SearchBook(req)
     return book
 
 
-def SearchBookByName(req):
-    books = BookRep.SearchBookByName(req)
-    return books
-
-
-def SearchBookByAuthorId(req):
-    books = BookRep.SearchBookByAuthorId(req)
-    return books
-
-
-def SearchBookByCategoryId(req):
-    books = BookRep.SearchBookByCategoryId(req)
-    return books
-
-
-def SearchBookBySupplierId(req):
-    books = BookRep.SearchBookBySupplierId(req)
-    return books
