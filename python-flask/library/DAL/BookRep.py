@@ -2,7 +2,6 @@ from sqlalchemy import or_
 
 from library import db
 from library.Common.Req.BookReq import SearchBookReq
-from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
 from library.Common.util import ConvertModelListToDictList
