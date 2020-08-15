@@ -6,7 +6,7 @@ from library.DAL import AccountRep
 def CreateAccount(req):
     is_account_existed = AccountRep.ValidateAccountName(req.account_name)
     if(is_account_existed):
-        return "sadsa"
+        return "Tài khoản đã tồn tại"
     else:
         res = AccountRep.CreateAccount(req)
         return res

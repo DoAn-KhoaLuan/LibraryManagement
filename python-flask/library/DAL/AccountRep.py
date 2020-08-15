@@ -3,14 +3,13 @@ from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from datetime import datetime
-
+from library import bcrypt
 
 def CreateAccount(req: CreateAccountReq):
-    print("REq: ", req.__dict__)
+    hashed_password = bcrypt.generate_password_hash(req.account_password,15)
     create_account = models.Accounts(account_name=req.account_name,
-                                     account_password=req.account_password,
+                                     account_password=hashed_password,
                                      note=req.note, delete_at=req.deleted_at, role_id=req.role_id)
-    print(create_account)
     db.session.add(create_account)
     db.session.commit()
     return create_account.serialize()

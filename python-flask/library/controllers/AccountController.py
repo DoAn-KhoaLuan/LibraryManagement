@@ -9,7 +9,7 @@ from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 
 
 @app.route('/admin/account-management/create-account', methods=['POST'])
-def CreateAccount():
+def CreateAccount() -> CreateAccountReq:
     req = CreateAccountReq(request.json)
     result = AccountSvc.CreateAccount(req)
     return result
@@ -19,7 +19,7 @@ def GetAccounts():
         req = GetItemsByPageReq(request.json)
         result = AccountSvc.GetAccountsByPage(req)
         res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
-                                items=result['accounts']).serialize()
+                                items=result['accounts']).__dict__
         return jsonify(res)
 
 
@@ -27,4 +27,4 @@ def GetAccounts():
 def DeleteAccount():
     req = DeleteAccountReq(request.json)
     res = AccountSvc.DeleteAccount(req)
-    return jsonify(res.serialize())
+    return jsonify(res.__dict__)
