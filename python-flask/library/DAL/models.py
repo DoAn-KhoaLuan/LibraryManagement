@@ -10,7 +10,7 @@ class Accounts(db.Model):
     account_name = db.Column(db.String(50), nullable=False)
     account_password = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(50))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     customers = db.relationship('Customers', backref='account', lazy = 'subquery')
     employees = db.relationship('Employees', backref='account', lazy = 'subquery')
 
@@ -37,7 +37,7 @@ class Books(db.Model):
     retail_price = db.Column(db.Float)
     discount = db.Column(db.Float)
     ranking = db.Column(db.String(50))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))
     orderdetails = db.relationship('Orderdetails', backref="book", lazy=True)
     stocktaketicketdetails = db.relationship('Stocktaketicketdetails', backref="book", lazy=True)
@@ -73,7 +73,7 @@ class Borrowtickets(db.Model):
     appointment_date = db.Column(db.DateTime)
     return_date = db.Column(db.DateTime)
     status = db.Column(db.Boolean)
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))
     books = db.relationship('Books', secondary='borrow_ticket_details', lazy='subquery',
                             backref=db.backref('borrowticket', lazy=True))
@@ -94,7 +94,7 @@ class Categories(db.Model):
     category_name = db.Column(db.String(50))
     description = db.Column(db.String(1500))
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     books = db.relationship('Books', backref="category", lazy=True)
 
     def serialize(self):
@@ -118,7 +118,7 @@ class Customers(db.Model):
     address = db.Column(db.String(1500))
     gender = db.Column(db.Boolean)
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     borrow_tickets = db.relationship('Borrowtickets', backref='customer', lazy=True)
     orders = db.relationship('Orders', backref='customers', lazy=True)
 
@@ -148,7 +148,7 @@ class Employees(db.Model):
     image = db.Column(db.String(50))
     basic_rate = db.Column(db.Float)
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     schedules = db.relationship('Schedules', backref='employee', lazy=True)
     orders = db.relationship('Orders', backref='employee', lazy=True)
     borrow_tickets = db.relationship('Borrowtickets', backref='employee', lazy=True)
@@ -196,7 +196,7 @@ class Orders(db.Model):
     total = db.Column(db.Float)
     type = db.Column(db.String(50))
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     orderdetails = db.relationship('Orderdetails', backref="order", lazy=True)
 
     def serialize(self):
@@ -212,7 +212,7 @@ class Roles(db.Model):
     role_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
     role_name = db.Column(db.String(50))
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     accounts = db.relationship('Accounts', backref="role", lazy=True)
 
     def serialize(self):

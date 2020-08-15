@@ -4,14 +4,12 @@ from library.DAL import AccountRep
 
 
 def CreateAccount(req):
-    # is_account_existed = AccountRep.ValidateAccountName(req.account_name)
-    # if(is_account_existed):
-    #     return "sadsa"
-    # else:
-    #     print('svcc')
-    #     return res
-    res = AccountRep.CreateAccount(req)
-    return res
+    is_account_existed = AccountRep.ValidateAccountName(req.account_name)
+    if(is_account_existed):
+        return "sadsa"
+    else:
+        res = AccountRep.CreateAccount(req)
+        return res
 
 def GetAccountsByPage(req):
     has_next, has_prev, accounts = AccountRep.GetAccountsByPage(req)

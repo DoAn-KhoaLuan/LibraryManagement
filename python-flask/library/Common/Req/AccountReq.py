@@ -1,10 +1,11 @@
 class CreateAccountReq():
     def __init__(self, req):
-        self.role_id = req['role_id']
-        self.account_name = req['account_name']
-        self.account_password = req['account_password']
-        self.confirm_account_password = req['confirm_account_password']
-        self.note = req['note']
+        self.role_id = req['role_id'] if 'role_id' in req else None
+        self.account_name = req['account_name'] if 'account_name' in req else None
+        self.account_password = req['account_password'] if 'account_password' in req else None
+        self.confirm_account_password =  req['confirm_account_password'] if 'confirm_account_password' in req else None
+        self.deleted_at = req['deleted_at'] if 'deleted_at' in req else None
+        self.note = req['note'] if 'note' in req else None
 
 
 class DeleteAccountReq():
