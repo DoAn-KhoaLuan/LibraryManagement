@@ -16,10 +16,10 @@ class Accounts(db.Model):
 
     def serialize(self):
         return {"account_id": self.account_id, "account_name": self.account_name, "note": self.note,
-                "account_password": self.account_password, "delete_at": self.delete_at,}
+                 "delete_at": self.delete_at, "role": self.role.serialize()}
 
     def __repr__(self):
-        return f"Account('{self.account_id}','{self.account_name}','{self.note}','{self.account_password}', '{self.delete_at}')"
+        return f"Account('{self.account_id}','{self.account_name}','{self.note}', '{self.delete_at}')"
 
 
 class Books(db.Model):
