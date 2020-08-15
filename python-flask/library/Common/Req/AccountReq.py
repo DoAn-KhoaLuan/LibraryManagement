@@ -19,3 +19,25 @@ class DeleteAccountReq():
             "account_id": self.account_id
         }
 
+class LoginReq():
+    def __init__(self, req):
+        self.user_name = req['user_name']
+        self.password = req['password']
+
+class LoginRsp():
+    def __init__(self, req):
+        self.access_token = req['access_token'] if 'access_token' in req else None
+        self.user_account = req['user_account'] if 'user_account' in req else None
+        self.account = req['account'] if 'account' in req else None
+
+    def serialize(self):
+        return {
+            "access_token": self.access_token.decode('utf-8'),
+            "user_account": self.user_account,
+            "account": self.account
+        }
+
+class SearchAccountsReq():
+    def __init__(self, req):
+        self.account_id = req['account_id'] if 'account_id' in req else None
+        self.account_name = req['account_name'] if 'account_name' in req else None

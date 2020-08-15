@@ -1,11 +1,8 @@
-<<<<<<< refs/remotes/origin/Customers
-=======
 from datetime import datetime
 from time import gmtime, strftime
 
 from sqlalchemy import or_
 
->>>>>>> feat(BE)
 from library import db
 from library.Common.Req import GetItemsByPageReq
 from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeeReq
@@ -72,7 +69,7 @@ def DeleteEmployee(req: DeleteEmployeeReq):
     return delete_employee.serialize()
 
 
-def SearchEmployee(req: SearchEmployeeReq):
+def SearchEmployees(req: SearchEmployeeReq):
     search_employee = models.Employees.query.filter(or_(models.Employees.first_name == req.keyword,
                                                         models.Employees.last_name == req.keyword,
                                                         models.Employees.identity_id == req.keyword,

@@ -9,3 +9,11 @@ class CreateAccountRsp():
             "role_id": self.role_id,
         }
 
+class SearchAccountsRsp():
+    def __init__(self, accounts):
+        self.accounts = accounts
+
+    def serialize(self):
+        return {
+            "accounts": self.accounts
+        }

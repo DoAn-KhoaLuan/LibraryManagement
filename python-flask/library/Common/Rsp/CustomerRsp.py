@@ -3,7 +3,7 @@ class SearchCustomerByIdentityIdRsp():
         self.customers = customers
 
     def serialize(self):
-        return {"customers ": self.customers}
+        return {"customers": self.customers}
 
 
 class SearchCustomerByAccountIdRsp():
@@ -11,7 +11,7 @@ class SearchCustomerByAccountIdRsp():
         self.customers = customers
 
     def serialize(self):
-        return {"customers ": self.customers}
+        return {"customers": self.customers}
 
 
 class SearchCustomerByPhoneRsp():
@@ -19,4 +19,4 @@ class SearchCustomerByPhoneRsp():
         self.customers = customers
 
     def serialize(self):
-        return {"customers ": self.customers}
+        return {"customers": self.customers}
