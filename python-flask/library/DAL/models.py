@@ -66,8 +66,8 @@ Borrowticketsdetails = db.Table('borrow_ticket_details',
 
 class Borrowtickets(db.Model):
     borrow_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'), primary_key=True)
-    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'), primary_key=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'))
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     quantity = db.Column(db.Integer)
     borrow_date = db.Column(db.DateTime)
     appointment_date = db.Column(db.DateTime)
