@@ -1,6 +1,3 @@
-import datetime
-from sqlalchemy import null
-
 from library import db
 
 
@@ -11,15 +8,16 @@ class Accounts(db.Model):
     account_password = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(50))
     delete_at = db.Column(db.DateTime, default=None)
-    customers = db.relationship('Customers', backref='account', lazy = 'subquery')
-    employees = db.relationship('Employees', backref='account', lazy = 'subquery')
+    customers = db.relationship('Customers', backref='account', lazy='subquery')
+    employees = db.relationship('Employees', backref='account', lazy='subquery')
 
     def serialize(self):
         return {"account_id": self.account_id, "account_name": self.account_name, "note": self.note,
-                 "delete_at": self.delete_at, "role": self.role.serialize()}
+                "delete_at": self.delete_at, "role": self.role.serialize()}
 
     def __repr__(self):
-        return f"Account('{self.account_id}','{self.account_name}','{self.note}', '{self.delete_at}')"
+        return f"Account('{self.account_id}','{self.account_name}','{self.note}', '{self.delete_at}', " \
+               f"'{self.role.serialize()}')"
 
 
 class Books(db.Model):
@@ -167,7 +165,6 @@ class Employees(db.Model):
                f",'{self.basic_rate}', '{self.delete_at}', '{self.hire_date}')"
 
 
-
 class Orderdetails(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id'), primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), primary_key=True)
@@ -176,7 +173,7 @@ class Orderdetails(db.Model):
     discount = db.Column(db.Float)
     total = db.Column(db.Float)
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
 
     def serialize(self):
         return {"order_id": self.order.serialize(), "book_id": self.book.serialize(), "note": self.note,
@@ -200,7 +197,8 @@ class Orders(db.Model):
     orderdetails = db.relationship('Orderdetails', backref="order", lazy=True)
 
     def serialize(self):
-        return {"order_id": self.order_id, "customer": self.customer.serialize(), "note": self.note,"employee": self.employee.serialize(),
+        return {"order_id": self.order_id, "customer": self.customer.serialize(), "note": self.note,
+                "employee": self.employee.serialize(),
                 "order_date": self.order_date, "total": self.order_date, "type": self.type, "delete_at": self.delete_at}
 
     def __repr__(self):
@@ -231,7 +229,9 @@ class Schedules(db.Model):
     actual_hours = db.Column(db.Float)
     expected_hours = db.Column(db.Float)
     salary = db.Column(db.Float)
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
+
+    note = db.Column(db.String(1500))
 
     def serialize(self):
         return {"id": self.schedule_id, "employee": self.employee.serialize(), "date": self.date,
@@ -250,7 +250,6 @@ class Stocktaketicketdetails(db.Model):
     new_quantity = db.Column(db.Integer)
     old_quantity = db.Column(db.Integer)
 
-
     def serialize(self):
         return {"stocktake_ticket": self.stocktaketicket.serialize(), "book": self.book.serialize(),
                 "new_quantity": self.new_quantity, "old_quantity": self.old_quantity}
@@ -260,13 +259,12 @@ class Stocktaketicketdetails(db.Model):
                f"'{self.old_quantity}')"
 
 
-
 class Stocktaketickets(db.Model):
     stocktake_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     total_quantity = db.Column(db.Integer)
     date = db.Column(db.DateTime)
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     stocktaketicketdetails = db.relationship('Stocktaketicketdetails', backref="stocktaketicket", lazy=True)
 
     def serialize(self):
@@ -284,7 +282,7 @@ class Suppliers(db.Model):
     phone = db.Column(db.String(50))
     email = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(1500))
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
     books = db.relationship('Books', backref='supplier', lazy=True)
 
     def serialize(self):
@@ -301,7 +299,7 @@ class Authors(db.Model):
     author_name = db.Column(db.String(50))
 
     books = db.relationship('Books', backref='author', lazy=True)
-    delete_at = db.Column(db.DateTime, default=null)
+    delete_at = db.Column(db.DateTime, default=None)
 
     def serialize(self):
         return {"author_id": self.author_id, "author_name": self.author_name}

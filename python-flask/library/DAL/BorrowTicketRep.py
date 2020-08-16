@@ -56,7 +56,7 @@ def DeleteBorrowTicket(req: DeleteBorrowTicketReq):
     return delete_borrow_ticket.serialize()
 
 def SearchBorrowTicket(req : SearchBorrowTicketReq):
-    search_borrow_ticket = models.Borrowtickets.query.filter (or_(models.Borrowtickets.customer_id == req.keyword,
+    search_borrow_ticket = models.Borrowtickets.query.filter(or_(models.Borrowtickets.customer_id == req.keyword,
                                                                   models.Borrowtickets.employee_id == req.keyword,
                                                                   models.Borrowtickets.borrow_date == req.keyword,
                                                                   models.Borrowtickets.return_date == req.keyword,
