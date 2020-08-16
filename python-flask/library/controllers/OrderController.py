@@ -21,11 +21,13 @@ def GetOrders():
 
 @app.route("/admin/order-management/create-order", methods=['POST', 'GET'])
 def CreateOrder():
-    req = CreateOrderReq(request.json)
-    result = OrderSvc.CreateOrder(req)
+    try:
+        req = CreateOrderReq(request.json)
+        result = OrderSvc.CreateOrder(req)
 
-    return jsonify(result)
-
+        return jsonify(result)
+    except ErrorRsp as e:
+        return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
 
 @app.route("/admin/order-management/update-order", methods=['POST', 'GET'])
 def UpdateOrder():

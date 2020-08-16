@@ -1,4 +1,4 @@
-from library.DAL import ScheduleRep
+from library.DAL import ScheduleRep, EmployeeRep
 
 
 def GetScheduleByPage(req):
@@ -17,7 +17,7 @@ def CreateSchedule(req):
 
 def UpdateSchedule(req):
     update_schedule = ScheduleRep.UpdateSchedule(req)
-    return  update_schedule
+    return update_schedule
 
 
 def SearchSchedules(req):

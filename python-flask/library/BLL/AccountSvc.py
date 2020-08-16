@@ -35,7 +35,6 @@ def AuthenticateUser(acc: LoginReq):
     try:
         account = AccountRep.Authenticate(acc)
         secect_key = app.config['SECRET_KEY']
-        print(str(account.account_id))
         payload = {
             'account_id': account.account_id,
             'iat':datetime.utcnow(),

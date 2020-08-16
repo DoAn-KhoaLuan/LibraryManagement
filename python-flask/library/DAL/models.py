@@ -230,7 +230,6 @@ class Schedules(db.Model):
     expected_hours = db.Column(db.Float)
     salary = db.Column(db.Float)
     delete_at = db.Column(db.DateTime, default=None)
-
     note = db.Column(db.String(1500))
 
     def serialize(self):

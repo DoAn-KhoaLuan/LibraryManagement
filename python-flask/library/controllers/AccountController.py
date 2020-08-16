@@ -30,7 +30,7 @@ def GetAccounts(auth_info):
         result = AccountSvc.GetAccountsByPage(req)
         res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
                                 items=result['accounts']).serialize()
-        return jsonify(auth_info)
+        return jsonify(res)
 
 
 @app.route('/admin/account-management/delete-account', methods=['POST'])
@@ -52,7 +52,6 @@ def LoginAccount():
         req = LoginReq(request.json)
         result = AccountSvc.AuthenticateUser(req)
         res = LoginRsp(result).serialize()
-        print(res)
         return jsonify(res)
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401

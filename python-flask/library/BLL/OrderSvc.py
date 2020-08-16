@@ -1,3 +1,4 @@
+from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.DAL import OrderRep
 
 
@@ -12,8 +13,11 @@ def GetOrdersByPage(req):
 
 
 def CreateOrder(req):
-    create_order = OrderRep.CreateOrder(req)
-    return create_order
+    try:
+        create_order = OrderRep.CreateOrder(req)
+        return create_order
+    except ErrorRsp as e:
+        raise e
 
 
 def UpdateOrder(req):

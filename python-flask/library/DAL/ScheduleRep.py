@@ -33,6 +33,7 @@ def CreateSchedule(req: CreateScheduleReq):
 
 
 def UpdateSchedule(req: UpdateScheduleReq):
+    employee = models.Employees.query.get(req.employee_id)
     update_schedule = models.Schedules.query.get(req.schedule_id)
     update_schedule.employee_id = req.employee_id
     update_schedule.date = req.date
@@ -41,7 +42,7 @@ def UpdateSchedule(req: UpdateScheduleReq):
     update_schedule.note = req.note
     update_schedule.actual_hours = req.actual_hours
     update_schedule.expected_hours = req.expected_hours
-    update_schedule.salary = req.salary
+    update_schedule.salary = employee.basic_rate * req.actual_hours
     update_schedule.delete_at = req.delete_at
     db.session.commit()
     return update_schedule.serialize()

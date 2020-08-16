@@ -68,7 +68,7 @@ def DeleteEmployee(req: DeleteEmployeeReq):
     return delete_employee.serialize()
 
 
-def SearchEmployees(req: SearchEmployeeReq):
+def SearchEmployee(req: SearchEmployeeReq):
     search_employee = models.Employees.query.filter(or_(models.Employees.first_name == req.keyword,
                                                         models.Employees.last_name == req.keyword,
                                                         models.Employees.identity_id == req.keyword,
