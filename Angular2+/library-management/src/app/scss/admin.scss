@@ -23,9 +23,12 @@
 }
 
 .page-content-admin {
-  padding-top: 30px;
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
-  height: calc(100% - var(--header-page-height));
+  height: calc(100vh - var(--header-page-height));
+}
+
+.real-avatar {
+  border: 1px solid black;
 }
