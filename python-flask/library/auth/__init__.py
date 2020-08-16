@@ -12,15 +12,15 @@ from library.DAL import EmployeeRep, CustomerRep
 
 def token_required(f):
     @wraps(f)
-    def _verify(*args, **kwargs):
+    def _verify():
         auth_headers = request.headers.get('Authorization', '').split()
 
         invalid_msg = {
-            'message': 'Invalid token. Registeration and / or authentication required',
+            'message': 'Token không hợp lệ.',
             'authenticated': False
         }
         expired_msg = {
-            'message': 'Expired token. Reauthentication required.',
+            'message': 'Token hết hạn sử dụng.',
             'authenticated': False
         }
 
@@ -33,9 +33,7 @@ def token_required(f):
             account = AccountSvc.SearchAccounts(search_accounts_req)[0]
 
             search_employees_req = SearchEmployeeReq({'keyword': account['account_id']})
-
             employee = EmployeeRep.SearchEmployees(search_employees_req)[0]
-
             search_customers_req = SearchCustomerByAccountIdReq({'account_id': account['account_id']})
             customer = CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers'] if len(CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers']) > 0 else None
             auth_info = {
@@ -43,9 +41,35 @@ def token_required(f):
                 'employee': employee,
                 'customer': customer
             }
-            return f(auth_info, *args, **kwargs)
+            return f(auth_info)
         except jwt.ExpiredSignatureError:
             return jsonify(expired_msg), 401 # 401 is Unauthorized HTTP status code
-        except (jwt.InvalidTokenError, Exception) as e:
+        except (jwt.InvalidTokenError) as e:
             return jsonify(invalid_msg), 401
+    return _verify
+
+def admin_required(f):
+    @wraps(f)
+    def _verify(auth_info):
+        invalid_role = {
+            'message': 'Yêu cầu quyền hạn của quản trị viên',
+            'authenticated': False
+        }
+        if(auth_info['account']['role']['role_id'] == 2):
+            return f(auth_info)
+
+        return jsonify(invalid_role), 403
+    return _verify
+
+def manager_required(f):
+    @wraps(f)
+    def _verify(auth_info):
+        invalid_role = {
+            'message': 'Yêu cầu quyền hạn của quản lí',
+            'authenticated': False
+        }
+        if(auth_info['account']['role']['role_id'] == 1):
+            return f(auth_info)
+
+        return jsonify(invalid_role), 403
     return _verify
