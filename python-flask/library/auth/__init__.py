@@ -33,7 +33,7 @@ def token_required(f):
             account = AccountSvc.SearchAccounts(search_accounts_req)[0]
 
             search_employees_req = SearchEmployeeReq({'keyword': account['account_id']})
-            employee = EmployeeRep.SearchEmployees(search_employees_req)[0] if len(EmployeeRep.SearchEmployees(search_employees_req)[0]) > 0 else None
+            employee = EmployeeRep.SearchEmployees(search_employees_req)[0] if len(EmployeeRep.SearchEmployees(search_employees_req)) > 0 else None
 
             search_customers_req = SearchCustomerByAccountIdReq({'account_id': account['account_id']})
             customer = CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers'][0] if len(CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers']) > 0 else None

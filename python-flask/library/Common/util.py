@@ -3,8 +3,10 @@ from flask import jsonify
 
 def ConvertModelListToDictList(model_list):
     dict_items = []
+    model_list=filter(lambda model_item: model_item.delete_at == None , model_list)
     for item in model_list:
-        dict_items.append(item.serialize())
+        if(item.delete_at is None):
+            dict_items.append(item.serialize())
     return dict_items
 
 

@@ -1,6 +1,6 @@
 from flask_bcrypt import check_password_hash
 from sqlalchemy import or_
-
+import hashlib
 from library import db
 from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq
 from library.Common.Rsp.SingleRsp import ErrorRsp
@@ -10,9 +10,9 @@ from datetime import datetime
 from library import bcrypt
 
 def CreateAccount(req: CreateAccountReq):
-    # hashed_password = bcrypt.generate_password_hash(req.account_password, 10).decode('utf-8')
+    hashed_password = hashlib.md5(req.account_password.encode('utf-8')).hexdigest()
     create_account = models.Accounts(account_name=req.account_name,
-                                     account_password=req.account_password,
+                                     account_password=hashed_password,
                                      note=req.note, delete_at=req.deleted_at, role_id=req.role_id)
     db.session.add(create_account)
     db.session.commit()
@@ -51,10 +51,7 @@ def Authenticate(acc_info: LoginReq):
     if not account:
         raise ErrorRsp(code=400, message='Tài khoản không tồn tại')
 
-    # is_authenticated = bcrypt.check_password_hash(account.__dict__['account_password'], acc_info.password.encode("utf-8"))
-    # print(is_authenticated)
-
-    # if not is_authenticated:
-    #     raise ErrorRsp(code=400, message='Mật khẩu không chính xác')
+    if(str(hashlib.md5(acc_info.password.encode('utf-8')).hexdigest()) != account.account_password):
+        raise ErrorRsp(code=400, message='Mật khẩu không chính xác')
     return account
 

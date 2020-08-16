@@ -23,9 +23,8 @@ def CreateAccount() -> CreateAccountReq:
     return result
 
 @app.route('/admin/account-management/get-accounts', methods=['POST'])
-@token_required
-def GetAccounts(auth_info):
-        print("*** auth_info", auth_info)
+# @token_required
+def GetAccounts():
         req = GetItemsByPageReq(request.json)
         result = AccountSvc.GetAccountsByPage(req)
         res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
