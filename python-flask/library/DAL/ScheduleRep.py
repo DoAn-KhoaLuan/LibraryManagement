@@ -49,8 +49,8 @@ def UpdateSchedule(req: UpdateScheduleReq):
 
 
 def SearchSchedules(req: SearchSchedulesReq):
-    search_schedules = models.Schedules.query.filter(or_(models.Schedules.schedule_id == req.keyword,
-                                                         models.Schedules.employee_id == req.keyword
+    search_schedules = models.Schedules.query.filter(or_(models.Schedules.schedule_id == req.schedule_id,
+                                                         models.Schedules.employee_id == req.employee_id
                                                      )).all()
 
     schedules = ConvertModelListToDictList(search_schedules)

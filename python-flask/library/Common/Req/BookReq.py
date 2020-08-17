@@ -1,44 +1,47 @@
 class CreateBookReq(object):
     def __init__(self, req):
-        self.book_name = req['book_name']
-        self.supplier_id = req['supplier_id']
-        self.category_id = req['category_id']
-        self.author_id = req['author_id']
-        self.old_amount = req['old_amount']
-        self.new_amount = req['new_amount']
-        self.image = req['image']
-        self.page_number = req['page_number']
-        self.description = req['description']
-        self.cost_price = req['cost_price']
-        self.retail_price = req['retail_price']
-        self.discount = req['discount']
-        self.ranking = req['ranking']
+        self.book_name = req['book_name'] if 'book_name' in req else None
+        self.supplier_id = req['supplier_id'] if 'supplier_id' in req else None
+        self.category_id = req['category_id'] if 'category_id' in req else None
+        self.author_id = req['author_id'] if 'author_id' in req else None
+        self.old_amount = req['old_amount'] if 'old_amount' in req else None
+        self.new_amount = req['new_amount'] if 'new_amount' in req else None
+        self.image = req['image'] if 'image' in req else None
+        self.page_number = req['page_number'] if 'page_number' in req else None
+        self.description = req['description'] if 'description' in req else None
+        self.cost_price = req['cost_price'] if 'cost_price' in req else None
+        self.retail_price = req['retail_price'] if 'retail_price' in req else None
+        self.discount = req['discount'] if 'discount' in req else None
+        self.ranking = req['ranking'] if 'ranking' in req else None
 
 
 class DeleteBookByIdReq():
     def __init__(self, req):
-        self.book_id = req['book_id']
+        self.book_id = req['book_id'] if 'book_id' in req else None
 
 
 class UpdateBookReq():
     def __init__(self, req):
-        self.book_id = req['book_id']
-        self.book_name = req['book_name']
-        self.supplier_id = req['supplier_id']
-        self.category_id = req['category_id']
-        self.author_id = req['author_id']
-        self.old_amount = req['old_amount']
-        self.new_amount = req['new_amount']
-        self.image = req['image']
-        self.page_number = req['page_number']
-        self.description = req['description']
-        self.cost_price = req['cost_price']
-        self.retail_price = req['retail_price']
-        self.discount = req['discount']
-        self.ranking = req['ranking']
-        self.ranking = req['ranking']
+        self.book_id = req['book_id'] if 'book_id' in req else None
+        self.book_name = req['book_name'] if 'book_name' in req else None
+        self.supplier_id = req['supplier_id'] if 'supplier_id' in req else None
+        self.category_id = req['category_id'] if 'category_id' in req else None
+        self.author_id = req['author_id'] if 'author_id' in req else None
+        self.old_amount = req['old_amount'] if 'old_amount' in req else None
+        self.new_amount = req['new_amount'] if 'new_amount' in req else None
+        self.image = req['image'] if 'image' in req else None
+        self.page_number = req['page_number'] if 'page_number' in req else None
+        self.description = req['description'] if 'description' in req else None
+        self.cost_price = req['cost_price'] if 'cost_price' in req else None
+        self.retail_price = req['retail_price'] if 'retail_price' in req else None
+        self.discount = req['discount'] if 'discount' in req else None
+        self.ranking = req['ranking'] if 'ranking' in req else None
 
 
 class SearchBookReq:
     def __init__(self, req):
-        self.keyword = req['keyword'] if 'keyword' in req else None
+        self.book_id = req['book_id'] if 'book_id' in req else None
+        self.book_name = req['book_name'] if 'book_name' in req else None
+        self.author_id = req['author_id'] if 'author_id' in req else None
+        self.category_id = req['category_id'] if 'category_id' in req else None
+        self.supplier_id = req['supplier_id'] if 'supplier_id' in req else None

@@ -26,21 +26,8 @@ def DeleteCustomer(req):
     return delete_customer
 
 
-def SearchCustomerById(req):
-    search_customer = CustomerRep.SearchCustomerById(req)
+def SearchCustomers(req):
+    search_customer = CustomerRep.SearchCustomers(req)
     return search_customer
 
 
-def SearchCustomerByIdentityId(req):
-    search_customer = CustomerRep.SearchCustomerByIdentityId(req)
-    return search_customer
-
-
-def SearchCustomerByAccountId(req):
-    search_customer = CustomerRep.SearchCustomerByAccountId(req)
-    return search_customer
-
-
-def SearchCustomerByPhone(req):
-    search_customer = CustomerRep.SearchCustomerByPhone(req)
-    return search_customer

@@ -1,4 +1,4 @@
-class SearchSupplierRsp():
+class SearchSuppliersRsp():
     def __init__(self, suppliers):
         self.suppliers = suppliers
 

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import or_
 
 from library import db
@@ -38,9 +40,10 @@ def CreateBook(req):
 
 def DeleteBookById(req):
     book = models.Books.query.get(req.book_id)
-    db.session.delete(book)
+    book.delete_at = datetime.now()
+    db.session.add(book)
     db.session.commit()
-    return req
+    return book.serialize()
 
 
 def UpdateBook(req):
@@ -64,10 +67,10 @@ def UpdateBook(req):
 
 
 def SearchBook(req: SearchBookReq):
-    model_books = models.Books.query.filter(or_(models.Books.book_id == req.keyword,
-                                                models.Books.book_name == req.keyword,
-                                                models.Books.author_id == req.keyword,
-                                                models.Books.category_id == req.keyword,
-                                                models.Books.supplier_id == req.keyword)).all()
+    model_books = models.Books.query.filter(or_(models.Books.book_id == req.book_id,
+                                                models.Books.book_name == req.book_name,
+                                                models.Books.author_id == req.author_id,
+                                                models.Books.category_id == req.category_id,
+                                                models.Books.supplier_id == req.supplier_id)).all()
     books = ConvertModelListToDictList(model_books)
     return books

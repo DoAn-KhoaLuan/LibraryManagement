@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import or_
 
 from library import db
@@ -26,7 +28,8 @@ def CreateAuthor(req):
 
 def DeleteAuthorById(req):
     author = models.Authors.query.get(req.author_id)
-    db.session.delete(author)
+    author.delete_at = datetime.now()
+    db.session.add(author)
     db.session.commit()
     res = DeleteAuthorByIdRsp(author).serialize()
     return res
@@ -42,8 +45,8 @@ def UpdateAuthor(req):
 
 
 def SearchAuthor(req: SearchAuthorReq):
-    author = models.Authors.query.filter(or_(models.Authors.author_id == req.keyword,
-                                             models.Authors.author_name == req.keyword)).all()
+    author = models.Authors.query.filter(or_(models.Authors.author_id == req.author_id,
+                                             models.Authors.author_name == req.author_name)).all()
     authors = ConvertModelListToDictList(author)
 
     return authors

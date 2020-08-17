@@ -1,8 +1,9 @@
+from sqlalchemy import or_
+
 from library import db
 from library.Common.Req import GetItemsByPageReq
-from library.Common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrderByOrderIdReq, \
-    SearchOrderByCustomerIdReq, SearchOrderByEmployeeIdReq, SearchOrderByOrderDateReq
-from library.Common.Rsp.OrderRsp import SearchOrderByCustomerIdEmployeeIdRsp, SearchOrderByOrderDateRsp
+from library.Common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
+from library.Common.Rsp.OrderRsp import SearchOrdersRsp
 from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
@@ -65,27 +66,13 @@ def DeleteOrder(req: DeleteOrderReq):
     return delete_order.serialize()
 
 
-def SearchOrderByOrderId(req: SearchOrderByOrderIdReq):
-    search_order = models.Orders.query.get(req.order_id)
-    return search_order.serialize()
-
-
-def SearchOrderByCustomerId(req: SearchOrderByCustomerIdReq):
-    search_order = models.Orders.query.filter(models.Orders.customer_id.contains(req.customer_id)).all()
+def SearchOrders(req: SearchOrdersReq):
+    search_order = models.Orders.query.filter(or_(models.Orders.customer_id == req.customer_id,
+                                                  models.Orders.order_id == req.order_id,
+                                                  models.Orders.employee_id == req.employee_id,
+                                                  models.Orders.order_date == req.order_date)).all()
     orders = ConvertModelListToDictList(search_order)
-    res = SearchOrderByCustomerIdEmployeeIdRsp(orders).serialize()
+    res = SearchOrdersRsp(orders).serialize()
     return res
 
 
-def SearchOrderByEmployeeId(req: SearchOrderByEmployeeIdReq):
-    search_order = models.Orders.query.filter(models.Orders.employee_id.contains(req.employee_id)).all()
-    orders = ConvertModelListToDictList(search_order)
-    res = SearchOrderByCustomerIdEmployeeIdRsp(orders).serialize()
-    return res
-
-
-def SearchOrderByOrderDate(req: SearchOrderByOrderDateReq):
-    search_order = models.Orders.query.filter(models.Orders.order_date.contains(req.order_date))
-    orders = ConvertModelListToDictList(search_order)
-    res = SearchOrderByOrderDateRsp(orders).serialize()
-    return res
