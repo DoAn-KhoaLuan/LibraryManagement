@@ -2,7 +2,7 @@ from flask_bcrypt import check_password_hash
 from sqlalchemy import or_
 import hashlib
 from library import db
-from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq
+from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq
 from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
@@ -55,3 +55,19 @@ def Authenticate(acc_info: LoginReq):
         raise ErrorRsp(code=400, message='Mật khẩu không chính xác')
     return account
 
+def GetAccountByCustomerEmail(req):
+    customer_email = req.email
+    account = models.Customers.query.filter(models.Customers.email == customer_email).first().account.serialize()
+    return account
+
+
+def GetAccountByEmployeeEmail(req: SendResetPasswordEmailReq):
+    employee_email = req.email
+    account = models.Employees.query.filter(models.Employees.email == employee_email).first().account.serialize()
+    return account
+
+def ChangePassword(acc_id, password):
+    account = models.Accounts.query.get(acc_id)
+    account.account_password = password
+    db.session.commit()
+    return account.serialize()

@@ -133,12 +133,13 @@ class Customers(db.Model):
 
 
 class Employees(db.Model):
-    employee_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
+    employee_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)
     identity_id = db.Column(db.String(50), nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     last_name = db.Column(db.String(50), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
-    phone = db.Column(db.String(50), nullable=False)
+    phone = db.Column(db.String(50), nullable=False, unique=True)
+    email = db.Column(db.String(50), nullable=False, unique=True)
     birth_date = db.Column(db.DateTime)
     hire_date = db.Column(db.DateTime)
     address = db.Column(db.String(1500))
@@ -156,13 +157,13 @@ class Employees(db.Model):
         return {"employee_id": self.employee_id, "identity_id": self.identity_id, "note": self.note,
                 "account": self.account.serialize(), "last_name": self.last_name, "first_name": self.first_name,
                 "phone": self.phone, "birth_day": self.birth_date, "address": self.address, "gender": self.gender,
-                "image": self.image, "basic_rate": self.basic_rate, "delete_at": self.delete_at,
+                "image": self.image, "basic_rate": self.basic_rate, "delete_at": self.delete_at, "email": self.email,
                 "hire_date": self.hire_date}
 
     def __repr__(self):
         return f"Employee('{self.employee_id}','{self.identity_id}','{self.note}','{self.account.serialize()}','{self.first_name}'" \
                f",'{self.last_name}','{self.phone}','{self.birth_date}','{self.address}','{self.gender}','{self.image}'" \
-               f",'{self.basic_rate}', '{self.delete_at}', '{self.hire_date}')"
+               f",'{self.basic_rate}', '{self.delete_at}', '{self.hire_date}', '{self.email}')"
 
 
 class Orderdetails(db.Model):

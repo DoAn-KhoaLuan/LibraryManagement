@@ -5,8 +5,8 @@ from flask import request, jsonify
 from library import app
 from library.BLL import AccountSvc
 from library.Common.Req.AccountReq import SearchAccountsReq
-from library.Common.Req.CustomerReq import SearchCustomerByAccountIdReq
-from library.Common.Req.EmployeeReq import SearchEmployeeReq
+from library.Common.Req.CustomerReq import SearchCustomersReq
+from library.Common.Req.EmployeeReq import SearchEmployeesReq
 from library.DAL import EmployeeRep, CustomerRep
 
 
@@ -32,11 +32,11 @@ def token_required(f):
             search_accounts_req = SearchAccountsReq({'account_id': data['account_id']})
             account = AccountSvc.SearchAccounts(search_accounts_req)[0]
 
-            search_employees_req = SearchEmployeeReq({'keyword': account['account_id']})
+            search_employees_req = SearchEmployeesReq({'account_id': account['account_id']})
             employee = EmployeeRep.SearchEmployees(search_employees_req)[0] if len(EmployeeRep.SearchEmployees(search_employees_req)) > 0 else None
 
-            search_customers_req = SearchCustomerByAccountIdReq({'account_id': account['account_id']})
-            customer = CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers'][0] if len(CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers']) > 0 else None
+            search_customers_req = SearchCustomersReq({'account_id': account['account_id']})
+            customer = CustomerRep.SearchCustomers(search_customers_req)['customers'][0] if len(CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers']) > 0 else None
 
             auth_info = {
                 'account': account,
