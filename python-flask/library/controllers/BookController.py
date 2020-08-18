@@ -49,7 +49,7 @@ def UpdateBook():
     return jsonify(res)
 
 
-@app.route('/admin/book-management/search-book', methods=['POST'])
+@app.route('/admin/book-management/search-books', methods=['POST'])
 def SearchBook():
     req = SearchBookReq(request.json)
     result = BookSvc.SearchBook(req)

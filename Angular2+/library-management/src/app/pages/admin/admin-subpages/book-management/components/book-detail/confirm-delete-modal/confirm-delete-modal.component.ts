@@ -15,7 +15,7 @@ export class ConfirmDeleteModalComponent implements OnInit {
   }
 
   onConfirmDelete() {
-    console.log("xác nhận xóa")
+    this.modalAction.dismiss(this.book)
   }
 
   dismissModal() {

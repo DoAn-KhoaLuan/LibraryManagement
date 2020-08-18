@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 
 export enum NavigationDirection {
   FORWARD = 1,
@@ -15,8 +15,8 @@ export class PaginationOpt {
   templateUrl: './page-pagination.component.html',
   styleUrls: ['./page-pagination.component.scss']
 })
-export class PagePaginationComponent implements OnInit {
-  @Input() paginationOpt : Subject<PaginationOpt>;
+export class PagePaginationComponent implements OnInit, OnChanges {
+  @Input() paginationOpt : Observable<PaginationOpt>;
   @Output() navigate = new EventEmitter<NavigationDirection>();
   @Input() currentPage: number;
   // @Output() settings = new EventEmitter<PaginationOpt>();
@@ -29,6 +29,7 @@ export class PagePaginationComponent implements OnInit {
 
   ngOnInit() {
     this.paginationOpt.subscribe(data => {
+      console.log(data)
       this.currentPaginationOpt.nextDisabled = data.nextDisabled;
       this.currentPaginationOpt.previousDisabled = data.previousDisabled;
       this.currentPaginationOpt.hidePerpage = data.hidePerpage;
@@ -36,6 +37,13 @@ export class PagePaginationComponent implements OnInit {
     
   }
 
+  ngOnChanges(): void {
+    // this.paginationOpt.subscribe(data => {
+    //   this.currentPaginationOpt.nextDisabled = data.nextDisabled;
+    //   this.currentPaginationOpt.previousDisabled = data.previousDisabled;
+    //   this.currentPaginationOpt.hidePerpage = data.hidePerpage;
+    // })
+  }
   nav($e, direction) {
     $e.preventDefault();
     if (

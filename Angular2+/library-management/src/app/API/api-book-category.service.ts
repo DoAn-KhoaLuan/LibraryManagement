@@ -11,7 +11,7 @@ export class ApiCategoryService {
   constructor(private http: HttpService, private apiAppService: ApiAppService) {
     this.baseURL = this.apiAppService.baseURL;
   }
-  async GetCategoriess(req) {
+  async GetCategories(req) {
     return await this.http.post(this.baseURL+"/admin/category-management/get-categories",req).toPromise();
   }
 

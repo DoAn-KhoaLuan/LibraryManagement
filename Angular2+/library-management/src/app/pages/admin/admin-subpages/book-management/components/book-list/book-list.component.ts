@@ -1,8 +1,12 @@
+import { async } from '@angular/core/testing';
+import { BookStore } from './../../../../../../states/book-store/book.store';
+import { BookQuery } from './../../../../../../states/book-store/book.query';
+import { BookService } from './../../../../../../states/book-store/book.service';
 import { Router } from '@angular/router';
 import { PaginationOpt, NavigationDirection } from './../../../../../../shared/page-pagination/page-pagination.component';
 import { Subject } from 'rxjs';
 import { ApiBookService } from './../../../../../../API/api-book.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-book-list',
@@ -10,66 +14,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-list.component.scss']
 })
 export class BookListComponent implements OnInit {
-  filter_page = {
-    page: 1,
-    per_page: 1,
-  }
-
-  currentPage = 1;
-  book_list = [];
-  paginationOpt = new Subject<PaginationOpt>();
-
-  has_next: boolean;
-  has_prev: boolean
-
+  book_list$ = this.bookQuery.book_list_view$;
+  current_pagination_opt$ = this.bookQuery.current_pagination_opt$;
+  current_page$ = this.bookQuery.current_page$;
   currentPaginationOpt = new PaginationOpt();
 
-
-  constructor(private ApiBookService: ApiBookService, private router: Router) { }
+  constructor(private router: Router, private bookService: BookService, private bookQuery: BookQuery, private bookStore: BookStore, private ref: ChangeDetectorRef) { }
 
   async ngOnInit() {
-    let res = await this.ApiBookService.GetBooks(this.filter_page)
-    this.book_list = res['items'];
-    this.has_next = res['has_next']
-    this.has_prev = res['has_prev']
-    this.setupPagination()
+    await this.onRequestNewPage();
+  }
+
+  async onRequestNewPage() {
+    await this.bookService.getBooks(this.bookQuery.getValue().filter_page).then(() => {
+      this.bookService.setupPagination();
+    })
   }
 
   async navigate(direction) {
-    switch (direction) {
-      case NavigationDirection.BACKWARD:
-        this.currentPage--;
-        break;
-      case NavigationDirection.FORWARD:
-        this.currentPage++;
-        break;
-    }
-    this.currentPage = this.currentPage <= 0 ? 1 : this.currentPage;
-    this.filter_page.page = this.currentPage;
-    await this.onRequestNewPage().then(() => {
-      this.currentPaginationOpt = {
-        hidePerpage: true,
-        nextDisabled:  !this.has_next,
-        previousDisabled: !this.has_prev,
-      };
-      this.paginationOpt.next(this.currentPaginationOpt);
-    });
-  }
-  async onRequestNewPage() {
-    let res = await this.ApiBookService.GetBooks(this.filter_page)
-    this.book_list = res['items'];
-    this.has_next = res['has_next']
-    this.has_prev = res['has_prev']
-    this.setupPagination()
-  }
-
-  setupPagination() {
-    this.currentPaginationOpt = {
-      hidePerpage: true,
-      nextDisabled:  !this.has_next,
-      previousDisabled: !this.has_prev,
-    };
-    this.paginationOpt.next(this.currentPaginationOpt)
+    this.bookService.navigate(direction);
+    await this.onRequestNewPage()
   }
 
   onViewBookDetail(book_id) {

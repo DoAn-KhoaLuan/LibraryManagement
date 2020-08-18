@@ -1,28 +1,18 @@
-<div class="item-row py-2">
+<div class="item-row py-2 ">
   <div class="row">
-    <div class="col align-self-center  text-center  font-weight-bold" style="max-width: 150px;">{{book_item?.book_id}}</div>
+    <div class="col align-self-center  text-center text-app font-weight-bold" style="max-width: 150px;">{{book_item?.book_id | standardizedId}}</div>
     <div class="col align-self-center text-center" style="max-width: 150px;">
       <img [src]="book_item?.imageUrl || 'assets/images/default-book.png'"
            style="height: 80px; width: 60px; object-fit: cover;" alt="" />
     </div>
-    <div class="col align-self-center text-center">{{book_item?.book_name || "-"}}</div>
-    <div class="col align-self-center text-center" style="max-width: 300px;">{{book_item?.author_name || "-"}}</div>
+    <div class="col align-self-center text-center text-app "><b>{{book_item?.book_name || "-"}}</b></div>
+    <div class="col align-self-center text-center" style="max-width: 300px;">{{book_item?.author?.author_name || "-"}}</div>
     <div class="col align-self-center text-center" style="max-width: 200px;">
-      {{book_item.language || "-"}}
+      {{book_item?.author?.author_name || "-"}}
     </div>
 
-    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.categoryName || "-"}}</div>
-    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.companyName || "-"}}</div>
-    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.stock || "-"}}</div>
-    <div class="col align-self-center text-center" style="max-width: 200px;">
-      <div class="btn btn-danger  align-self-center trash-can">
-        <i class="fas fa-trash-alt trash-icon text-danger"></i>
-        <span class="ml-1" style="width: 60px;">Xóa bỏ</span>
-      </div>
-      <div class="btn btn-app   align-self-center trash-can">
-        <i class="fas fa-tools trash-icon text-app "></i>
-        <span class="ml-1">Cập nhật</span>
-      </div>
-    </div>
+    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.cost_price || "-"}}</div>
+    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.retail_price || "-"}}</div>
+    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.old_amount + book_item?.new_amount || "-"}}</div>
   </div>
 </div>
