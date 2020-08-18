@@ -41,3 +41,14 @@ class SearchAccountsReq():
     def __init__(self, req):
         self.account_id = req['account_id'] if 'account_id' in req else None
         self.account_name = req['account_name'] if 'account_name' in req else None
+
+
+class SendResetPasswordEmailReq():
+    def __init__(self, req):
+        self.email = req['email'] if 'email' in req else None
+
+
+class ResetPasswordReq():
+    def __init__(self, req):
+        self.token = req['token'] if 'token' in req else None
+        self.password = req['password'] if 'password' in req else None

@@ -1,6 +1,6 @@
 from library import app
 from library.BLL import EmployeeSvc
-from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq,SearchEmployeeReq
+from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeesReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.Common.Rsp.EmployeeRsp import SearchEmployeeRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
@@ -41,8 +41,8 @@ def DeleteEmployee():
 
 
 @app.route('/admin/employee-management/search-employee', methods=['POST'])
-def SearchEmployeeByName():
-    req = SearchEmployeeReq(request.json)
+def SearchEmployees():
+    req = SearchEmployeesReq(request.json)
     result = EmployeeSvc.SearchEmployee(req)
     res = SearchEmployeeRsp(result).serialize()
     return jsonify(res['employees'])

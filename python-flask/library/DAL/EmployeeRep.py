@@ -27,6 +27,7 @@ def CreateEmployee(req: CreateEmployeeReq):
                                        last_name=req.last_name,
                                        first_name=req.first_name,
                                        phone=req.phone,
+                                       email=req.email,
                                        birth_date=req.birth_date,
                                        hire_date=req.hire_date,
                                        address=req.address,
@@ -46,6 +47,7 @@ def UpdateEmployee(req: UpdateEmployeeReq):
     update_employee.account_id = req.account_id
     update_employee.last_name = req.last_name
     update_employee.first_name = req.first_name
+    update_employee.email = req.email
     update_employee.phone = req.phone
     update_employee.birth_date = req.birth_date
     update_employee.hire_date = req.hire_date
@@ -77,6 +79,5 @@ def SearchEmployees(req: SearchEmployeesReq):
                                                         models.Employees.employee_id == req.employee_id)).all()
     employees = ConvertModelListToDictList(search_employee)
     return employees
-
 
 
