@@ -1,8 +1,7 @@
 from library import app
 from library.BLL import OrderSvc
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrderByOrderIdReq, \
-    SearchOrderByCustomerIdReq, SearchOrderByEmployeeIdReq, SearchOrderByOrderDateReq
+from library.Common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
@@ -45,33 +44,11 @@ def DeleteOrder():
     return jsonify(result)
 
 
-@app.route("/admin/order-management/search-order-by-order-id", methods=['POST', 'GET'])
-def SearchOrderByOrderId():
-    req = SearchOrderByOrderIdReq(request.json)
-    result = OrderSvc.SearchOrderByOrderId(req)
+@app.route("/admin/order-management/search-orders", methods=['POST', 'GET'])
+def SearchOrders():
+    req = SearchOrdersReq(request.json)
+    result = OrderSvc.SearchOrders(req)
 
     return jsonify(result)
 
 
-@app.route("/admin/order-management/search-order-by-customer-id", methods=['POST', 'GET'])
-def SearchOrderByCustomerId():
-    req = SearchOrderByCustomerIdReq(request.json)
-    result = OrderSvc.SearchOrderByCustomerId(req)
-
-    return jsonify(result)
-
-
-@app.route("/admin/order-management/search-order-by-employee-id", methods=['POST', 'GET'])
-def SearchOrderByEmployeeId():
-    req = SearchOrderByEmployeeIdReq(request.json)
-    result = OrderSvc.SearchOrderByEmployeeId(req)
-
-    return jsonify(result)
-
-
-@app.route("/admin/order-management/search-order-by-order-date", methods=['POST', 'GET'])
-def SearchOrderByOrderDate():
-    req = SearchOrderByOrderDateReq(request.json)
-    result = OrderSvc.SearchOrderByOrderDate(req)
-
-    return jsonify(result)

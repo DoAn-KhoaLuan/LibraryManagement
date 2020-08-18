@@ -27,4 +27,5 @@ class UpdateScheduleReq():
 
 class SearchSchedulesReq():
     def __init__(self, req):
-        self.keyword = req['keyword'] if 'keyword' in req else None
+        self.schedule_id = req['schedule_id'] if 'schedule_id' in req else None
+        self.employee_id = req['employee_id'] if 'employee_id' in req else None

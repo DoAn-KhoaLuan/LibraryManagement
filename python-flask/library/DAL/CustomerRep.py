@@ -1,9 +1,9 @@
+from sqlalchemy import or_
+
 from library import db
 from library.Common.Req import GetItemsByPageReq
-from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, \
-    SearchCustomerByIdReq, SearchCustomerByIdentityIdReq, SearchCustomerByAccountIdReq, SearchCustomerByPhoneReq
-from library.Common.Rsp.CustomerRsp import SearchCustomerByIdentityIdRsp, SearchCustomerByAccountIdRsp, \
-    SearchCustomerByPhoneRsp
+from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
+from library.Common.Rsp.CustomerRsp import SearchCustomersRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
@@ -64,27 +64,13 @@ def DeleteCustomer(req: DeleteCustomerReq):
     return delete_customer.serialize()
 
 
-def SearchCustomerById(req: SearchCustomerByIdReq):
-    search_customer = models.Customers.query.get(req.customer_id)
-    return search_customer.serialize()
-
-
-def SearchCustomerByIdentityId(req: SearchCustomerByIdentityIdReq):
-    search_customer = models.Customers.query.filter(models.Customers.identity_id.contains(req.identity_id)).all()
+def SearchCustomers(req: SearchCustomersReq):
+    search_customer = models.Customers.query.filter(or_(models.Customers.customer_id == req.customer_id,
+                                                        models.Customers.account_id == req.account_id,
+                                                        models.Customers.identity_id == req.identity_id,
+                                                        models.Customers.phone == req.phone)).all()
     customers = ConvertModelListToDictList(search_customer)
-    res = SearchCustomerByIdentityIdRsp(customers).serialize()
+    res = SearchCustomersRsp(customers).serialize()
     return res
 
 
-def SearchCustomerByAccountId(req: SearchCustomerByAccountIdReq):
-    search_customer = models.Customers.query.filter(models.Customers.account_id.contains(req.account_id)).all()
-    customers = ConvertModelListToDictList(search_customer)
-    res = SearchCustomerByAccountIdRsp(customers).serialize()
-    return res
-
-
-def SearchCustomerByPhone(req: SearchCustomerByPhoneReq):
-    search_customer = models.Customers.query.filter(models.Customers.phone.contains(req.phone)).all()
-    customers = ConvertModelListToDictList(search_customer)
-    res = SearchCustomerByPhoneRsp(customers).serialize()
-    return res

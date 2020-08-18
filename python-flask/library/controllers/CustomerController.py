@@ -1,7 +1,6 @@
 from library import app
 from library.BLL import CustomerSvc
-from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, \
-    SearchCustomerByIdReq, SearchCustomerByIdentityIdReq, SearchCustomerByAccountIdReq, SearchCustomerByPhoneReq
+from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
@@ -40,29 +39,10 @@ def DeleteCustomer():
     return jsonify(result)
 
 
-@app.route('/admin/customer-management/search-customer-by-id', methods=['POST', 'GET'])
-def SearchCustomerById():
-    req = SearchCustomerByIdReq(request.json)
-    result = CustomerSvc.SearchCustomerById(req)
+@app.route('/admin/customer-management/search-customers', methods=['POST', 'GET'])
+def SearchCustomers():
+    req = SearchCustomersReq(request.json)
+    result = CustomerSvc.SearchCustomers(req)
     return jsonify(result)
 
 
-@app.route('/admin/customer-management/search-customer-by-identity-id', methods=['POST', 'GET'])
-def SearchCustomerByIdentityId():
-    req = SearchCustomerByIdentityIdReq(request.json)
-    result = CustomerSvc.SearchCustomerByIdentityId(req)
-    return jsonify(result)
-
-
-@app.route('/admin/customer-management/search-customer-by-account-id', methods=['POST', 'GET'])
-def SearchCustomerByAccountId():
-    req = SearchCustomerByAccountIdReq(request.json)
-    result = CustomerSvc.SearchCustomerByAccountId(req)
-    return jsonify(result)
-
-
-@app.route('/admin/customer-management/search-customer-by-phone', methods=['POST', 'GET'])
-def SearchCustomerByPhone():
-    req = SearchCustomerByPhoneReq(request.json)
-    result = CustomerSvc.SearchCustomerByPhone(req)
-    return jsonify(result)

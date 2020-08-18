@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import or_
 
 from library import db
@@ -39,14 +41,15 @@ def UpdateCategory(update_cate: UpdateCategoryReq):
 
 def DeleteCategoryById(req: DeleteCategoryByIdReq):
     delete_category = models.Categories.query.get(req.category_id)
-    db.session.delete(delete_category)
+    delete_category.delete_at = datetime.now()
+    db.session.add(delete_category)
     db.session.commit()
     return delete_category.serialize()
 
 
 def SearchCategory(req: SearchCategoryReq):
-    search_category = models.Categories.query.filter(or_(models.Categories.category_id == req.keyword,
-                                                         models.Categories.category_name == req.keyword)).all()
+    search_category = models.Categories.query.filter(or_(models.Categories.category_id == req.category_id,
+                                                         models.Categories.category_name == req.category_name)).all()
     categories = ConvertModelListToDictList(search_category)
     return categories
 

@@ -30,21 +30,8 @@ def DeleteOrder(req):
     return delete_order
 
 
-def SearchOrderByOrderId(req):
-    search_order = OrderRep.SearchOrderByOrderId(req)
+def SearchOrders(req):
+    search_order = OrderRep.SearchOrders(req)
     return search_order
 
 
-def SearchOrderByCustomerId(req):
-    search_order = OrderRep.SearchOrderByCustomerId(req)
-    return search_order
-
-
-def SearchOrderByEmployeeId(req):
-    search_order = OrderRep.SearchOrderByEmployeeId(req)
-    return search_order
-
-
-def SearchOrderByOrderDate(req):
-    search_order = OrderRep.SearchOrderByOrderDate(req)
-    return search_order

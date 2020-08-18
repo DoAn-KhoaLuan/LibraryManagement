@@ -21,7 +21,11 @@ def UpdateSupplier(req):
     return update_supplier
 
 
-def SearchSupplier(req):
-    search_supplier = SupplierRep.SearchSupplier(req)
+def SearchSuppliers(req):
+    search_supplier = SupplierRep.SearchSuppliers(req)
     return search_supplier
 
+
+def DeleteSupplier(req):
+    delete_supplier = SupplierRep.DeleteSupplier(req)
+    return delete_supplier

@@ -1,8 +1,11 @@
+from datetime import datetime
+
 from sqlalchemy import or_
 
 from library.Common.Req import GetItemsByPageReq
 from library import db
-from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, SearchSupplierReq
+from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, \
+    SearchSuppliersReq
 from library.DAL.models import Suppliers
 from library.Common.util import ConvertModelListToDictList
 
@@ -40,10 +43,16 @@ def UpdateSupplier(req: UpdateSupplierReq):
     return update_supplier.serialize()
 
 
-def SearchSupplier(req: SearchSupplierReq):
-    search_supplier = Suppliers.query.filter(or_(Suppliers.supplier_id == req.keyword,
-                                                 Suppliers.contact_name == req.keyword)).all()
-    suppliers = ConvertModelListToDictList(search_supplier)
+def SearchSuppliers(req: SearchSuppliersReq):
+    search_suppliers = Suppliers.query.filter(or_(Suppliers.supplier_id == req.supplier_id,
+                                                  Suppliers.contact_name == req.contact_name)).all()
+    suppliers = ConvertModelListToDictList(search_suppliers)
     return suppliers
 
 
+def DeleteSupplier(req: DeleteSupplierReq):
+    delete_supplier = Suppliers.query.get(req.supplier_id)
+    delete_supplier.delete_at = datetime.now()
+    db.session.add(delete_supplier)
+    db.session.commit()
+    return delete_supplier.serialize()

@@ -3,9 +3,9 @@ from flask import request, jsonify
 from library import app
 from library.BLL import SupplierSvc
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, SearchSupplierReq
+from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, SearchSuppliersReq
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.SupplierRsp import SearchSupplierRsp
+from library.Common.Rsp.SupplierRsp import SearchSuppliersRsp
 
 
 @app.route('/admin/supplier-management/get-suppliers', methods=['GET', 'POST'])
@@ -26,16 +26,21 @@ def CreateSupplier():
 
 @app.route('/admin/supplier-management/update-supplier', methods=['POST'])
 def UpdateSupplier():
-    req =  UpdateSupplierReq(request.json)
+    req = UpdateSupplierReq(request.json)
     result = SupplierSvc.UpdateSupplier(req)
     return jsonify(result)
 
 
-@app.route('/admin/supplier-management/search-supplier', methods=['POST'])
-def SearchSupplier():
-    req = SearchSupplierReq(request.json)
-    result = SupplierSvc.SearchSupplier(req)
-    res = SearchSupplierRsp(result).serialize()
+@app.route('/admin/supplier-management/search-suppliers', methods=['POST'])
+def SearchSuppliers():
+    req = SearchSuppliersReq(request.json)
+    result = SupplierSvc.SearchSuppliers(req)
+    res = SearchSuppliersRsp(result).serialize()
     return jsonify(res['suppliers'])
 
 
+@app.route('/admin/supplier-management/delete-supplier', methods=['POST'])
+def DeleteSupplier():
+    req = DeleteSupplierReq(request.json)
+    result = SupplierSvc.DeleteSupplier(req)
+    return jsonify(result)
