@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class UtilService {
     numberOnly(event, allow_negative = false) {
         const num = Number(event.key);

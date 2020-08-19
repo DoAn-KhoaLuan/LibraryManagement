@@ -13,4 +13,7 @@ export class BookQuery extends Query<BookState> {
     current_page$ = this.select('current_page')
     current_pagination_opt$ = this.select('current_pagination_opt')
     detail_book$ = this.select('detail_book')
+    suppliers$ = this.select('suppliers')
+    categories$ = this.select('categories')
+    authors$ = this.select('authors')
 }

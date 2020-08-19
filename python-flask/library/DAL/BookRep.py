@@ -19,7 +19,8 @@ def GetBooksByPage(req):
 
 
 def CreateBook(req):
-    book = models.Books(book_name=req.book_name,
+    book = models.Books(book_id=req.book_id,
+                        book_name=req.book_name,
                         supplier_id=req.supplier_id,
                         category_id=req.category_id,
                         author_id=req.author_id,
@@ -35,7 +36,7 @@ def CreateBook(req):
 
     db.session.add(book)
     db.session.commit()
-    return req
+    return book
 
 
 def DeleteBookById(req):

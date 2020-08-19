@@ -69,14 +69,31 @@ export class BookService {
     }
 
     async GetCategories(filter) {
-        return await this.categoryApiService.GetCategories(filter)
+        let category_res = await this.categoryApiService.GetCategories(filter);
+        this.bookStore.update({categories: category_res['items']})
     }
 
     async GetAuthors(filter) {
-        return await this.authorApiService.GetAuthors(filter)
+        let author_res = await this.authorApiService.GetAuthors(filter);
+        this.bookStore.update({authors: author_res['items']});
     }
 
     async GetSuppliers(filter) {
-        return await this.supplierApiService.GetSuppliers(filter)
+        let supplier_res = await this.supplierApiService.GetSuppliers(filter)
+        this.bookStore.update({suppliers: supplier_res['items']});
+    }
+
+    async CreateAuthor(author) {
+        return await this.authorApiService.CreateAuthor(author)
+    }
+    async CreateCategory(category) {
+        return await this.categoryApiService.CreateCategory(category)
+    }
+    async CreateSupplier(supplier) {
+        return await this.supplierApiService.CreateSupplier(supplier)
+    }
+
+    async CreateBook(book) {
+        return await this.bookApiService.CreateBook(book)
     }
 }

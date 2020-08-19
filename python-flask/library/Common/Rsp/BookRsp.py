@@ -1,5 +1,6 @@
 class CreateBookRsp():
     def __init__(self, req):
+        self.book_id = req.book_id
         self.book_name = req.book_name
         self.supplier_id = req.supplier_id
         self.category_id = req.category_id
@@ -15,7 +16,7 @@ class CreateBookRsp():
         self.ranking = req.ranking
 
     def serialize(self):
-        return {"book_name": self.book_name,
+        return {"book_name": self.book_name, "book_id": self.book_id,
                 "supplier_id": self.supplier_id, "category_id": self.category_id, "author_id": self.author_id,
                 "old_amount": self.old_amount, "new_amount": self.new_amount, "image": self.image,
                 "page_number": self.page_number, "description": self.description, "cost-price": self.cost_price,

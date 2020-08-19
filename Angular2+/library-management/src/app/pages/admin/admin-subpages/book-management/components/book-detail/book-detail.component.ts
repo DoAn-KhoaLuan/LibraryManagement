@@ -23,19 +23,20 @@ export class BookDetailComponent implements OnInit, OnChanges {
     private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
     private modalController: ModalController) { }
-  updateBookForm = this.fb.group({
-    book_id: [''],
-    book_name: [''],
-    author_name: [''],
-    supplier_name: [''],
-    category_name: [''],
-    page_number: [''],
-    cost_price: [''],
-    retail_price: [''],
-    discount: [''],
-    description: [''],
-    note: [''],
-  });
+
+    updateBookForm = this.fb.group({
+      book_id: [''],
+      book_name: [''],
+      author_name: [''],
+      supplier_name: [''],
+      category_name: [''],
+      page_number: [''],
+      cost_price: [''],
+      retail_price: [''],
+      discount: [''],
+      description: [''],
+      note: [''],
+    });
   async ngOnInit() {
     const req = {
       book_id: parseInt(this.route.snapshot.params['id'])

@@ -1,9 +1,10 @@
 class CreateAuthorRsp():
     def __init__(self, req):
         self.author_name = req.author_name
+        self.author_id = req.author_id
 
     def serialize(self):
-        return {"author_name": self.author_name}
+        return {"author_name": self.author_name, "author_id": self.author_id}
 
 
 class DeleteAuthorByIdRsp:

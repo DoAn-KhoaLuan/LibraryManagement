@@ -25,7 +25,7 @@ def CreateCategory(new_cate: CreateCategoryReq):
     new_category = models.Categories(category_name=new_cate.category_name, description=new_cate.description,
                                      note=new_cate.note)
     db.session.add(new_category)
-    db.session.flush()
+    db.session.commit()
     return new_category.serialize()
 
 

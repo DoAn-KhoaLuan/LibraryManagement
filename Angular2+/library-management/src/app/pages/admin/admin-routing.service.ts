@@ -17,6 +17,9 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ItemTableModule } from '../components/item-table/item-table.module';
 import { BookRowComponent } from './admin-subpages/book-management/components/book-list/book-row/book-row.component';
+import { AddAuthorModalComponent } from './admin-subpages/book-management/components/add-author-modal/add-author-modal.component';
+import { AddCategoryModalComponent } from './admin-subpages/book-management/components/add-category-modal/add-category-modal.component';
+import { AddSupplierModalComponent } from './admin-subpages/book-management/components/add-supplier-modal/add-supplier-modal.component';
 
 const routes: Routes = [
     { path: '', component: AdminComponent, children: [
@@ -30,7 +33,7 @@ const routes: Routes = [
 ];
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
-    exports: [RouterModule, CreateBookComponent],
-    declarations: [LoginComponent, CreateBookComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent],
+    exports: [RouterModule, CreateBookComponent, AddSupplierModalComponent, AddAuthorModalComponent, AddCategoryModalComponent],
+    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent],
 })
 export class AdminRoutingModule { }

@@ -45,7 +45,7 @@ class Books(db.Model):
                 "supplier": self.supplier.serialize(), "category": self.category.serialize(),
                 "author": self.author.serialize(),
                 "old_amount": self.old_amount, "new_amount": self.new_amount, "image": self.image,
-                "page_number": self.page_number, "description": self.description, "cost-price": self.cost_price,
+                "page_number": self.page_number, "description": self.description, "cost_price": self.cost_price,
                 "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking,
                 "delete_at": self.delete_at}
 

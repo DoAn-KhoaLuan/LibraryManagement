@@ -23,7 +23,7 @@ def CreateAuthor(req):
     author = models.Authors(author_name=req.author_name)
     db.session.add(author)
     db.session.commit()
-    return req
+    return author
 
 
 def DeleteAuthorById(req):

@@ -10,7 +10,9 @@ export interface BookState {
     current_page: number,
     filter_page: filter_page,
     current_pagination_opt : PaginationOpt;
-
+    authors: any[];
+    categories: any[];
+    suppliers: any[];
 }
 
 const initState = {
@@ -27,6 +29,9 @@ const initState = {
         hidePerpage: true,
     },
     detail_book: {},
+    authors: [],
+    categories: [],
+    suppliers: [],
 }
 
 @Injectable({providedIn: 'root'})

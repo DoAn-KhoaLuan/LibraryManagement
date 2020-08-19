@@ -11,8 +11,8 @@
       {{book_item?.author?.author_name || "-"}}
     </div>
 
-    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.cost_price || "-"}}</div>
-    <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.retail_price || "-"}}</div>
+    <div class="col align-self-center text-center" style="max-width: 200px;">{{(book_item?.cost_price | vnd)|| "-"}}</div>
+    <div class="col align-self-center text-center" style="max-width: 200px;">{{(book_item?.retail_price | vnd ) || "-"}}</div>
     <div class="col align-self-center text-center" style="max-width: 200px;">{{book_item?.old_amount + book_item?.new_amount || "-"}}</div>
   </div>
 </div>
