@@ -72,7 +72,6 @@ def SearchCustomers(req: SearchCustomersReq):
                                                         models.Customers.identity_id == req.identity_id,
                                                         models.Customers.phone == req.phone)).all()
     customers = ConvertModelListToDictList(search_customer)
-    res = SearchCustomersRsp(customers).serialize()
-    return res
+    return customers
 
 

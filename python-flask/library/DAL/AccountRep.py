@@ -20,7 +20,7 @@ def CreateAccount(req: CreateAccountReq):
 
 
 def ValidateAccountName(acc_name: str):
-    acc = models.Accounts.query.filter(models.Accounts.account_name == (acc_name)).first()
+    acc = models.Accounts.query.filter(models.Accounts.account_name == (acc_name) and models.Accounts.delete_at == None).first()
     return True if acc else False
 
 
@@ -53,7 +53,7 @@ def Authenticate(acc_info: LoginReq):
 
     if(str(hashlib.md5(acc_info.password.encode('utf-8')).hexdigest()) != account.account_password):
         raise ErrorRsp(code=400, message='Mật khẩu không chính xác')
-    return account
+    return account.serialize()
 
 def GetAccountByCustomerEmail(req):
     customer_email = req.email

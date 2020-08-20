@@ -11,10 +11,12 @@ from flask import jsonify, request, make_response
 import json
 
 from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.auth import token_required
 
 
 @app.route('/admin/book-management/get-books', methods=['POST'])
-def GetBooks():
+@token_required
+def GetBooks(auth_info):
     try:
         req = GetItemsByPageReq(request.json)
         result = BookSvc.GetBooksByPage(req)

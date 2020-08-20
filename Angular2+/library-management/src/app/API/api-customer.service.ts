@@ -26,4 +26,8 @@ export class ApiCustomerService {
   async DeleteCustomer(req) {
     return await this.http.post(this.baseURL+"/admin/customer-management/delete-customer",req).toPromise();
   }
+
+  async SearchCustomers(req) {
+    return await this.http.post(this.baseURL+"/admin/customer-management/search-customers",req).toPromise();
+  }
 }

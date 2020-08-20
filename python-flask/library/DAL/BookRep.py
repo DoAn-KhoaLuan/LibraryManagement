@@ -19,7 +19,7 @@ def GetBooksByPage(req):
 
 
 def CreateBook(req):
-    book = models.Books(book_id=req.book_id,
+    book = models.Books(
                         book_name=req.book_name,
                         supplier_id=req.supplier_id,
                         category_id=req.category_id,
@@ -62,16 +62,19 @@ def UpdateBook(req):
     book.retail_price = req.retail_price
     book.discount = req.discount
     book.ranking = req.ranking
+    book.note = req.note
     db.session.add(book)
     db.session.commit()
-    return req
+    return book
 
 
 def SearchBook(req: SearchBookReq):
-    model_books = models.Books.query.filter(or_(models.Books.book_id == req.book_id,
-                                                models.Books.book_name == req.book_name,
-                                                models.Books.author_id == req.author_id,
-                                                models.Books.category_id == req.category_id,
-                                                models.Books.supplier_id == req.supplier_id)).all()
+    model_books = models.Books.query.filter(or_(
+            models.Books.book_id == req.book_id,
+            models.Books.book_name == req.book_name,
+            models.Books.author_id == req.author_id,
+            models.Books.category_id == req.category_id,
+            models.Books.supplier_id == req.supplier_id,
+    )).all()
     books = ConvertModelListToDictList(model_books)
     return books

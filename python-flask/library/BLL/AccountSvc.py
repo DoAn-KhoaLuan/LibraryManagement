@@ -2,17 +2,22 @@ from email.message import EmailMessage
 
 import jwt
 from datetime import datetime, timedelta
+
+from flask import jsonify
+
 from library import app, smtp
 from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
     ResetPasswordReq
+from library.Common.Req.CustomerReq import SearchCustomersReq
+from library.Common.Req.EmployeeReq import SearchEmployeesReq
 from library.Common.Rsp.SingleRsp import ErrorRsp
-from library.DAL import AccountRep
+from library.DAL import AccountRep, CustomerRep, EmployeeRep
 
 
 def CreateAccount(req):
     is_account_existed = AccountRep.ValidateAccountName(req.account_name)
     if(is_account_existed):
-        return "Tài khoản đã tồn tại"
+        return jsonify({'msg': "Taif khoan da ton tai "}), 401
     else:
         res = AccountRep.CreateAccount(req)
         return res
@@ -37,15 +42,26 @@ def SearchAccounts(acc_info):
 def AuthenticateUser(acc: LoginReq):
     try:
         account = AccountRep.Authenticate(acc)
+        if(account['role']['role_id'] == 3): #customer
+            search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
+            user = CustomerRep.SearchCustomers(search_customer_req)
+
+
+        if(account['role']['role_id'] == 1 or account['role']['role_id'] == 2): #admin, manager
+            search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
+            user = EmployeeRep.SearchEmployees(search_employee_req)
+
         secect_key = app.config['SECRET_KEY']
         payload = {
-            'account_id': account.account_id,
+            'account_id': account['account_id'],
             'iat':datetime.utcnow(),
             'exp': datetime.utcnow() + timedelta(minutes=30)
         }
         access_token = jwt.encode(payload, secect_key)
         result = {
-            'access_token': access_token
+            'access_token': access_token,
+            'account': account,
+            'user_info': user[0] if len(user) > 0 else None
         }
         return result
     except ErrorRsp as e:

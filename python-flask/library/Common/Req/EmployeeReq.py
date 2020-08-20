@@ -5,6 +5,7 @@ class CreateEmployeeReq():
         self.last_name = req['last_name'] if 'last_name' in req else None
         self.first_name = req['first_name'] if 'first_name' in req else None
         self.phone = req['phone'] if 'phone' in req else None
+        self.email = req['email'] if 'email' in req else None
         self.birth_date = req['birth_date'] if 'birth_date' in req else None
         self.hire_date = req['hire_date'] if 'hire_date' in req else None
         self.address = req['address'] if 'address' in req else None

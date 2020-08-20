@@ -20,6 +20,7 @@ import { BookRowComponent } from './admin-subpages/book-management/components/bo
 import { AddAuthorModalComponent } from './admin-subpages/book-management/components/add-author-modal/add-author-modal.component';
 import { AddCategoryModalComponent } from './admin-subpages/book-management/components/add-category-modal/add-category-modal.component';
 import { AddSupplierModalComponent } from './admin-subpages/book-management/components/add-supplier-modal/add-supplier-modal.component';
+import { AuthGuard } from 'src/app/auth-guard';
 
 const routes: Routes = [
     { path: '', component: AdminComponent, children: [

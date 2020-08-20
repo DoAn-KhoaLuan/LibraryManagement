@@ -1,3 +1,5 @@
+import { AccountQuery } from './../states/account-store/account.query';
+import { AccountStore } from 'src/app/states/account-store/account.store';
 import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -11,11 +13,12 @@ declare var __debug_host: string;
 export class HttpService {
   constructor(
     private http: HttpClient,
+    private accountQuery: AccountQuery,
     @Optional() @Inject("SERVICE_URL") private SERVICE_URL: string
   ) {}
 
   createHeader(token?: string) {
-    const jwt = token;
+    const jwt = token || this.accountQuery.getValue()?.auth_info?.access_token || JSON.parse(localStorage.getItem('auth_info'))?.access_token;
     return new HttpHeaders()
       .set('Authorization', 'Bearer ' + jwt)
       .set('Content-Type', 'application/json');

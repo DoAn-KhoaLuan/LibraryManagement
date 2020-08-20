@@ -86,12 +86,12 @@
           <div class="form-group">
             <select class="rounded-pill  form-control" placeholder="Chọn giới tính" autofocus  formControlName="gender">
               <option value="" selected disabled hidden>Chọn giới tính</option>
-              <option value="Nam" style="background-color: white; color: var(--app-color)">Nam</option>
-              <option value="Nữ" style="background-color: white; color: var(--app-color)">Nữ</option>
+              <option value="true" style="background-color: white; color: var(--app-color)">Nam</option>
+              <option value="false" style="background-color: white; color: var(--app-color)">Nữ</option>
             </select>
           </div>
         
-          <div class="rounded-pill d-block w-100 btn-outline-app" type="button" >
+          <div class="rounded-pill d-block w-100 btn-outline-app" type="button" (click)="CreateCustomerAndAccount()">
             <!-- <i class="fa fa-spinner fa-spin mr-2" *ngIf="loading"></i> -->
             Đăng ký
           </div>

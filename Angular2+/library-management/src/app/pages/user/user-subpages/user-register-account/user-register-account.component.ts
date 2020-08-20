@@ -1,3 +1,8 @@
+import { UtilService } from './../../../../services/util.service';
+import { Router } from '@angular/router';
+import { AccountService } from './../../../../states/account-store/account.service';
+import { CustomerStore } from './../../../../states/customer-store/customer.store';
+import { CustomerService } from './../../../../states/customer-store/customer.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
@@ -12,7 +17,8 @@ export class UserRegisterAccountComponent implements OnInit {
     userName: [''],
     password: [''],
     confirmPassword: [''],
-    firstName: '',
+    firstName: 
+    '',
     lastName: '',
     identityId: '',
     email:'',
@@ -24,13 +30,18 @@ export class UserRegisterAccountComponent implements OnInit {
 
   @ViewChild('passwordInput', {static: false}) passwordInput: ElementRef;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private customerService: CustomerService,
+    private customerStore: CustomerStore,
+    private accountService: AccountService,
+    private router: Router,
+    private util: UtilService
+    ) { }
 
   ngOnInit() {
-    this.userRegisterForm.valueChanges.subscribe(val => console.log(val))
   }
 
-  
   showPassword() {
     let elementPass = <HTMLInputElement>document.querySelector('#password');
     elementPass.type = 'text';
@@ -39,5 +50,53 @@ export class UserRegisterAccountComponent implements OnInit {
   hidePassword() {
     let elementPass = <HTMLInputElement>document.querySelector('#password');
     elementPass.type = 'password';
+  }
+
+  async CreateCustomerAndAccount() {
+    try {
+      let form_data = this.userRegisterForm.value
+
+      if(form_data.password != form_data.confirmPassword) {
+        return toastr.error("Tạo mới tài khoản thất bại", "Mật khẩu nhập lại không chính xác")
+      }
+      
+      if(!form_data.identityId) {
+        return toastr.error("Tạo mới tài khoản thất bại", "Vui lòng nhập chứng minh nhân dân")
+      }
+
+      if(!this.util.validatePhoneNumber(form_data.phone)) {
+        return;
+      }
+      if(!this.util.validEmail(form_data.email)) {
+        return;
+      }
+
+      let account_info= {
+        role_id: 3,
+        account_name : form_data.userName,
+        account_password: form_data.password,
+        confirm_account_password: form_data.confirmPassword,
+      };
+
+      let created_account = await this.accountService.CreateAccount(account_info);
+      let customer_info = {
+        identity_id: form_data.identityId,
+        last_name: form_data.lastName,
+        first_name: form_data.firstName,
+        phone: form_data.phone,
+        email: form_data.email,
+        birth_date: form_data.birthDate,
+        address: form_data.address,
+        gender: Boolean(form_data.gender),
+        account_id: created_account.account_id
+      };
+
+      await this.customerService.CreateCustomer(customer_info);
+
+      this.router.navigateByUrl('/user/login')
+      toastr.success("Tạo mới tài khoản thành công")
+    } catch(e) {
+      toastr.error("Tạo mới tài khoản thất bại", e.msg || e.message)
+    }
   }
 }

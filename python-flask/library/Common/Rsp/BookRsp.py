@@ -47,9 +47,10 @@ class UpdateBookRsp():
         self.retail_price = req.retail_price
         self.discount = req.discount
         self.ranking = req.ranking
+        self.note = req.note
 
     def serialize(self):
-        return {"book_id": self.book_id, "book_name": self.book_name,
+        return {"book_id": self.book_id, "book_name": self.book_name, "note": self.note,
                 "supplier_id": self.supplier_id, "category_id": self.category_id, "author_id": self.author_id,
                 "old_amount": self.old_amount, "new_amount": self.new_amount, "image": self.image,
                 "page_number": self.page_number, "description": self.description, "cost-price": self.cost_price,

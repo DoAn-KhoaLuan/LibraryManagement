@@ -1,3 +1,4 @@
+import { LoginViewGuard } from './login.guard';
 import { UserRegisterAccountComponent } from './pages/user/user-subpages/user-register-account/user-register-account.component';
 import { LoginComponent } from './pages/admin/admin-subpages/login/login.component';
 import { AdminModule } from './pages/admin/admin.module';
@@ -7,12 +8,13 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserLoginComponent } from './pages/user/user-subpages/user-login/user-login.component';
+import { AuthGuard } from './auth-guard';
 
 
 const routes: Routes = [
   { path: 'book-store',loadChildren: () => import('./pages/book-store/book-store.module').then(m => m.BookStoreModule)},
-  { path: 'admin',  loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)},
-  { path: 'admin/login',   component: LoginComponent},
+  { path: 'admin',canActivate:[AuthGuard], loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)},
+  { path: 'admin/login', canActivate: [LoginViewGuard], component: LoginComponent},
 
   { path: 'user',  loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)},
   { path: 'user/register',   component: UserRegisterAccountComponent},
@@ -23,6 +25,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  declarations: [],
 })
 export class AppRoutingModule { }

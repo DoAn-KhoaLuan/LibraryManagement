@@ -24,6 +24,14 @@ export class ApiAccountService {
   }
 
   async DeleteAccount(req) {
+    return await this.http.post(this.baseURL+"/admin/account-management/search-accounts",req).toPromise();
+  }
+
+  async SearchAccounts(req) {
     return await this.http.post(this.baseURL+"/admin/account-management/delete-account",req).toPromise();
+  }
+
+  async Login(req) {
+    return await this.http.post(this.baseURL+"/admin/account-management/login",req).toPromise();
   }
 }

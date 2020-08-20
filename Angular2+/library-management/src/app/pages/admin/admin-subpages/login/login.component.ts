@@ -1,4 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/states/account-store/account.service';
+import { AccountStore } from 'src/app/states/account-store/account.store';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +13,16 @@ export class LoginComponent implements OnInit {
   account :any ={};
   loading = false;
  
-  @ViewChild('passwordInput', {static: false}) passwordInput: ElementRef;
-
-  constructor() { }
+  login_form = this.fb.group({
+    user_name: [''],
+    password: [''],
+  })
+  constructor(
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private accountStore: AccountStore,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -46,5 +57,19 @@ export class LoginComponent implements OnInit {
     //   this.loading = false;
     // }
     // this.loading = false;
+  }
+  async Login() {
+    try{
+      let login_form_data = this.login_form.value
+      const login_req = {
+        user_name: login_form_data.user_name,
+        password: login_form_data.password,
+      }
+      await this.accountService.Login(login_req)
+      this.router.navigateByUrl('admin/book-management/book-list')
+      toastr.success("Đăng nhập thành công")
+    } catch(e) {
+      toastr.error("Đăng nhập thất bại", e.msg || e.message)
+    }
   }
 }

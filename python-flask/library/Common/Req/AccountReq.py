@@ -27,14 +27,14 @@ class LoginReq():
 class LoginRsp():
     def __init__(self, req):
         self.access_token = req['access_token'] if 'access_token' in req else None
-        self.user_account = req['user_account'] if 'user_account' in req else None
+        self.user_info = req['user_info'] if 'user_info' in req else None
         self.account = req['account'] if 'account' in req else None
 
     def serialize(self):
         return {
             "access_token": self.access_token.decode('utf-8'),
-            "user_account": self.user_account,
-            "account": self.account
+            "user_info": self.user_info,
+            "current_account": self.account
         }
 
 class SearchAccountsReq():

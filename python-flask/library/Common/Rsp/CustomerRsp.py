@@ -3,6 +3,6 @@ class SearchCustomersRsp():
         self.customers = customers
 
     def serialize(self):
-        return {"customers": self.customers}
+        return {self.customers}
 
 

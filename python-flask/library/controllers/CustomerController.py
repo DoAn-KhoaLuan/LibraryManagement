@@ -2,6 +2,7 @@ from library import app
 from library.BLL import CustomerSvc
 from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.Common.Rsp.CustomerRsp import SearchCustomersRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
@@ -43,6 +44,7 @@ def DeleteCustomer():
 def SearchCustomers():
     req = SearchCustomersReq(request.json)
     result = CustomerSvc.SearchCustomers(req)
+    res = SearchCustomersRsp(result)
     return jsonify(result)
 
 

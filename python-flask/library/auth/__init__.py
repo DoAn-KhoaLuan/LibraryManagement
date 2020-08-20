@@ -36,7 +36,7 @@ def token_required(f):
             employee = EmployeeRep.SearchEmployees(search_employees_req)[0] if len(EmployeeRep.SearchEmployees(search_employees_req)) > 0 else None
 
             search_customers_req = SearchCustomersReq({'account_id': account['account_id']})
-            customer = CustomerRep.SearchCustomers(search_customers_req)['customers'][0] if len(CustomerRep.SearchCustomerByAccountId(search_customers_req)['customers']) > 0 else None
+            customer = CustomerRep.SearchCustomers(search_customers_req)[0] if len(CustomerRep.SearchCustomers(search_customers_req)) > 0 else None
 
             auth_info = {
                 'account': account,

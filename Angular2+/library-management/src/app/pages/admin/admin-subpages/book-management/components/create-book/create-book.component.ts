@@ -50,10 +50,7 @@ export class CreateBookComponent implements OnInit {
     ) { }
 
   async ngOnInit() {
-    await this.SetupDatas()
-    this.createBookForm.valueChanges.subscribe(data => {
-      console.log(data)
-    })
+    await this.SetupData()
   }
   async onCreateUser() {
     // const newReader = {...this.reader};
@@ -66,7 +63,7 @@ export class CreateBookComponent implements OnInit {
     // }
   }
 
-  async SetupDatas() {
+  async SetupData() {
     await this.bookService.GetAuthors(this.filter);
     await this.bookService.GetCategories(this.filter);
     await this.bookService.GetSuppliers(this.filter);

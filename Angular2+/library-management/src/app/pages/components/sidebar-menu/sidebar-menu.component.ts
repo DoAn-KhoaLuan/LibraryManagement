@@ -1,3 +1,4 @@
+import { AccountService } from './../../../states/account-store/account.service';
 import { Component, OnInit, Pipe } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -66,7 +67,9 @@ export class SidebarMenuComponent implements OnInit {
     },
     
   ]
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private accountService: AccountService) { }
 
   ngOnInit() {
   }
@@ -76,9 +79,6 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   onLogout() {
-    // this.authService.user.next(null);
-    // localStorage.removeItem("userData");
-    // this.router.navigateByUrl('/login');
-    // toastr.warning("Bạn đã đăng xuất khỏi tài khoản !", "Đăng xuất thành công")
+   this.accountService.Logout();
   }
 }
