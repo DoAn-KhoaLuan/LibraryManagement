@@ -47,7 +47,6 @@ class SendResetPasswordEmailReq():
     def __init__(self, req):
         self.email = req['email'] if 'email' in req else None
 
-
 class ResetPasswordReq():
     def __init__(self, req):
         self.token = req['token'] if 'token' in req else None

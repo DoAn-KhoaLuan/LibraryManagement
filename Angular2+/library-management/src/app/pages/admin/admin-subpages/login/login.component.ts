@@ -1,8 +1,11 @@
+import { ModalAction } from './../../../../core/modal-controller/modal-action.service';
+import { ModalController } from './../../../../core/modal-controller/modal-controller.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/states/account-store/account.service';
 import { AccountStore } from 'src/app/states/account-store/account.store';
+import { ForgotPasswordModalComponent } from 'src/app/pages/components/forgot-password-modal/forgot-password-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +24,9 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private accountService: AccountService,
     private accountStore: AccountStore,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController,
+    private modalAction: ModalAction
   ) { }
 
   ngOnInit() {
@@ -37,27 +42,6 @@ export class LoginComponent implements OnInit {
     elementPass.type = 'password';
   }
   
-  async onLogin() {
-    // let res;
-    // this.loading = true;
-    // try {
-    //   if(!this.account.userName  || !this.account.password){
-    //     throw new Error("Vui lòng nhập đầy đủ thông tin tài khoản !")
-    //   }
-    //   res = await this.authService.login(this.account);
-    //   if(res.success) {
-    //     toastr.success(res.message);
-    //     this.router.navigateByUrl("/admin/book-management");
-    //   } else {
-    //     toastr.error(res.message);
-    //   }
-    // } 
-    // catch(e) {
-    //   toastr.error(e.message, "Đăng nhập thất bại");
-    //   this.loading = false;
-    // }
-    // this.loading = false;
-  }
   async Login() {
     try{
       let login_form_data = this.login_form.value
@@ -71,5 +55,17 @@ export class LoginComponent implements OnInit {
     } catch(e) {
       toastr.error("Đăng nhập thất bại", e.msg || e.message)
     }
+  }
+
+  OpenForgotPasswordModal() {
+    const modal = this.modalController.create({
+      component: ForgotPasswordModalComponent,
+      cssClass: 'modal-lg',
+      componentProps: {
+        role:"employee"
+      },
+    });
+    modal.show().then();
+    modal.onDismiss().then();
   }
 }

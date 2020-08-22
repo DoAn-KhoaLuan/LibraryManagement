@@ -34,4 +34,16 @@ export class ApiAccountService {
   async Login(req) {
     return await this.http.post(this.baseURL+"/admin/account-management/login",req).toPromise();
   }
+
+  async SendResetPasswordEmailCustomer(req) {
+    return await this.http.post(this.baseURL + "/send-reset-password-email-customer",req).toPromise();
+  }
+
+  async SendResetPasswordEmailEmployee(req) {
+    return await this.http.post(this.baseURL + "/send-reset-password-email-employee",req).toPromise();
+  }
+
+  async ResetPassword(req) {
+    return await this.http.post(this.baseURL + "/reset_password",req).toPromise();
+  }
 }

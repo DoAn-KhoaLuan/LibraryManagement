@@ -62,7 +62,7 @@ def LoginAccount():
 def SendResetPasswordEmailCustomer():
     req = SendResetPasswordEmailReq(request.json)
     result = AccountSvc.SendResetPasswordEmailCustomer(req)
-    return result
+    return  jsonify(result)
 
 @app.route('/send-reset-password-email-employee', methods=['POST'])
 def SendResetPasswordEmailEmployee():

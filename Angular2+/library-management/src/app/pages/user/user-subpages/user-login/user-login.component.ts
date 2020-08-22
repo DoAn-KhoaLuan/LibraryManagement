@@ -1,3 +1,5 @@
+import { ForgotPasswordModalComponent } from './../../../components/forgot-password-modal/forgot-password-modal.component';
+import { ModalController } from './../../../../core/modal-controller/modal-controller.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +21,8 @@ export class UserLoginComponent implements OnInit {
     private fb: FormBuilder,
     private accountService: AccountService,
     private accountStore: AccountStore,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController
     ) { }
 
   ngOnInit() {
@@ -38,5 +41,17 @@ export class UserLoginComponent implements OnInit {
     } catch(e) {
       toastr.error("Đăng nhập thất bại", e.msg || e.message)
     }
+  }
+
+  OpenForgotPasswordModal() {
+    const modal = this.modalController.create({
+      component: ForgotPasswordModalComponent,
+      cssClass: 'modal-lg',
+      componentProps: {
+        role:"customer"
+      },
+    });
+    modal.show().then();
+    modal.onDismiss().then();
   }
 }

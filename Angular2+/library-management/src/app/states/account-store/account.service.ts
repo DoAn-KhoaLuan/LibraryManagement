@@ -93,4 +93,16 @@ export class AccountService {
         this.router.navigateByUrl('/book-store');
         toastr.warning("Bạn đã đăng xuất khỏi tài khoản !", "Đăng xuất thành công")
     }
+
+    async SendResetPasswordEmailCustomer(email) {
+        return await this.accountApiService.SendResetPasswordEmailCustomer(email)
+    }
+
+    async SendResetPasswordEmailEmployee(email) {
+        return await this.accountApiService.SendResetPasswordEmailEmployee(email)
+    }
+
+    async ResetPassword(req) {
+        return await this.accountApiService.ResetPassword(req)
+    }
 }

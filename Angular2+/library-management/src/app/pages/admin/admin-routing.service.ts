@@ -28,6 +28,8 @@ const routes: Routes = [
             { path: 'create-book', component: CreateBookComponent},
             { path: 'book-list', component: BookListComponent},
             { path: 'book-detail/:id', component: BookDetailComponent},
+            { path: '', redirectTo: 'book-list',pathMatch: 'full'},
+            { path: '**', redirectTo: 'book-list' },
         ]}
     ] 
     }
