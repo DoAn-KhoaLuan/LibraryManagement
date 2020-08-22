@@ -68,6 +68,6 @@ def GetAccountByEmployeeEmail(req: SendResetPasswordEmailReq):
 
 def ChangePassword(acc_id, password):
     account = models.Accounts.query.get(acc_id)
-    account.account_password = password
+    account.account_password = hashlib.md5(password.encode('utf-8')).hexdigest()
     db.session.commit()
     return account.serialize()

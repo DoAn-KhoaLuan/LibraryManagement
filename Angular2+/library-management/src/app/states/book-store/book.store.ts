@@ -20,7 +20,7 @@ const initState = {
     selected_book: null,
     current_page : 1,
     filter_page: {
-        page: 2,
+        page: 1,
         per_page: 4,
     },
     current_pagination_opt: {

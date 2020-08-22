@@ -87,7 +87,7 @@ def SendResetPasswordEmailCustomer(req: SendResetPasswordEmailReq):
     Bạn (hoặc một ai đó) đang muốn khôi phục mật khẩu của tài khoản shinichi24567@gmail.com-01-test.
     Nếu là bạn, hãy bấm vào liên kết bên dưới để khôi phục mật khẩu: (có hiệu lực trong 24 giờ)
 
-    {reset_email_token}
+    http://localhost:4200/reset-password?token={reset_email_token}
     Nếu không phải bạn, hãy bỏ qua email này.
 
     Đội ngũ quản lý thư quán Đại học Mở TPHCM!
@@ -115,13 +115,13 @@ def SendResetPasswordEmailEmployee(req: SendResetPasswordEmailReq):
     Bạn (hoặc một ai đó) đang muốn khôi phục mật khẩu của tài khoản shinichi24567@gmail.com-01-test.
     Nếu là bạn, hãy bấm vào liên kết bên dưới để khôi phục mật khẩu: (có hiệu lực trong 24 giờ)
 
-    {reset_email_token}
+    http://localhost:4200/reset-password?token={reset_email_token}
     Nếu không phải bạn, hãy bỏ qua email này.
 
     Đội ngũ quản lý thư quán Đại học Mở TPHCM!
 ''')
     smtp.send_message(msg)
-    return " Vui lòng kiểm tra email để reset mật khẩu"
+    return {msg: 'Vui lòng kiểm tra email để reset mật khẩu'}
 
 def ResetPassword(req: ResetPasswordReq):
     payload = jwt.decode(req.token, app.config['SECRET_KEY'])
