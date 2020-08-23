@@ -72,4 +72,8 @@ export class CustomerService {
     async CreateCustomer(customer) {
         return await this.customerApiService.CreateCustomer(customer)
     }
+
+    async SearchOrdersByCustomerId(customer_id) {
+        return await this.customerApiService.SearchOrdersByCustomerId(customer_id)
+    }
 }

@@ -25,8 +25,8 @@ export class SidebarMenuComponent implements OnInit {
     },
     {
       iconHtml:`<i class="fa fa-2x fa-bookmark" aria-hidden="true"></i>`,
-      itemTitle: "Quản lý loại sách",
-      routerLink: "book-category-management"
+      itemTitle: "Quản lý khách hàng",
+      routerLink: "customer-management"
 
     },
     {

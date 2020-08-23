@@ -30,4 +30,8 @@ export class ApiCustomerService {
   async SearchCustomers(req) {
     return await this.http.post(this.baseURL+"/admin/customer-management/search-customers",req).toPromise();
   }
+  
+  async SearchOrdersByCustomerId(req) {
+    return await this.http.post(this.baseURL+"/admin/order-management/search-orders",req).toPromise();
+  }
 }
