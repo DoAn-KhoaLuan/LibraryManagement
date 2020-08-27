@@ -38,7 +38,7 @@ export class SidebarMenuComponent implements OnInit {
     {
       iconHtml:`<i class="fa fa-2x fa-address-card" aria-hidden="true"></i>`,
       itemTitle: "Quản lý độc giả",
-      routerLink: "user-management"
+      routerLink: "employee-management"
 
     },
     {

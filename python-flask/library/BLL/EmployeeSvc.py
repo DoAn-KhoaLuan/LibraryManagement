@@ -27,6 +27,6 @@ def DeleteEmployee(req):
 
 
 def SearchEmployee(req):
-    search_employee = EmployeeRep.SearchEmployee(req)
+    search_employee = EmployeeRep.SearchEmployees(req)
     return search_employee
 

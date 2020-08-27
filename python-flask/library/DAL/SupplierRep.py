@@ -11,7 +11,7 @@ from library.Common.util import ConvertModelListToDictList
 
 
 def GetSuppliersByPage(req: GetItemsByPageReq):
-    supplier_pagination = Suppliers.query.paginate(per_page=req.per_page, page=req.page)
+    supplier_pagination = Suppliers.query.filter(Suppliers.delete_at == None).paginate(per_page=req.per_page, page=req.page)
     has_next = supplier_pagination.has_next
     has_prev = supplier_pagination.has_prev
     suppliers = ConvertModelListToDictList(supplier_pagination.items)

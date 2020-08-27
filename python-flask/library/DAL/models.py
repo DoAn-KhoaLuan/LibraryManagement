@@ -2,9 +2,9 @@ from library import db
 
 
 class Accounts(db.Model):
-    account_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    account_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.role_id'))
-    account_name = db.Column(db.String(50), nullable=False)
+    account_name = db.Column(db.String(50), nullable=False , unique=True)
     account_password = db.Column(db.String(50), nullable=False)
     note = db.Column(db.String(50))
     delete_at = db.Column(db.DateTime, default=None)
@@ -21,7 +21,7 @@ class Accounts(db.Model):
 
 
 class Books(db.Model):
-    book_id = db.Column(db.Integer, autoincrement=True, nullable=False, primary_key=True)
+    book_id = db.Column(db.Integer, autoincrement=True, nullable=False, primary_key=True, unique=True)
     book_name = db.Column(db.String(50), nullable=False)
     supplier_id = db.Column(db.Integer, db.ForeignKey('suppliers.supplier_id'))
     category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
@@ -63,7 +63,7 @@ Borrowticketsdetails = db.Table('borrow_ticket_details',
 
 
 class Borrowtickets(db.Model):
-    borrow_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
+    borrow_ticket_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'))
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     quantity = db.Column(db.Integer)
@@ -88,7 +88,7 @@ class Borrowtickets(db.Model):
 
 
 class Categories(db.Model):
-    category_id = db.Column(db.Integer, primary_key=True, nullable=False)
+    category_id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
     category_name = db.Column(db.String(50))
     description = db.Column(db.String(1500))
     note = db.Column(db.String(1500))
@@ -104,13 +104,13 @@ class Categories(db.Model):
 
 
 class Customers(db.Model):
-    customer_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
-    identity_id = db.Column(db.String(50), nullable=False)
+    customer_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)
+    identity_id = db.Column(db.String(50), nullable=False, unique=True)
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     student_code = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     first_name = db.Column(db.String(50))
-    email = db.Column(db.String(50))
+    email = db.Column(db.String(50), unique=True)
     phone = db.Column(db.String(50))
     birth_date = db.Column(db.DateTime)
     address = db.Column(db.String(1500))
@@ -134,7 +134,7 @@ class Customers(db.Model):
 
 class Employees(db.Model):
     employee_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)
-    identity_id = db.Column(db.String(50), nullable=False)
+    identity_id = db.Column(db.String(50), nullable=False, unique=True)
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     last_name = db.Column(db.String(50), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
@@ -187,7 +187,7 @@ class Orderdetails(db.Model):
 
 
 class Orders(db.Model):
-    order_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
+    order_id = db.Column(db.Integer, unique=True, autoincrement=True, primary_key=True, nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'))
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     order_date = db.Column(db.DateTime)
@@ -208,7 +208,7 @@ class Orders(db.Model):
 
 
 class Roles(db.Model):
-    role_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    role_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
     role_name = db.Column(db.String(50))
     note = db.Column(db.String(1500))
     delete_at = db.Column(db.DateTime, default=None)
@@ -222,7 +222,7 @@ class Roles(db.Model):
 
 
 class Schedules(db.Model):
-    schedule_id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    schedule_id = db.Column(db.Integer, unique=True, primary_key=True, autoincrement=True, nullable=False)
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     date = db.Column(db.DateTime)
     time_from = db.Column(db.DateTime)
@@ -276,7 +276,7 @@ class Stocktaketickets(db.Model):
 
 
 class Suppliers(db.Model):
-    supplier_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
+    supplier_id = db.Column(db.Integer, unique=True, autoincrement=True, primary_key=True, nullable=False)
     contact_name = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(1500))
     phone = db.Column(db.String(50))
@@ -295,7 +295,7 @@ class Suppliers(db.Model):
 
 
 class Authors(db.Model):
-    author_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    author_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
     author_name = db.Column(db.String(50))
 
     books = db.relationship('Books', backref='author', lazy=True)

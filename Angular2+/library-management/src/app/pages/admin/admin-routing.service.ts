@@ -1,3 +1,8 @@
+import { CreateSupplierComponent } from './admin-subpages/supplier-management/components/create-supplier/create-supplier.component';
+import { SupplierRowComponent } from './admin-subpages/supplier-management/components/supplier-list/supplier-row/supplier-row.component';
+import { SupplierListComponent } from './admin-subpages/supplier-management/components/supplier-list/supplier-list.component';
+import { EmployeeDetailComponent } from './admin-subpages/employee-management/components/employee-detail/employee-detail.component';
+import { EmployeeListComponent } from './admin-subpages/employee-management/components/employee-list/employee-list.component';
 import { ConfirmDeleteCustomerComponent } from './admin-subpages/customer-management/components/customer-detail/confirm-delete-customer/confirm-delete-customer.component';
 import { CustomerDetailComponent } from './admin-subpages/customer-management/components/customer-detail/customer-detail.component';
 
@@ -27,6 +32,11 @@ import { AddSupplierModalComponent } from './admin-subpages/book-management/comp
 import { AuthGuard } from 'src/app/auth-guard';
 import { CustomerListComponent } from './admin-subpages/customer-management/components/customer-list/customer-list.component';
 import { CustomerRowComponent } from './admin-subpages/customer-management/components/customer-list/customer-row/customer-row.component';
+import { EmployeeManagementComponent } from './admin-subpages/employee-management/employee-management.component';
+import { EmployeeRowComponent } from './admin-subpages/employee-management/components/employee-list/employee-row/employee-row.component';
+import { ConfirmDeleteEmployeeComponent } from './admin-subpages/employee-management/components/employee-detail/confirm-delete-employee/confirm-delete-employee.component';
+import { SupplierManagementComponent } from './admin-subpages/supplier-management/supplier-management.component';
+import { SupplierDetailComponent } from './admin-subpages/supplier-management/components/supplier-detail/supplier-detail.component';
 
 const routes: Routes = [
     { path: '', component: AdminComponent, children: [
@@ -43,6 +53,19 @@ const routes: Routes = [
             { path: '', redirectTo: 'customer-list',pathMatch: 'full'},
             { path: '**', redirectTo: 'customer-list' },
         ]},
+        { path: 'employee-management', component: EmployeeManagementComponent, children:[
+            { path: 'employee-list', component: EmployeeListComponent},
+            { path: 'employee-detail/:id', component: EmployeeDetailComponent},
+            { path: '', redirectTo: 'employee-list',pathMatch: 'full'},
+            { path: '**', redirectTo: 'employee-list' },
+        ]},
+        { path: 'supplier-management', component: SupplierManagementComponent, children:[
+            { path: 'create-supplier', component: CreateSupplierComponent},
+            { path: 'supplier-list', component: SupplierListComponent},
+            { path: 'supplier-detail/:id', component: SupplierDetailComponent},
+            { path: '', redirectTo: 'supplier-list',pathMatch: 'full'},
+            { path: '**', redirectTo: 'supplier-list' },
+        ]},
         { path: '', redirectTo: 'book-management',pathMatch: 'full'},
         { path: '**', redirectTo: 'book-management' },
     ] 
@@ -51,6 +74,6 @@ const routes: Routes = [
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
     exports: [RouterModule, CreateBookComponent, AddSupplierModalComponent, AddAuthorModalComponent, AddCategoryModalComponent],
-    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent],
+    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent],
 })
 export class AdminRoutingModule { }

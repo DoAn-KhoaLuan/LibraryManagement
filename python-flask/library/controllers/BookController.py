@@ -15,8 +15,8 @@ from library.auth import token_required
 
 
 @app.route('/admin/book-management/get-books', methods=['POST'])
-@token_required
-def GetBooks(auth_info):
+# @token_required
+def GetBooks():
     try:
         req = GetItemsByPageReq(request.json)
         result = BookSvc.GetBooksByPage(req)

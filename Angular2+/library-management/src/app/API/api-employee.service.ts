@@ -26,4 +26,8 @@ export class ApiEmployeeService {
   async DeleteEmployee(req) {
     return await this.http.post(this.baseURL+"/admin/employee-management/delete-employee",req).toPromise();
   }
+
+  async SearchEmployees(req) {
+    return await this.http.post(this.baseURL+"/admin/employee-management/search-employees",req).toPromise();
+  }
 }

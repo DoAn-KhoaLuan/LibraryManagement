@@ -26,4 +26,7 @@ export class ApiSupplierService {
   async DeleteSupplier(req) {
     return await this.http.post(this.baseURL+"/admin/supplier-management/delete-supplier",req).toPromise();
   }
+  async SearchSuppliers(req) {
+    return await this.http.post(this.baseURL+"/admin/supplier-management/search-suppliers",req).toPromise();
+  }
 }

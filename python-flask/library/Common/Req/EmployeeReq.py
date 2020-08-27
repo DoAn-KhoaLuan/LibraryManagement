@@ -28,6 +28,7 @@ class UpdateEmployeeReq():
         self.hire_date = req['hire_date'] if 'hire_date' in req else None
         self.address = req['address'] if 'address' in req else None
         self.gender = req['gender'] if 'gender' in req else None
+        self.email = req['email'] if 'email' in req else None
         self.image = req['image'] if 'image' in req else None
         self.basic_rate = req['basic_rate'] if 'basic_rate' in req else None
         self.note = req['note'] if 'note' in req else None

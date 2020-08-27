@@ -40,10 +40,10 @@ def DeleteEmployee():
     return jsonify(result)
 
 
-@app.route('/admin/employee-management/search-employee', methods=['POST'])
+@app.route('/admin/employee-management/search-employees', methods=['POST'])
 def SearchEmployees():
     req = SearchEmployeesReq(request.json)
     result = EmployeeSvc.SearchEmployee(req)
     res = SearchEmployeeRsp(result).serialize()
-    return jsonify(res['employees'])
+    return jsonify(result)
 
