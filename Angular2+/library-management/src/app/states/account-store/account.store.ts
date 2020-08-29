@@ -11,6 +11,7 @@ export interface AccountState {
     filter_page: filter_page,
     current_pagination_opt : PaginationOpt;
     auth_info: auth_info;
+    detail_account: any
 }
 
 const initState = {
@@ -26,6 +27,7 @@ const initState = {
         previousDisabled: true,
         hidePerpage: true,
     },
+    detail_account: null
 }
 
 @Injectable({providedIn: 'root'})

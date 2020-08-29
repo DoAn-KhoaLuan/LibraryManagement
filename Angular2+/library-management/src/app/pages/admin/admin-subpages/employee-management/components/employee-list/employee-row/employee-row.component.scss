@@ -11,6 +11,8 @@
     margin-bottom: 20px;
     &:hover {
       background-color: #e4e4e4;
+      border-left: 7px solid var(--app-color);
+
     }
   
     .row {

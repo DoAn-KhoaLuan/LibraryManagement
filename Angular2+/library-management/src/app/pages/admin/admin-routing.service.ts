@@ -1,3 +1,9 @@
+import { ChangePasswordModalComponent } from './admin-subpages/account-management/components/account-detail/change-password-modal/change-password-modal.component';
+import { CreateAccountComponent } from './admin-subpages/account-management/components/create-account/create-account.component';
+import { AccountDetailComponent } from './admin-subpages/account-management/components/account-detail/account-detail.component';
+import { AccountRowComponent } from './admin-subpages/account-management/components/account-list/account-row/account-row.component';
+import { AccountListComponent } from './admin-subpages/account-management/components/account-list/account-list.component';
+import { AccountManagementComponent } from './admin-subpages/account-management/account-management.component';
 import { CreateSupplierComponent } from './admin-subpages/supplier-management/components/create-supplier/create-supplier.component';
 import { SupplierRowComponent } from './admin-subpages/supplier-management/components/supplier-list/supplier-row/supplier-row.component';
 import { SupplierListComponent } from './admin-subpages/supplier-management/components/supplier-list/supplier-list.component';
@@ -59,6 +65,13 @@ const routes: Routes = [
             { path: '', redirectTo: 'employee-list',pathMatch: 'full'},
             { path: '**', redirectTo: 'employee-list' },
         ]},
+        { path: 'account-management', component: AccountManagementComponent, children:[
+            { path: 'account-list', component: AccountListComponent},
+            { path: 'account-detail/:id', component: AccountDetailComponent},
+            { path: 'create-account', component: CreateAccountComponent},
+            { path: '', redirectTo: 'account-list',pathMatch: 'full'},
+            { path: '**', redirectTo: 'account-list' },
+        ]},
         { path: 'supplier-management', component: SupplierManagementComponent, children:[
             { path: 'create-supplier', component: CreateSupplierComponent},
             { path: 'supplier-list', component: SupplierListComponent},
@@ -74,6 +87,6 @@ const routes: Routes = [
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
     exports: [RouterModule, CreateBookComponent, AddSupplierModalComponent, AddAuthorModalComponent, AddCategoryModalComponent],
-    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent],
+    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent],
 })
 export class AdminRoutingModule { }

@@ -24,11 +24,11 @@ export class ApiAccountService {
   }
 
   async DeleteAccount(req) {
-    return await this.http.post(this.baseURL+"/admin/account-management/search-accounts",req).toPromise();
+    return await this.http.post(this.baseURL+"/admin/account-management/delete-account",req).toPromise();
   }
 
   async SearchAccounts(req) {
-    return await this.http.post(this.baseURL+"/admin/account-management/delete-account",req).toPromise();
+    return await this.http.post(this.baseURL+"/admin/account-management/search-accounts",req).toPromise();
   }
 
   async Login(req) {
@@ -44,6 +44,10 @@ export class ApiAccountService {
   }
 
   async ResetPassword(req) {
-    return await this.http.post(this.baseURL + "/reset_password",req).toPromise();
+    return await this.http.post(this.baseURL + "/reset-password",req).toPromise();
+  }
+
+  async ChangePassword(req) {
+    return await this.http.post(this.baseURL + "/change-password",req).toPromise();
   }
 }

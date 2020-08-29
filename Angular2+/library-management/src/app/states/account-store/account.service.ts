@@ -1,8 +1,5 @@
 import { auth_info } from './../../models/app-models';
 import { Router } from '@angular/router';
-import { ApiCustomerService } from '../../API/api-customer.service';
-import { ApiCategoryService } from '../../API/api-book-category.service';
-import { filter_page } from 'src/app/models/app-models';
 import {  AccountQuery } from './account.query';
 import {  AccountStore } from './account.store';
 import { GetItemsByPageRsp } from '../../models/resp';
@@ -104,5 +101,13 @@ export class AccountService {
 
     async ResetPassword(req) {
         return await this.accountApiService.ResetPassword(req)
+    }
+
+    async ChangePassword(req) {
+        return await this.accountApiService.ChangePassword(req)
+    }
+
+    SetDetailAccount(account) {
+        this.accountStore.update({detail_account: account})
     }
 }

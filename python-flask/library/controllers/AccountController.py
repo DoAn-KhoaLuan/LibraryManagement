@@ -8,7 +8,7 @@ from flask import request, jsonify
 from library import app, smtp
 from library.BLL import AccountSvc
 from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, LoginRsp, SearchAccountsReq, \
-    SendResetPasswordEmailReq, ResetPasswordReq
+    SendResetPasswordEmailReq, ResetPasswordReq, ChangePasswordReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.Common.Rsp.AccountRsp import SearchAccountsRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
@@ -22,6 +22,7 @@ def CreateAccount() -> CreateAccountReq:
     req = CreateAccountReq(request.json)
     result = AccountSvc.CreateAccount(req)
     return result
+
 
 @app.route('/admin/account-management/get-accounts', methods=['POST'])
 # @token_required
@@ -42,8 +43,8 @@ def DeleteAccount():
 @app.route('/admin/account-management/search-accounts', methods=['POST'])
 def SearchAccounts():
     req = SearchAccountsReq(request.json)
-    accounts = AccountSvc.SearchAccounts(req)
-    res = SearchAccountsRsp(accounts).serialize()
+    info_accounts = AccountSvc.SearchAccounts(req)
+    res = SearchAccountsRsp(info_accounts).serialize()
     return jsonify(res)
 
 @app.route('/admin/account-management/login', methods=['POST'])
@@ -71,10 +72,19 @@ def SendResetPasswordEmailEmployee():
     return result
 
 
-@app.route('/reset_password', methods=['POST'])
-def resetPassword():
+@app.route('/reset-password', methods=['POST'])
+def ResetPassword():
     req = ResetPasswordReq(request.json)
     result = AccountSvc.ResetPassword(req)
     return jsonify(result)
+
+@app.route('/change-password', methods=['POST'])
+def ChangePassword():
+    try:
+        req = ChangePasswordReq(request.json)
+        result = AccountSvc.ChangePassword(req)
+        return jsonify(result)
+    except ErrorRsp as e:
+        return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
 
 

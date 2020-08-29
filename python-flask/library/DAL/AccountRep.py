@@ -1,8 +1,10 @@
+from flask import jsonify
 from flask_bcrypt import check_password_hash
 from sqlalchemy import or_
 import hashlib
 from library import db
-from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq
+from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
+    ChangePasswordReq
 from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
@@ -66,8 +68,21 @@ def GetAccountByEmployeeEmail(req: SendResetPasswordEmailReq):
     account = models.Employees.query.filter(models.Employees.email == employee_email).first().account.serialize()
     return account
 
-def ChangePassword(acc_id, password):
-    account = models.Accounts.query.get(acc_id)
+def ResetPassword(acc_id, password):
+    account = models.Accounts.query.get(int(acc_id))
     account.account_password = hashlib.md5(password.encode('utf-8')).hexdigest()
     db.session.commit()
+    return account.serialize()
+
+def ChangePassword(req: ChangePasswordReq):
+    account = models.Accounts.query.get(int(req.account_id))
+    hashed_new_password = str(hashlib.md5(req.new_password.strip().encode("utf-8")).hexdigest())
+    hashed_current_password = str(hashlib.md5(req.current_password.strip().encode("utf-8")).hexdigest())
+
+    if(account.account_password == hashed_current_password):
+        account.account_password = hashed_new_password
+        db.session.commit()
+    else:
+        raise ErrorRsp(code=400, message='Mật khẩu không chính xác', msg="Mật khẩu không chính xác")
+
     return account.serialize()

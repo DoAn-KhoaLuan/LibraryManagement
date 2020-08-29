@@ -11,8 +11,9 @@ export class AccountQuery extends Query<AccountState> {
         super(store);
     }
 
-    customer_list_view$ = this.select('account_list_view')
+    account_list_view$ = this.select('account_list_view')
     current_page$ = this.select('current_page')
     current_pagination_opt$ = this.select('current_pagination_opt')
     auth_info$ = this.select('auth_info')
+    detail_account$ = this.select('detail_account')
 }

@@ -12,8 +12,7 @@ class CreateAccountRsp():
 class SearchAccountsRsp():
     def __init__(self, accounts):
         self.accounts = accounts
-
     def serialize(self):
         return {
-            "accounts": self.accounts
+            "accounts": self.accounts,
         }
