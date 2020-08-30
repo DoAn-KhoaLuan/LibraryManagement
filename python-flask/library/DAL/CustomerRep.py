@@ -42,18 +42,18 @@ def CreatCustomer(req: CreateCustomerReq):
 
 def UpdateCustomer(req: UpdateCustomerReq):
     update_customer = models.Customers.query.get(req.customer_id)
-    update_customer.identity_id = req.identity_id
-    update_customer.account_id = req.account_id
-    update_customer.last_name = req.last_name
-    update_customer.first_name = req.first_name
-    update_customer.phone = req.phone
-    update_customer.student_code = req.student_code
-    update_customer.birth_date = req.birth_date
-    update_customer.address = req.address
-    update_customer.gender = req.gender
-    update_customer.email = req.email
-    update_customer.note = req.note
-    update_customer.delete_at = req.delete_at
+    update_customer.identity_id = req.identity_id if req.identity_id is not None else update_customer.identity_id
+    update_customer.account_id = req.account_id if req.account_id is not None else update_customer.account_id
+    update_customer.last_name = req.last_name if req.last_name is not None else update_customer.last_name
+    update_customer.first_name = req.first_name if req.first_name is not None else update_customer.first_name
+    update_customer.phone = req.phone if req.phone is not None else update_customer.phone
+    update_customer.student_code = req.student_code if req.student_code is not None else update_customer.student_code
+    update_customer.birth_date = req.birth_date if req.birth_date is not None else update_customer.birth_date
+    update_customer.address = req.address if req.address is not None else update_customer.address
+    update_customer.gender = req.gender if req.gender is not None else update_customer.gender
+    update_customer.email = req.email if req.email is not None else update_customer.email
+    update_customer.note = req.note if req.note is not None else update_customer.note
+    update_customer.delete_at = req.delete_at if req.delete_at is not None else update_customer.delete_at
     db.session.commit()
     return update_customer.serialize()
 

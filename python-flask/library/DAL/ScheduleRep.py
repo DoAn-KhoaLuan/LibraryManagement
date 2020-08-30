@@ -35,15 +35,15 @@ def CreateSchedule(req: CreateScheduleReq):
 def UpdateSchedule(req: UpdateScheduleReq):
     employee = models.Employees.query.get(req.employee_id)
     update_schedule = models.Schedules.query.get(req.schedule_id)
-    update_schedule.employee_id = req.employee_id
-    update_schedule.date = req.date
-    update_schedule.time_from = req.time_from
-    update_schedule.time_to = req.time_to
-    update_schedule.note = req.note
-    update_schedule.actual_hours = req.actual_hours
-    update_schedule.expected_hours = req.expected_hours
+    update_schedule.employee_id = req.employee_id if req.employee_id is not None else update_schedule.employee_id
+    update_schedule.date = req.date if req.date is not None else update_schedule.date
+    update_schedule.time_from = req.time_from if req.time_from is not None else update_schedule.time_from
+    update_schedule.time_to = req.time_to if req.time_to is not None else update_schedule.time_to
+    update_schedule.note = req.note if req.note is not None else update_schedule.note
+    update_schedule.actual_hours = req.actual_hours if req.actual_hours is not None else update_schedule.actual_hours
+    update_schedule.expected_hours = req.expected_hours if req.expected_hours is not None else update_schedule.expected_hours
     update_schedule.salary = employee.basic_rate * req.actual_hours
-    update_schedule.delete_at = req.delete_at
+    update_schedule.delete_at = req.delete_at if req.delete_at is not None else update_schedule.delete_at
     db.session.commit()
     return update_schedule.serialize()
 

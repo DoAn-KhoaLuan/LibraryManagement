@@ -46,13 +46,13 @@ def CreateOrder(order: CreateOrderReq):
 
 def UpdateOrder(req: UpdateOrderReq):
     update_order = models.Orders.query.get(req.order_id)
-    update_order.customer_id = req.customer_id
-    update_order.employee_id = req.employee_id
-    update_order.order_date = req.order_date
-    update_order.type = req.type
-    update_order.total = req.total
-    update_order.note = req.note
-    update_order.delete_at = req.delete_at
+    update_order.customer_id = req.customer_id if req.customer_id is not None else req.customer_id
+    update_order.employee_id = req.employee_id if req.employee_id is not None else req.employee_id
+    update_order.order_date = req.order_date if req.order_date is not None else req.order_date
+    update_order.type = req.type if req.type is not None else req.type
+    update_order.total = req.total if req.total is not None else req.total
+    update_order.note = req.note if req.note is not None else req.note
+    update_order.delete_at = req.delete_at if req.delete_at is not None else req.delete_at
     db.session.commit()
     return update_order.serialize()
 

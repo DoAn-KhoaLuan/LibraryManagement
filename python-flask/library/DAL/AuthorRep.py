@@ -37,7 +37,7 @@ def DeleteAuthorById(req):
 
 def UpdateAuthor(req):
     author = models.Authors.query.get(req.author_id)
-    author.author_name = req.author_name
+    author.author_name = req.author_name if req.author_name is not None else author.author_name
     db.session.add(author)
     db.session.commit()
     res = UpdateAuthorRsp(author).serialize()

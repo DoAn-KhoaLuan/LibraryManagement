@@ -31,10 +31,9 @@ def CreateCategory(new_cate: CreateCategoryReq):
 
 def UpdateCategory(update_cate: UpdateCategoryReq):
     update_category = db.session.query(Categories).filter(Categories.category_id == update_cate.category_id).first()
-    update_category.category_name = update_cate.category_name
-    update_category.description = update_cate.description
-    update_category.note = update_cate.note
-    db.session.add(update_category)
+    update_category.category_name = update_cate.category_name if update_cate.category_name is not None else update_category.category_name
+    update_category.description = update_cate.description if update_cate.description is not None else update_category.description
+    update_category.note = update_cate.note if update_cate.note is not None else update_category.note
     db.session.commit()
     return update_category.serialize()
 

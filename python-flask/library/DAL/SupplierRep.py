@@ -32,13 +32,12 @@ def CreateSupplier(req: CreateSupplierReq):
 
 def UpdateSupplier(req: UpdateSupplierReq):
     update_supplier = Suppliers.query.get(req.supplier_id)
-    update_supplier.contact_name = req.contact_name
-    update_supplier.address = req.address
-    update_supplier.phone = req.phone
-    update_supplier.email = req.email
-    update_supplier.note = req.note
-    update_supplier.delete_at = req.delete_at
-    db.session.add(update_supplier)
+    update_supplier.contact_name = req.contact_name if req.contact_name is not None else update_supplier.contact_name
+    update_supplier.address = req.address if req.address is not None else update_supplier.address
+    update_supplier.phone = req.phone if req.phone is not None else update_supplier.phone
+    update_supplier.email = req.email if req.email is not None else update_supplier.email
+    update_supplier.note = req.note if req.note is not None else update_supplier.note
+    update_supplier.delete_at = req.delete_at if req.delete_at is not None else update_supplier.delete_at
     db.session.commit()
     return update_supplier.serialize()
 

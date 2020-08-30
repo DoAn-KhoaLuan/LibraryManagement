@@ -36,15 +36,15 @@ def CreateBorrowTicket(req: CreateBorrowTicketReq):
 
 def UpdateBorrowTicket(req: UpdateBorrowTicketReq):
     update_borrow_ticket = models.Borrowtickets.query.get(req.borrow_ticket_id)
-    update_borrow_ticket.customer_id = req.customer_id
-    update_borrow_ticket.employee_id = req.employee_id
-    update_borrow_ticket.quantity = req.quantity
-    update_borrow_ticket.borrow_date = req.borrow_date
-    update_borrow_ticket.appointment_date = req.appointment_date
-    update_borrow_ticket.return_date = req.return_date
-    update_borrow_ticket.status = req.status
-    update_borrow_ticket.delete_at = req.delete_at
-    update_borrow_ticket.note = req.note
+    update_borrow_ticket.customer_id = req.customer_id if req.customer_id is not None else update_borrow_ticket.customer_id
+    update_borrow_ticket.employee_id = req.employee_id if req.employee_id is not None else update_borrow_ticket.employee_id
+    update_borrow_ticket.quantity = req.quantity if req.quantity is not None else update_borrow_ticket.quantity
+    update_borrow_ticket.borrow_date = req.borrow_date if req.borrow_date is not None else update_borrow_ticket.borrow_date
+    update_borrow_ticket.appointment_date = req.appointment_date if req.appointment_date is not None else update_borrow_ticket.appointment_date
+    update_borrow_ticket.return_date = req.return_date if req.return_date is not None else update_borrow_ticket.return_date
+    update_borrow_ticket.status = req.status if req.status is not None else update_borrow_ticket.status
+    update_borrow_ticket.delete_at = req.delete_at if req.delete_at is not None else update_borrow_ticket.delete_at
+    update_borrow_ticket.note = req.note if req.note is not None else update_borrow_ticket.note
     db.session.commit()
     return update_borrow_ticket.serialize()
 
