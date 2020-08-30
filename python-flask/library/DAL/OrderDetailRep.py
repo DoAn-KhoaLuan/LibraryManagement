@@ -10,7 +10,7 @@ from datetime import datetime
 
 
 def GetOrderDetailsByPage(req: GetItemsByPageReq):
-    order_detail_pagination = models.Orderdetails.query.paginate(per_page=req.per_page, page=req.page)
+    order_detail_pagination = models.Orderdetails.query.filter(models.Orderdetails.delete_at is None).paginate(per_page=req.per_page, page=req.page)
     has_next = order_detail_pagination.has_next
     has_prev = order_detail_pagination.has_prev
     order_details = ConvertModelListToDictList(order_detail_pagination.items)

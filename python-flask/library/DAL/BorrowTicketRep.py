@@ -11,7 +11,8 @@ from datetime import datetime
 
 
 def GetBorrowTicketsByPage(req: GetItemsByPageReq):
-    borrowticket_pagination = models.Borrowtickets.query.paginate(per_page=req.per_page, page=req.page)
+    borrowticket_pagination = models.Borrowtickets.query.filter(models.Borrowtickets.delete_at is None).paginate \
+        (per_page=req.per_page, page=req.page)
     has_next = borrowticket_pagination.has_next
     has_prev = borrowticket_pagination.has_prev
     borrow_tickets = ConvertModelListToDictList(borrowticket_pagination.items)
@@ -55,11 +56,12 @@ def DeleteBorrowTicket(req: DeleteBorrowTicketReq):
     db.session.commit()
     return delete_borrow_ticket.serialize()
 
-def SearchBorrowTicket(req : SearchBorrowTicketReq):
+
+def SearchBorrowTicket(req: SearchBorrowTicketReq):
     search_borrow_ticket = models.Borrowtickets.query.filter(or_(models.Borrowtickets.customer_id == req.keyword,
-                                                                  models.Borrowtickets.employee_id == req.keyword,
-                                                                  models.Borrowtickets.borrow_date == req.keyword,
-                                                                  models.Borrowtickets.return_date == req.keyword,
-                                                                  models.Borrowtickets.status == req.keyword)).all()
+                                                                 models.Borrowtickets.employee_id == req.keyword,
+                                                                 models.Borrowtickets.borrow_date == req.keyword,
+                                                                 models.Borrowtickets.return_date == req.keyword,
+                                                                 models.Borrowtickets.status == req.keyword)).all()
     borrow_tickets = ConvertModelListToDictList(search_borrow_ticket)
-    return  borrow_tickets
+    return borrow_tickets
