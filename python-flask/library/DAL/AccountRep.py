@@ -29,7 +29,7 @@ def ValidateAccountName(acc_name: str):
 
 
 def GetAccountsByPage(req):
-    account_pagination = models.Accounts.query.filter(models.Accounts.delete_at is None).paginate(page=req.page,
+    account_pagination = models.Accounts.query.filter(models.Accounts.delete_at == None).paginate(page=req.page,
                                                                                                   per_page=req.per_page)
     has_next = account_pagination.has_next
     has_prev = account_pagination.has_prev

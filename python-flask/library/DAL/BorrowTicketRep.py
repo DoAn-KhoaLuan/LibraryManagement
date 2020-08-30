@@ -11,7 +11,7 @@ from datetime import datetime
 
 
 def GetBorrowTicketsByPage(req: GetItemsByPageReq):
-    borrowticket_pagination = models.Borrowtickets.query.filter(models.Borrowtickets.delete_at is None).paginate \
+    borrowticket_pagination = models.Borrowtickets.query.filter(models.Borrowtickets.delete_at == None).paginate \
         (per_page=req.per_page, page=req.page)
     has_next = borrowticket_pagination.has_next
     has_prev = borrowticket_pagination.has_prev

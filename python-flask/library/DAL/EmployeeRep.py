@@ -14,7 +14,7 @@ from datetime import datetime
 
 
 def GetEmployeesbyPage(req: GetItemsByPageReq):
-    employees_pagination = models.Employees.query.filter(models.Employees.delete_at is None).paginate(per_page=req.per_page, page=req.page)
+    employees_pagination = models.Employees.query.filter(models.Employees.delete_at == None).paginate(per_page=req.per_page, page=req.page)
     has_next = employees_pagination.has_next
     has_prev = employees_pagination.has_prev
     employees = ConvertModelListToDictList(employees_pagination.items)
