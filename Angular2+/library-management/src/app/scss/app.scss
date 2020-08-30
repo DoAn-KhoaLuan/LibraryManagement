@@ -14,3 +14,8 @@ input {
 .cursor-pointer {
     cursor: pointer!important;
 }
+
+input[type="text"]:disabled {
+    background: rgb(241, 240, 240)!important;
+    opacity: .9;
+  }

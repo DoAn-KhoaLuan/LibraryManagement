@@ -50,7 +50,7 @@ export class SidebarMenuComponent implements OnInit {
     {
       iconHtml:`<i class="fa fa-2x fa-user" aria-hidden="true"></i>`,
       itemTitle: "Quản lý nhân viên",
-      routerLink: "staff-management"
+      routerLink: "employee-management"
 
     },
     {
@@ -62,7 +62,7 @@ export class SidebarMenuComponent implements OnInit {
     {
       iconHtml:`<i class="fa fa-2x fa-chart-line" aria-hidden="true"></i>`,
       itemTitle: "Thống kê",
-      routerLink: "book-management"
+      routerLink: "settings"
 
     },
     

@@ -14,7 +14,7 @@ export class LoginViewGuard implements CanActivate{
         return this.accountQuery.auth_info$.pipe(
             take(1),
             map(auth_info => {
-                let role_id_acc = JSON.parse(localStorage.getItem('auth_info')).current_account.role.role_id;
+              let role_id_acc = JSON.parse(localStorage.getItem('auth_info')).current_account.role.role_id;
               if(!localStorage.getItem('auth_info')){
                   return true;
               }

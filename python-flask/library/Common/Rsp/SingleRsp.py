@@ -3,4 +3,4 @@ class ErrorRsp(Exception):
         self.code = code
         self.message = message
         self.msg = msg
-        # super().__init__(self.message)
+        super().__init__(self.message)

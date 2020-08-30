@@ -1,3 +1,7 @@
+import { UpdateUserModalComponent } from './admin-subpages/setting-management/user-info/update-user-modal/update-user-modal.component';
+import { AccountInfoComponent } from './admin-subpages/setting-management/account-info/account-info.component';
+import { UserInfoComponent } from './admin-subpages/setting-management/user-info/user-info.component';
+import { SettingManagementComponent } from './admin-subpages/setting-management/setting-management.component';
 import { ChangePasswordModalComponent } from './admin-subpages/account-management/components/account-detail/change-password-modal/change-password-modal.component';
 import { CreateAccountComponent } from './admin-subpages/account-management/components/create-account/create-account.component';
 import { AccountDetailComponent } from './admin-subpages/account-management/components/account-detail/account-detail.component';
@@ -28,7 +32,7 @@ import { BookStoreComponent } from './../book-store/book-store.component';
 import { LoginComponent } from './admin-subpages/login/login.component';
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ItemTableModule } from '../components/item-table/item-table.module';
 import { BookRowComponent } from './admin-subpages/book-management/components/book-list/book-row/book-row.component';
@@ -79,6 +83,14 @@ const routes: Routes = [
             { path: '', redirectTo: 'supplier-list',pathMatch: 'full'},
             { path: '**', redirectTo: 'supplier-list' },
         ]},
+        { path: 'settings', component: SettingManagementComponent, children:[
+            { path: 'user-info', component: UserInfoComponent},
+            { path: 'account-info', component: AccountInfoComponent},
+            // { path: 'supplier-list', component: SupplierListComponent},
+            // { path: 'supplier-detail/:id', component: SupplierDetailComponent},
+            { path: '', redirectTo: 'user-info',pathMatch: 'full'},
+            { path: '**', redirectTo: 'user-info' },
+        ]},
         { path: '', redirectTo: 'book-management',pathMatch: 'full'},
         { path: '**', redirectTo: 'book-management' },
     ] 
@@ -87,6 +99,9 @@ const routes: Routes = [
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
     exports: [RouterModule, CreateBookComponent, AddSupplierModalComponent, AddAuthorModalComponent, AddCategoryModalComponent],
-    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent],
+    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent, SettingManagementComponent, UserInfoComponent, AccountInfoComponent, UpdateUserModalComponent],
+    providers:[
+        DatePipe,
+    ]
 })
 export class AdminRoutingModule { }

@@ -43,20 +43,20 @@ def CreateEmployee(req: CreateEmployeeReq):
 
 def UpdateEmployee(req: UpdateEmployeeReq):
     update_employee = models.Employees.query.get(req.employee_id)
-    update_employee.identity_id = req.identity_id
-    update_employee.account_id = req.account_id
-    update_employee.last_name = req.last_name
-    update_employee.first_name = req.first_name
-    update_employee.email = req.email
-    update_employee.phone = req.phone
-    update_employee.birth_date = req.birth_date
-    update_employee.hire_date = req.hire_date
-    update_employee.address = req.address
-    update_employee.gender = req.gender
-    update_employee.image = req.image
-    update_employee.basic_rate = req.basic_rate
-    update_employee.note = req.note
-    update_employee.delete_at = req.delete_at
+    update_employee.identity_id = req.identity_id if req.identity_id is not None else update_employee.identity_id
+    update_employee.account_id = req.account_id if req.account_id is not None else update_employee.account_id
+    update_employee.last_name = req.last_name if req.last_name is not None else update_employee.last_name
+    update_employee.first_name = req.first_name if req.first_name is not None else update_employee.first_name
+    update_employee.email = req.email if req.email is not None else update_employee.email
+    update_employee.phone = req.phone if req.phone is not None else update_employee.phone
+    update_employee.birth_date = req.birth_date if req.birth_date is not None else update_employee.birth_date
+    update_employee.hire_date = req.hire_date if req.hire_date is not None else update_employee.hire_date
+    update_employee.address = req.address if req.address is not None else update_employee.address
+    update_employee.gender = req.gender if req.gender is not None else update_employee.gender
+    update_employee.image = req.image if req.image is not None else update_employee.image
+    update_employee.basic_rate = req.basic_rate if req.basic_rate is not None else update_employee.basic_rate
+    update_employee.note = req.note if req.note is not None else update_employee.note
+    update_employee.delete_at = req.delete_at if req.delete_at is not None else update_employee.delete_at
     db.session.commit()
     return update_employee.serialize()
 

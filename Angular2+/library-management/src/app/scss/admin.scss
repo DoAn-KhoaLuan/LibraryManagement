@@ -32,3 +32,52 @@
 .real-avatar {
   border: 1px solid black;
 }
+
+.box {
+  width: 100%;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.07);
+  border-radius: 7px;
+  border: 1px solid #eee;
+}
+
+.setting-box {
+  margin-top: 1.25rem;
+}
+
+.setting-header {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.setting-body, .setting-footer, .setting-header {
+  padding: 1.5rem;
+}
+.setting-body, .setting-header {
+  border-bottom: 1px solid lightgray;
+}
+
+.setting-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note {
+  padding: .5rem 0;
+  text-align: left;
+}
+
+.read-only {
+  cursor: not-allowed;
+}
+
+.content-wrapper {
+  overflow-y: auto;
+  width: 70%;
+  padding: 1rem;
+}
+
+.menu-sidebar {
+  overflow-y: auto;
+  width: 30%;
+}

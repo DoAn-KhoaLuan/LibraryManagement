@@ -1,6 +1,5 @@
 import { account } from './../../../../../../models/app-models';
 import { ConfirmDeleteAccountComponent } from './confirm-delete-account/confirm-delete-account.component';
-import { account } from '../../../../../../models/app-models';
 import { DatePipe } from '@angular/common';
 import { AccountStore } from '../../../../../../states/account-store/account.store';
 import { ModalController } from '../../../../../../core/modal-controller/modal-controller.service';

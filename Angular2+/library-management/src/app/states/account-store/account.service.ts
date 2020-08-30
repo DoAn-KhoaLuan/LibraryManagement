@@ -81,7 +81,6 @@ export class AccountService {
             auth_info: login_res,
         })
         localStorage.setItem('auth_info', JSON.stringify(this.accountQuery.getValue().auth_info));
-        console.log(this.accountStore.getValue().auth_info)
     }
 
     Logout() {
