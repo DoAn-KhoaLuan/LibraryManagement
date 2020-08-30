@@ -21,7 +21,7 @@ from library.DAL import AccountRep, CustomerRep, EmployeeRep
 
 def CreateAccount(req):
     is_account_existed = AccountRep.ValidateAccountName(req.account_name)
-    if(is_account_existed):
+    if (is_account_existed):
         return jsonify({'msg': "Taif khoan da ton tai "}), 401
     else:
         res = AccountRep.CreateAccount(req)
@@ -48,11 +48,11 @@ def SearchAccounts(acc_info):
     info_accounts = []
     for account in accounts:
         user_info = {}
-        if(account['role']['role_id'] == 3): #customer
+        if (account['role']['role_id'] == 3):  # customer
             search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
             user_info = CustomerRep.SearchCustomers(search_customer_req)
 
-        if(account['role']['role_id'] == 1 or account['role']['role_id'] == 2): #admin, manager
+        if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
             search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
             user_info = EmployeeRep.SearchEmployees(search_employee_req)
 
@@ -61,22 +61,22 @@ def SearchAccounts(acc_info):
 
     return info_accounts
 
+
 def AuthenticateUser(acc: LoginReq):
     try:
         account = AccountRep.Authenticate(acc)
-        if(account['role']['role_id'] == 3): #customer
+        if (account['role']['role_id'] == 3):  # customer
             search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
             user = CustomerRep.SearchCustomers(search_customer_req)
 
-
-        if(account['role']['role_id'] == 1 or account['role']['role_id'] == 2): #admin, manager
+        if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
             search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
             user = EmployeeRep.SearchEmployees(search_employee_req)
 
         secect_key = app.config['SECRET_KEY']
         payload = {
             'account_id': account['account_id'],
-            'iat':datetime.utcnow(),
+            'iat': datetime.utcnow(),
             'exp': datetime.utcnow() + timedelta(minutes=30)
         }
         access_token = jwt.encode(payload, secect_key)
@@ -96,7 +96,7 @@ def SendResetPasswordEmailCustomer(req: SendResetPasswordEmailReq):
     secect_key = app.config['SECRET_KEY']
     payload = {
         'account_id': account['account_id'],
-        'iat':datetime.utcnow(),
+        'iat': datetime.utcnow(),
         'exp': datetime.utcnow() + timedelta(minutes=30)
     }
     reset_email_token = jwt.encode(payload, secect_key).decode('utf-8')
@@ -125,7 +125,7 @@ def SendResetPasswordEmailEmployee(req: SendResetPasswordEmailReq):
     secect_key = app.config['SECRET_KEY']
     payload = {
         'account_id': account['account_id'],
-        'iat':datetime.utcnow(),
+        'iat': datetime.utcnow(),
         'exp': datetime.utcnow() + timedelta(minutes=30)
     }
     reset_email_token = jwt.encode(payload, secect_key).decode('utf-8')
@@ -154,9 +154,20 @@ def ResetPassword(req: ResetPasswordReq):
     result = AccountRep.ResetPassword(account_id, req.password)
     return result
 
+
 def ChangePassword(req: ChangePasswordReq):
     try:
         result = AccountRep.ChangePassword(req)
         return result
     except ErrorRsp as e:
         raise e
+
+
+def CreateCustomerAccount(req):
+    create_customer_account = AccountRep.CreateCustomerAccount(req)
+    return create_customer_account
+
+
+def CreateEmployeeAccount(req):
+    create_employee_account = AccountRep.CreateEmployeeAccount(req)
+    return create_employee_account

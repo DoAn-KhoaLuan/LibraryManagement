@@ -1,10 +1,10 @@
-from flask import jsonify
+from flask import jsonify, url_for
 from flask_bcrypt import check_password_hash
 from sqlalchemy import or_
 import hashlib
 from library import db
 from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
-    ChangePasswordReq
+    ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
 from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
@@ -95,3 +95,79 @@ def ChangePassword(req: ChangePasswordReq):
         raise ErrorRsp(code=400, message='Mật khẩu không chính xác', msg="Mật khẩu không chính xác")
 
     return account.serialize()
+
+
+def CreateCustomerAccount(req: CreateCustomerAccountReq):
+    is_exist_account_name_customer = models.Accounts.query.filter(
+        models.Accounts.account_name == req.account_name).first()
+    is_exist_email_phone_customer = models.Customers.query.filter(or_(models.Customers.email == req.email,
+                                                                      models.Customers.phone == req.phone)).first()
+    if is_exist_account_name_customer:
+        raise ErrorRsp(code=400, message='Tài khoản tồn tại', msg='Tài khoản tồn tại')
+
+    hashed_password = hashlib.md5(req.account_password.encode('utf-8')).hexdigest()
+    create_account = models.Accounts(account_name=req.account_name,
+                                     account_password=hashed_password, role_id=req.role_id)
+
+    db.session.begin_nested()
+    db.session.add(create_account)
+    db.session.commit()
+
+    if is_exist_email_phone_customer:
+        db.session.rollback()
+        raise ErrorRsp(code=400, message='số điện thoại, chứng minh nhân dân hoặc email đẫ tồn tại',
+                       msg='số điện thoại, chứng minh nhân dânhoặc email đẫ tồn tại')
+    create_customer = models.Customers(identity_id=req.identity_id,
+                                       account_id=create_account.account_id,
+                                       last_name=req.last_name,
+                                       first_name=req.first_name,
+                                       phone=req.phone,
+                                       student_code=req.student_code,
+                                       birth_date=req.birth_date,
+                                       address=req.address,
+                                       gender=req.gender,
+                                       email=req.email)
+
+    db.session.add(create_customer)
+    db.session.commit()
+
+    return create_account.serialize(), create_customer.serialize()
+
+
+def CreateEmployeeAccount(req: CreateEmployeeAccountReq):
+    is_exist_account_name_employee = models.Accounts.query.filter(models.Accounts.account_name == req.account_name).first()
+    is_exist_email_phone_employee = models.Employees.query.filter(or_(models.Employees.email == req.email,
+                                                                      models.Employees.phone == req.phone,
+                                                                      models.Employees.identity_id == req.identity_id)).first()
+    if is_exist_account_name_employee:
+        raise ErrorRsp(code=400, message='Tài khoản tồn tại', msg='Tài khoản tồn tại')
+
+    hashed_password = hashlib.md5(req.account_password.encode('utf-8')).hexdigest()
+    create_account = models.Accounts(account_name=req.account_name,
+                                     account_password=hashed_password,
+                                     note=req.note, role_id=req.role_id)
+    db.session.begin_nested()
+    db.session.add(create_account)
+    db.session.commit()
+    if is_exist_email_phone_employee:
+        db.session.rollback()
+        raise ErrorRsp(code=400, message='số điện thoại, chứng minh nhân dân hoặc email đẫ tồn tại',
+                       msg='số điện thoại, chứng minh nhân dân hoặc email đẫ tồn tại')
+    create_employee = models.Employees(identity_id=req.identity_id,
+                                       account_id=create_account.account_id,
+                                       last_name=req.last_name,
+                                       first_name=req.first_name,
+                                       phone=req.phone,
+                                       email=req.email,
+                                       birth_date=req.birth_date,
+                                       hire_date=req.hire_date,
+                                       address=req.address,
+                                       gender=req.gender,
+                                       image=req.image,
+                                       basic_rate=req.basic_rate,
+                                       note=req.note)
+
+    db.session.add(create_employee)
+    db.session.commit()
+
+    return create_account.serialize(), create_employee.serialize()
