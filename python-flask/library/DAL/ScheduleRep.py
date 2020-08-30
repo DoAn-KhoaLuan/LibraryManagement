@@ -10,7 +10,7 @@ from datetime import datetime
 
 
 def GetScheduleByPage(req: GetItemsByPageReq):
-    schedule_pagination = models.Schedules.query.paginate(per_page=req.per_page, page=req.page)
+    schedule_pagination = models.Schedules.query.filter(models.Schedules.delete_at is None).paginate(per_page=req.per_page, page=req.page)
     has_next = schedule_pagination.has_next
     has_prev = schedule_pagination.has_prev
     schedules = ConvertModelListToDictList(schedule_pagination.items)

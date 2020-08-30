@@ -10,7 +10,7 @@ from library.Common.util import ConvertModelListToDictList
 
 
 def GetBooksByPage(req):
-    book_pagination = models.Books.query.filter(models.Books.delete_at == None).paginate(page=req.page, per_page=req.per_page)
+    book_pagination = models.Books.query.filter(models.Books.delete_at is None).paginate(page=req.page, per_page=req.per_page)
     has_next = book_pagination.has_next
     has_prev = book_pagination.has_prev
     books = ConvertModelListToDictList(book_pagination.items)

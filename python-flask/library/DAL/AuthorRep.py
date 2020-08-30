@@ -12,7 +12,7 @@ from library.DAL.models import Authors
 
 
 def GetAuthorsByPage(req):
-    author_pagination = models.Authors.query.paginate(page=req.page, per_page=req.per_page)
+    author_pagination = models.Authors.query.filter(models.Authors.delete_at is None).paginate(page=req.page, per_page=req.per_page)
     has_next = author_pagination.has_next
     has_prev = author_pagination.has_prev
     authors = ConvertModelListToDictList(author_pagination.items)
