@@ -4,7 +4,7 @@ import json
 
 from library.BLL import BorrowTicketSvc
 from library.Common.Req.BorrowTicketReq import CreateBorrowTicketReq, UpdateBorrowTicketReq, DeleteBorrowTicketReq, \
-    SearchBorrowTicketReq
+    SearchBorrowTicketReq, FinishBorrowTicketReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.Common.Rsp.BorrowTicketRsp import SearchBorrowTicketRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
@@ -30,7 +30,14 @@ def CreateBorrowTicket():
 @app.route('/admin/borrow-ticket-management/update-borrow-ticket', methods=['POST', 'GET'])
 def UpdateBorrowTicket():
     req = UpdateBorrowTicketReq(request.json)
-    result = BorrowTicketSvc.UpdateBorrowTciket(req)
+    result = BorrowTicketSvc.UpdateBorrowTicket(req)
+    return jsonify(result)
+
+
+@app.route('/admin/borrow-ticket-management/finish-borrow-ticket', methods=['POST', 'GET'])
+def FinishBorrowTicket():
+    req = FinishBorrowTicketReq(request.json)
+    result = BorrowTicketSvc.FinishBorrowTicket(req)
     return jsonify(result)
 
 
@@ -41,9 +48,9 @@ def DeleteBorrowTicket():
     return jsonify(result)
 
 
-@app.route('/admin/borrow-ticket-management/search-borrow-ticket', methods=['POST', 'GET'])
+@app.route('/admin/borrow-ticket-management/search-borrow-tickets', methods=['POST', 'GET'])
 def SearchBorrowTicket():
     req = SearchBorrowTicketReq(request.json)
     result = BorrowTicketSvc.SearchBorrowTicket(req)
     res = SearchBorrowTicketRsp(result).serialize()
-    return jsonify(res['borrowtickets'])
+    return jsonify(res)

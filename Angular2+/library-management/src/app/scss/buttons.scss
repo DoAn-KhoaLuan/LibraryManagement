@@ -20,6 +20,28 @@
   }
 }
 
+.btn-success {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  width: fit-content;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  transition: 0.3s;
+  &:active {
+    background-color: #1c9237;
+    opacity: 1;
+  }
+  .btn-block {
+    width: auto !important;
+  }
+}
+
 .btn-outline-app {
   padding: 10px 20px;
   background-color: #fff;
@@ -64,11 +86,12 @@
   &:active {
     background-color: transparent;
     color:  var(--app-color);
+    border:2px solid var(--app-color);
   }
 }
 
 .btn-danger {
-  padding: 10px 20px;
+  padding: 12px 15px;
   background-color: red;
   color: #fff;
   width: fit-content;
@@ -80,6 +103,10 @@
   border: 1px solid #fff;
   border-radius: 5px;
   transition: 0.3s;
+  &:hover {
+    background-color: red;
+    color: #fff;
+  }
   &:active {
     background-color: rgb(255, 0, 0);
     opacity: 1;

@@ -1,6 +1,6 @@
 class SearchBorrowTicketRsp():
-    def __init__(self, borrowtickets):
-        self.borrowtickets = borrowtickets
+    def __init__(self, borrow_tickets):
+        self.borrow_tickets = borrow_tickets
 
     def serialize(self):
-        return {"borrowtickets": self.borrowtickets}
+        return {"borrow_tickets": self.borrow_tickets}

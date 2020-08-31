@@ -16,10 +16,14 @@ def CreateBorrowTicket(req):
     return create_borrow_ticket
 
 
-def UpdateBorrowTciket(req):
+def UpdateBorrowTicket(req):
     update_borrow_ticket = BorrowTicketRep.UpdateBorrowTicket(req)
     return update_borrow_ticket
 
+
+def FinishBorrowTicket(req):
+    update_borrow_ticket = BorrowTicketRep.FinishBorrowTicket(req)
+    return update_borrow_ticket
 
 def DeleteBorrowTicket(req):
     delete_borrow_ticket = BorrowTicketRep.DeleteBorrowTicket(req)

@@ -19,20 +19,29 @@ class WrapBold {
 export class SidebarMenuComponent implements OnInit {
   menuItems = [
     {
+      iconHtml:`<i class="fas fa-2x fa-chart-bar" aria-hidden="true"></i>`,
+      itemTitle: "Tổng quan",
+      routerLink: "statistic"
+    },
+    {
       iconHtml:`<i class="fa fa-2x fa-book" aria-hidden="true"></i>`,
       itemTitle: "Quản lý sách",
       routerLink: "book-management"
     },
     {
-      iconHtml:`<i class="fa fa-2x fa-bookmark" aria-hidden="true"></i>`,
+      iconHtml:`<i class="fa fa-2x fa-address-card" aria-hidden="true"></i>`,
       itemTitle: "Quản lý khách hàng",
       routerLink: "customer-management"
-
+    },
+    {
+      iconHtml:`<i class="fa fa-2x fa-user" aria-hidden="true"></i>`,
+      itemTitle: "Quản lý nhân viên",
+      routerLink: "employee-management"
     },
     {
       iconHtml:`<i class="fa fa-2x fa-ticket" aria-hidden="true"></i>`,
       itemTitle: "Quản lý mượn trả",
-      routerLink: "service-management"
+      routerLink: "borrow-ticket-management"
 
     },
     {
@@ -47,12 +56,7 @@ export class SidebarMenuComponent implements OnInit {
       routerLink: "supplier-management"
 
     },
-    {
-      iconHtml:`<i class="fa fa-2x fa-user" aria-hidden="true"></i>`,
-      itemTitle: "Quản lý nhân viên",
-      routerLink: "employee-management"
 
-    },
     {
       iconHtml:`<i class="fa fa-2x fa-user-circle" aria-hidden="true"></i>`,
       itemTitle: "Quản lý tài khoản",
@@ -60,8 +64,8 @@ export class SidebarMenuComponent implements OnInit {
 
     },
     {
-      iconHtml:`<i class="fa fa-2x fa-chart-line" aria-hidden="true"></i>`,
-      itemTitle: "Thống kê",
+      iconHtml:`<i class="fas fa-tools  fa-2x"></i>`,
+      itemTitle: "Thiết lập",
       routerLink: "settings"
 
     },

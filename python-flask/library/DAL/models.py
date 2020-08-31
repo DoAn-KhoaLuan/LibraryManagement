@@ -1,4 +1,5 @@
 from library import db
+from library.Common.util import ConvertModelListToDictList
 
 
 class Accounts(db.Model):
@@ -74,13 +75,12 @@ class Borrowtickets(db.Model):
     delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))
     books = db.relationship('Books', secondary='borrow_ticket_details', lazy='subquery',
-                            backref=db.backref('borrowticket', lazy=True))
-
+                            backref=db.backref('borrowticket', lazy=False))
     def serialize(self):
         return {"borrow_ticket_id": self.borrow_ticket_id, "customer": self.customer.serialize(), "note": self.note,
                 "employee": self.employee.serialize(), "quantity": self.quantity, "borrow_date": self.borrow_date,
                 "appointment_date": self.appointment_date, "return_date": self.return_date, "status": self.status,
-                "delete_at": self.delete_at}
+                "delete_at": self.delete_at, "borrow_books": ConvertModelListToDictList(self.books)}
 
     def __repr__(self):
         return f"Borrowticket('{self.borrow_ticket_id}','{self.customer.serialize()}','{self.note}','{self.employee.serialize()}'," \
