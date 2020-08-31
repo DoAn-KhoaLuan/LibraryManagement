@@ -1,0 +1,227 @@
+<ng-container >
+  <div class="d-flex justify-content-center align-items-center text-app">
+    <h2>Tạo mới phiếu mượn</h2>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <div>
+          <div class="d-flex justify-content-center align-items-center text-app">
+            <h5>Thông tin đọc giả</h5>
+          </div>
+          <div class="d-flex flex-row">
+            <div class="avatar col-3 mb-4">
+              <img src='assets/images/default-book.png' style="height: 100%; width: 100%; object-fit: cover;"
+                alt="Avatar" />
+            </div>
+            <div class=" col-9 pt-4 d-flex flex-column">
+              <div class="d-flex flex-row ">
+                <div class="title-info mr-4">
+                  <p>Họ và tên: </p>
+                  <p>Email: </p>
+                  <p>Số điện thoại: </p>
+                </div>
+                <ng-container >
+                  <div class="detail-info">
+                    <p><b>{{customer_item?.last_name || "-"}} </b> <b>{{( customer_item?.first_name)}}</b></p>
+                    <p><b>{{customer_item?.email  || "-"}}</b></p>
+                    <p><b>{{customer_item?.phone  || "-" }}</b></p>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 d-flex flex-column justify-content-center">
+        <div class="row app-flex flex-row">
+          <div class="col-2 detail-title ">Mã đọc giả: </div>
+          <div class="col-10 detail-info d-flex justify-content-center">
+            <form class="example-form">
+              <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Mã đọc giả" aria-label="Number" matInput [formControl]="customer_control"
+                  [matAutocomplete]="customerAuto">
+                <mat-autocomplete autoActiveFirstOption #customerAuto="matAutocomplete">
+                  <mat-option *ngFor="let customer of customer_filtered_options | async" [value]="customer">
+                    {{customer | standardizedId}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+          </div>
+        </div>
+        <div class="row app-flex flex-row">
+          <div class="col-2  detail-title">Mã sách </div>
+          <div class="col-10 detail-info">
+            <form class="example-form">
+              <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Mã sách" aria-label="Number" matInput [formControl]="book_control"
+                  [matAutocomplete]="bookAuto">
+                <mat-autocomplete autoActiveFirstOption #bookAuto="matAutocomplete">
+                  <mat-option *ngFor="let bookOption of book_filtered_options | async" [value]="bookOption">
+                    {{bookOption | standardizedId}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 text-right pr-4" (click)="ClearCustomer()">
+        <span class="btn btn-danger d-inline-flex">Xóa đọc giả</span>
+      </div>
+      <div class="col-8 text-right">
+        <span *ngIf="borrowTicket?.books?.length" class="mr-4">Số lượng sách mượn:
+          <b>{{borrowTicket.books?.length}}</b></span>
+        <span class="btn btn-app d-inline-flex">Tạo phiếu mượn</span>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ng-container *ngIf="book_item">
+      <h4 class="text-center text-app font-weight-bold mb-2 mt-4">Thông tin chi tiết sách</h4>
+      <div class="item-row py-2 my-4">
+        <div class="row d-flex flex-row">
+          <div class="col align-self-center  font-weight-bold text-app" style="max-width:150px;">
+            {{book_item?.book_id | standardizedId}}</div>
+          <div class="col align-self-center" style="max-width: 150px;">
+            <img [src]="book_item?.imageUrl || 'assets/images/default-avatar.png'"
+              style="height: 80px; width: 60px; object-fit: cover;" alt="" />
+          </div>
+          <div class="col align-self-center">{{book_item?.book_name || "-"}}</div>
+          <div class="col align-self-center" style="max-width: 150px;">{{book_item?.category?.category_name || "-"}}</div>
+          <div class="col align-self-center">
+            {{book_item?.author?.author_name || "-"}}
+          </div>
+          <div class="col align-self-center">{{book_item?.supplier?.contact_name || "-"}}</div>
+          <div class="col align-self-center" style="max-width: 150px;" (click)="AddBookToTicket()">
+            <div class="btn-add px-3 py-2 position-relative">
+              <i class="fa fa-plus"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="borrowTicket?.books?.length > 0">
+    <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Danh sách sách mượn</h3>
+    <div *ngFor="let selected_book of borrowTicket.books; let i = index" [attr.data-index]="i">
+      <div class="item-row">
+        <div class="row d-flex flex-row">
+          <div class="col align-self-center  font-weight-bold text-app" style="max-width:100px;"><b>
+              {{i + 1}}
+            </b></div>
+          <div class="col align-self-center" style="max-width: 150px;">
+            <img [src]="selected_book?.image || 'assets/images/default-avatar.png'"
+              style="height: 80px; width: 60px; object-fit: cover;" alt="" />
+          </div>
+          <div class="col align-self-center">{{selected_book?.book_name || "-"}}</div>
+          <div class="col align-self-center" style="max-width: 150px;">{{selected_book?.category?.category_name || "-"}}</div>
+          <div class="col align-self-center">
+            {{selected_book?.author?.author_name || "-"}}
+          </div>
+          <div class="col align-self-center">{{selected_book?.supplier?.contact_name || "-"}}</div>
+          <div class="col align-self-center" style="max-width: 150px;"><i class="fa fa-remove btn-remove-app"
+              ></i></div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<!-- <ng-template #confirmTicket>
+  <div class="d-flex justify-content-center align-items-center text-app">
+    <h2>Xác nhận phiếu mượn</h2>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="avatar col-3 mb-4 align-items-center justify-content-center">
+        <img src='assets/images/default-avatar.png' style="height: 100%; width: 100%; object-fit: cover;"
+          alt="Avatar" />
+          <p *ngIf="customer_item?.studentCode ">MSSV: <b>{{customer_item?.studentCode || "(Chưa có)"}}</b></p>
+      </div>
+      <div class="col-9 d-flex flex-column align-items-start justify-content-center">
+        <div class=" col-9 pt-4 d-flex flex-column">
+          <div class="d-flex flex-row ">
+            <div class="title-info mr-4">
+              <p class="mb-3">Mã phiếu mượn: </p>
+              <p class="mb-3">Mã đọc giả: </p>
+              <p class="mb-3">Họ và tên: </p>
+              <p class="mb-3">Giới tính: </p>
+              <p class="mb-3">Địa chỉ: </p>
+              <p class="mb-3">Email: </p>
+              <p class="mb-3">Số điện thoại: </p>
+              <p class="mb-3">Mã nhân viên: </p>
+              <p class="mb-3">Ngày mượn: </p>
+              <p class="mb-3">Ngày hẹn: </p>
+              
+            </div>
+            <ng-container *ngIf="!isEdit; else editReader">
+              <div class="detail-info">
+                <p><b>{{borrowTicketConfirm?.borrowTicketId | standardizedId}}</b></p>
+                <p><b>{{customer_item?.customerId | standardizedId}}</b></p>
+                <p><b>{{customer_item?.customerName || "(Chưa có)"}}</b></p>
+                <p><b>{{customer_item?.gender || "(Chưa có)"}}</b></p>
+                <p><b>{{customer_item?.address  || "(Chưa có)"}}</b></p>
+                <p><b>{{customer_item?.email  || "(Chưa có)"}}</b></p>
+                <p><b>{{customer_item?.phone  || "(Chưa có)" }}</b></p>
+                <p><b>{{staffId  | standardizedId  }}</b></p>
+                <p><b>{{borrowTicketConfirm?.borrowDate  | date:'dd/MM/yyyy'  }}</b></p>
+                <p><b>{{borrowTicketConfirm?.appointmentDate  | date:'dd/MM/yyyy'  }}</b></p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container>
+    <h3 class="text-center text-app  mb-2 mt-4">Danh sách sách mượn</h3>
+    <div class="row d-flex flex-row pt-4 pl-4">
+      <div class="col align-self-center " style="max-width:100px;">
+        STT
+      </div>
+      <div class="col align-self-center">Mã sách</div>
+      <div class="col align-self-center" style="max-width: 150px;">
+        Hình ảnh
+      </div>
+      <div class="col align-self-center">Tên sách</div>
+      <div class="col align-self-center" style="max-width: 150px;">Thể loại</div>
+      <div class="col align-self-center" style="max-width: 150px;">Ngôn ngữ</div>
+      <div class="col align-self-center">
+      Tác giả
+      </div>
+      <div class="col align-self-center">Nhà cung cấp</div>
+    </div>
+    <div *ngFor="let selected_book of borrowTicket.books; let i = index" [attr.data-index]="i">
+        <div class="row d-flex flex-row pt-4 pl-4">
+          <div class="col align-self-center  font-weight-bold text-app" style="max-width:100px;">
+            <b>
+              {{i + 1}}
+            </b>
+          </div>
+          <div class="col align-self-center text-app  font-weight-bold ">{{selected_book?.bookId | standardizedId }}</div>
+          <div class="col align-self-center" style="max-width: 150px;">
+            <img [src]="selected_book?.imageUrl || 'assets/images/default-avatar.png'"
+              style="height: 80px; width: 60px; object-fit: cover;" alt="" />
+          </div>
+          <div class="col align-self-center  font-weight-bold ">{{selected_book?.bookName || "-"}}</div>
+          <div class="col align-self-center  font-weight-bold " style="max-width: 150px;">{{selected_book?.categoryName || "-"}}</div>
+          <div class="col align-self-center  font-weight-bold " style="max-width: 150px;">{{selected_book?.language || "-"}}</div>
+          <div class="col align-self-center  font-weight-bold ">
+            {{selected_book?.authorName || "-"}}
+          </div>
+          <div class="col align-self-center  font-weight-bold ">{{selected_book?.companyName || "-"}}</div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end mr-5">
+      <div class="btn btn-outline-danger mr-3" (click)="onCancelConfirm()">
+        Hủy
+      </div>
+      <div class="btn btn-app " >
+        Xác nhận
+      </div>
+    </div>
+  </ng-container>
+</ng-template> -->

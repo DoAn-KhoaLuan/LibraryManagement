@@ -2,12 +2,12 @@ from sqlalchemy import or_
 
 from library import db
 from library.Common.Req.BorrowTicketReq import CreateBorrowTicketReq, UpdateBorrowTicketReq, DeleteBorrowTicketReq, \
-    SearchBorrowTicketReq
+    SearchBorrowTicketReq, FinishBorrowTicketReq
 from library.DAL import models
 from flask import jsonify, json
 from library.Common.util import ConvertModelListToDictList
 from library.Common.Req import GetItemsByPageReq
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def GetBorrowTicketsByPage(req: GetItemsByPageReq):
@@ -22,11 +22,9 @@ def GetBorrowTicketsByPage(req: GetItemsByPageReq):
 def CreateBorrowTicket(req: CreateBorrowTicketReq):
     create_borrow_ticket = models.Borrowtickets(customer_id=req.customer_id,
                                                 employee_id=req.employee_id,
-                                                quantity=req.quantity,
-                                                borrow_date=req.borrow_date,
-                                                appointment_date=req.appointment_date,
-                                                return_date=req.return_date,
-                                                status=req.status,
+                                                quantity=len(req.borrow_book_ids),
+                                                borrow_date=datetime.now(),
+                                                appointment_date=datetime.now() + timedelta(days=14),
                                                 delete_at=req.delete_at,
                                                 note=req.note)
     db.session.add(create_borrow_ticket)
@@ -58,10 +56,22 @@ def DeleteBorrowTicket(req: DeleteBorrowTicketReq):
 
 
 def SearchBorrowTicket(req: SearchBorrowTicketReq):
-    search_borrow_ticket = models.Borrowtickets.query.filter(or_(models.Borrowtickets.customer_id == req.keyword,
-                                                                 models.Borrowtickets.employee_id == req.keyword,
-                                                                 models.Borrowtickets.borrow_date == req.keyword,
-                                                                 models.Borrowtickets.return_date == req.keyword,
-                                                                 models.Borrowtickets.status == req.keyword)).all()
+    search_borrow_ticket = models.Borrowtickets.query.filter(or_(models.Borrowtickets.customer_id == req.customer_id,
+                                                                 models.Borrowtickets.employee_id == req.employee_id,
+                                                                 models.Borrowtickets.borrow_date == req.borrow_date,
+                                                                 models.Borrowtickets.return_date == req.return_date,
+                                                                 models.Borrowtickets.status == req.status,
+                                                                 models.Borrowtickets.borrow_ticket_id == req.borrow_ticket_id,
+                                                                 )).all()
+    # first = search_borrow_ticket[0]
+    # print(first.books)
     borrow_tickets = ConvertModelListToDictList(search_borrow_ticket)
+
     return borrow_tickets
+
+
+def FinishBorrowTicket(req: FinishBorrowTicketReq):
+    finish_borrow_ticket = models.Borrowtickets.query.get(req.borrow_ticket_id);
+    finish_borrow_ticket.return_date = datetime.now()
+    db.session.commit()
+    return finish_borrow_ticket.serialize()

@@ -26,4 +26,12 @@ export class ApiBorrowTicketService {
   async DeleteBorrowTicket(req) {
     return await this.http.post(this.baseURL+"/admin/borrow-ticket-management/delete-borrow-ticket",req).toPromise();
   }
+  
+  async SearchBorrowTickets(req) {
+    return await this.http.post(this.baseURL+"/admin/borrow-ticket-management/search-borrow-tickets",req).toPromise();
+  }
+
+  async FinishBorrowTicket(req) {
+    return await this.http.post(this.baseURL+"/admin/borrow-ticket-management/finish-borrow-ticket",req).toPromise();
+  }
 }
