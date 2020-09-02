@@ -1,3 +1,6 @@
+import { Router, NavigationEnd } from '@angular/router';
+import { UtilService } from 'src/app/services/util.service';
+import { BorrowTicketService } from './../../../../../../states/borrow-ticket-store/borrow-ticket.service';
 import { BookQuery } from './../../../../../../states/book-store/book.query';
 import { startWith, map, tap } from 'rxjs/operators';
 import { BorrowTicket } from './../../../../../../models/req';
@@ -9,14 +12,14 @@ import { AccountStore } from './../../../../../../states/account-store/account.s
 import { CustomerStore } from './../../../../../../states/customer-store/customer.store';
 import { CustomerQuery } from './../../../../../../states/customer-store/customer.query';
 import { CustomerService } from './../../../../../../states/customer-store/customer.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-create-borrow-ticket',
   templateUrl: './create-borrow-ticket.component.html',
   styleUrls: ['./create-borrow-ticket.component.scss']
 })
-export class CreateBorrowTicketComponent implements OnInit {
+export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
   all_customers = [];
   customer_control = new FormControl();
   customer_options: string[] = [];
@@ -35,17 +38,32 @@ export class CreateBorrowTicketComponent implements OnInit {
   };
 
   employee_id: string;
-
-
+  
+  confirm_borrow_ticket: any;
+  mySubscription: any;
   constructor(
+    private borrowTicketService: BorrowTicketService,
     private bookService: BookService,
     private bookQuery: BookQuery,
     private customerService: CustomerService,
     private customerStore: CustomerStore,
     private customerQuery: CustomerQuery,
     private accountStore: AccountStore,
-    private accountQuery: AccountQuery
-  ) { }
+    private accountQuery: AccountQuery,
+    private util: UtilService,
+    private router: Router
+  ) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
   
   filter = {
     page : 1,
@@ -89,7 +107,11 @@ export class CreateBorrowTicketComponent implements OnInit {
     );
   }
 
-  
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
   private _customerFilter(value: string): string[] {
     return this.customer_options.filter(customer => customer.toLowerCase().indexOf(value) === 0);
   }
@@ -104,6 +126,10 @@ export class CreateBorrowTicketComponent implements OnInit {
   }
 
   AddBookToTicket() {
+    const req_book_ids = this.borrowTicket.books.map(book => book.book_id)
+    if(req_book_ids.indexOf(this.book_item.book_id) != -1) {
+      return toastr.error("Thêm sách vào phiếu mượn không thành công", "Mỗi quyển sách chỉ được mượn với số lượng là 1");
+    }
     this.borrowTicket.books.push(this.book_item);
     this.book_control.setValue("");
     this.book_item = null 
@@ -111,5 +137,47 @@ export class CreateBorrowTicketComponent implements OnInit {
 
   RemoveBookFromTicket(book_id) {
     this.borrowTicket.books = this.borrowTicket.books.filter(book => book.book_id != book_id);
+  }
+ 
+  async CreateBorrowTicket() {
+    try{
+      const req_book_ids = this.borrowTicket.books.map(book => book.book_id)
+      let isDuplicateExists = this.util.isDuplicateExists(req_book_ids);
+      if(isDuplicateExists) {
+        return toastr.error("Tạo phiếu mượn sách không thành công", "Mỗi quyển sách chỉ được mượn với số lượng là 1");
+      }
+
+      if(!this.customer_item) {
+        return toastr.error("Tạo phiếu mượn sách không thành công", "Vui lòng chọn đọc giả");
+      }
+
+      if(!req_book_ids || !req_book_ids.length) {
+        return toastr.error("Tạo phiếu mượn sách không thành công", "Vui lòng chọn sách mượn");
+      }
+      const api_req = {
+        customer_id: this.customer_item.customer_id,
+        employee_id:  JSON.parse(localStorage.getItem('auth_info')).user_info.employee_id,
+        borrow_book_ids: req_book_ids
+      }
+      const res = await this.borrowTicketService.CreateBorrowTicket(api_req);
+
+      if(res) {
+        this.confirm_borrow_ticket = res;
+      }
+      toastr.success("Tạo phiếu mượn sách thành công");
+    } catch(e) {
+      toastr.error("Tạo phiếu mượn sách không thành công", e.msg || e.message)
+    }
+  }
+
+  Confirm() {
+    this.router.navigateByUrl('admin/borrow-ticket-management/borrow-ticket-list')
+  }
+
+  async DeleteBorrowTicket() {
+    await this.borrowTicketService.DeleteBorrowTicketById(this.confirm_borrow_ticket.borrow_ticket_id)
+    this.router.navigateByUrl('admin/borrow-ticket-management/create-borrow-ticket')
+
+    this.ngOnInit();
   }
 }

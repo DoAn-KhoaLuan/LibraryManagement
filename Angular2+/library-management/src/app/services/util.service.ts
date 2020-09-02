@@ -55,4 +55,20 @@ export class UtilService {
                 i && c !== ',' && (a.length - i) % 3 === 0 ? '.' + c : c
             );
     }
+
+    uniqueArray(arr) {
+        let hash = {};
+        let result = [];
+        arr.forEach(item => (hash[item] = 1));
+        for (let i in hash) {
+          if (hash.hasOwnProperty(i) && hash[i] === 1) {
+            result.push(i);
+          }
+        }
+        return result;
+    }
+
+    isDuplicateExists(arr){ // kiem tra xem gia tri trong mang co trung hay kkhong? 
+        return new Set(arr).size !== arr.length 
+    }
 }
