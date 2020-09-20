@@ -12,8 +12,8 @@ import { AdminComponent } from './admin.component';
     CommonModule,
     RouterModule,
     AdminRoutingModule,
-    SidebarMenuModule, 
     MaterialModule,
+    SidebarMenuModule
   ],
   declarations: [AdminComponent, BookManagementComponent],
   exports: [BookManagementComponent]

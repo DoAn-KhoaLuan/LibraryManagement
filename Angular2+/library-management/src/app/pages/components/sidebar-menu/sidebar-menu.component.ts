@@ -1,6 +1,6 @@
 import { AccountService } from './../../../states/account-store/account.service';
 import { Component, OnInit, Pipe } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Pipe({
   name: 'wrapBold'
@@ -46,8 +46,8 @@ export class SidebarMenuComponent implements OnInit {
     },
     {
       iconHtml:`<i class="fa fa-2x fa-address-card" aria-hidden="true"></i>`,
-      itemTitle: "Quản lý độc giả",
-      routerLink: "employee-management"
+      itemTitle: "POS",
+      routerLink: "pos-management"
 
     },
     {
@@ -69,11 +69,12 @@ export class SidebarMenuComponent implements OnInit {
       routerLink: "settings"
 
     },
-    
+
   ]
   constructor(
     private router: Router,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
