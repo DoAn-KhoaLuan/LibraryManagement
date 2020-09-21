@@ -8,7 +8,6 @@
       </div>
       <div class="setting-body" style="border-bottom: 1px solid lightgrey">
         <div class="col-12 d-flex flex-column justify-content-center">
-  
           <div class="row app-flex flex-row">
             <div class="col-2 detail-title font-weight-bold text-app">Mã đọc giả: </div>
             <div class="col-10 detail-info d-flex justify-content-center">
@@ -25,7 +24,7 @@
               </form>
             </div>
           </div>
-     
+
           <div class="row" *ngIf="customer_item" style="padding-left:7rem">
             <div class="col-2 app-flex">
               <div class=" h-75" >
@@ -36,7 +35,7 @@
             <div class=" col-8 pt-4 d-flex flex-column">
               <div class="row align-items-center mb-4">
                 <div class="col-3 font-weight-bold">
-                  Mã khách hàng: 
+                  Mã khách hàng:
                 </div>
                 <div class="col-9">
                   <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email" (ngModelChange)="customer_item.customer_id=$event" name="inputField" [ngModel]="customer_item.customer_id | standardizedId" />
@@ -55,13 +54,13 @@
               </div>
               <div class="row align-items-center mb-4">
                 <div class="col-3 font-weight-bold">
-                  Số điện thoại: 
+                  Số điện thoại:
                 </div>
                 <div class="col-9">
                   <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email" (ngModelChange)="customer_item.customer_id=$event" name="inputField" [ngModel]="customer_item.phone" />
                 </div>
               </div>
-             
+
               <div class="row align-items-center mb-4">
                 <div class="col-3 font-weight-bold">
                   Email:
@@ -83,7 +82,7 @@
                 <span class="btn btn-danger d-inline-flex">Xóa đọc giả</span>
             </div>
           </div>
-  
+
           <div class="row app-flex flex-row">
             <div class="col-2  detail-title font-weight-bold text-app">Mã sách </div>
             <div class="col-10 detail-info">
@@ -123,7 +122,7 @@
               </div>
             </div>
           </ng-container>
-  
+
           <ng-container *ngIf="borrowTicket?.books?.length > 0">
             <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Danh sách sách mượn</h3>
             <div *ngFor="let selected_book of borrowTicket.books; let i = index" [attr.data-index]="i">
@@ -152,7 +151,7 @@
           </ng-container>
         </div>
       </div>
-  
+
       <div class="setting-footer flex-end">
         <div class="d-flex align-items-center ml-auto  ">
           <span *ngIf="borrowTicket?.books?.length" class="mr-4">Số lượng sách mượn:
@@ -219,7 +218,7 @@
               <div class="row py-3">
                 <div class="col-2 text-center font-weight-bold"><b>Số lượng : </b></div>
                 <div class="col-9">{{(confirm_borrow_ticket?.borrow_ticket_details?.length) || '-'}}</div>
-                
+
               </div>
               <div class="row py-3">
                 <div class="col-2 text-center font-weight-bold"><b>Ghi chú: </b></div>
@@ -228,7 +227,7 @@
             </div>
           </div>
         </div>
-        
+
         <ng-container *ngIf="confirm_borrow_ticket?.borrow_ticket_details?.length > 0">
           <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Danh sách sách mượn</h3>
           <div *ngFor="let selected_book of borrowTicket.books; let i = index" [attr.data-index]="i">
@@ -252,7 +251,7 @@
           </div>
         </ng-container>
       </div>
-  
+
       <div class="setting-footer flex-end">
         <div class="d-flex align-items-center ml-auto  ">
           <span *ngIf="borrowTicket?.books?.length" class="mr-4">Số lượng sách mượn:

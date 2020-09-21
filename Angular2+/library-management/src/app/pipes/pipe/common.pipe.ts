@@ -4,8 +4,13 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
   name: 'standardizedId'
 })
 export class standardizedId implements PipeTransform {
-  transform(id: number): any {
+  transform(id: any): any {
     let preNum = "#";
+
+    if(typeof id == "string") {
+      id = parseInt(id)
+    }
+
     if(id < 10){
       preNum = "#00000";
     } else if (id < 100){

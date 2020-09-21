@@ -38,7 +38,7 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
   };
 
   employee_id: string;
-  
+
   confirm_borrow_ticket: any;
   mySubscription: any;
   constructor(
@@ -52,11 +52,11 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
     private accountQuery: AccountQuery,
     private util: UtilService,
     private router: Router
-  ) { 
+  ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    
+
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Trick the Router into believing it's last link wasn't previously loaded
@@ -64,11 +64,12 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+
   filter = {
     page : 1,
     per_page: 1000
   }
+
   async ngOnInit() {
     this.employee_id = JSON.parse(localStorage.getItem('auth_info')).user_info.employee_id;
 
@@ -80,30 +81,30 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
 
     this.all_books.forEach(book => {
       this.book_options.push(book.book_id.toString());
-    }) 
+    })
     this.book_filtered_options = this.book_control.valueChanges.pipe(
       startWith(''),
       map(value => this._bookFilter(value)),
-      tap(() => {  
+      tap(() => {
         console.log("Value: ",this.book_control.value )
         if(parseInt(this.book_control.value)){
           this.book_item = this.all_books.find(book => book.book_id == parseInt(this.book_control.value))
         }
-      })  
+      })
     );
 
 
     this.all_customers.forEach(customer => {
       this.customer_options.push(customer.customer_id.toString());
-    }) 
+    })
     this.customer_filtered_options = this.customer_control.valueChanges.pipe(
       startWith(''),
       map(value => this._customerFilter(value)),
-      tap(() => {  
+      tap(() => {
         if(parseInt(this.customer_control.value)){
           this.customer_item = this.all_customers.find(customer => customer.customer_id == parseInt(this.customer_control.value))
         }
-      })  
+      })
     );
   }
 
@@ -115,7 +116,7 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
   private _customerFilter(value: string): string[] {
     return this.customer_options.filter(customer => customer.toLowerCase().indexOf(value) === 0);
   }
-  
+
   private _bookFilter(value: string): string[] {
     return this.book_options.filter(book => book.toLowerCase().indexOf(value) === 0);
   }
@@ -132,13 +133,13 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
     }
     this.borrowTicket.books.push(this.book_item);
     this.book_control.setValue("");
-    this.book_item = null 
+    this.book_item = null
   }
 
   RemoveBookFromTicket(book_id) {
     this.borrowTicket.books = this.borrowTicket.books.filter(book => book.book_id != book_id);
   }
- 
+
   async CreateBorrowTicket() {
     try{
       const req_book_ids = this.borrowTicket.books.map(book => book.book_id)

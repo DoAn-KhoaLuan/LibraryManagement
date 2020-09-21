@@ -1,12 +1,19 @@
 
-<div class="p-4 content position-relative" style="background-color: red; height: 100vh">
+<div class="p-4 content position-relative" style="height: 100vh">
   <div class="h-100 d-flex align-items-start flex-column">
     <div class="d-flex w-100 h-100 justify-content-between overflow-hidden mb-auto no-print" >
       <div class="left-part">
         <div class="w-100 h-100">
           <div class="d-flex align-items-start flex-column h-100">
-            <div class="list-order-line mb-auto w-100 h-50 box setting-box mt-0">
-              <div class="mb-3">
+            <div class="list-order-line mb-auto w-100 box setting-box mt-0 ">
+              <div class="setting-header p-0">
+                <h3 class="my-3 text-app ml-3" >
+                  <b>
+                    Giỏ hàng
+                  </b></h3>
+              </div>
+              <div class="order-lines">
+                <div class="mb-3">
                   <div class="d-flex align-items-center order-line-wrapper" >
                     <div class="line-index text-center font-weight-bold">
                       1.
@@ -21,25 +28,48 @@
                       </div>
                     </div>
                     <div class="line-price m-1 text-right"><div  class="font-weight-bold">123đ</div>
-                  </div>
-                  <div  class="d-flex align-items-center line-quantity">
-                    <div  role="group" class="btn-group border group-quantity">
-                      <button  type="button" class="btn btn-sm border-0 bg-transparent"><i class="fa fa-minus text-default"></i></button>
-                      <input type="text" class="number-input text-center editable ng-pristine ng-valid ng-touched">
-                      <button  type="button" class="btn btn-sm border-0 bg-transparent"><i class="fa fa-plus text-default"></i></button>
                     </div>
+                    <div  class="d-flex align-items-center line-quantity">
+                      <div  role="group" class="btn-group border group-quantity">
+                        <button  type="button" class="btn btn-sm border-0 bg-transparent"><i class="fa fa-minus text-default"></i></button>
+                        <input type="text" class="number-input text-center editable ng-pristine ng-valid ng-touched" style="width: 8rem">
+                        <button  type="button" class="btn btn-sm border-0 bg-transparent"><i class="fa fa-plus text-default"></i></button>
+                      </div>
+                    </div>
+                    <div  class="font-weight-bold text-right line-payment"> 984đ </div>
+                    <div  class="d-flex align-items-center line-delete" style="cursor: pointer;"><i class="fas fa-minus-circle"></i></div>
                   </div>
-                  <div  class="font-weight-bold text-right line-payment"> 984đ </div>
-                  <div  class="d-flex align-items-center line-delete" style="cursor: pointer;"><i class="fas fa-minus-circle"></i></div>
+                </div>
               </div>
-            </div>
           </div>
-          <div class="list-product-group position-relative w-100 h-50 box setting-box mt-0">
+          <div class="list-product-group position-relative w-100 box setting-box mt-0">
+            <div class="setting-header p-0">
+              <h3 class="my-3 text-app ml-3" >
+                <b>
+                  Sản phẩm
+                </b></h3>
+            </div>
             <div class="list-product-header">
               <div class="d-flex align-items-center h-100">
-                <div class="position-relative">
-                  <input id="search-input" type="text" placeholder="Tìm sản phẩm" class="search-pos border-0 ng-pristine ng-valid ng-touched">
+                <div class="barcode barcode-click border-right cursor-pointer px-3">
+                  <img  src="assets/images/barcode.svg" alt="" class="barcode-click" style="width: 2.25rem;">
+                  <span  class="barcode-click ml-2">Quét mã vạch</span>
+                </div>
+                <div class="position-relative h-100">
+                  <input id="search-input" type="text" placeholder="Tìm sản phẩm" class="h-100 search-pos border-0 ng-pristine ng-valid ng-touched">
                   <img src="assets/images/search_icon.png" alt="search" class="search-icon">
+                </div>
+              </div>
+            </div>
+            <div class="list-product">
+              <div class="product-card">
+                <div  class="product-card-item"><div class="box-card">
+                  <div  class="product-img" style="background-image: url('assets/images/default-book.png');">
+                  </div>
+                  <div class="product-quantity">Tồn: 0
+                  </div><div class="product-price">123đ</div>
+                </div>
+                  <div placement="top" class="product-name-card font-weight-bold">aaa</div>
                 </div>
               </div>
             </div>
@@ -48,8 +78,147 @@
       </div>
     </div>
     <div class="right-part position-relative">
-      <div class= "mb-auto w-100 h-25 box setting-box mt-0">sad</div>
-      <div class=" position-relative w-100 h-75 box setting-box mt-0">ádas</div>
+      <div class= "mb-auto w-100 box setting-box mt-0" style="height: 30%!important; margin-bottom: 10px!important;">
+        <div class="setting-header p-0">
+          <h3 class="my-3 text-app ml-3" >
+            <b>
+              Khách hàng
+            </b></h3>
+        </div>
+
+
+
+
+
+        <div class="row" >
+          <div class=" col-12 pt-4 d-flex flex-column">
+            <div class="row mx-0">
+              <div class="col-12">
+                <form class="example-form">
+                  <mat-form-field class="example-full-width w-100">
+                    <input type="text" placeholder="Mã đọc giả" aria-label="Number" matInput value="dsadas"
+                           [matAutocomplete]="customerAuto">
+                    <mat-autocomplete autoActiveFirstOption #customerAuto="matAutocomplete">
+                      <mat-option *ngFor="let customer of customer_filtered_options | async" [value]="customer.customer_id">
+                        <b>
+                          {{customer.customer_id }} - {{customer.last_name }} {{customer.first_name }}
+                        </b>
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </form>
+              </div>
+            </div>
+
+            <div class="row align-items-center mb-4 mx-0">
+              <div class="col-3 font-weight-bold">
+                Mã khách hàng:
+              </div>
+              <div class="col-9">
+                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email"  name="inputField" />
+              </div>
+            </div>
+            <div class="row align-items-center mb-4 mx-0">
+              <div class="col-3 font-weight-bold">
+                Số điện thoại:
+              </div>
+              <div class="col-9">
+                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập số điện thoại"  name="inputField" />
+              </div>
+            </div>
+            <div class="row align-items-center mb-4 mx-0">
+              <div class="col-3 font-weight-bold">
+                Họ và tên:
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email"  name="inputField"  />
+              </div>
+              <div class="col-4">
+                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email" name="inputField"  />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class=" position-relative w-100 box setting-box mt-0" style="height: 69%!important;">
+        <div class="setting-header p-0">
+          <h3 class="my-3 text-app ml-3" >
+            <b>
+              Hóa đơn
+            </b></h3>
+        </div>
+        <div class="setting-body">
+          <div class="row py-2 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Tạm tính: </b></div>
+            <div class="col-8">
+              <div class="font-weight-bolder text-right">ádasdas (đ)</div>
+            </div>
+          </div>
+          <div class="row py-2 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Số lượng: </b></div>
+            <div class="col-8">
+              <div class="font-weight-bolder text-right">ádasdas</div>
+            </div>
+          </div>
+          <div class="row py-2 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Giảm giá (đ): </b></div>
+            <div class="col-8">
+              <input type="number" class="form-control" placeholder="Nhập giảm giá"
+              />
+            </div>
+          </div>
+          <div class="row py-2 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Phụ thu khác(đ): </b></div>
+            <div class="col-8">
+              <input type="number" class="form-control" placeholder="Nhập phụ thu"
+              />
+            </div>
+          </div>
+          <div class="row py-2 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Khách thanh toán(đ): </b></div>
+            <div class="col-8">
+              <input type="number" class="form-control" placeholder="Nhập phụ thu"
+              />
+            </div>
+          </div>
+          <div class="row py-2 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Ghi chú đơn hàng: </b></div>
+            <div class="col-8">
+              <input type="text " class="form-control" placeholder="Nhập ghi chú đơn hàng"  />
+            </div>
+          </div>
+          <div>
+            <hr class="font-weight-bolder" size="20" height="6px" style="background: black; height:1px">
+          </div>
+          <div class="row py-3 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Tổng cộng: </b></div>
+            <div class="col-8">
+              <div class="font-weight-bolder text-right">111111 (đ)</div>
+            </div>
+          </div>
+          <div class="row py-3 px-0">
+            <div class="col-4 d-flex align-items-center"><b>Tiền thừa: </b></div>
+            <div class="col-8">
+              <div class="font-weight-bolder text-right">111111 (đ)</div>
+            </div>
+          </div>
+        </div>
+        <div class="setting-footer d-block">
+          <div class="row px-0 pb-1">
+            <div class="btn-app btn-block w-100">Thanh toán hóa đơn</div>
+          </div>
+          <div class="row px-0 pb-1">
+            <div class="btn-outline-app btn-block w-100">Thanh toán hóa đơn bằng ngân hàng</div>
+          </div>
+          <div class="row px-0 pb-1">
+            <div class="btn-app btn-block w-100" style="background: #ae2070">Thanh toán hóa đơn bằng MOMO
+              <img src="assets/images/momo-icon.jpg" style="height: 2rem" class="ml-2" alt=""></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
