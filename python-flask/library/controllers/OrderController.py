@@ -28,11 +28,20 @@ def CreateOrder():
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
 
+@app.route('/admin/order-management/redirect-momo-page', methods=['GET', 'POST'])
+def RedirectMomoPage():
+    req = CreateOrderReq(request.json)
+    res = OrderSvc.CreateOrderByMomo(req)
+    if res['errorCode'] == 0:
+        result = OrderSvc.CreateOrder(req)
+    else:
+        
+    return jsonify(res)
+
 @app.route("/admin/order-management/update-order", methods=['POST', 'GET'])
 def UpdateOrder():
     req = UpdateOrderReq(request.json)
     result = OrderSvc.UpdateOrder(req)
-
     return jsonify(result)
 
 
@@ -48,7 +57,9 @@ def DeleteOrder():
 def SearchOrders():
     req = SearchOrdersReq(request.json)
     result = OrderSvc.SearchOrders(req)
-
     return jsonify(result)
 
-
+@app.route("/admin/order-management/test-create-order-momo", methods=['POST', 'GET'])
+def TestCreateOrder():
+    print("HẢI DEP TRAI QUÁ, ĐÂY LÀ TEST CREATE ORDER MOMOO")
+    return jsonify({'test': 111})

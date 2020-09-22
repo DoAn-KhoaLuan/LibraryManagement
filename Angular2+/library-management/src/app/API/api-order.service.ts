@@ -23,6 +23,14 @@ export class ApiOrderService {
     return await this.http.post(this.baseURL+"/admin/order-management/create-order",req).toPromise();
   }
 
+  async CreateOrderByMoMo(req) {
+    return await this.http.post(this.baseURL+"/admin/order-management/create-order-by-momo",req).toPromise();
+  }
+
+  async RedirectMomoPage(req) {
+    return await this.http.post(this.baseURL+"/admin/order-management/redirect-momo-page",req).toPromise();
+  }
+
   async DeleteOrder(req) {
     return await this.http.post(this.baseURL+"/admin/order-management/delete-order",req).toPromise();
   }

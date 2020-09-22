@@ -10,6 +10,7 @@ import {CustomerQuery} from "../../../../states/customer-store/customer.query";
 import {order_line} from "../../../../models/app-models";
 import {BookQuery} from "../../../../states/book-store/book.query";
 import {ApiOrderService} from "../../../../API/api-order.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-POS',
@@ -52,7 +53,8 @@ export class POSComponent implements OnInit {
     private customerService: CustomerService,
     private customerQuery: CustomerQuery,
     private fb: FormBuilder,
-    private apiOrderService: ApiOrderService
+    private apiOrderService: ApiOrderService,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -169,8 +171,9 @@ export class POSComponent implements OnInit {
         order_detail_list: this.order_lines
       }
       await this.apiOrderService.CreateOrder(create_order_req)
-      toastr.success('Thanh toán hóa đơn thành công')
       window.location.href = 'http://localhost:4200/admin/pos-management'
+      toastr.success('Thanh toán hóa đơn thành công')
+
     } catch (e) {
       toastr.error('Thanh toán hóa đơn thất bại')
     }
@@ -178,9 +181,27 @@ export class POSComponent implements OnInit {
 
   SearchBooks() {
       let book_in_store = this.bookQuery.getValue().book_list_view.items;
-      console.log(book_in_store)
-      console.log(this.search_keyword)
       this.books = book_in_store.filter(book =>  book.book_name.includes(this.search_keyword) || book.book_id == this.search_keyword)
-      console.log(this.books)
+  }
+
+  async CreateOrderByMomo() {
+    try {
+      const create_order_req = {
+        customer_id: this.customer_item.customer_id,
+        employee_id: JSON.parse(localStorage.getItem('auth_info')).user_info.employee_id,
+        order_date: Date.now(),
+        type:'in',
+        total: this.order.total.toFixed(0),
+        note: this.order.note,
+        order_detail_list: this.order_lines
+      }
+      let result = await this.apiOrderService.RedirectMomoPage(create_order_req)
+      if(result.errorCode == 0) {
+        toastr.success('Thanh toán hóa đơn bằng MOMO thành công')
+        window.location.href = result.payUrl
+      }
+    } catch (e) {
+      toastr.error('Thanh toán hóa đơn bằng MOMO thất bại')
+    }
   }
 }

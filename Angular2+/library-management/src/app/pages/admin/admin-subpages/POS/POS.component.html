@@ -8,8 +8,8 @@
             <div class="list-order-line mb-auto w-100 box setting-box mt-0 ">
               <div class="setting-header p-0">
                 <h3 class="my-3 text-app ml-3" >
-                  <b>
-                    Giỏ hàng
+                  <b style="font-size: 2rem">
+                    Giỏ hàng <i class="fas fa-cart-plus text-app"></i>
                   </b></h3>
               </div>
               <div class="order-lines">
@@ -49,8 +49,8 @@
           <div class="list-product-group position-relative w-100 box setting-box mt-0">
             <div class="setting-header p-0">
               <h3 class="my-3 text-app ml-3" >
-                <b>
-                  Sản phẩm
+                <b style="font-size: 2rem">
+                  Sản phẩm <i class="fas fa-book text-app"></i>
                 </b></h3>
             </div>
             <div class="list-product-header">
@@ -87,8 +87,8 @@
       <div class= "mb-auto w-100 box setting-box mt-0" style="height: 30%!important; margin-bottom: 10px!important;">
         <div class="setting-header p-0">
           <h3 class="my-3 text-app ml-3" >
-            <b>
-              Khách hàng
+            <b style="font-size: 2rem">
+              Khách hàng <i class="fas fa-users text-app"></i>
             </b></h3>
         </div>
         <div class="row" >
@@ -154,8 +154,8 @@
       <div class=" position-relative w-100 box setting-box mt-0" style="height: 69%!important;">
         <div class="setting-header p-0">
           <h3 class="my-3 text-app ml-3" >
-            <b>
-              Hóa đơn
+            <b style="font-size: 2rem">
+              Hóa đơn <i class="fas fa-receipt text-app"></i>
             </b></h3>
         </div>
         <div class="setting-body">
@@ -216,14 +216,14 @@
         </div>
         <div class="setting-footer d-block">
           <div class="row px-0 pb-1">
-            <div class="btn-app btn-block w-100" (click)="CreateOrder()">Thanh toán hóa đơn</div>
+            <div class="btn-app btn-block w-100" style="font-size: 1.5rem" (click)="CreateOrder()">Thanh toán hóa đơn <i class="fas fa-cart-plus text-white" style="height: 1.5rem"></i></div>
           </div>
           <div class="row px-0 pb-1">
-            <div class="btn-outline-app btn-block w-100">Thanh toán hóa đơn bằng ngân hàng</div>
+            <div class="btn-outline-app btn-block w-100" style="font-size: 1.5rem">Thanh toán hóa đơn bằng ngân hàng</div>
           </div>
           <div class="row px-0 pb-1">
-            <div class="btn-app btn-block w-100" style="background: #ae2070">Thanh toán hóa đơn bằng MOMO
-              <img src="assets/images/momo-icon.jpg" style="height: 2rem" class="ml-2" alt=""></div>
+            <div class="btn-app btn-block w-100" style="background: #ae2070; font-size: 1.5rem" (click)="CreateOrderByMomo()">Thanh toán hóa đơn bằng MOMO
+              <img src="assets/images/momo-icon.jpg" style="height: 2.5rem" class="ml-2" alt=""></div>
           </div>
         </div>
       </div>
