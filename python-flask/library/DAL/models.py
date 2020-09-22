@@ -34,7 +34,7 @@ class Books(db.Model):
     description = db.Column(db.String(1500))
     cost_price = db.Column(db.Float)
     retail_price = db.Column(db.Float)
-    discount = db.Column(db.Float)
+    discount = db.Column(db.Float, default=0.0)
     ranking = db.Column(db.String(50))
     delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))

@@ -14,31 +14,35 @@
               </div>
               <div class="order-lines">
                 <div class="mb-3">
-                  <div class="d-flex align-items-center order-line-wrapper" >
-                    <div class="line-index text-center font-weight-bold">
-                      1.
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <div  class="upload-photo-wrapper"><img alt="Logo sản phẩm" height="100%" class="p-0 line-logo" src="https://etop.vn/upload/img/BwD/BwDgdvc16GsJ0RyWKN2R.jpg"></div>
-                    </div>
-                    <div class="flex-fill product-name">
-                      <div class="w-100">
-                        <div  class="text-wrap text-truncate">đây là tên sản phẩm</div>
-                        <div  class="text-default font-10"> Tồn: <b >100</b></div>
+                  <ng-container *ngFor="let order_line of order_lines; let i = index">
+                    <div class="d-flex align-items-center order-line-wrapper mb-3" >
+                      <div class="line-index text-center font-weight-bold">
+                        {{i + 1}}.
                       </div>
-                    </div>
-                    <div class="line-price m-1 text-right"><div  class="font-weight-bold">123đ</div>
-                    </div>
-                    <div  class="d-flex align-items-center line-quantity">
-                      <div  role="group" class="btn-group border group-quantity">
-                        <button  type="button" class="btn btn-sm border-0 bg-transparent"><i class="fa fa-minus text-default"></i></button>
-                        <input type="text" class="number-input text-center editable ng-pristine ng-valid ng-touched" style="width: 8rem">
-                        <button  type="button" class="btn btn-sm border-0 bg-transparent"><i class="fa fa-plus text-default"></i></button>
+                      <div class="d-flex align-items-center">
+                        <div  class="upload-photo-wrapper"><img alt="Logo sản phẩm" height="100%" class="p-0 line-logo" src="https://etop.vn/upload/img/BwD/BwDgdvc16GsJ0RyWKN2R.jpg"></div>
                       </div>
+                      <div class="flex-fill product-name">
+                        <div class="w-100">
+                          <div  class="text-wrap text-truncate text-app font-weight-bold">{{order_line.book_name}}</div>
+                          <div  class="text-default font-10"> Tồn: {{order_line.new_amount}}</div>
+                        </div>
+                      </div>
+                      <div class="line-price m-1 text-right">
+                        <div  class="font-weight-bold">{{order_line.retail_price | vnd}}</div>
+                        <i *ngIf="order_line.discount">Giảm giá: {{order_line.discount * 100}}%</i>
+                      </div>
+                      <div  class="d-flex align-items-center line-quantity ml-5" >
+                        <div  role="group" class="btn-group border group-quantity">
+                          <button  type="button" class="btn btn-sm border-0 bg-transparent" (click)="DecreaseQuantity(order_line)"><i class="fa fa-minus text-white"></i></button>
+                          <input [(ngModel)]="order_line.quantity" type="number" class="number-input text-center editable" style="width: 8rem" (ngModelChange)="ChangeQuantity(order_line)" min="0">
+                          <button  type="button" class="btn btn-sm border-0 bg-transparent" (click)="IncreaseQuantity(order_line)"><i class="fa fa-plus text-white"></i></button>
+                        </div>
+                      </div>
+                      <div  class="font-weight-bold text-right line-payment"> {{order_line.total_price | vnd}}  </div>
+                      <div  class="d-flex align-items-center line-delete" style="cursor: pointer;" (click)="RemoveOrderLine(order_line)"><i class="fas fa-minus-circle"></i></div>
                     </div>
-                    <div  class="font-weight-bold text-right line-payment"> 984đ </div>
-                    <div  class="d-flex align-items-center line-delete" style="cursor: pointer;"><i class="fas fa-minus-circle"></i></div>
-                  </div>
+                  </ng-container>
                 </div>
               </div>
           </div>
@@ -56,22 +60,24 @@
                   <span  class="barcode-click ml-2">Quét mã vạch</span>
                 </div>
                 <div class="position-relative h-100">
-                  <input id="search-input" type="text" placeholder="Tìm sản phẩm" class="h-100 search-pos border-0 ng-pristine ng-valid ng-touched">
+                  <input id="search-input" type="text" placeholder="Tìm sản phẩm" class="h-100 search-pos border-0 ng-pristine ng-valid ng-touched" (keyup)="SearchBooks()" [(ngModel)]="search_keyword" />
                   <img src="assets/images/search_icon.png" alt="search" class="search-icon">
                 </div>
               </div>
             </div>
             <div class="list-product">
-              <div class="product-card">
-                <div  class="product-card-item"><div class="box-card">
-                  <div  class="product-img" style="background-image: url('assets/images/default-book.png');">
+              <ng-container *ngFor="let book of books">
+                <div class="product-card" (click)="AddToChart(book)">
+                  <div  class="product-card-item"><div class="box-card">
+                    <img class="product-img h-100" src="assets/images/default-book.png"  alt="">
+
+                    <div class="product-quantity">Tồn: {{book.new_amount}}
+                    </div><div class="product-price">123đ</div>
                   </div>
-                  <div class="product-quantity">Tồn: 0
-                  </div><div class="product-price">123đ</div>
+                    <div placement="top" class="product-name-card font-weight-bold">{{book.book_name}}</div>
+                  </div>
                 </div>
-                  <div placement="top" class="product-name-card font-weight-bold">aaa</div>
-                </div>
-              </div>
+              </ng-container>
             </div>
           </div>
         </div>
@@ -85,18 +91,13 @@
               Khách hàng
             </b></h3>
         </div>
-
-
-
-
-
         <div class="row" >
           <div class=" col-12 pt-4 d-flex flex-column">
             <div class="row mx-0">
               <div class="col-12">
                 <form class="example-form">
                   <mat-form-field class="example-full-width w-100">
-                    <input type="text" placeholder="Mã đọc giả" aria-label="Number" matInput value="dsadas"
+                    <input type="text" placeholder="Mã đọc giả" aria-label="Number" matInput  [formControl]="customer_control"
                            [matAutocomplete]="customerAuto">
                     <mat-autocomplete autoActiveFirstOption #customerAuto="matAutocomplete">
                       <mat-option *ngFor="let customer of customer_filtered_options | async" [value]="customer.customer_id">
@@ -106,16 +107,22 @@
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
+
                 </form>
               </div>
             </div>
-
             <div class="row align-items-center mb-4 mx-0">
               <div class="col-3 font-weight-bold">
                 Mã khách hàng:
               </div>
               <div class="col-9">
-                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email"  name="inputField" />
+                <input *ngIf="customer_item" type="text" style="width: 85%" class="form-control read-only text-app font-weight-bold d-inline-block" disabled   name="inputField" [(ngModel)]="customer_item.customer_id" />
+
+                <input *ngIf="!customer_item" type="text" style="width: 85%" class="form-control read-only text-app font-weight-bold d-inline-block" disabled   name="inputField" placeholder="Mã khách hàng"/>
+                <div class="col align-self-center d-inline" style=""  (click)="ClearCustomer()">
+                  <i class="fa fa-remove btn-danger" style="padding: 8px 10px; display: inline-block"
+                  ></i>
+                </div>
               </div>
             </div>
             <div class="row align-items-center mb-4 mx-0">
@@ -123,7 +130,8 @@
                 Số điện thoại:
               </div>
               <div class="col-9">
-                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập số điện thoại"  name="inputField" />
+                <input *ngIf="customer_item" type="text" class="form-control read-only text-app font-weight-bold" disabled   name="inputField" [(ngModel)]="customer_item.phone" />
+                <input *ngIf="!customer_item" type="text" class="form-control read-only text-app font-weight-bold" disabled   name="inputField" placeholder="Số điện thoại "/>
               </div>
             </div>
             <div class="row align-items-center mb-4 mx-0">
@@ -131,17 +139,17 @@
                 Họ và tên:
               </div>
               <div class="col-5">
-                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email"  name="inputField"  />
+                <input *ngIf="customer_item" type="text" class="form-control read-only text-app font-weight-bold" disabled   name="inputField" [(ngModel)]="customer_item.last_name" />
+                <input *ngIf="!customer_item" type="text" class="form-control read-only text-app font-weight-bold" disabled   name="inputField" placeholder="Họ"/>
               </div>
               <div class="col-4">
-                <input type="text" class="form-control read-only text-app font-weight-bold" disabled placeholder="Nhập địa chỉ email" name="inputField"  />
+                <input *ngIf="customer_item" type="text" class="form-control read-only text-app font-weight-bold" disabled   name="inputField" [(ngModel)]="customer_item.first_name" />
+                <input *ngIf="!customer_item" type="text" class="form-control read-only text-app font-weight-bold" disabled   name="inputField" placeholder="Tên "/>
               </div>
             </div>
 
           </div>
         </div>
-
-
       </div>
       <div class=" position-relative w-100 box setting-box mt-0" style="height: 69%!important;">
         <div class="setting-header p-0">
@@ -154,40 +162,40 @@
           <div class="row py-2 px-0">
             <div class="col-4 d-flex align-items-center"><b>Tạm tính: </b></div>
             <div class="col-8">
-              <div class="font-weight-bolder text-right">ádasdas (đ)</div>
+              <div class="font-weight-bolder text-right">{{order.price | vnd}}</div>
             </div>
           </div>
           <div class="row py-2 px-0">
             <div class="col-4 d-flex align-items-center"><b>Số lượng: </b></div>
             <div class="col-8">
-              <div class="font-weight-bolder text-right">ádasdas</div>
+              <div class="font-weight-bolder text-right">{{order.total_amount}}</div>
             </div>
           </div>
           <div class="row py-2 px-0">
             <div class="col-4 d-flex align-items-center"><b>Giảm giá (đ): </b></div>
             <div class="col-8">
-              <input type="number" class="form-control" placeholder="Nhập giảm giá"
+              <input type="number" class="form-control text-right" placeholder="Nhập giảm giá" (ngModelChange)="SumOrder()" [(ngModel)]="order.discount"
               />
             </div>
           </div>
           <div class="row py-2 px-0">
             <div class="col-4 d-flex align-items-center"><b>Phụ thu khác(đ): </b></div>
             <div class="col-8">
-              <input type="number" class="form-control" placeholder="Nhập phụ thu"
+              <input type="number" class="form-control text-right" placeholder="Nhập phụ thu" (ngModelChange)="SumOrder()" [(ngModel)]="order.fee"
               />
             </div>
           </div>
           <div class="row py-2 px-0">
             <div class="col-4 d-flex align-items-center"><b>Khách thanh toán(đ): </b></div>
             <div class="col-8">
-              <input type="number" class="form-control" placeholder="Nhập phụ thu"
+              <input type="number" class="form-control text-right" placeholder="Nhập phụ thu" (ngModelChange)="SumOrder()" [(ngModel)]="order.customer_paid_fee"
               />
             </div>
           </div>
           <div class="row py-2 px-0">
             <div class="col-4 d-flex align-items-center"><b>Ghi chú đơn hàng: </b></div>
             <div class="col-8">
-              <input type="text " class="form-control" placeholder="Nhập ghi chú đơn hàng"  />
+              <input type="text " class="form-control text-right" placeholder="Nhập ghi chú đơn hàng" (ngModelChange)="SumOrder()" [(ngModel)]="order.note"/>
             </div>
           </div>
           <div>
@@ -196,19 +204,19 @@
           <div class="row py-3 px-0">
             <div class="col-4 d-flex align-items-center"><b>Tổng cộng: </b></div>
             <div class="col-8">
-              <div class="font-weight-bolder text-right">111111 (đ)</div>
+              <div class="font-weight-bolder text-right">{{order.total | vnd}}</div>
             </div>
           </div>
           <div class="row py-3 px-0">
             <div class="col-4 d-flex align-items-center"><b>Tiền thừa: </b></div>
             <div class="col-8">
-              <div class="font-weight-bolder text-right">111111 (đ)</div>
+              <div class="font-weight-bolder text-right">{{(order.customer_paid_fee - order.total) | vnd}}</div>
             </div>
           </div>
         </div>
         <div class="setting-footer d-block">
           <div class="row px-0 pb-1">
-            <div class="btn-app btn-block w-100">Thanh toán hóa đơn</div>
+            <div class="btn-app btn-block w-100" (click)="CreateOrder()">Thanh toán hóa đơn</div>
           </div>
           <div class="row px-0 pb-1">
             <div class="btn-outline-app btn-block w-100">Thanh toán hóa đơn bằng ngân hàng</div>
