@@ -6,6 +6,7 @@ from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
+from library.Common.Rsp.OrderRsp import SearchOrdersRsp
 from library.Common.Rsp.SingleRsp import ErrorRsp
 
 
@@ -28,14 +29,13 @@ def CreateOrder():
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
 
-@app.route('/admin/order-management/redirect-momo-page', methods=['GET', 'POST'])
+@app.route('/admin/order-management/create-order-by-momo', methods=['GET', 'POST'])
 def RedirectMomoPage():
     req = CreateOrderReq(request.json)
     res = OrderSvc.CreateOrderByMomo(req)
+    print(res)
     if res['errorCode'] == 0:
         result = OrderSvc.CreateOrder(req)
-    else:
-        
     return jsonify(res)
 
 @app.route("/admin/order-management/update-order", methods=['POST', 'GET'])
@@ -56,8 +56,9 @@ def DeleteOrder():
 @app.route("/admin/order-management/search-orders", methods=['POST', 'GET'])
 def SearchOrders():
     req = SearchOrdersReq(request.json)
-    result = OrderSvc.SearchOrders(req)
-    return jsonify(result)
+    orders = OrderSvc.SearchOrders(req)
+    res = SearchOrdersRsp(orders).serialize()
+    return jsonify(res)
 
 @app.route("/admin/order-management/test-create-order-momo", methods=['POST', 'GET'])
 def TestCreateOrder():

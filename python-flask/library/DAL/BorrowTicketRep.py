@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 
 
 def GetBorrowTicketsByPage(req: GetItemsByPageReq):
-    borrowticket_pagination = models.Borrowtickets.query.filter(models.Borrowtickets.delete_at == None).paginate \
+    borrowticket_pagination = models.Borrowtickets.query.paginate \
         (per_page=req.per_page, page=req.page)
     has_next = borrowticket_pagination.has_next
     has_prev = borrowticket_pagination.has_prev
@@ -83,7 +83,6 @@ def SearchBorrowTicket(req: SearchBorrowTicketReq):
     # first = search_borrow_ticket[0]
     # print(first.books)
     borrow_tickets = ConvertModelListToDictList(search_borrow_ticket)
-
     return borrow_tickets
 
 

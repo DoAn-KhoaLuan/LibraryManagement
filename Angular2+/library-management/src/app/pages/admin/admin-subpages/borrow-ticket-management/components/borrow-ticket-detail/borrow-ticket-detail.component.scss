@@ -4,17 +4,11 @@
     transition: 0.5s;
     padding-left: 36px;
     height: 100px;
-    cursor: pointer;
     align-self: center !important;
     flex-direction: column;
     justify-content: center;
     box-shadow: 3px 3px 8px 3px rgba(122, 159, 216, 0.2);
-    margin-bottom: 20px;
-    &:hover {
-      background-color: #e4e4e4;
-      border-left: 7px solid var(--app-color);
-
-    }
+    margin-bottom: 20px;  
   
     .row {
       .col {

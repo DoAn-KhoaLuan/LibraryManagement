@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from library import db
 from library.Common.util import ConvertModelListToDictList
 
@@ -38,6 +40,7 @@ class Books(db.Model):
     ranking = db.Column(db.String(50))
     delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))
+    order_details = db.relationship('Orderdetails', backref='book', lazy=True)
     borrow_ticket_details = db.relationship('Borrowticketdetails', backref='book', lazy=True)
     stocktaketicketdetails = db.relationship('Stocktaketicketdetails', backref="book", lazy=True)
 
@@ -182,12 +185,12 @@ class Orderdetails(db.Model):
     delete_at = db.Column(db.DateTime, default=None)
 
     def serialize(self):
-        return {"order_id": self.order.serialize(), "book_id": self.book.serialize(), "note": self.note,
+        return {"book": self.book.serialize(),"order_id": self.order_id, "note": self.note,
                 "retail_price": self.retail_price, "quantity": self.quantity, "discount": self.discount,
-                "total": self.note, "delete_at": self.delete_at}
+                "total": self.total, "delete_at": self.delete_at}
 
     def __repr__(self):
-        return f"Orderdetail('{self.order.serialize()}','{self.book.serialize()}','{self.note}','{self.retail_price}','{self.quantity}'," \
+        return f"Orderdetail('{self.order.serialize()}','{self.note}','{self.retail_price}','{self.quantity}'," \
                f"'{self.discount}','{self.note}', {self.delete_at})"
 
 
@@ -200,12 +203,15 @@ class Orders(db.Model):
     type = db.Column(db.String(50))
     note = db.Column(db.String(1500))
     delete_at = db.Column(db.DateTime, default=None)
-    orderdetails = db.relationship('Orderdetails', backref="order", lazy=True)
+    create_at = db.Column(db.DateTime, default=datetime.now())
+    order_details = db.relationship('Orderdetails', backref="order", lazy=False)
 
     def serialize(self):
         return {"order_id": self.order_id, "customer": self.customer.serialize(), "note": self.note,
-                "employee": self.employee.serialize(),
-                "order_date": self.order_date, "total": self.order_date, "type": self.type, "delete_at": self.delete_at}
+                "employee": self.employee.serialize(), "create_at": self.create_at,
+                "order_date": self.order_date, "total": self.total, "order_details": ConvertModelListToDictList(self.order_details),
+                "type": self.type,
+                "delete_at": self.delete_at}
 
     def __repr__(self):
         return f"Order('{self.order_id}', '{self.customer.serialize()}', '{self.employee.serialize()}','{self.note}', '{self.order_date}', '{self.total}', " \

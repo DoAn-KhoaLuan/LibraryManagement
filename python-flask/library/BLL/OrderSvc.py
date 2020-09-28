@@ -11,6 +11,13 @@ from library.DAL import OrderRep
 
 def GetOrdersByPage(req):
     has_next, has_prev, orders = OrderRep.GetOrdersbyPage(req)
+
+    for order in orders:
+        total_quantity = 0
+        for order_detail in order['order_details']:
+            total_quantity = order_detail['quantity']
+        order['total_quantity'] = total_quantity
+
     result = {
         "has_next": has_next,
         "has_prev": has_prev,
@@ -27,7 +34,6 @@ def CreateOrder(req):
         raise e
 
 def CreateOrderByMomo(req: CreateOrderReq):
-    print(req)
     endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor"
     partnerCode = "MOMOY1ZA20200907" #busssiness momo
     accessKey = "rVuWIV2U6YHmb803"#busssiness momo
@@ -72,7 +78,6 @@ def CreateOrderByMomo(req: CreateOrderReq):
 
     response = f.read()
     f.close()
-    print(response)
     return json.loads(response)
 
 def UpdateOrder(req):
@@ -86,7 +91,13 @@ def DeleteOrder(req):
 
 
 def SearchOrders(req):
-    search_order = OrderRep.SearchOrders(req)
-    return search_order
+    search_orders = OrderRep.SearchOrders(req)
+    for order in search_orders:
+        total_quantity = 0
+        for order_detail in order['order_details']:
+            total_quantity = order_detail['quantity']
+        order['total_quantity'] = total_quantity
+
+    return search_orders
 
 

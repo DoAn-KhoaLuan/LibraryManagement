@@ -171,8 +171,8 @@ export class POSComponent implements OnInit {
         order_detail_list: this.order_lines
       }
       await this.apiOrderService.CreateOrder(create_order_req)
-      window.location.href = 'http://localhost:4200/admin/pos-management'
       toastr.success('Thanh toán hóa đơn thành công')
+      window.location.href = 'http://localhost:4200/admin/pos-management'
 
     } catch (e) {
       toastr.error('Thanh toán hóa đơn thất bại')
@@ -195,7 +195,7 @@ export class POSComponent implements OnInit {
         note: this.order.note,
         order_detail_list: this.order_lines
       }
-      let result = await this.apiOrderService.RedirectMomoPage(create_order_req)
+      let result = await this.apiOrderService.CreateOrderByMoMo(create_order_req)
       if(result.errorCode == 0) {
         toastr.success('Thanh toán hóa đơn bằng MOMO thành công')
         window.location.href = result.payUrl

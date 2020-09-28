@@ -54,6 +54,10 @@ import { BorrowTicketRowComponent } from './admin-subpages/borrow-ticket-managem
 import { ConfirmFinishBorrowTicketModalComponent } from './admin-subpages/borrow-ticket-management/components/borrow-ticket-list/confirm-finish-borrow-ticket-modal/confirm-finish-borrow-ticket-modal.component';
 import { CreateBorrowTicketComponent } from './admin-subpages/borrow-ticket-management/components/create-borrow-ticket/create-borrow-ticket.component';
 import { POSComponent } from './admin-subpages/POS/POS.component';
+import { OrderManagementComponent } from './admin-subpages/order-management/order-management.component';
+import { OrderListComponent } from './admin-subpages/order-management/components/order-list/order-list.component';
+import { OrderDetailComponent } from './admin-subpages/order-management/components/order-detail/order-detail.component';
+import { OrderRowComponent } from './admin-subpages/order-management/components/order-list/order-row/order-row.component';
 
 const routes: Routes = [
     { path: '', component: AdminComponent, children: [
@@ -106,11 +110,13 @@ const routes: Routes = [
             { path: '**', redirectTo: 'borrow-ticket-list' },
         ]},
         { path: 'pos-management', component: POSComponent, children:[
-            // { path: 'create-borrow-ticket', component: CreateBorrowTicketComponent},
-            // { path: 'borrow-ticket-list', component: BorrowTicketListComponent},
-            // { path: 'borrow-ticket-detail/:id', component: BorrowTicketDetailComponent},
-            // { path: '', redirectTo: 'borrow-ticket-list',pathMatch: 'full'},
-            // { path: '**', redirectTo: 'borrow-ticket-list' },
+          
+          ]},
+        { path: 'order-management', component: OrderManagementComponent, children:[
+            { path: 'order-list', component: OrderListComponent},
+            { path: 'order-detail/:id', component: OrderDetailComponent},
+            { path: '', redirectTo: 'order-list',pathMatch: 'full'},
+            { path: '**', redirectTo: 'order-list' },
           ]},
         { path: '', redirectTo: 'book-management',pathMatch: 'full'},
         { path: '**', redirectTo: 'book-management' },
@@ -120,7 +126,7 @@ const routes: Routes = [
 @NgModule({
     imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
     exports: [RouterModule, CreateBookComponent, AddSupplierModalComponent, AddAuthorModalComponent, AddCategoryModalComponent],
-    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent, SettingManagementComponent, UserInfoComponent, AccountInfoComponent, UpdateUserModalComponent, BorrowTicketManagementComponent, BorrowTicketListComponent, BorrowTicketRowComponent, ConfirmFinishBorrowTicketModalComponent, ConfirmFinishBorrowTicketModalComponent, BorrowTicketDetailComponent, CreateBorrowTicketComponent, POSComponent],
+    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent, SettingManagementComponent, UserInfoComponent, AccountInfoComponent, UpdateUserModalComponent, BorrowTicketManagementComponent, BorrowTicketListComponent, BorrowTicketRowComponent, ConfirmFinishBorrowTicketModalComponent, ConfirmFinishBorrowTicketModalComponent, BorrowTicketDetailComponent, CreateBorrowTicketComponent, POSComponent, OrderListComponent, OrderDetailComponent, OrderRowComponent, OrderManagementComponent ],
     providers:[
         DatePipe,
     ]
