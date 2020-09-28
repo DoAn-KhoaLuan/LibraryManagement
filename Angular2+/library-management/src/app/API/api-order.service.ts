@@ -15,6 +15,10 @@ export class ApiOrderService {
     return await this.http.post(this.baseURL+"/admin/order-management/get-orders",req).toPromise();
   }
 
+  async SearchOrders(req) {
+    return await this.http.post(this.baseURL+"/admin/order-management/search-orders",req).toPromise();
+  }
+
   async UpdateOrder(req) {
     return await this.http.post(this.baseURL+"/admin/order-management/update-order",req).toPromise();
   }

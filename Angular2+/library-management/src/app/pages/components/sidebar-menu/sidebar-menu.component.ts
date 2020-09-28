@@ -45,10 +45,15 @@ export class SidebarMenuComponent implements OnInit {
 
     },
     {
-      iconHtml:`<i class="fa fa-2x fa-address-card" aria-hidden="true"></i>`,
+      iconHtml:`<i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i>`,
       itemTitle: "POS",
       routerLink: "pos-management"
 
+    },
+    {
+      iconHtml:`<i class="fas fa-receipt fa-2x"></i>`,
+      itemTitle: "Quản lý hóa đơn",
+      routerLink: "order-management"
     },
     {
       iconHtml:`<i class="fa fa-2x fa-truck" aria-hidden="true"></i>`,

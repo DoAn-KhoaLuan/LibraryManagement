@@ -13,17 +13,17 @@ from datetime import datetime
 
 
 def GetOrdersbyPage(req: GetItemsByPageReq):
-    orders_pagination = models.Orders.query.filter(models.Orders.delete_at == None).paginate(per_page=req.per_page, page=req.page)
+    orders_pagination = models.Orders.query.paginate(per_page=req.per_page, page=req.page)
     has_next = orders_pagination.has_next
     has_prev = orders_pagination.has_prev
-    employees = ConvertModelListToDictList(orders_pagination.items)
-    return has_next, has_prev, employees
+    orders = ConvertModelListToDictList(orders_pagination.items)
+    return has_next, has_prev, orders
 
 
 def CreateOrder(order: CreateOrderReq):
     create_order = models.Orders(customer_id=order.customer_id,
                                  employee_id=order.employee_id,
-                                 order_date=order.order_date,
+                                 order_date=datetime.now(),
                                  type=order.type,
                                  total=order.total,
                                  note=order.note,
@@ -39,7 +39,7 @@ def CreateOrder(order: CreateOrderReq):
             raise ErrorRsp(code=400, message='Số lượng sách tồn kho đã hết.')
         new_order_detail = models.Orderdetails(order_id= create_order.serialize()['order_id'], book_id=order_detail['book_id'], retail_price=order_detail['retail_price'],
                                                discount= order_book.serialize()['discount'], total= order_detail['total_price'], quantity=order_detail['quantity'])
-        create_order.orderdetails.append(new_order_detail)
+        create_order.order_details.append(new_order_detail)
 
     db.session.commit()
     return create_order.serialize()
@@ -67,12 +67,12 @@ def DeleteOrder(req: DeleteOrderReq):
 
 
 def SearchOrders(req: SearchOrdersReq):
-    search_order = models.Orders.query.filter(or_(models.Orders.customer_id == req.customer_id,
+    search_orders = models.Orders.query.filter(or_(models.Orders.customer_id == req.customer_id,
                                                   models.Orders.order_id == req.order_id,
                                                   models.Orders.employee_id == req.employee_id,
                                                   models.Orders.order_date == req.order_date)).all()
-    orders = ConvertModelListToDictList(search_order)
-    res = SearchOrdersRsp(orders).serialize()
-    return res
+    # print(search_orders)
+    orders = ConvertModelListToDictList(search_orders)
+    return orders
 
 
