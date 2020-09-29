@@ -34,12 +34,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     RouterModule
   ],
   providers: [
-    { provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }},
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    }
+    // { provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }},
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorService,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent],
 

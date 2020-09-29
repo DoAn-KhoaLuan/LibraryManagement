@@ -31,11 +31,11 @@ def token_required(f):
             data = jwt.decode(token, app.config['SECRET_KEY'])
             search_accounts_req = SearchAccountsReq({'account_id': data['account_id']})
             account = AccountSvc.SearchAccounts(search_accounts_req)[0]
-
-            search_employees_req = SearchEmployeesReq({'account_id': account['account_id']})
+            print(account)
+            search_employees_req = SearchEmployeesReq({'account_id': account['account']['account_id']})
             employee = EmployeeRep.SearchEmployees(search_employees_req)[0] if len(EmployeeRep.SearchEmployees(search_employees_req)) > 0 else None
 
-            search_customers_req = SearchCustomersReq({'account_id': account['account_id']})
+            search_customers_req = SearchCustomersReq({'account_id': account['account']['account_id']})
             customer = CustomerRep.SearchCustomers(search_customers_req)[0] if len(CustomerRep.SearchCustomers(search_customers_req)) > 0 else None
 
             auth_info = {

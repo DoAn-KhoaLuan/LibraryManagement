@@ -6,23 +6,22 @@ import { Observable } from 'rxjs';
 import { take, map,  } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate{ 
+export class AdminPageGuard implements CanActivate{ 
     constructor(private accountQuery: AccountQuery, private router: Router, private accountStore: AccountStore){}
     canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot): boolean | UrlTree | Promise<boolean | UrlTree> | Observable<boolean | UrlTree>{
         return this.accountQuery.auth_info$?.pipe(
             take(1),
             map(auth => {
-                console.log("auth_info")
                if(localStorage.getItem('auth_info')){
                 const auth_info = JSON.parse(localStorage.getItem('auth_info'));
-                if(auth_info.access_token){
+                if(auth_info.access_token && (auth_info.current_account.role.role_name == "admin" || auth_info.current_account.role.role_name == "admin-manager"|| auth_info.current_account.role.role_name == "admin manager")){
                     this.accountStore.update({
                         auth_info: auth_info,
                     })
                     return true;
                 }
                }
-               return this.router.createUrlTree(['/user/login']);
+               return this.router.createUrlTree(['/admin/login']);
             })
         )
     }
