@@ -52,6 +52,7 @@ export class BookDetailComponent implements OnInit, OnChanges {
       old_amount: [''],
       new_amount: [''],
       description: [''],
+      image: '',
       note: [''],
     });
 

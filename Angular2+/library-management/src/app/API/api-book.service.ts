@@ -21,6 +21,7 @@ export class ApiBookService {
   }
 
   async CreateBook(req) {
+    console.log('req: ', req)
     return await this.http.post(this.baseURL+"/admin/book-management/create-book",req).toPromise();
   }
 
@@ -30,5 +31,9 @@ export class ApiBookService {
   
   async DeleteBook(req) {
     return await this.http.post(this.baseURL+"/admin/book-management/delete-book",req).toPromise();
+  }
+
+  async UpdateBookImage(imageForm, opt) {
+    return await this.http.post(this.baseURL+"/admin/book-management/upload-book-image",imageForm, opt).toPromise();
   }
 }

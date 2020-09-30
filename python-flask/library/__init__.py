@@ -7,6 +7,7 @@ from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 CORS(app)
+
 bcrypt = Bcrypt(app)
 app.config.from_object('config')
 db = SQLAlchemy(app)

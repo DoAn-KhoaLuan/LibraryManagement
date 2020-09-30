@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { NavigationDirection } from 'src/app/shared/page-pagination/page-pagination.component';
 import { ApiAuthorService } from 'src/app/API/api-author.service';
 import { ApiSupplierService } from 'src/app/API/api-supplier.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -95,5 +96,16 @@ export class BookService {
 
     async CreateBook(book) {
         return await this.bookApiService.CreateBook(book)
+    }
+
+    async UploadBookImage(imageFile) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'multipart/form-data',
+            })
+          };
+          let formData: FormData = new FormData();
+          formData.append('file', imageFile);
+        await this.bookApiService.UpdateBookImage(formData, httpOptions);
     }
 }

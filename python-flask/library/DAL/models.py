@@ -31,7 +31,7 @@ class Books(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'))
     old_amount = db.Column(db.Integer)
     new_amount = db.Column(db.Integer)
-    image = db.Column(db.String(50))
+    image = db.Column(db.String(1000))
     page_number = db.Column(db.Integer)
     description = db.Column(db.String(1500))
     cost_price = db.Column(db.Float)

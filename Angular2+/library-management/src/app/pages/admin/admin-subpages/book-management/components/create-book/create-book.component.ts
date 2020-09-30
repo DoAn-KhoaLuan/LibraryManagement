@@ -1,3 +1,4 @@
+import { HttpService } from 'src/app/services/http.service';
 import { ModalController } from './../../../../../../core/modal-controller/modal-controller.service';
 import { BookStore } from './../../../../../../states/book-store/book.store';
 import { ApiCategoryService } from './../../../../../../API/api-book-category.service';
@@ -9,6 +10,8 @@ import { BookQuery } from 'src/app/states/book-store/book.query';
 import { AddAuthorModalComponent } from '../add-author-modal/add-author-modal.component';
 import { AddCategoryModalComponent } from '../add-category-modal/add-category-modal.component';
 import { AddSupplierModalComponent } from '../add-supplier-modal/add-supplier-modal.component';
+import { ApiAppService } from 'src/app/API/api-app.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-book',
@@ -34,7 +37,10 @@ export class CreateBookComponent implements OnInit {
     new_amount: [''],
     description: [''],
     note: [''],
+    image: ''
   });
+
+  baseURL = '';
 
   authors$ = this.bookQuery.authors$;
   categories$ = this.bookQuery.categories$;
@@ -47,7 +53,11 @@ export class CreateBookComponent implements OnInit {
     private bookStore: BookStore,
     private bookQuery: BookQuery,
     private modalController: ModalController,
-    ) { }
+    private apiAppService: ApiAppService,
+    private http: HttpClient
+    ) {
+      this.baseURL = this.apiAppService.baseURL;
+     }
 
   async ngOnInit() {
     await this.SetupData()
@@ -99,6 +109,7 @@ export class CreateBookComponent implements OnInit {
         supplier_id: book_data.supplier.supplier_id,
         author_id: book_data.author.author_id,
       }
+      console.log(book_req)
       let created_book = await this.bookService.CreateBook(book_req)
       this.router.navigateByUrl(`/admin/book-management/book-detail/${created_book.book_id}`);
       toastr.success("Tạo mới sách thành công.");
@@ -174,5 +185,22 @@ export class CreateBookComponent implements OnInit {
         }
       }
     });
+  }
+
+  async onChangeLogo(event) {
+    try{
+      console.log("on change na")
+      let fd = new FormData();
+      fd.append('image', event.target.files[0], event.target.files[0].name)
+      let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
+      console.log(res)
+      this.createBookForm.patchValue({
+        image: res.image
+      })
+      console.log(this.createBookForm.value)
+
+    }
+    catch(e){
+    }
   }
 }

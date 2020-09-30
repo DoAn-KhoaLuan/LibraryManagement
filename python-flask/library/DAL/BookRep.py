@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req.BookReq import SearchBookReq
+from library.Common.Req.BookReq import SearchBookReq, CreateBookReq
 from library.DAL import models
 from flask import jsonify, json
 from library.Common.util import ConvertModelListToDictList
@@ -14,11 +14,11 @@ def GetBooksByPage(req):
     has_next = book_pagination.has_next
     has_prev = book_pagination.has_prev
     books = ConvertModelListToDictList(book_pagination.items)
-    print(type(books))
     return has_next, has_prev, books
 
 
-def CreateBook(req):
+def CreateBook(req: CreateBookReq):
+    print(req.image)
     book = models.Books(
                         book_name=req.book_name,
                         supplier_id=req.supplier_id,

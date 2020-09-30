@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col align-self-center  text-center text-app font-weight-bold" style="max-width: 150px;">{{book_item?.book_id | standardizedId}}</div>
     <div class="col align-self-center text-center" style="max-width: 150px;">
-      <img [src]="book_item?.imageUrl || 'assets/images/default-book.png'"
+      <img [src]="book_item?.image || 'assets/images/default-book.png'"
            style="height: 80px; width: 60px; object-fit: cover;" alt="" />
     </div>
     <div class="col align-self-center text-center text-app "><b>{{book_item?.book_name || "-"}}</b></div>

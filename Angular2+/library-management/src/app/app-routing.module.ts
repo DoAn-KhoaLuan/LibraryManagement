@@ -11,7 +11,7 @@ import { AdminPageGuard } from './auth-guard';
 const routes: Routes = [
   { path: 'book-store',loadChildren: () => import('./pages/book-store/book-store.module').then(m => m.BookStoreModule)},
   { path: 'admin/login', canActivate:[LoginViewGuard], component: LoginComponent},
-  { path: 'admin', canActivate:[AdminPageGuard], loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)},
+  { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)},
   { path: 'user',  loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)},
   { path: 'user/register', canActivate:[LoginViewGuard], component: UserRegisterAccountComponent},
   { path: 'user/login',  canActivate:[LoginViewGuard],  component: UserLoginComponent },

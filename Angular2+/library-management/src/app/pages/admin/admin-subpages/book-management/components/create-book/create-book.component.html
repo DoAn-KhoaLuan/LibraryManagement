@@ -4,15 +4,21 @@
   </div>
   <div class="d-flex flex-row p-5 mb-4" [formGroup]="createBookForm">
     <div class="avatar col-3 mb-4">
-      <div class="d-flex flex-column">
-        <img src='assets/images/default-book.png' style="height: 100%; width: 100%; object-fit: cover;" alt="Avatar" />
-        <b class="mt-3">Hình ảnh thực tế từ khách hàng</b>
-        <div class="d-flex flex-row justify-content-center">
-          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar" class="p-1 m-2 real-avatar" />
-          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar" class="p-1 m-2 real-avatar" />
-          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
-          <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
+      <div class="d-flex flex-column flex-app">
+        <div class="product-detail-img">
+          <label class="logo-upload m-0 border rounded h-100 w-75"
+            [style.background-image]="'url(' + (createBookForm.value.image || 'assets/images/default-book.png') + ')'">
+            <div class="mask pt-2">Upload ảnh <i class="fas fa-cloud-upload-alt text-white"></i></div>
+            <div class="over-logo rounded m-0 p-0">
+              <i class="fa fa-camera" aria-hidden="true"></i>
+            </div>
+            <div class="upload-loading m-0 p-0">
+              <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
+            </div>
+            <input accept="image/png,image/jpg,image/jpeg,image/gif" name = "file"  class="d-none" type="file" (change)="onChangeLogo($event)"/>
+          </label>
         </div>
+        <h1 class="text-app text-center font-weight-bold">Ảnh bìa</h1>
       </div>
     </div>
     <div class=" col-9 d-flex flex-column">
