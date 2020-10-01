@@ -25,3 +25,8 @@ export class order_line {
   total_price:  number;
   discount: number;
 }
+
+export class Message {
+    type: string;
+    content: string;
+}

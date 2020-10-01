@@ -22,6 +22,12 @@ export class AccountService {
         ) {
     }
 
+    UploadAccountFromLocalStorageToStore() {
+        this.accountStore.update({
+            auth_info: JSON.parse(localStorage.getItem('auth_info'))
+        })
+    }
+
     async GetAccounts(filter) {
         let res: GetItemsByPageRsp = await this.accountApiService.GetAccounts(filter);
         this.accountStore.update({

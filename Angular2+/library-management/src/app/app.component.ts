@@ -1,5 +1,5 @@
+import { AccountService } from './states/account-store/account.service';
 import {Component, OnInit} from '@angular/core';
-import { ModalController } from './core/modal-controller/modal-controller.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,9 +7,10 @@ import { ModalController } from './core/modal-controller/modal-controller.servic
 })
 export class AppComponent implements OnInit{
   loadingPage = false;
-  constructor() {
+  constructor(private accountService: AccountService) {
   }
   ngOnInit() {
+    this.accountService.UploadAccountFromLocalStorageToStore();
   }
 
 }

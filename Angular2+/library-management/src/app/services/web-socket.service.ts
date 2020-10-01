@@ -6,7 +6,6 @@ import * as io from 'socket.io-client';
 })
 export class WebSocketService {
   public socket: any;
-  
   constructor() { 
     this.socket = io.connect('http://127.0.0.1:5000')
   }
@@ -14,7 +13,6 @@ export class WebSocketService {
   listen(eventName: string) {
     return new Observable((subscriber) => {
       this.socket.on(eventName, (data) => {
-        console.log('listent na')
         subscriber.next(data);
       })
     });

@@ -80,6 +80,5 @@ def UploadBookImage():
 
     res = cloudinary.uploader.upload(file, public_id=filename.split('.')[0], width=600, height=900, crop="lfill") #filename la local path cua image, public_id la tên lưu trên cloudinary
     cloudinary.utils.cloudinary_url("sample_remote.jpg")
-
     return jsonify({'image': res['url']})
 
