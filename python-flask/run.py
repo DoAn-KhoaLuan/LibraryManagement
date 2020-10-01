@@ -1,5 +1,7 @@
-from library import app
+from library import app, socketio
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='localhost', port=5000)
+    app.host = 'localhost'
+    app.port = 5000
+    socketio.run(app)
