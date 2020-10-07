@@ -4,7 +4,7 @@ from random import Random, randint
 # import requests
 from werkzeug.utils import secure_filename
 
-from library import app, db
+from library import app
 from library.BLL import BookSvc
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
 

@@ -38,8 +38,6 @@ def on_join(data):
 @socketio.on('leave')
 def on_leave(data):
     """User leaves a room"""
-    # username = data['username']
     room = data['room']
-    print('leave na')
     leave_room(room)
     send({"msg":"Someone has left the room"}, room=room)

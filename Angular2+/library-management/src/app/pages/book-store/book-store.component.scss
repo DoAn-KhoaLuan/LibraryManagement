@@ -93,7 +93,13 @@ a {
 
 .message {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   flex-direction: row-reverse;
   margin-top:3px;
+}
+
+.message-box {
+  bottom: 20px;
+  position: fixed;
+  right: 20px;
 }
