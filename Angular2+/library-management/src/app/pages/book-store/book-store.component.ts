@@ -22,46 +22,56 @@ export class BookStoreComponent implements OnInit {
   chatText = ''
   async ngOnInit() {
     if(this.accountQuery.getValue().auth_info.current_account.role.role_id == 3 && this.accountQuery.getValue().auth_info.current_account.role.role_name == "customer") {
+      let req = {
+        'customer_account_id': this.accountQuery.getValue().auth_info.current_account.account_id
+      }
+      let resp = await this.messageService.GetConversationByCustomerAccountId(req);
+      this.messageService.SetActiveConversationId(resp['conversation_id'])
+      console.log(resp)
+    } else {
       this.messageService.SetActiveConversationId(1)
     }
+
     this.webSocketService.emit('join', {'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': "ROOM"});
-    this.webSocketService.listen('message').subscribe(data => {
-      this.ListenMessage(data)
+    
+    this.webSocketService.listen('message').subscribe(message => {
+      this.ListenMessage(message)
     })
+
     await this.messageService.GetMoreMessageAndPushIntoStore({
       page:0,
       per_page:10,
-      conversation_id: 1
+      conversation_id: this.messageQuery.getValue().active_conversation_id
+    }).then(_ => {
+      this.messages=this.messageQuery.getValue().messages_list;
     })
+    
     this.MessageScrollToBottom()
   }
 
-  ListenMessage(data) {
-    let account_id_from_server = data['auth_info'] && data['auth_info']['current_account']['account_id'];
+  ListenMessage(message) {
+    let account_id_from_server = message['account_id'];
     let account_id_from_client = this.accountQuery.getValue().auth_info.current_account.account_id;
-    const isReplyMessage = account_id_from_server != account_id_from_client
+    const isReplyMessage = account_id_from_server != account_id_from_client;
 
-    if(isReplyMessage) {
-      let mess = {
-        type:'reply',
-        content: data['msg']
-      }
-      this.messages.push(mess);
-      this.messageStore.update({messages_list: this.messages})
-    }
+    message.type = isReplyMessage ? 'reply' : 'send';
+
+    this.messages.push(message);
+    this.messageStore.update({messages_list: this.messages})
+
     this.MessageScrollToBottom()
   }
 
   async SendMessage() {
-    this.webSocketService.emit('incoming-msg', {'msg': this.chatText,
-    'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': "ROOM"});
-    await this.messageService.SendMessage(this.chatText).then(resp => {
-      resp.type = 'send';
-      this.messages.push(resp);
-      this.messageStore.update({messages_list: this.messages})
-      this.chatText='';
-    });
-   
+    const sendMessageReq = {
+      conversation_id : this.messageQuery.getValue().active_conversation_id,
+      account_id : this.accountQuery.getValue().auth_info.current_account.account_id,
+      content : this.chatText,
+      room: "ROOM"
+    }
+    this.webSocketService.emit('incoming-msg', sendMessageReq);
+    this.chatText='';
+
     this.MessageScrollToBottom();
   }
 

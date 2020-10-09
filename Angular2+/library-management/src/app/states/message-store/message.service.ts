@@ -16,8 +16,6 @@ export class MessageService {
               private messageStore: MessageStore,
               private messageQuery: MessageQuery,
               private accountQuery: AccountQuery,
-              private accountStore: AccountStore,
-              private accountService: AccountService
   ) {
   }
 
@@ -50,5 +48,9 @@ export class MessageService {
 
   SetActiveConversationId(conversation_id) {
     this.messageStore.update({active_conversation_id: conversation_id})
+  }
+
+  async GetConversationByCustomerAccountId(req) {
+    return await this.apiMessageService.GetConversationByCustomerAccountId(req);
   }
 }

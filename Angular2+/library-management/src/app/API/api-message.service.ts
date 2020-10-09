@@ -17,4 +17,8 @@ export class ApiMessageService {
   async SendMessage(req) {
     return await this.http.post(this.baseURL+"/message/send-message",req).toPromise();
   }
+
+  async GetConversationByCustomerAccountId(req) {
+    return await this.http.post(this.baseURL+"/message/get-conversation-by-customer-account-id",req).toPromise();
+  }
 }

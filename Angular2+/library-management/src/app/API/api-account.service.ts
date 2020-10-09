@@ -50,4 +50,12 @@ export class ApiAccountService {
   async ChangePassword(req) {
     return await this.http.post(this.baseURL + "/change-password",req).toPromise();
   }
+
+  async CreateAccountAndCustomer(req) {
+    return await this.http.post(this.baseURL + "/create-customer-account",req).toPromise();
+  }
+
+  async CreateAccountAndEmployee(req) {
+    return await this.http.post(this.baseURL + "/create-employee-account",req).toPromise();
+  }
 }

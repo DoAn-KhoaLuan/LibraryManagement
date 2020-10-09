@@ -81,6 +81,14 @@ export class AccountService {
         return await this.accountApiService.CreateAccount(account)
     }
 
+    async CreateAccountAndCustomer(info) {
+        return await this.accountApiService.CreateAccountAndCustomer(info)
+    }
+
+    async CreateAccountAndEmployee(info) {
+        return await this.accountApiService.CreateAccountAndEmployee(info)
+    }
+
     async Login(loginReq) {
         let login_res: auth_info = await this.accountApiService.Login(loginReq);
         this.accountStore.update({

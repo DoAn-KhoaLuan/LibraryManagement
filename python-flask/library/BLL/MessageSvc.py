@@ -1,4 +1,5 @@
-from library.Common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq
+from library.Common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
+    GetConversationByCustomerAccountIdReq
 from library.DAL import MessageRep
 
 
@@ -14,3 +15,7 @@ def GetMessagesInConversationByPage(req:  GetMessagesInConversationByFilterReq):
 def SendMessage(req: SendMessageReq):
     result = MessageRep.SendMessage(req)
     return result
+
+def GetConversationByCustomerAccountId(req: GetConversationByCustomerAccountIdReq):
+    conversation = MessageRep.GetConversationByCustomerAccountId(req)
+    return conversation

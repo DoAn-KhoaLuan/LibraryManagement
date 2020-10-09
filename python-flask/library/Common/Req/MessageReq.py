@@ -10,3 +10,7 @@ class SendMessageReq():
         self.conversation_id = req['conversation_id'] if 'conversation_id' in req else None
         self.content = req['content'] if 'content' in req else ''
         self.account_id = req['account_id'] if 'account_id' in req else None
+
+class GetConversationByCustomerAccountIdReq():
+    def __init__(self, req):
+        self.customer_account_id = req['customer_account_id'] if 'customer_account_id' in req else None

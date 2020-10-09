@@ -6,4 +6,4 @@ class SendMessageRsp():
         self.created_at = req['created_at'] if req['created_at'] else None
 
     def serialize(self):
-        return {"conversation_id": self.conversation_id, "content": self.content, "account_id": self.account_id, "created_at": self.created_at}
+        return {"conversation_id": self.conversation_id, "content": self.content, "account_id": self.account_id}
