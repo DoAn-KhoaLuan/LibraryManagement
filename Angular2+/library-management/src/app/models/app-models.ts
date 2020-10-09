@@ -25,3 +25,11 @@ export class order_line {
   total_price:  number;
   discount: number;
 }
+
+export class Message {
+    conversation_id: string | Number;
+    content: any;
+    account_id: string | Number;
+    created_at: Date;
+    deleted_at: Date;
+}

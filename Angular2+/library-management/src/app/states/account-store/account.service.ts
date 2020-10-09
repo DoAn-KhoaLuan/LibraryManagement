@@ -22,6 +22,12 @@ export class AccountService {
         ) {
     }
 
+    UploadAccountFromLocalStorageToStore() {
+        this.accountStore.update({
+            auth_info: JSON.parse(localStorage.getItem('auth_info'))
+        })
+    }
+
     async GetAccounts(filter) {
         let res: GetItemsByPageRsp = await this.accountApiService.GetAccounts(filter);
         this.accountStore.update({
@@ -73,6 +79,14 @@ export class AccountService {
 
     async CreateAccount(account) {
         return await this.accountApiService.CreateAccount(account)
+    }
+
+    async CreateAccountAndCustomer(info) {
+        return await this.accountApiService.CreateAccountAndCustomer(info)
+    }
+
+    async CreateAccountAndEmployee(info) {
+        return await this.accountApiService.CreateAccountAndEmployee(info)
     }
 
     async Login(loginReq) {

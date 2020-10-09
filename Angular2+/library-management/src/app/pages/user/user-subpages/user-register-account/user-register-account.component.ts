@@ -71,15 +71,10 @@ export class UserRegisterAccountComponent implements OnInit {
         return;
       }
 
-      let account_info= {
-        role_id: 3,
+      const info_req = {
         account_name : form_data.userName,
+        role_id: 3,
         account_password: form_data.password,
-        confirm_account_password: form_data.confirmPassword,
-      };
-
-      let created_account = await this.accountService.CreateAccount(account_info);
-      let customer_info = {
         identity_id: form_data.identityId,
         last_name: form_data.lastName,
         first_name: form_data.firstName,
@@ -88,11 +83,9 @@ export class UserRegisterAccountComponent implements OnInit {
         birth_date: form_data.birthDate,
         address: form_data.address,
         gender: Boolean(form_data.gender),
-        account_id: created_account.account_id
-      };
-
-      await this.customerService.CreateCustomer(customer_info);
-
+      }
+      
+      let resp = await this.accountService.CreateAccountAndCustomer(info_req)
       this.router.navigateByUrl('/user/login')
       toastr.success("Tạo mới tài khoản thành công")
     } catch(e) {

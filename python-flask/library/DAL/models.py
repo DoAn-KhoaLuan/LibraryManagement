@@ -13,6 +13,8 @@ class Accounts(db.Model):
     delete_at = db.Column(db.DateTime, default=None)
     customers = db.relationship('Customers', backref='account', lazy='subquery')
     employees = db.relationship('Employees', backref='account', lazy='subquery')
+    conversations = db.relationship('Conversations', backref='account', lazy='subquery')
+    messages = db.relationship('Messages', backref='account', lazy='subquery')
 
     def serialize(self):
         return {"account_id": self.account_id, "account_name": self.account_name, "note": self.note,
@@ -139,6 +141,41 @@ class Customers(db.Model):
                f"'{self.student_code}','{self.first_name}','{self.last_name}','{self.email}','{self.birth_date}','{self.address}'," \
                f"'{self.gender}','{self.phone}', '{self.delete_at}')"
 
+class Conversations(db.Model):
+    conversation_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False,
+                                unique=True)
+    customer_account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'),
+                                     primary_key=True, nullable=False, unique=True)
+    messages = db.relationship('Messages', backref='conversation', lazy=True)
+    created_at = db.Column(db.DateTime) #Ngay khi tạo tài khoản customer thành công
+    updated_at = db.Column(db.DateTime) #Ngay khi tin nhắn gần nhất được gửi
+
+    def serialize(self):
+        return {'conversation_id': self.conversation_id,
+                'customer_account_id': self.customer_account_id,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at
+                }
+
+class Messages(db.Model):
+    message_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False,
+                           unique=True)
+    conversation_id = db.Column(db.Integer, db.ForeignKey('conversations.conversation_id'),
+                            nullable=False)
+    content = db.Column(db.String(2000))
+    created_at = db.Column(db.DateTime)
+    deleted_at = db.Column(db.DateTime)
+    account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), nullable=False)
+
+    def serialize(self):
+        return {
+            'message_id': self.message_id,
+            'conversation_id': self.conversation_id,
+            'content': self.content,
+            'created_at': self.created_at,
+            'account_id': self.account_id,
+            'deleted_at': self.deleted_at,
+        }
 
 class Employees(db.Model):
     employee_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)

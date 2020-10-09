@@ -34,4 +34,6 @@ export class ApiCustomerService {
   async SearchOrdersByCustomerId(req) {
     return await this.http.post(this.baseURL+"/admin/order-management/search-orders",req).toPromise();
   }
+
+
 }

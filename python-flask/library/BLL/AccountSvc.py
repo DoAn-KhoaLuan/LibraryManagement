@@ -16,7 +16,7 @@ from library.Common.Req.EmployeeReq import SearchEmployeesReq
 
 from library.Common.Rsp.SingleRsp import ErrorRsp
 
-from library.DAL import AccountRep, CustomerRep, EmployeeRep
+from library.DAL import AccountRep, CustomerRep, EmployeeRep, MessageRep
 
 
 def CreateAccount(req):
@@ -165,6 +165,12 @@ def ChangePassword(req: ChangePasswordReq):
 
 def CreateCustomerAccount(req):
     create_customer_account = AccountRep.CreateCustomerAccount(req)
+    print(create_customer_account[0]['account_id'])
+    create_conversation_request = {
+        'customer_account_id': create_customer_account[0]['account_id']
+    }
+    print(create_conversation_request)
+    create_conversation = MessageRep.CreateConversation(create_conversation_request)
     return create_customer_account
 
 
