@@ -21,6 +21,7 @@ def GetBorrowTicketsByPage(req: GetItemsByPageReq):
 
 
 def CreateBorrowTicket(req: CreateBorrowTicketReq):
+
     create_borrow_ticket = models.Borrowtickets(customer_id=req.customer_id,
                                                 employee_id=req.employee_id,
                                                 quantity=len(req.borrow_book_ids),
