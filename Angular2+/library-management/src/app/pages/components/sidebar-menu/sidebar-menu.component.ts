@@ -77,7 +77,7 @@ export class SidebarMenuComponent implements OnInit {
     {
       iconHtml:`<i class="fas fa-comments  fa-2x"></i>`,
       itemTitle: "Chăm sóc khách hàng",
-      // routerLink: "messages"
+      routerLink: "message-management"
 
     },
 
