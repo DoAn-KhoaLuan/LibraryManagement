@@ -48,8 +48,8 @@ def Revenue():
             total += total_price.total
         else:
             total = total
-    percentage = 100 - (prev_total / today_total) * 100
-    percentage_month = 100 - (prev_month_total / month_total) * 100
+    percentage = ((today_total/prev_total) - 1) * 100
+    percentage_month = ((month_total/prev_month_total)-1) * 100
     result_order_count = {
         "labels": "Tổng sô đơn hang trong ngay",
         "order_count": count
