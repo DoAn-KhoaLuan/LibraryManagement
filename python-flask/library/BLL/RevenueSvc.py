@@ -48,8 +48,14 @@ def Revenue():
             total += total_price.total
         else:
             total = total
-    percentage = ((today_total/prev_total) - 1) * 100
-    percentage_month = ((month_total/prev_month_total)-1) * 100
+    if prev_total == 0:
+        percentage = 100
+    else:
+        percentage = (today_total/prev_total) * 100
+    if prev_month_total == 0:
+        percentage_month = 100
+    else:
+        percentage_month = (month_total/prev_month_total) * 100
     result_order_count = {
         "labels": "Tổng sô đơn hang trong ngay",
         "order_count": count
@@ -68,4 +74,9 @@ def Revenue():
         "compare_pre_month": round(percentage_month, 2),
 
     }
-    return result_order_count, result_today_total, result_percentage, result_percentage_month
+    result_curent_month_total = {
+        "labels":"Tổng doanh thu tháng hiện tại",
+        "current_month_total": month_total
+    }
+
+    return result_order_count, result_today_total, result_percentage, result_percentage_month, result_curent_month_total
