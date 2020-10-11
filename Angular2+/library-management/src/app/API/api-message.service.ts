@@ -21,4 +21,12 @@ export class ApiMessageService {
   async GetConversationByCustomerAccountId(req) {
     return await this.http.post(this.baseURL+"/message/get-conversation-by-customer-account-id",req).toPromise();
   }
+  
+  async GetAllConversations() {
+    return await this.http.get(this.baseURL + "/message/get-all-conversations").toPromise();
+  }
+
+  async ReadConversation(conversation_id) {
+    return await this.http.post(this.baseURL + "/message/read-conversation", {conversation_id: conversation_id}).toPromise();
+  }
 }

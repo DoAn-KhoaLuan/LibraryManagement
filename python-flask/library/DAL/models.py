@@ -149,12 +149,17 @@ class Conversations(db.Model):
     messages = db.relationship('Messages', backref='conversation', lazy=True)
     created_at = db.Column(db.DateTime) #Ngay khi tạo tài khoản customer thành công
     updated_at = db.Column(db.DateTime) #Ngay khi tin nhắn gần nhất được gửi
+    last_message = db.Column(db.String(2000))
+    is_read = db.Column(db.Boolean)
 
     def serialize(self):
         return {'conversation_id': self.conversation_id,
                 'customer_account_id': self.customer_account_id,
                 'created_at': self.created_at,
-                'updated_at': self.updated_at
+                'updated_at': self.updated_at,
+                'last_message': self.last_message,
+                'account': self.account.serialize(),
+                'is_read': self.is_read
                 }
 
 class Messages(db.Model):

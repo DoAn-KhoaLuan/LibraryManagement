@@ -19,6 +19,7 @@ export class MessageManagementComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

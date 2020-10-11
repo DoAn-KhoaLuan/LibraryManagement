@@ -11,4 +11,6 @@ export class MessageQuery extends Query<MessageState> {
   }
 
   messages_list$ = this.select('messages_list')
+  all_conversations$ = this.select('all_conversations')
+  active_conversation$ = this.select('active_conversation')
 }

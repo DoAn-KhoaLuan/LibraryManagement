@@ -28,7 +28,7 @@
 
         </div>
         <div class="setting-footer ">
-            <input  placeholder="Nhập tin nhắn" type="text" [(ngModel)]="chatText" style="width: 300px" (keydown.enter)="SendMessage()">
+            <input  class="form-control" placeholder="Nhập tin nhắn" type="text" [(ngModel)]="chatText" style="width: 300px; border-radius: 50px" (keydown.enter)="SendMessage()">
             <div (click)="SendMessage()" class=" ml-3 btn-app d-inline-block px-4 py-2">Gửi </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ from flask_socketio import send, join_room, leave_room
 from library import app, socketio
 from library.BLL import MessageSvc
 from library.Common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
-    GetConversationByCustomerAccountIdReq
+    GetConversationByCustomerAccountIdReq, ReadConversationReq
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from library.Common.Rsp.MessageRsp import SendMessageRsp
 
@@ -14,15 +14,26 @@ def GetMessages(): #page = 0, là lấy page cuối cùng, những tin nhắn m�
     req = GetMessagesInConversationByFilterReq(request.json)
     result = MessageSvc.GetMessagesInConversationByPage(req)
     res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
-                            items=result['messages']).serialize()
+                            items=result['messages'], currentPage =result['current_page'] ).serialize()
     return jsonify(res)
 
 @app.route('/message/get-conversation-by-customer-account-id', methods=['POST', 'GET'])
 def GetConversationByCustomerAccountId():
-    print("sdasdsa")
     req = GetConversationByCustomerAccountIdReq(request.json)
     conversation = MessageSvc.GetConversationByCustomerAccountId(req)
     return jsonify(conversation)
+
+@app.route('/message/get-all-conversations', methods=['POST', 'GET'])
+def GetAllConversations():
+    all_model_conversations = MessageSvc.GetAllConversations()
+    return jsonify(all_model_conversations)
+
+
+@app.route('/message/read-conversation', methods=['POST', 'GET'])
+def ReadConversation():
+    req = ReadConversationReq(request.json)
+    _ = MessageSvc.ReadConversation(req)
+    return jsonify({"is_success": True})
 
 @socketio.on('incoming-msg')
 def on_message(data):
@@ -41,7 +52,7 @@ def on_join(data):
     room = data["room"]
     join_room(room)
 
-    send({"content" : "Someone has joined the " + room + " room."}, room=room)
+    send({"content" : "Someone has joined the room."}, room=room)
 
 
 @socketio.on('leave')
@@ -50,3 +61,5 @@ def on_leave(data):
     room = data['room']
     leave_room(room)
     send({"msg":"Someone has left the room"}, room=room)
+
+

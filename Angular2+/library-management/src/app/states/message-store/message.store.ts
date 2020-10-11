@@ -1,9 +1,11 @@
 import {GetItemsByPageRsp} from "../../models/resp";
-import {filter_page} from "../../models/app-models";
+import {Conversation, filter_page} from "../../models/app-models";
 import {Injectable} from "@angular/core";
 import {EntityStore, StoreConfig} from "@datorama/akita";
 
 export interface MessageState {
+  all_conversations: Array<Conversation>;
+  active_conversation: Conversation,
   messages_list: any,
   message_list_view: GetItemsByPageRsp;
   filter_page: filter_page,
@@ -11,6 +13,7 @@ export interface MessageState {
 }
 
 const initState = {
+  all_conversations: [],
   active_conversation_id:1,
   messages_list : [],
   message_list_view : null,

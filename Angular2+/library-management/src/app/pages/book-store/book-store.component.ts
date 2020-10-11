@@ -25,14 +25,13 @@ export class BookStoreComponent implements OnInit {
       let req = {
         'customer_account_id': this.accountQuery.getValue().auth_info.current_account.account_id
       }
-      let resp = await this.messageService.GetConversationByCustomerAccountId(req);
-      this.messageService.SetActiveConversationId(resp['conversation_id'])
-      console.log(resp)
-    } else {
-      this.messageService.SetActiveConversationId(1)
+      let conversation = await this.messageService.GetConversationByCustomerAccountId(req);
+      console.log(conversation)
+      this.messageService.SetActiveConversation(conversation)
+      this.messageService.SetActiveConversationId(conversation['conversation_id'])
     }
 
-    this.webSocketService.emit('join', {'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': "ROOM"});
+    this.webSocketService.emit('join', {'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': this.messageQuery.getValue().active_conversation?.conversation_id});
     
     this.webSocketService.listen('message').subscribe(message => {
       this.ListenMessage(message)
@@ -53,7 +52,6 @@ export class BookStoreComponent implements OnInit {
     let account_id_from_server = message['account_id'];
     let account_id_from_client = this.accountQuery.getValue().auth_info.current_account.account_id;
     const isReplyMessage = account_id_from_server != account_id_from_client;
-
     message.type = isReplyMessage ? 'reply' : 'send';
 
     this.messages.push(message);
@@ -63,11 +61,14 @@ export class BookStoreComponent implements OnInit {
   }
 
   async SendMessage() {
+    if(!this.chatText) {
+      return;
+    }
     const sendMessageReq = {
       conversation_id : this.messageQuery.getValue().active_conversation_id,
       account_id : this.accountQuery.getValue().auth_info.current_account.account_id,
       content : this.chatText,
-      room: "ROOM"
+      room: this.messageQuery.getValue().active_conversation?.conversation_id
     }
     this.webSocketService.emit('incoming-msg', sendMessageReq);
     this.chatText='';

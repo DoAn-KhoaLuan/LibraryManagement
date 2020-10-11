@@ -165,12 +165,10 @@ def ChangePassword(req: ChangePasswordReq):
 
 def CreateCustomerAccount(req):
     create_customer_account = AccountRep.CreateCustomerAccount(req)
-    print(create_customer_account[0]['account_id'])
     create_conversation_request = {
         'customer_account_id': create_customer_account[0]['account_id']
     }
-    print(create_conversation_request)
-    create_conversation = MessageRep.CreateConversation(create_conversation_request)
+    _ = MessageRep.CreateConversation(create_conversation_request)
     return create_customer_account
 
 
