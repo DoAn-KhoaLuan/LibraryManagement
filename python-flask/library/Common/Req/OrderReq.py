@@ -34,3 +34,5 @@ class SearchOrdersReq():
         self.customer_id = req['customer_id'] if "customer_id" in req else None
         self.employee_id = req['employee_id'] if "employee_id" in req else None
         self.order_date = req['order_date'] if "order_date" in req else None
+
+

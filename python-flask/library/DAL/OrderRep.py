@@ -13,7 +13,7 @@ from datetime import datetime
 
 
 def GetOrdersbyPage(req: GetItemsByPageReq):
-    orders_pagination = models.Orders.query.paginate(per_page=req.per_page, page=req.page)
+    orders_pagination = models.Orders.query.filter(models.Orders.delete_at == None).paginate(per_page=req.per_page, page = req.page)
     has_next = orders_pagination.has_next
     has_prev = orders_pagination.has_prev
     orders = ConvertModelListToDictList(orders_pagination.items)
@@ -43,6 +43,7 @@ def CreateOrder(order: CreateOrderReq):
 
     db.session.commit()
     return create_order.serialize()
+
 
 def UpdateOrder(req: UpdateOrderReq):
     update_order = models.Orders.query.get(req.order_id)
@@ -74,5 +75,3 @@ def SearchOrders(req: SearchOrdersReq):
     # print(search_orders)
     orders = ConvertModelListToDictList(search_orders)
     return orders
-
-
