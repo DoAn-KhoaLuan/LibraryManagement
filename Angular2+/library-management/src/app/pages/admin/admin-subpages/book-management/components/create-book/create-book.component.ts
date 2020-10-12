@@ -189,7 +189,6 @@ export class CreateBookComponent implements OnInit {
 
   async onChangeLogo(event) {
     try{
-      console.log("on change na")
       let fd = new FormData();
       fd.append('image', event.target.files[0], event.target.files[0].name)
       let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
@@ -197,10 +196,9 @@ export class CreateBookComponent implements OnInit {
       this.createBookForm.patchValue({
         image: res.image
       })
-      console.log(this.createBookForm.value)
-
     }
     catch(e){
+      toastr.error("Cập nhật ảnh thất bại!", e.msg || e.message)
     }
   }
 }

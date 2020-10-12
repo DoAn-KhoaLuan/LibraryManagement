@@ -194,7 +194,7 @@ class Employees(db.Model):
     hire_date = db.Column(db.DateTime)
     address = db.Column(db.String(1500))
     gender = db.Column(db.Boolean)
-    image = db.Column(db.String(50))
+    image = db.Column(db.String(1500))
     basic_rate = db.Column(db.Float)
     note = db.Column(db.String(1500))
     delete_at = db.Column(db.DateTime, default=None)

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UtilService } from './../../../../../../services/util.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-account',
@@ -23,6 +24,7 @@ export class CreateAccountComponent implements OnInit {
     birthdate: '',
     address: '',
     gender: '',
+    image:'',
     role_id: '',
     note: '',
   })
@@ -31,7 +33,8 @@ export class CreateAccountComponent implements OnInit {
     private employeeService: EmployeeService,
     private accountService: AccountService,
     private router: Router,
-    private util: UtilService
+    private util: UtilService,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -54,6 +57,7 @@ export class CreateAccountComponent implements OnInit {
       birthdate: '',
       address: '',
       gender: '',
+      image:'',
       note: '',
     });
   }
@@ -80,16 +84,12 @@ export class CreateAccountComponent implements OnInit {
       if(!this.util.validEmail(form_data.email)) {
         return;
       }
-
-      let account_info= {
+      const info_req = {
         role_id: form_data.role_id,
         account_name : form_data.account_name,
         account_password: form_data.password,
         confirm_account_password: form_data.confirm_password,
-      };
 
-      let created_account = await this.accountService.CreateAccount(account_info);
-      let employee_info = {
         identity_id: form_data.identity_id,
         last_name: form_data.last_name,
         first_name: form_data.first_name,
@@ -98,15 +98,30 @@ export class CreateAccountComponent implements OnInit {
         birth_date: form_data.birthdate,
         address: form_data.address,
         gender: Boolean(form_data.gender),
-        account_id: created_account.account_id
-      };
+        image:  form_data.image,
+      }
 
-      await this.employeeService.CreateEmployee(employee_info);
+      await this.accountService.CreateAccountAndEmployee(info_req);
 
-      this.router.navigateByUrl('/user/login')
+      this.router.navigateByUrl('/admin/account-management/account-list')
       toastr.success("Tạo mới tài khoản thành công")
     } catch(e) {
       toastr.error("Tạo mới tài khoản thất bại", e.msg || e.message)
+    }
+  }
+
+  async onChangeLogo(event) {
+    try{
+      let fd = new FormData();
+      fd.append('image', event.target.files[0], event.target.files[0].name)
+      let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
+      console.log(res)
+      this.createAccountForm.patchValue({
+        image: res.image
+      })
+    }
+    catch(e){
+      toastr.error("Cập nhật ảnh thất bại!", e.msg || e.message)
     }
   }
 }

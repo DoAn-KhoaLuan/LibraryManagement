@@ -1,31 +1,38 @@
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import { AccountQuery } from 'src/app/states/account-store/account.query';
 import { MessageService } from './../../../../../../states/message-store/message.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnChanges, OnDestroy } from '@angular/core';
 import { MessageQuery } from 'src/app/states/message-store/message.query';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-customer-messages',
   templateUrl: './customer-messages.component.html',
   styleUrls: ['./customer-messages.component.scss']
 })
-export class CustomerMessagesComponent implements OnInit {
+export class CustomerMessagesComponent implements OnInit, OnDestroy {
   @ViewChild('mes',{static: false}) message: ElementRef;
   chatText =''
   is_loading = false; 
-
+ 
+  listen_message$: Subscription 
   all_conversations$ = this.messageQuery.all_conversations$
   active_conversation$ = this.messageQuery.active_conversation$
 
   constructor(private messageService: MessageService, private messageQuery: MessageQuery, private accountQuery: AccountQuery, private webSocketService: WebSocketService) { }
 
+
   async ngOnInit() {
     await this.FetchConversations().then(_ => {
       this.webSocketService.emit('join', {'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': this.messageQuery.getValue().active_conversation.conversation_id});
     });
-    this.webSocketService.listen('message').subscribe(async message => {
+    this.listen_message$ = this.webSocketService.listen('message').subscribe(async message => {
       await this.ListenMessage(message)
     })
+  }
+
+  ngOnDestroy() {
+    this.listen_message$.unsubscribe()
   }
 
   async FetchConversations() {

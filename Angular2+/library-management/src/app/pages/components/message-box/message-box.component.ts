@@ -1,18 +1,19 @@
-import { account } from './../../models/app-models';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import * as io from 'socket.io-client';
 import { Message } from 'src/app/models/app-models';
 import { AccountQuery } from 'src/app/states/account-store/account.query';
-import {MessageStore} from "../../states/message-store/message.store";
-import {MessageQuery} from "../../states/message-store/message.query";
-import {MessageService} from "../../states/message-store/message.service";
+import { MessageStore } from 'src/app/states/message-store/message.store';
+import { MessageService } from 'src/app/states/message-store/message.service';
+import { MessageQuery } from 'src/app/states/message-store/message.query';
+
+
 @Component({
-  selector: 'app-book-store',
-  templateUrl: './book-store.component.html',
-  styleUrls: ['./book-store.component.scss']
+  selector: 'app-message-box',
+  templateUrl: './message-box.component.html',
+  styleUrls: ['./message-box.component.scss']
 })
-export class BookStoreComponent implements OnInit {
+export class MessageBoxComponent implements OnInit {
   @ViewChild('mes',{static: false}) message: ElementRef;
   isDisplayMessage = false;
 
@@ -21,7 +22,7 @@ export class BookStoreComponent implements OnInit {
   constructor(private webSocketService: WebSocketService, private accountQuery:AccountQuery, private messageStore: MessageStore, private messageQuery: MessageQuery, private messageService: MessageService) { }
   chatText = ''
   async ngOnInit() {
-    if(this.accountQuery.getValue().auth_info?.current_account.role.role_id == 3 && this.accountQuery.getValue().auth_info.current_account.role.role_name == "customer") {
+    if(this.accountQuery.getValue().auth_info.current_account.role.role_id == 3 && this.accountQuery.getValue().auth_info.current_account.role.role_name == "customer") {
       let req = {
         'customer_account_id': this.accountQuery.getValue().auth_info.current_account.account_id
       }
@@ -91,4 +92,3 @@ export class BookStoreComponent implements OnInit {
     this.MessageScrollToBottom();
   }
 }
-
