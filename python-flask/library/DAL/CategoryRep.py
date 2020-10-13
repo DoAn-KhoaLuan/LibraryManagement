@@ -9,6 +9,7 @@ from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq,
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
+import pytz
 
 from library.DAL.models import Categories
 
@@ -41,7 +42,7 @@ def UpdateCategory(update_cate: UpdateCategoryReq):
 
 def DeleteCategoryById(req: DeleteCategoryByIdReq):
     delete_category = models.Categories.query.get(req.category_id)
-    delete_category.delete_at = datetime.now()
+    delete_category.delete_at = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(delete_category)
     db.session.commit()
     return delete_category.serialize()

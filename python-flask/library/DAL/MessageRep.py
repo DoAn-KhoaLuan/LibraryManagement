@@ -50,7 +50,7 @@ def ReadConversation(req: ReadConversationReq):
     return conversation.serialize()
 
 def CreateConversation(req):
-    create_conversation = models.Conversations(customer_account_id=req['customer_account_id'], created_at=datetime.utcnow())
+    create_conversation = models.Conversations(customer_account_id=req['customer_account_id'], created_at= datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")))
     db.session.add(create_conversation)
     db.session.commit()
     return create_conversation.serialize()

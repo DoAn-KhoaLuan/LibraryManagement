@@ -8,7 +8,7 @@ from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
-
+import pytz
 from datetime import datetime
 
 
@@ -23,7 +23,7 @@ def GetOrdersbyPage(req: GetItemsByPageReq):
 def CreateOrder(order: CreateOrderReq):
     create_order = models.Orders(customer_id=order.customer_id,
                                  employee_id=order.employee_id,
-                                 order_date=datetime.now(),
+                                 order_date= datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")),
                                  type=order.type,
                                  total=order.total,
                                  note=order.note,
@@ -60,7 +60,7 @@ def UpdateOrder(req: UpdateOrderReq):
 
 def DeleteOrder(req: DeleteOrderReq):
     delete_order = models.Orders.query.get(req.order_id)
-    delete_order.delete_at = datetime.now()
+    delete_order.delete_at = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(delete_order)
     db.session.commit()
 

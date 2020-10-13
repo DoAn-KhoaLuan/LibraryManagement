@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import or_
-
+import pytz
 from library import db
 from library.Common.Req.AuthorReq import SearchAuthorReq
 from library.Common.Rsp.AuthorRsp import DeleteAuthorByIdRsp, UpdateAuthorRsp,SearchAuthorRsp
@@ -28,7 +28,7 @@ def CreateAuthor(req):
 
 def DeleteAuthorById(req):
     author = models.Authors.query.get(req.author_id)
-    author.delete_at = datetime.now()
+    author.delete_at =  datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(author)
     db.session.commit()
     res = DeleteAuthorByIdRsp(author).serialize()

@@ -12,6 +12,7 @@ from flask import jsonify, json
 from library.DAL.models import Accounts
 from datetime import datetime
 from library.Common.util import ConvertModelListToDictList
+import pytz
 
 
 def GetCustomersByPage(req: GetItemsByPageReq):
@@ -60,7 +61,7 @@ def UpdateCustomer(req: UpdateCustomerReq):
 
 def DeleteCustomer(req: DeleteCustomerReq):
     delete_customer = models.Customers.query.get(req.customer_id)
-    delete_customer.delete_at = datetime.now()
+    delete_customer.delete_at = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(delete_customer)
     db.session.commit()
     return delete_customer.serialize()
@@ -71,6 +72,10 @@ def SearchCustomers(req: SearchCustomersReq):
                                                         models.Customers.account_id == req.account_id,
                                                         models.Customers.identity_id == req.identity_id,
                                                         models.Customers.phone == req.phone)).all()
+    customer = models.Customers.query.get(models.Customers.customer_id == 1).all()
+    for i in customer:
+        if i:
+            print(customer.orders)
     customers = ConvertModelListToDictList(search_customer)
     return customers
 

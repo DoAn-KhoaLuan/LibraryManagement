@@ -1,6 +1,7 @@
 from flask import jsonify, url_for
 from flask_bcrypt import check_password_hash
 from sqlalchemy import or_
+import pytz
 import hashlib
 from library import db
 from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
@@ -48,7 +49,7 @@ def SearchAccounts(acc_info):
 def DeleteAccount(acc_info: DeleteAccountReq):
     deleted_account = models.Accounts.query.filter((models.Accounts.account_name == acc_info.account_name) | (
             models.Accounts.account_id == acc_info.account_id)).first()
-    deleted_account.delete_at = datetime.now()
+    deleted_account.delete_at = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(deleted_account)
     db.session.commit()
     return acc_info

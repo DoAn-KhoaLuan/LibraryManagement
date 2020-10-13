@@ -5,13 +5,15 @@ from library import db
 from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
+import pytz
 from flask import jsonify, json
 
 
 def OrderCountToday():
     order_count_today = models.Orders.query.filter(models.Orders.order_id,
                                                    func.DATE(
-                                                       models.Orders.order_date) == datetime.utcnow().date()).all()
+                                                       models.Orders.order_date) == datetime.now(
+                                                       tz=pytz.timezone("Asia/Ho_Chi_Minh")).date()).all()
     return order_count_today
 
 
@@ -23,7 +25,7 @@ def RevenueToday():
 
 def RevenueCurrentMonth():
     revenue_month = models.Orders.query.filter(models.Orders.total,
-                                               func.MONTH(models.Orders.order_date) == datetime.utcnow().month).all()
+                                               func.MONTH(models.Orders.order_date) == datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")).month).all()
     return revenue_month
 
 

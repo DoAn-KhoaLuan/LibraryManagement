@@ -9,6 +9,7 @@ from flask import jsonify, json
 from library.Common.util import ConvertModelListToDictList
 from library.Common.Req import GetItemsByPageReq
 from datetime import datetime, timedelta
+import pytz
 
 
 def GetBorrowTicketsByPage(req: GetItemsByPageReq):
@@ -25,8 +26,8 @@ def CreateBorrowTicket(req: CreateBorrowTicketReq):
     create_borrow_ticket = models.Borrowtickets(customer_id=req.customer_id,
                                                 employee_id=req.employee_id,
                                                 quantity=len(req.borrow_book_ids),
-                                                borrow_date=datetime.now(),
-                                                appointment_date=datetime.now() + timedelta(days=14),
+                                                borrow_date= datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")),
+                                                appointment_date= datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")) + timedelta(days=14),
                                                 note=req.note
                                                 )
     db.session.begin_nested()
@@ -67,7 +68,7 @@ def UpdateBorrowTicket(req: UpdateBorrowTicketReq):
 
 def DeleteBorrowTicket(req: DeleteBorrowTicketReq):
     delete_borrow_ticket = models.Borrowtickets.query.get(req.borrow_ticket_id)
-    delete_borrow_ticket.delete_at = datetime.now()
+    delete_borrow_ticket.delete_at = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(delete_borrow_ticket)
     db.session.commit()
     return delete_borrow_ticket.serialize()
@@ -89,6 +90,6 @@ def SearchBorrowTicket(req: SearchBorrowTicketReq):
 
 def FinishBorrowTicket(req: FinishBorrowTicketReq):
     finish_borrow_ticket = models.Borrowtickets.query.get(req.borrow_ticket_id);
-    finish_borrow_ticket.return_date = datetime.now()
+    finish_borrow_ticket.return_date = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.commit()
     return finish_borrow_ticket.serialize()

@@ -2,7 +2,7 @@ from datetime import datetime
 from time import gmtime, strftime
 
 from sqlalchemy import or_
-
+import pytz
 from library import db
 from library.Common.Req import GetItemsByPageReq
 from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeesReq
@@ -14,7 +14,8 @@ from datetime import datetime
 
 
 def GetEmployeesbyPage(req: GetItemsByPageReq):
-    employees_pagination = models.Employees.query.filter(models.Employees.delete_at == None).paginate(per_page=req.per_page, page=req.page)
+    employees_pagination = models.Employees.query.filter(models.Employees.delete_at == None).paginate(
+        per_page=req.per_page, page=req.page)
     has_next = employees_pagination.has_next
     has_prev = employees_pagination.has_prev
     employees = ConvertModelListToDictList(employees_pagination.items)
@@ -63,7 +64,7 @@ def UpdateEmployee(req: UpdateEmployeeReq):
 
 def DeleteEmployee(req: DeleteEmployeeReq):
     delete_employee = models.Employees.query.get(req.employee_id)
-    delete_employee.delete_at = datetime.now()
+    delete_employee.delete_at = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(delete_employee)
     db.session.commit()
 
@@ -79,5 +80,3 @@ def SearchEmployees(req: SearchEmployeesReq):
                                                         models.Employees.employee_id == req.employee_id)).all()
     employees = ConvertModelListToDictList(search_employee)
     return employees
-
-

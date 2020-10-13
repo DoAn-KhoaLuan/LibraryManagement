@@ -2,6 +2,7 @@ from email.message import EmailMessage
 
 import jwt
 from datetime import datetime, timedelta
+import pytz
 
 from flask import jsonify
 
@@ -76,8 +77,8 @@ def AuthenticateUser(acc: LoginReq):
         secect_key = app.config['SECRET_KEY']
         payload = {
             'account_id': account['account_id'],
-            'iat': datetime.utcnow(),
-            'exp': datetime.utcnow() + timedelta(minutes=30)
+            'iat': datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")),
+            'exp':  datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")) + timedelta(minutes=30)
         }
         access_token = jwt.encode(payload, secect_key)
         result = {
@@ -96,8 +97,8 @@ def SendResetPasswordEmailCustomer(req: SendResetPasswordEmailReq):
     secect_key = app.config['SECRET_KEY']
     payload = {
         'account_id': account['account_id'],
-        'iat': datetime.utcnow(),
-        'exp': datetime.utcnow() + timedelta(minutes=30)
+        'iat': datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")),
+        'exp':  datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")) + timedelta(minutes=30)
     }
     reset_email_token = jwt.encode(payload, secect_key).decode('utf-8')
 
@@ -125,8 +126,8 @@ def SendResetPasswordEmailEmployee(req: SendResetPasswordEmailReq):
     secect_key = app.config['SECRET_KEY']
     payload = {
         'account_id': account['account_id'],
-        'iat': datetime.utcnow(),
-        'exp': datetime.utcnow() + timedelta(minutes=30)
+        'iat': datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")),
+        'exp': datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")) + timedelta(minutes=30)
     }
     reset_email_token = jwt.encode(payload, secect_key).decode('utf-8')
 

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import or_
-
+import pytz
 from library import db
 from library.Common.Req.BookReq import SearchBookReq, CreateBookReq
 from library.DAL import models
@@ -41,7 +41,7 @@ def CreateBook(req: CreateBookReq):
 
 def DeleteBookById(req):
     book = models.Books.query.get(req.book_id)
-    book.delete_at = datetime.now()
+    book.delete_at =  datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(book)
     db.session.commit()
     return book.serialize()

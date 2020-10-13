@@ -45,6 +45,6 @@ def SearchCustomers():
     req = SearchCustomersReq(request.json)
     result = CustomerSvc.SearchCustomers(req)
     res = SearchCustomersRsp(result)
-    return jsonify(result)
+    return jsonify(res)
 
 

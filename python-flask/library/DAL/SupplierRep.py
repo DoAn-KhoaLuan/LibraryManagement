@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import or_
-
+import pytz
 from library.Common.Req import GetItemsByPageReq
 from library import db
 from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, \
@@ -11,7 +11,8 @@ from library.Common.util import ConvertModelListToDictList
 
 
 def GetSuppliersByPage(req: GetItemsByPageReq):
-    supplier_pagination = Suppliers.query.filter(Suppliers.delete_at == None).paginate(per_page=req.per_page, page=req.page)
+    supplier_pagination = Suppliers.query.filter(Suppliers.delete_at == None).paginate(per_page=req.per_page,
+                                                                                       page=req.page)
     has_next = supplier_pagination.has_next
     has_prev = supplier_pagination.has_prev
     suppliers = ConvertModelListToDictList(supplier_pagination.items)
@@ -52,7 +53,7 @@ def SearchSuppliers(req: SearchSuppliersReq):
 
 def DeleteSupplier(req: DeleteSupplierReq):
     delete_supplier = Suppliers.query.get(req.supplier_id)
-    delete_supplier.delete_at = datetime.now()
+    delete_supplier.delete_at = datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh"))
     db.session.add(delete_supplier)
     db.session.commit()
     return delete_supplier.serialize()
