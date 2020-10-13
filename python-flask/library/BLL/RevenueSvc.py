@@ -48,14 +48,23 @@ def Revenue():
             total += total_price.total
         else:
             total = total
+    # phan tram hom nay so với hom qua
     if prev_total == 0:
         percentage = 100
     else:
-        percentage = (today_total/prev_total) * 100
+        percentage = (today_total / prev_total) * 100
+
+    # phan tram thang này so với tháng trước
     if prev_month_total == 0:
         percentage_month = 100
     else:
-        percentage_month = (month_total/prev_month_total) * 100
+        percentage_month = (month_total / prev_month_total) * 100
+
+        # phan tram hom nay tăng hay giam so với hôm qua : âm - giảm, dương - tăng
+        percentage_compare_with_prev_day = (today_total / prev_total) * 100 - 100
+        # phan tram tháng này tăng hay giảm so với tháng trước: âm - giảm, dương - tăng
+        percentage_compare_with_prev_month = (month_total / prev_month_total) * 100 - 100
+
     result_order_count = {
         "labels": "Tổng sô đơn hang trong ngay",
         "order_count": count
@@ -75,8 +84,17 @@ def Revenue():
 
     }
     result_curent_month_total = {
-        "labels":"Tổng doanh thu tháng hiện tại",
+        "labels": "Tổng doanh thu tháng hiện tại",
         "current_month_total": month_total
     }
+    result_compare_with_prev_day = {
+        "labels": "Tăng hay giảm so với hôm qua",
+        "compare_with_prev_day": round(percentage_compare_with_prev_day, 2)
+    }
+    result_compare_with_prev_month = {
+        "labels": "Tăng hay giảm so với tháng trướ",
+        "compare_with_prev_month": round(percentage_compare_with_prev_month, 2)
+    }
 
-    return result_order_count, result_today_total, result_percentage, result_percentage_month, result_curent_month_total
+    return result_order_count, result_today_total, result_percentage, result_percentage_month, \
+           result_curent_month_total, result_compare_with_prev_month, result_compare_with_prev_day
