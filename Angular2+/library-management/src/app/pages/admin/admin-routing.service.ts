@@ -1,3 +1,4 @@
+import { ManagementDashboardComponent } from './admin-subpages/dashboard/components/management-dashboard/management-dashboard.component';
 import { MessageManagementComponent } from './admin-subpages/message-management/message-management.component';
 import { BorrowTicketDetailComponent } from './admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/borrow-ticket-detail.component';
 import { BorrowTicketListComponent } from './admin-subpages/borrow-ticket-management/components/borrow-ticket-list/borrow-ticket-list.component';
@@ -60,6 +61,9 @@ import { OrderDetailComponent } from './admin-subpages/order-management/componen
 import { OrderRowComponent } from './admin-subpages/order-management/components/order-list/order-row/order-row.component';
 import { CustomerMessagesComponent } from './admin-subpages/message-management/components/customer-messages/customer-messages.component';
 import { EmployeeMessagesComponent } from './admin-subpages/message-management/components/employee-messages/employee-messages.component';
+import {DashboardComponent} from "./admin-subpages/dashboard/dashboard.component";
+import { SellDashboardComponent } from './admin-subpages/dashboard/components/sell-dashboard/sell-dashboard.component';
+import {ShareComponentModule} from "../components/share-component.module";
 
 const routes: Routes = [
     { path: '', component: AdminComponent, children: [
@@ -112,7 +116,7 @@ const routes: Routes = [
             { path: '**', redirectTo: 'borrow-ticket-list' },
         ]},
         { path: 'pos-management', component: POSComponent, children:[
-          
+
           ]},
         { path: 'order-management', component: OrderManagementComponent, children:[
             { path: 'order-list', component: OrderListComponent},
@@ -126,15 +130,21 @@ const routes: Routes = [
             { path: '', redirectTo: 'customer-messages',pathMatch: 'full'},
             { path: '**', redirectTo: 'customer-messages' },
          ]},
+        { path: 'dashboard', component: DashboardComponent, children:[
+            { path: 'sell-dashboard', component: SellDashboardComponent},
+            { path: 'management-dashboard', component: ManagementDashboardComponent},
+            { path: '', redirectTo: 'sell-dashboard',pathMatch: 'full'},
+            { path: '**', redirectTo: 'sell-dashboard' },
+          ]},
         { path: '', redirectTo: 'book-management',pathMatch: 'full'},
         { path: '**', redirectTo: 'book-management' },
     ]
     }
 ];
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
+    imports: [ShareComponentModule, CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule,MatInputModule, PaginationModule, PipeModule],
     exports: [RouterModule, CreateBookComponent, AddSupplierModalComponent, AddAuthorModalComponent, AddCategoryModalComponent],
-    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent, SettingManagementComponent, UserInfoComponent, AccountInfoComponent, UpdateUserModalComponent, BorrowTicketManagementComponent, BorrowTicketListComponent, BorrowTicketRowComponent, ConfirmFinishBorrowTicketModalComponent, ConfirmFinishBorrowTicketModalComponent, BorrowTicketDetailComponent, CreateBorrowTicketComponent, POSComponent, OrderListComponent, OrderDetailComponent, OrderRowComponent, OrderManagementComponent, MessageManagementComponent, CustomerMessagesComponent, EmployeeMessagesComponent ],
+    declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent,SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent, SettingManagementComponent, UserInfoComponent, AccountInfoComponent, UpdateUserModalComponent, BorrowTicketManagementComponent, BorrowTicketListComponent, BorrowTicketRowComponent, ConfirmFinishBorrowTicketModalComponent, ConfirmFinishBorrowTicketModalComponent, BorrowTicketDetailComponent, CreateBorrowTicketComponent, POSComponent, OrderListComponent, OrderDetailComponent, OrderRowComponent, OrderManagementComponent, MessageManagementComponent, CustomerMessagesComponent, EmployeeMessagesComponent, DashboardComponent, SellDashboardComponent, ManagementDashboardComponent ],
     providers:[
         DatePipe,
     ]

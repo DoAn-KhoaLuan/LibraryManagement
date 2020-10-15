@@ -9,18 +9,37 @@ from calendar import monthrange
 from flask import jsonify, json
 
 
-def OrderCountToday():
-    order_count_today = models.Orders.query.filter(models.Orders.order_id,
+def GetOrdersToday():
+    orders = models.Orders.query.filter(models.Orders.order_id,
                                                    func.DATE(
                                                        models.Orders.order_date) == datetime.utcnow().date()).all()
-    return order_count_today
+    return orders
 
+def GetOrdersPrevDay():
+    prev_day_orders = models.Orders.query.filter(func.DATE(models.Orders.order_date) == date.today() - timedelta(days=1)).all()
+    return prev_day_orders
 
-def RevenueToday():
-    revenue_today = models.Orders.query.filter(models.Orders.total,
-                                               func.DATE(models.Orders.order_date) == datetime.utcnow().date()).all()
-    return revenue_today
+def GetOrdersInMonth():
+    month_orders = models.Orders.query.filter(func.MONTH(models.Orders.order_date) == datetime.utcnow().month()).all()
+    return month_orders
 
+def GetOrdersInPrevMonth():
+    prev_month_orders = models.Orders.query.filter(func.MONTH(models.Orders.order_date) == date.today().month() - timedelta(months=1)).all()
+    return prev_month_orders
+
+def GetTotalRevenueToday():
+    today_orders = models.Orders.query.filter(func.DATE(models.Orders.order_date) == datetime.utcnow().date()).all()
+    total_revenue = 0
+    for order in today_orders:
+        total_revenue += order.total
+    return total_revenue
+
+def GetTotalRevenuePrevDay():
+    today_prev_orders = models.Orders.query.filter(func.DATE(models.Orders.order_date) == date.today() - timedelta(days=1)).all()
+    total_prev_revenue = 0
+    for order in today_prev_orders:
+        total_prev_revenue += order.total
+    return total_prev_revenue
 
 def RevenueCurrentMonth():
     revenue_month = models.Orders.query.filter(models.Orders.total,
@@ -28,17 +47,10 @@ def RevenueCurrentMonth():
     return revenue_month
 
 
-def PercentageWithPrevDay():
-    percentage = models.Orders.query.filter(models.Orders.total,
-                                            func.DATE(models.Orders.order_date) == date.today() - timedelta(
-                                                days=1)).all()
-
-    return percentage
 
 
 def PercentageWithPrevMonth():
-    percentage = models.Orders.query.filter(models.Orders.total, func.MONTH(models.Orders.order_date) ==
-                                            date.today().month - 1).all()
+    percentage = models.Orders.query.filter(models.Orders.total, func.MONTH(models.Orders.order_date) == date.today().month - 1).all()
 
     return percentage
 

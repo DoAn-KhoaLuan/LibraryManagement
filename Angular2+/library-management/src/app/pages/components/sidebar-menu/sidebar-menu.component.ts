@@ -21,7 +21,7 @@ export class SidebarMenuComponent implements OnInit {
     {
       iconHtml:`<i class="fas fa-2x fa-chart-bar" aria-hidden="true"></i>`,
       itemTitle: "Tổng quan",
-      routerLink: "statistic"
+      routerLink: "dashboard"
     },
     {
       iconHtml:`<i class="fa fa-2x fa-book" aria-hidden="true"></i>`,

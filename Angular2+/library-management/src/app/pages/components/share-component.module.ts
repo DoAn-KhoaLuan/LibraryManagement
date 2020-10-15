@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-password-modal.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import {DashboardBoxComponent} from "./dashboard-box/dashboard-box.component";
 @NgModule({
     imports: [
       CommonModule,
@@ -12,11 +13,13 @@ import { NgModule } from '@angular/core';
     ],
     declarations: [
         ForgotPasswordModalComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        DashboardBoxComponent
     ],
     exports: [
         ForgotPasswordModalComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        DashboardBoxComponent
     ],
   })
   export class ShareComponentModule { }
