@@ -5,6 +5,7 @@ from library import db
 from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
+from calendar import monthrange
 from flask import jsonify, json
 
 
@@ -46,3 +47,21 @@ def TotalRevenue():
     total_revenue = models.Orders.query.filter(models.Orders.total).all()
 
     return total_revenue
+
+
+def RevenueEveryMonth(month):
+    revenue_everymonth = models.Orders.query.filter(models.Orders.total,
+                                                    func.MONTH(models.Orders.order_date) == month,
+                                                    func.YEAR(models.Orders.order_date) == date.today().year).all()
+
+    return revenue_everymonth
+
+
+def RevenueEveryDayInMonth(month, _date):
+    revenue_everyday = models.Orders.query.filter(models.Orders.total,
+                                                  func.DAY(models.Orders.order_date) == _date,
+                                                  func.MONTH(models.Orders.order_date) == month,
+                                                  func.YEAR(models.Orders.order_date) == date.today().year).all()
+
+    return revenue_everyday
+
