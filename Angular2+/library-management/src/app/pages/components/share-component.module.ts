@@ -4,6 +4,7 @@ import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-pas
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MessageBoxComponent } from './message-box/message-box.component';
+import {DashboardBoxComponent} from "./dashboard-box/dashboard-box.component";
 @NgModule({
     imports: [
       CommonModule,
@@ -13,12 +14,14 @@ import { MessageBoxComponent } from './message-box/message-box.component';
     ],
     declarations: [
         ForgotPasswordModalComponent,
-        ResetPasswordComponent,
         MessageBoxComponent
+        DashboardBoxComponent
+        ResetPasswordComponent,
     ],
     exports: [
         ForgotPasswordModalComponent,
         ResetPasswordComponent,
+        DashboardBoxComponent
         MessageBoxComponent
     ],
   })
