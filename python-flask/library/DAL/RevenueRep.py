@@ -68,3 +68,5 @@ def GetBorrowTicketsInSpecificDay(datetime = datetime.utcnow().date()):
     return borrow_tickets_in_day
 
 
+
+
