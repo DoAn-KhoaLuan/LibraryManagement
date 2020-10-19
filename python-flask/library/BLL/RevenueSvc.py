@@ -8,7 +8,7 @@ def GetTodayOrderCount():
     today_orders = RevenueRep.GetOrdersToday()
     res_today_order_count = dict({
         'label':'today_order_count',
-        'today_order_count': len(today_orders)
+        'value': len(today_orders)
     })
     return res_today_order_count
 
@@ -17,7 +17,7 @@ def GetTodayRevenue():
     today_revenue = RevenueRep.GetTotalRevenueOfSpecificDay()
     res_revenue_today = dict({
         'label':'today_revenue',
-        'today_revenue': today_revenue
+        'value': today_revenue
     })
     return res_revenue_today
 
@@ -28,7 +28,7 @@ def GetPercentageTodayRevenueToPrevDay():
     percentage_today_revenue_with_prev_day = 1 if prev_day_revenue == 0 else  round((today_revenue / prev_day_revenue), 4)
     res_percentage_today_revenue_with_prev_day = dict({
         'label':'percentage_today_revenue_with_prev_day',
-        'percentage_today_revenue_with_prev_day': percentage_today_revenue_with_prev_day
+        'value': percentage_today_revenue_with_prev_day
     })
     return res_percentage_today_revenue_with_prev_day
 
@@ -47,7 +47,7 @@ def GetPercentageMonthRevenueToPrevMonth():
     percentage_month_revenue_to_prev_month = 1 if prev_month_total_revenue == 0 else round((month_total_revenue / prev_month_total_revenue), 4)
     res_percentage_month_revenue_to_prev_month = dict({
         'label': "res_percentage_month_revenue_to_prev_month",
-        'res_percentage_month_revenue_to_prev_month': percentage_month_revenue_to_prev_month
+        'value': percentage_month_revenue_to_prev_month
     })
     return res_percentage_month_revenue_to_prev_month
 
@@ -59,7 +59,7 @@ def GetGrowPercentageToPrevDay():
 
     res_grow_percentage_to_prev_day = dict({
         'label': 'grow_percentage_to_prev_day',
-        'grow_percentage_to_prev_day': grow_percentage_to_prev_day
+        'value': grow_percentage_to_prev_day
     })
     return res_grow_percentage_to_prev_day
 
@@ -79,7 +79,7 @@ def GetGrowPercentageToPrevMonth():
 
     res_grow_percentage_to_prev_month = dict({
         'label': 'grow_percentage_to_prev_month',
-        'grow_percentage_to_prev_month': grow_percentage_to_prev_month
+        'value': grow_percentage_to_prev_month
     })
     return res_grow_percentage_to_prev_month
 
@@ -96,7 +96,7 @@ def GetRevenueEachDayInMonth():
 
     res_revenue_each_day_in_month_arr = dict({
         'label': 'revenue_each_day_in_month_arr',
-        'revenue_each_day_in_month_arr': revenue_of_each_day_in_month_arr
+        'value': revenue_of_each_day_in_month_arr
     })
     return res_revenue_each_day_in_month_arr
 
@@ -113,7 +113,7 @@ def GetRevenueEachMonthInYear():
         revenue_of_each_month_in_year_arr.append(revenue_of_month_dict)
     res_revenue_of_each_month_in_year_arr = dict({
         'label': 'revenue_of_each_month_in_year_arr',
-        'revenue_of_each_month_in_year_arr': revenue_of_each_month_in_year_arr
+        'value': revenue_of_each_month_in_year_arr
     })
     return res_revenue_of_each_month_in_year_arr
 
@@ -127,7 +127,7 @@ def GetTotalRevenueInMonth():
 
     res_month_total_revenue = dict({
         'label': 'month_total_revenue',
-        'month_total_revenue': month_total_revenue
+        'value': month_total_revenue
     })
     return res_month_total_revenue
 
@@ -143,7 +143,7 @@ def GetTopSellerInMonth():
         best_sellers_in_month_arr.append(total_quantity_of_each_book_dict)
     res_best_sellers_in_month = dict({
         'label': 'best_sellers_in_month',
-        'best_sellers_in_month': best_sellers_in_month_arr
+        'value': best_sellers_in_month_arr
     })
     return res_best_sellers_in_month
 
@@ -160,7 +160,7 @@ def GetMostFavoriteBooks():
 
     res_most_favorite_books = dict({
         'label': 'most_favorite_books',
-        'most_favorite_books': most_favorite_books
+        'value': most_favorite_books
     })
     return res_most_favorite_books
 
@@ -168,11 +168,10 @@ def GetBorrowTicketsInMonth():
     ### Số lượng đơn mượn
     res_borrow_tickets_count = dict({
         'label': 'res_borrow_tickets_count',
-        'borrow_ticket_count': len(RevenueRep.GetBorrowTicketsInSpecificDay())
+        'value': len(RevenueRep.GetBorrowTicketsInSpecificDay())
     })
     return res_borrow_tickets_count
 def Revenue():
-    revenue_result = []
     res_today_order_count = GetTodayOrderCount()
     res_revenue_today = GetTodayRevenue()
     res_percentage_today_revenue_to_prev_day = GetPercentageTodayRevenueToPrevDay()
@@ -180,24 +179,26 @@ def Revenue():
     res_grow_percentage_to_prev_day = GetGrowPercentageToPrevDay()
     res_grow_percentage_to_prev_month = GetGrowPercentageToPrevMonth()
     res_revenues_each_day_in_month = GetRevenueEachDayInMonth()
-    res_revenue_of_each_month_in_year_arr = GetRevenueEachMonthInYear()
+    res_revenue_of_each_month_in_year = GetRevenueEachMonthInYear()
     res_month_total_revenue = GetTotalRevenueInMonth()
     res_best_sellers_in_month = GetTopSellerInMonth()
     res_most_favorite_books = GetMostFavoriteBooks()
     res_borrow_tickets_count = GetBorrowTicketsInMonth()
 
-    revenue_result = [res_today_order_count,
-        res_revenue_today,
-        res_percentage_today_revenue_to_prev_day,
-        res_percentage_month_revenue_to_prev_month,
-        res_grow_percentage_to_prev_day,
-        res_grow_percentage_to_prev_month,
-        res_revenues_each_day_in_month,
-        res_revenue_of_each_month_in_year_arr,
-        res_month_total_revenue,
-        res_best_sellers_in_month,
-        res_most_favorite_books,
-        res_borrow_tickets_count]
+    revenue_result = dict({
+        'today_order_count': res_today_order_count,
+        'revenue_today': res_revenue_today,
+        'percentage_today_revenue_to_prev_day': res_percentage_today_revenue_to_prev_day,
+        'percentage_month_revenue_to_prev_month': res_percentage_month_revenue_to_prev_month,
+        'grow_percentage_to_prev_day': res_grow_percentage_to_prev_day,
+        'grow_percentage_to_prev_month': res_grow_percentage_to_prev_month,
+        'revenues_each_day_in_month': res_revenues_each_day_in_month,
+        'revenue_of_each_month_in_year': res_revenue_of_each_month_in_year,
+        'month_total_revenue': res_month_total_revenue,
+        'best_sellers_in_month': res_best_sellers_in_month,
+        'most_favorite_books': res_most_favorite_books,
+        'borrow_tickets_count': res_borrow_tickets_count,
+    })
 
     return revenue_result
 
