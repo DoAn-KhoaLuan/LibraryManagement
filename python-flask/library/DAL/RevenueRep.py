@@ -1,67 +1,70 @@
 from datetime import datetime, date, timedelta
-from sqlalchemy import or_, func
-from dateutil.relativedelta import relativedelta
+from sqlalchemy import func, desc
 from library import db
-from library.Common.Rsp.SingleRsp import ErrorRsp
-from library.Common.util import ConvertModelListToDictList
 from library.DAL import models
-from calendar import monthrange
-from flask import jsonify, json
+from library.DAL.models import Books, Orderdetails, Orders, Employees
 
 
-def OrderCountToday():
-    order_count_today = models.Orders.query.filter(models.Orders.order_id,
-                                                   func.DATE(
-                                                       models.Orders.order_date) == datetime.utcnow().date()).all()
-    return order_count_today
+def GetOrdersToday():
+    orders = models.Orders.query.filter(models.Orders.order_id,
+                                    func.DATE(models.Orders.order_date) == datetime.utcnow().date()).all()
+    return orders
+
+def GetOrdersInMonth():
+    month_orders = models.Orders.query.filter(func.MONTH(models.Orders.order_date) == datetime.utcnow().month).all()
+    return month_orders
 
 
-def RevenueToday():
-    revenue_today = models.Orders.query.filter(models.Orders.total,
-                                               func.DATE(models.Orders.order_date) == datetime.utcnow().date()).all()
-    return revenue_today
+def GetOrdersInPrevMonth():
+    prev_month_orders =models.Orders.query.filter(models.Orders.total, func.MONTH(models.Orders.order_date) == date.today().month - 1).all()
+    return prev_month_orders
 
 
-def RevenueCurrentMonth():
-    revenue_month = models.Orders.query.filter(models.Orders.total,
-                                               func.MONTH(models.Orders.order_date) == datetime.utcnow().month).all()
-    return revenue_month
+def GetTotalRevenueOfSpecificDay(specific_date = datetime.utcnow().date()):
+    total_revenue_in_specific_date = db.session.query(func.sum(Orders.total))\
+        .filter(func.DATE(models.Orders.order_date) == specific_date)\
+        .first()
+    return total_revenue_in_specific_date[0] if total_revenue_in_specific_date[0] else 0.0
 
+
+def GetTotalRevenueOfSpecificMonth(month, year):
+    total_revenue_in_specific_month = db.session.query(func.sum(Orders.total)) \
+        .filter(func.MONTH(models.Orders.order_date) == month, func.YEAR(models.Orders.order_date) == year) \
+        .first()
+    return total_revenue_in_specific_month[0] if total_revenue_in_specific_month[0] else 0.0
 
 def PercentageWithPrevDay():
     percentage = models.Orders.query.filter(models.Orders.total,
                                             func.DATE(models.Orders.order_date) == date.today() - timedelta(
                                                 days=1)).all()
 
-    return percentage
+def GetTopBooks(limit = 10):
+    total_quantity_of_each_book_model_arr = db.session.query(Orderdetails.book_id ,func.sum(Orderdetails.quantity).label("sum"), Books)\
+        .group_by(Orderdetails.book_id)\
+        .join(Books, Books.book_id == Orderdetails.book_id, isouter=True)\
+        .join(Orders, Orders.order_id == Orderdetails.order_id )\
+        .order_by(desc("sum"))\
+        .limit(limit)\
+        .all()
+    return total_quantity_of_each_book_model_arr
 
 
-def PercentageWithPrevMonth():
-    percentage = models.Orders.query.filter(models.Orders.total, func.MONTH(models.Orders.order_date) ==
-                                            date.today().month - 1).all()
-
-    return percentage
-
-
-def TotalRevenue():
-    total_revenue = models.Orders.query.filter(models.Orders.total).all()
-
-    return total_revenue
+def GetBestSellerInMonth():
+    result = db.session.query(func.count(Orders.employee_id).label("order_amount"), Employees) \
+        .filter(func.MONTH(models.Orders.order_date) == date.today().month and func.YEAR(models.Orders.order_date) == date.today().year) \
+        .group_by(Orders.employee_id)\
+        .join(Employees, Employees.employee_id == Orders.employee_id, isouter=True) \
+        .order_by(desc("order_amount"))\
+        .all()
+    return result
 
 
-def RevenueEveryMonth(month):
-    revenue_everymonth = models.Orders.query.filter(models.Orders.total,
-                                                    func.MONTH(models.Orders.order_date) == month,
-                                                    func.YEAR(models.Orders.order_date) == date.today().year).all()
+def GetBorrowTicketsInSpecificDay(datetime = datetime.utcnow().date()):
+    borrow_tickets_in_day = models.Borrowtickets.query.filter(
+        func.MONTH(models.Borrowtickets.borrow_date) == datetime.month,
+        func.YEAR(models.Borrowtickets.borrow_date) == datetime.year,
+        func.DAY(models.Borrowtickets.borrow_date) == datetime.day
+    ).all()
+    return borrow_tickets_in_day
 
-    return revenue_everymonth
-
-
-def RevenueEveryDayInMonth(month, _date):
-    revenue_everyday = models.Orders.query.filter(models.Orders.total,
-                                                  func.DAY(models.Orders.order_date) == _date,
-                                                  func.MONTH(models.Orders.order_date) == month,
-                                                  func.YEAR(models.Orders.order_date) == date.today().year).all()
-
-    return revenue_everyday
 
