@@ -50,7 +50,11 @@ def GetTopBooks(limit = 10):
 
 
 def GetBestSellerInMonth():
-    result = db.session.query(func.count(Orders.employee_id).label("order_amount"), Employees) \
+    result = db.session.query(
+        func.count(Orders.employee_id).label("order_amount"),
+        Employees,
+        func.sum(Orders.total).label("total_revenue"),
+    ) \
         .filter(func.MONTH(models.Orders.order_date) == date.today().month and func.YEAR(models.Orders.order_date) == date.today().year) \
         .group_by(Orders.employee_id)\
         .join(Employees, Employees.employee_id == Orders.employee_id, isouter=True) \

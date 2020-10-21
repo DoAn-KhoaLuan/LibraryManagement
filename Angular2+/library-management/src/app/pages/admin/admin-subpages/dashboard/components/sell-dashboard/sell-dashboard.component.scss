@@ -11,3 +11,19 @@
   margin-bottom: 2.75rem;
   box-shadow: 0 0 8px 0 rgba(0,0,0,.25);
 }
+
+.opacity-50 {
+  opacity: .5;
+}
+.icon-compare {
+  border-radius: 50%;
+  border: 1px solid;
+  padding: 2px;
+}
+
+app-dashboard-box::ng-deep .box {
+  height: 100%;
+}
+
+#columnchart_values::ng-deep svg g rect {
+}

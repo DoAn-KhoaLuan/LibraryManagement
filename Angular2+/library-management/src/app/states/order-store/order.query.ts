@@ -16,4 +16,5 @@ export class OrderQuery extends Query<OrderState> {
     suppliers$ = this.select('suppliers')
     categories$ = this.select('categories')
     authors$ = this.select('authors')
+    dashboard$ = this.select('dashboard')
 }

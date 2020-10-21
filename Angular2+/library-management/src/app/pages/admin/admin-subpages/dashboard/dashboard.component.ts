@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {OrderService} from "../../../../states/order-store/order.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,9 +17,12 @@ export class DashboardComponent implements OnInit {
       url: "management-dashboard"
     },
   ]
-  constructor() { }
+  constructor(
+    private orderService: OrderService
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.orderService.statistic()
   }
 
 }

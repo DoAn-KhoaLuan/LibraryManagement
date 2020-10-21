@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {OrderQuery} from "../../../../../../states/order-store/order.query";
+declare var google: any;
 
 @Component({
   selector: 'app-management-dashboard',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./management-dashboard.component.scss']
 })
 export class ManagementDashboardComponent implements OnInit {
-
-  constructor() { }
+  dashboard$ = this.orderQuery.dashboard$
+  constructor(
+    private orderQuery: OrderQuery
+  ) { }
 
   ngOnInit() {
   }

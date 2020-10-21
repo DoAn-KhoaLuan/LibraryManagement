@@ -14,14 +14,14 @@ import {DashboardBoxComponent} from "./dashboard-box/dashboard-box.component";
     ],
     declarations: [
         ForgotPasswordModalComponent,
-        MessageBoxComponent
-        DashboardBoxComponent
+        MessageBoxComponent,
+        DashboardBoxComponent,
         ResetPasswordComponent,
     ],
     exports: [
         ForgotPasswordModalComponent,
         ResetPasswordComponent,
-        DashboardBoxComponent
+        DashboardBoxComponent,
         MessageBoxComponent
     ],
   })

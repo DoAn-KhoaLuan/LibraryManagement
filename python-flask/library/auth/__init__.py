@@ -10,6 +10,9 @@ from library.Common.Req.EmployeeReq import SearchEmployeesReq
 from library.DAL import EmployeeRep, CustomerRep
 
 
+@app.route('/create-customer-account', methods=['POST'])
+def CreateCustomerAccount():
+
 def token_required(f):
     @wraps(f)
     def _verify():

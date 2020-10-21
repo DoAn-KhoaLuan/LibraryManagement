@@ -97,4 +97,10 @@ export class OrderService {
     async CreateOrder(order) {
         return await this.orderApiService.CreateOrder(order)
     }
+
+    async statistic() {
+      let dashboard = await this.orderApiService.statistic();
+      this.orderStore.update({dashboard:dashboard})
+      return dashboard
+    }
 }

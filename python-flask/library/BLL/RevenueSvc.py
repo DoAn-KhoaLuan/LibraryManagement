@@ -55,7 +55,11 @@ def GetGrowPercentageToPrevDay():
     ### Tốc độ tăng trưởng doanh thu so với hôm qua
     prev_day_revenue = RevenueRep.GetTotalRevenueOfSpecificDay(datetime.now().date() - timedelta(days = 1))
     today_revenue = RevenueRep.GetTotalRevenueOfSpecificDay()
-    grow_percentage_to_prev_day = 1 if prev_day_revenue == 0 else round((today_revenue / prev_day_revenue) - 1)
+    grow_percentage_to_prev_day = 1 if prev_day_revenue == 0 else round((today_revenue / prev_day_revenue), 4) -1
+    print(prev_day_revenue)
+    print(today_revenue)
+    if prev_day_revenue == today_revenue:
+        grow_percentage_to_prev_day = 0
 
     res_grow_percentage_to_prev_day = dict({
         'label': 'grow_percentage_to_prev_day',
@@ -75,8 +79,10 @@ def GetGrowPercentageToPrevMonth():
     for order in prev_month_orders:
         prev_month_total_revenue += order.total
 
-    grow_percentage_to_prev_month = 1 if prev_month_total_revenue == 0 else round((month_total_revenue / prev_month_total_revenue) - 1)
+    grow_percentage_to_prev_month = 1 if prev_month_total_revenue == 0 else round((month_total_revenue / prev_month_total_revenue), 4) -1
 
+    if prev_month_total_revenue == month_total_revenue:
+        grow_percentage_to_prev_month = 0
     res_grow_percentage_to_prev_month = dict({
         'label': 'grow_percentage_to_prev_month',
         'value': grow_percentage_to_prev_month
@@ -89,7 +95,7 @@ def GetRevenueEachDayInMonth():
     for i in range(1, monthrange(datetime.now().year, datetime.now().month)[1] + 1):
         datetime_day = datetime(datetime.now().year, datetime.now().month, i).date()
         revenue_of_each_day_dict = dict({
-            'date': datetime_day,
+            'date': datetime(month=datetime_day.month, day=datetime_day.day, year=2020),
             'revenue': RevenueRep.GetTotalRevenueOfSpecificDay(datetime_day)
         })
         revenue_of_each_day_in_month_arr.append(revenue_of_each_day_dict)
@@ -140,6 +146,7 @@ def GetTopSellerInMonth():
         total_quantity_of_each_book_dict = dict()
         total_quantity_of_each_book_dict['order_amount'] = int(best_seller[0])
         total_quantity_of_each_book_dict['employee'] = best_seller[1].serialize()
+        total_quantity_of_each_book_dict['total_revenue'] = int(best_seller[2])
         best_sellers_in_month_arr.append(total_quantity_of_each_book_dict)
     res_best_sellers_in_month = dict({
         'label': 'best_sellers_in_month',

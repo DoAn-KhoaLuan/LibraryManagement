@@ -38,4 +38,8 @@ export class ApiOrderService {
   async DeleteOrder(req) {
     return await this.http.post(this.baseURL+"/admin/order-management/delete-order",req).toPromise();
   }
+
+  async statistic() {
+    return await this.http.get(this.baseURL+"/admin/revenue-management").toPromise();
+  }
 }

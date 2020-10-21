@@ -13,6 +13,7 @@ export interface OrderState {
     authors: any[];
     categories: any[];
     suppliers: any[];
+    dashboard: any;
 }
 
 const initState = {
@@ -32,6 +33,7 @@ const initState = {
     authors: [],
     categories: [],
     suppliers: [],
+    dashboard: {},
 }
 
 @Injectable({providedIn: 'root'})
