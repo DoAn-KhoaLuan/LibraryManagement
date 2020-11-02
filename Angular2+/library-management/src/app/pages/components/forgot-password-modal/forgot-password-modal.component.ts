@@ -25,7 +25,6 @@ export class ForgotPasswordModalComponent implements OnInit {
   }
 
   test() {
-    console.log(this.formForgot)
   }
   ngOnInit() {
   }

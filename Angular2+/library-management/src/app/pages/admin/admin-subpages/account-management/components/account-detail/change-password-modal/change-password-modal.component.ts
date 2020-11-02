@@ -58,7 +58,6 @@ export class ChangePasswordModalComponent implements OnInit {
       toastr.success('Thay đổi mật khẩu thành công!');
       this.modalAction.dismiss(null);
     } catch (e) {
-      console.log(e)
       toastr.error('Thay đổi mật khẩu không thành công!', e.message || e.msg);
     }
 

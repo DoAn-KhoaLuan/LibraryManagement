@@ -11,7 +11,6 @@ export class BookRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.book_item)
   }
 
 }

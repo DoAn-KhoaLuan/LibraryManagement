@@ -12,10 +12,10 @@
           <div class="col text-center text-app">Địa chỉ</div>
           <div class="col text-center text-app" style="max-width: 300px;">Email</div>
           <div class="col text-center text-app" style="max-width: 200px;">Phone</div>
-          <div class="col text-center text-app" >Ghi chú</div> 
+          <div class="col text-center text-app" >Ghi chú</div>
         </div>
       </div>
-      <ng-container *ngFor="let supplier_item of (supplier_list$ | async)?.items, let i = index">
+      <ng-container *ngFor="let supplier_item of (supplier_list$ | async)?.items.slice().reverse(), let i = index">
         <app-supplier-row [supplier_item]="supplier_item" [index]="i" (click)="onViewSupplierDetail(supplier_item.supplier_id)"></app-supplier-row>
       </ng-container>
       <app-page-pagination class="mt-auto" (navigate)="navigate($event)" [paginationOpt]="current_pagination_opt$" [currentPage]="current_page$ | async">

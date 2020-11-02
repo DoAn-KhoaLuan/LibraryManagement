@@ -17,7 +17,6 @@ def GetBooksByPage(req):
 
 
 def CreateBook(req: CreateBookReq):
-    print(req.image)
     book = models.Books(
                         book_name=req.book_name,
                         supplier_id=req.supplier_id,

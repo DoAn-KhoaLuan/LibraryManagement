@@ -84,14 +84,14 @@ export class BookDetailComponent implements OnInit, OnChanges {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
       this.router.navigateByUrl('admin/book-management/book-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -119,7 +119,7 @@ export class BookDetailComponent implements OnInit, OnChanges {
   }
 
   setupDataForm() {
-    let store_detail_book = this.bookQuery.getValue().detail_book; 
+    let store_detail_book = this.bookQuery.getValue().detail_book;
     this.updateBookForm.patchValue({
       'book_id': store_detail_book?.book_id,
       'book_name': store_detail_book?.book_name,
@@ -135,7 +135,6 @@ export class BookDetailComponent implements OnInit, OnChanges {
       'new_amount': store_detail_book?.new_amount,
       'note': store_detail_book?.note,
     });
-    console.log(this.bookQuery.getValue().detail_book.supplier.supplier_id)
 
   }
 
@@ -155,7 +154,7 @@ export class BookDetailComponent implements OnInit, OnChanges {
         } catch(e) {
           toastr.error("Thêm mới tác giả thất bại.", e.msg || e.message)
         }
-      
+
       }
     });
   }
@@ -178,7 +177,7 @@ export class BookDetailComponent implements OnInit, OnChanges {
         } catch(e) {
           toastr.error("Thêm mới thể loại sách thất bại.", e.msg || e.message)
         }
-      
+
       }
     });
   }
@@ -203,10 +202,9 @@ export class BookDetailComponent implements OnInit, OnChanges {
       }
     });
   }
-  
+
   get book_detail_in_store() {
-    console.log("*** book_detail_in_store", this.bookQuery.getValue().detail_book.supplier.supplier_id)
-    
+
     return this.bookQuery.getValue().detail_book.supplier.supplier_id
   }
   async UpdateBook() {
@@ -217,9 +215,8 @@ export class BookDetailComponent implements OnInit, OnChanges {
       supplier_id: update_book.supplier.supplier_id,
       author_id: update_book.author.author_id,
     };
-    console.log(update_req)
     try{
-      let updated_book = await this.bookService.UpdateBook(update_req) 
+      let updated_book = await this.bookService.UpdateBook(update_req)
       this.bookStore.update({detail_book: updated_book})
       toastr.success("Cập nhật sách thành công.")
       this.router.navigateByUrl('admin/book-management/book-list')
@@ -229,6 +226,6 @@ export class BookDetailComponent implements OnInit, OnChanges {
   }
 
   get author() {
-    return  this.bookQuery.getValue().detail_book.author; 
+    return  this.bookQuery.getValue().detail_book.author;
   }
 }

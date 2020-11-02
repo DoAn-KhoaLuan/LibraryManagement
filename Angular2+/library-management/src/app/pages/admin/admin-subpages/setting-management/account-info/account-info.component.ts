@@ -18,7 +18,6 @@ export class AccountInfoComponent implements OnInit {
 
   ngOnInit() {
     this.user_info = this.accountQuery.getValue().auth_info.user_info
-    console.log(this.user_info)
   }
 
   OpenChangePasswordModal() {

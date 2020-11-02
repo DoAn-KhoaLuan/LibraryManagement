@@ -93,6 +93,11 @@ export class POSComponent implements OnInit {
 
   AddToChart(book) {
     let order_book_ids = this.order_lines.map(order_line => order_line.book_id)
+    let existing_order_line = this.order_lines.find(od=> od.book_id == book.book_id);
+    if(book.new_amount == 0 || (existing_order_line && existing_order_line.quantity >= book.new_amount) ) {
+      return toastr.error('Số lượng tồn kho không hợp lệ!')
+    }
+
     if(order_book_ids.indexOf(book.book_id) != -1) {
       this.order_lines.forEach(orderLine => {
         if(orderLine.book_id == book.book_id) {
@@ -142,6 +147,9 @@ export class POSComponent implements OnInit {
   }
 
   IncreaseQuantity(order_line) {
+    if(order_line.quantity >= order_line.new_amount) {
+      return toastr.error('Số lượng hàng tồn kho không đủ!')
+    }
     order_line.quantity += 1;
     this.ChangeQuantity(order_line)
     this.SumOrder()

@@ -19,7 +19,6 @@ export class OrderListComponent implements OnInit {
   constructor(private router: Router, private OrderService: OrderService, private OrderQuery: OrderQuery, private OrderStore: OrderStore, private ref: ChangeDetectorRef) { }
 
   async ngOnInit() {
-    console.log("aaaa")
     await this.onRequestNewPage();
   }
 

@@ -21,7 +21,7 @@ const initState = {
     current_page : 1,
     filter_page: {
         page: 1,
-        per_page: 4,
+        per_page: 20,
     },
     current_pagination_opt: {
         nextDisabled: false,

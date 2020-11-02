@@ -11,7 +11,6 @@ export class ConfirmDeleteAccountComponent implements OnInit {
   constructor(private modalAction: ModalAction) { }
 
   ngOnInit() {
-    console.log("account: ", this.account)
   }
 
   onConfirmDelete() {

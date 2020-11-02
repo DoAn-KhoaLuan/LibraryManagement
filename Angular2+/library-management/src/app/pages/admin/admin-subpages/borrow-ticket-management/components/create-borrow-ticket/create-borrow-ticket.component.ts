@@ -86,7 +86,6 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
       startWith(''),
       map(value => this._bookFilter(value)),
       tap(() => {
-        console.log("Value: ",this.book_control.value )
         if(parseInt(this.book_control.value)){
           this.book_item = this.all_books.find(book => book.book_id == parseInt(this.book_control.value))
         }

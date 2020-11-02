@@ -42,7 +42,7 @@ export class CreateAccountComponent implements OnInit {
 
   goBack() {
     this.router.navigateByUrl('admin/account-management/account-list')
-  } 
+  }
 
   ResetDataForm() {
     this.createAccountForm.patchValue({
@@ -73,7 +73,7 @@ export class CreateAccountComponent implements OnInit {
       if(form_data.password != form_data.confirm_password) {
         return toastr.error("Tạo mới tài khoản thất bại", "Mật khẩu nhập lại không chính xác")
       }
-      
+
       if(!form_data.identity_id) {
         return toastr.error("Tạo mới tài khoản thất bại", "Vui lòng nhập chứng minh nhân dân")
       }
@@ -115,7 +115,6 @@ export class CreateAccountComponent implements OnInit {
       let fd = new FormData();
       fd.append('image', event.target.files[0], event.target.files[0].name)
       let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
-      console.log(res)
       this.createAccountForm.patchValue({
         image: res.image
       })

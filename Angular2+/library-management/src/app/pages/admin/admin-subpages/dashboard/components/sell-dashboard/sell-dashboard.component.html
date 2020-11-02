@@ -4,9 +4,13 @@
     <app-dashboard-box [title]="'Đơn hàng'">
       <ng-template #content>
         <div class="d-flex flex-row align-content-between">
-          <div class="col text-center">
-            <div class="mb-2">Số đơn hàng</div>
+          <div class="col text-left">
+            <div class="mb-2">Trong ngày</div>
             <strong class="font-weight-bolder text-break" style="font-size: 1.6rem">{{dashboard?.today_order_count?.value}}</strong>
+          </div>
+          <div class="col text-right">
+            <div class="mb-2">Trong tháng</div>
+            <strong class="font-weight-bolder text-break" style="font-size: 1.6rem">{{dashboard?.month_order_count?.value}}</strong>
           </div>
         </div>
       </ng-template>
@@ -34,17 +38,19 @@
         <div class="d-flex flex-row align-content-between">
           <div class="col text-left">
             <div class="mb-2">Tỉ lệ doanh thu</div>
-            <strong class="font-weight-bolder text-break" style="font-size: 1.6rem" [ngClass]="{'text-success': dashboard?.percentage_today_revenue_to_prev_day?.value>= 1, 'text-danger': dashboard?.percentage_today_revenue_to_prev_day?.value < 1}">{{dashboard?.percentage_today_revenue_to_prev_day?.value * 100}}%</strong>
+            <strong class="font-weight-bolder text-break" style="font-size: 1.6rem" [ngClass]="{'text-success': dashboard?.percentage_today_revenue_to_prev_day?.value>= 1, 'text-danger': dashboard?.percentage_today_revenue_to_prev_day?.value < 1}">
+              {{(dashboard?.percentage_today_revenue_to_prev_day?.value * 100).toFixed(2)}}%
+            </strong>
           </div>
           <div class="col text-right">
             <div class="mb-2">Tốc độ tăng trường</div>
             <strong class="font-weight-bolder text-success text-break" style="font-size: 1.6rem" *ngIf="dashboard?.grow_percentage_to_prev_day?.value >= 0">
               <i aria-hidden="true" class="fa fa-arrow-up icon-compare "></i>
-              {{dashboard?.grow_percentage_to_prev_day?.value * 100}}%
+              {{(dashboard?.grow_percentage_to_prev_day?.value * 100).toFixed(2)}}%
             </strong>
             <strong class="font-weight-bolder text-danger text-break" style="font-size: 1.6rem" *ngIf="dashboard?.grow_percentage_to_prev_day?.value < 0">
               <i aria-hidden="true" class="fa fa-arrow-down icon-compare "></i>
-              {{dashboard?.grow_percentage_to_prev_day?.value * 100}}%
+              {{(dashboard?.grow_percentage_to_prev_day?.value * 100).toFixed(2)}}%
             </strong>
           </div>
         </div>
@@ -57,17 +63,17 @@
       <div class="d-flex flex-row align-content-between">
         <div class="col text-left">
           <div class="mb-2 text-dark">Tỉ lệ doanh thu</div>
-          <strong class="font-weight-bolder text-break" style="font-size: 1.6rem" [ngClass]="{'text-success': dashboard?.percentage_month_revenue_to_prev_month?.value>= 1, 'text-danger': dashboard?.percentage_month_revenue_to_prev_month?.value < 1}">{{dashboard?.percentage_month_revenue_to_prev_month?.value * 100}}%</strong>
+          <strong class="font-weight-bolder text-break" style="font-size: 1.6rem" [ngClass]="{'text-success': dashboard?.percentage_month_revenue_to_prev_month?.value>= 1, 'text-danger': dashboard?.percentage_month_revenue_to_prev_month?.value < 1}">{{(dashboard?.percentage_month_revenue_to_prev_month?.value * 100).toFixed(2)}}%</strong>
         </div>
         <div class="col text-right">
           <div class="mb-2">Tốc độ tăng trường</div>
           <strong class="font-weight-bolder text-success text-break" style="font-size: 1.6rem" *ngIf="dashboard?.grow_percentage_to_prev_month?.value >= 0">
             <i aria-hidden="true" class="fa fa-arrow-up icon-compare  text-break"></i>
-            {{dashboard?.grow_percentage_to_prev_month?.value * 100}}%
+            {{(dashboard?.grow_percentage_to_prev_month?.value * 100).toFixed(2)}}%
           </strong>
           <strong class="font-weight-bolder text-danger" style="font-size: 1.6rem" *ngIf="dashboard?.grow_percentage_to_prev_month?.value < 0">
             <i aria-hidden="true" class="fa fa-arrow-down icon-compare text-break "></i>
-            {{dashboard?.grow_percentage_to_prev_month?.value * 100}}%
+            {{(dashboard?.grow_percentage_to_prev_month?.value * 100).toFixed(2)}}%
           </strong>
         </div>
       </div>

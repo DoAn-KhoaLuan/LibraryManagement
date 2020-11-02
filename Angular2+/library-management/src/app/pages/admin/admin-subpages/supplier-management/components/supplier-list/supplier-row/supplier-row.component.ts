@@ -11,7 +11,6 @@ export class SupplierRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.supplier_item)
   }
 
 }

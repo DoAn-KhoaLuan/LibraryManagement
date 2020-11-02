@@ -12,6 +12,15 @@ def GetTodayOrderCount():
     })
     return res_today_order_count
 
+def GetMonthOrderCount():
+    ###Tổng đơn hàng trong ngày
+    month_orders = RevenueRep.GetOrdersInMonth()
+    res_month_order_count = dict({
+        'label':'month_order_count',
+        'value': len(month_orders)
+    })
+    return res_month_order_count
+
 def GetTodayRevenue():
     ### Tổng doanh thu trong ngày
     today_revenue = RevenueRep.GetTotalRevenueOfSpecificDay()
@@ -56,8 +65,6 @@ def GetGrowPercentageToPrevDay():
     prev_day_revenue = RevenueRep.GetTotalRevenueOfSpecificDay(datetime.now().date() - timedelta(days = 1))
     today_revenue = RevenueRep.GetTotalRevenueOfSpecificDay()
     grow_percentage_to_prev_day = 1 if prev_day_revenue == 0 else round((today_revenue / prev_day_revenue), 4) -1
-    print(prev_day_revenue)
-    print(today_revenue)
     if prev_day_revenue == today_revenue:
         grow_percentage_to_prev_day = 0
 
@@ -180,6 +187,7 @@ def GetBorrowTicketsInMonth():
     return res_borrow_tickets_count
 def Revenue():
     res_today_order_count = GetTodayOrderCount()
+    res_month_order_count = GetMonthOrderCount()
     res_revenue_today = GetTodayRevenue()
     res_percentage_today_revenue_to_prev_day = GetPercentageTodayRevenueToPrevDay()
     res_percentage_month_revenue_to_prev_month = GetPercentageMonthRevenueToPrevMonth()
@@ -194,6 +202,7 @@ def Revenue():
 
     revenue_result = dict({
         'today_order_count': res_today_order_count,
+        'month_order_count': res_month_order_count,
         'revenue_today': res_revenue_today,
         'percentage_today_revenue_to_prev_day': res_percentage_today_revenue_to_prev_day,
         'percentage_month_revenue_to_prev_month': res_percentage_month_revenue_to_prev_month,

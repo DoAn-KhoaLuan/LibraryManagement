@@ -17,7 +17,7 @@ export class EmployeeListComponent implements OnInit {
   currentPaginationOpt = new PaginationOpt();
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private ref: ChangeDetectorRef,
     private employeeQuery: EmployeeQuery,
     private employeeStore: EmployeeStore,
@@ -25,7 +25,6 @@ export class EmployeeListComponent implements OnInit {
 
   async ngOnInit() {
     await this.onRequestNewPage();
-    console.log(this.employeeQuery.getValue())
   }
 
   async onRequestNewPage() {

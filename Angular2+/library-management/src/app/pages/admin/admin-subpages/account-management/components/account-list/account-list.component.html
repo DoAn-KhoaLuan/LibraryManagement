@@ -14,7 +14,7 @@
           <div class="col text-center text-app">Ghi chú</div>
         </div>
       </div>
-      <ng-container *ngFor="let account_item of (account_list$ | async)?.items, let i = index">
+      <ng-container *ngFor="let account_item of (account_list$ | async)?.items.slice().reverse(), let i = index">
         <app-account-row [account_item]="account_item" [index]="i" (click)="onViewAccountDetail(account_item.account_id)"></app-account-row>
       </ng-container>
       <app-page-pagination class="mt-auto" (navigate)="navigate($event)" [paginationOpt]="current_pagination_opt$" [currentPage]="current_page$ | async">

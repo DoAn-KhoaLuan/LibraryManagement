@@ -6,7 +6,7 @@
     </div>
 
     <div class="col font-weight-bold text-app app-flex flex-column text-center" style="max-width:200px;">
-      <div> {{(order_item?.customer?.customer_id | standardizedId)|| "-"}} 
+      <div> {{(order_item?.customer?.customer_id | standardizedId)|| "-"}}
         <i class="fas fa-external-link-alt external-link-icon"></i>
       </div>
       <div>{{(order_item?.customer?.last_name) + ' ' + (order_item?.customer?.first_name) || "-"}}
@@ -18,13 +18,11 @@
 
     <div class="col app-flex flex-column text-center" style="max-width:200px;">{{order_item?.type == 'in' && "Nhập" || "Xuất"}}</div>
 
-    <div class="col app-flex flex-column text-center" style="max-width:200px;" [ngClass]="{'text-danger': order_item.delete_at, 'text-success': !order_item.delete_at}">{{(!order_item?.delete_at && "Hoàn thành" || "Đã hủy")|| "-"}}</div>
-
     <div class="col app-flex flex-column text-center text-app font-weight-bolder" style="max-width:200px;">{{(order_item?.total_quantity)}}
     </div>
 
     <div class="col app-flex flex-column text-center">{{(order_item?.note || "-")}}</div>
 
-   
+
   </div>
 </div>

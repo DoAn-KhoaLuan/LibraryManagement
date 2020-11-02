@@ -1,3 +1,5 @@
+from library.Common.Req.BorrowTicketReq import CreateBorrowTicketReq
+from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.DAL import BorrowTicketRep
 
 
@@ -11,9 +13,12 @@ def GetBorrowTicketsByPage(req):
     return result
 
 
-def CreateBorrowTicket(req):
-    create_borrow_ticket = BorrowTicketRep.CreateBorrowTicket(req)
-    return create_borrow_ticket
+def CreateBorrowTicket(req: CreateBorrowTicketReq):
+    try :
+        create_borrow_ticket = BorrowTicketRep.CreateBorrowTicket(req)
+        return create_borrow_ticket
+    except ErrorRsp as e:
+        raise e
 
 
 def UpdateBorrowTicket(req):

@@ -72,7 +72,8 @@
                     <img class="product-img h-100" src="assets/images/default-book.png"  alt="">
 
                     <div class="product-quantity">Tồn: {{book.new_amount}}
-                    </div><div class="product-price">123đ</div>
+                    </div>
+                    <div class="product-price">{{book.retail_price | vnd}}</div>
                   </div>
                     <div placement="top" class="product-name-card font-weight-bold">{{book.book_name}}</div>
                   </div>

@@ -72,14 +72,14 @@ export class AccountDetailComponent implements OnInit {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
       this.router.navigateByUrl('admin/account-management/account-list')
     }
-  }  
+  }
 
   ViewToCustomer() {
     this.router.navigateByUrl('admin/customer-management/customer-detail/'+this.accountQuery.getValue().detail_account.customer_id)
@@ -95,7 +95,7 @@ export class AccountDetailComponent implements OnInit {
 
 
   setupDataForm() {
-    let store_detail_account = this.accountQuery.getValue().detail_account; 
+    let store_detail_account = this.accountQuery.getValue().detail_account;
     this.updateAccountForm.patchValue({
       'first_name' :store_detail_account?.first_name,
       'last_name' :store_detail_account?.last_name,
@@ -108,7 +108,7 @@ export class AccountDetailComponent implements OnInit {
       'gender': store_detail_account?.gender,
       'birth_date':this.datePipe.transform(store_detail_account?.birth_day, 'yyyy-MM-dd'),
       'note': store_detail_account?.note,
-      
+
     });
 
   }
@@ -133,7 +133,7 @@ export class AccountDetailComponent implements OnInit {
     //   }
     // });
   }
-  
+
   get account_detail_in_store() {
     return this.accountQuery.getValue().detail_account.supplier.supplier_id
   }
@@ -145,7 +145,7 @@ export class AccountDetailComponent implements OnInit {
       gender: update_account.gender == 'true' ? true : false,
     };
     try{
-      let updated_account = await this.accountService.UpdateAccount(update_req) 
+      let updated_account = await this.accountService.UpdateAccount(update_req)
       this.accountStore.update({detail_account: updated_account})
       toastr.success("Cập nhật sách thành công.")
       this.router.navigateByUrl('admin/account-management/account-list')
@@ -155,7 +155,6 @@ export class AccountDetailComponent implements OnInit {
   }
 
   OpenDeleteModal() {
-    console.log("account ", this.accountQuery.getValue().detail_account)
     const modal = this.modalController.create({
       component: ConfirmDeleteAccountComponent,
       componentProps: {
@@ -166,7 +165,6 @@ export class AccountDetailComponent implements OnInit {
     modal.onDismiss().then(async delete_account => {
       if(delete_account) {
         try {
-          console.log(delete_account)
           await this.accountService.DeleteAccountById(delete_account.account_id)
           this.router.navigateByUrl('admin/account-management/account-list')
           toastr.success("Bạn đã xóa tài khoản thành công")

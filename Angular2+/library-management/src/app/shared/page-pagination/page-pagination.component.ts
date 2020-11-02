@@ -29,12 +29,11 @@ export class PagePaginationComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.paginationOpt.subscribe(data => {
-      console.log(data)
       this.currentPaginationOpt.nextDisabled = data.nextDisabled;
       this.currentPaginationOpt.previousDisabled = data.previousDisabled;
       this.currentPaginationOpt.hidePerpage = data.hidePerpage;
     })
-    
+
   }
 
   ngOnChanges(): void {

@@ -19,7 +19,7 @@ const initState = {
   message_list_view : null,
   filter_page: {
     page: 0,
-    per_page: 10,
+    per_page: 20,
   },
 }
 @Injectable({providedIn: 'root'})

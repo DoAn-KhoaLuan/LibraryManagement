@@ -16,19 +16,17 @@ export class ApiBookService {
   }
 
   async UpdateBook(req) {
-    console.log(req)
     return await this.http.post(this.baseURL+"/admin/book-management/update-book",req).toPromise();
   }
 
   async CreateBook(req) {
-    console.log('req: ', req)
     return await this.http.post(this.baseURL+"/admin/book-management/create-book",req).toPromise();
   }
 
   async SearchBooks(req) {
     return await this.http.post(this.baseURL+"/admin/book-management/search-books",req).toPromise();
   }
-  
+
   async DeleteBook(req) {
     return await this.http.post(this.baseURL+"/admin/book-management/delete-book",req).toPromise();
   }

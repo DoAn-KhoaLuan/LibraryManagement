@@ -17,7 +17,7 @@ export class CustomerListComponent implements OnInit {
   currentPaginationOpt = new PaginationOpt();
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private ref: ChangeDetectorRef,
     private customerQuery: CustomerQuery,
     private customerStore: CustomerStore,
@@ -25,7 +25,6 @@ export class CustomerListComponent implements OnInit {
 
   async ngOnInit() {
     await this.onRequestNewPage();
-    console.log(this.customerQuery.getValue())
   }
 
   async onRequestNewPage() {

@@ -4,7 +4,12 @@
     <p>Day la the item nà</p>
   </ng-template>
   <ng-template #item>
+
     <div class=" d-flex flex-column h-100">
+      <div class="row app-flex">
+        <input type="text" class="form-control rounded-pill col-7 p-4" placeholder="Nhập tên" [(ngModel)]="searchKeyword"/>
+        <div class="btn-app rounded-pill col-1" (click)="SearchBooks()">Tìm kiếm</div>
+      </div>
       <div class="table mt-3">
         <div class="table-header row font-weight-bold text-uppercase ng-star-inserted align-items-center my-3">
           <div class="col text-center text-app" style="max-width: 150px;">Mã sách</div>
@@ -17,7 +22,7 @@
           <div class="col text-center text-app" style="max-width: 200px;">Tổng lượng</div>
         </div>
       </div>
-      <ng-container *ngFor="let book_item of (book_list$ | async)?.items, let i = index">
+      <ng-container *ngFor="let book_item of (book_list$ | async)?.items.slice().reverse(), let i = index">
         <app-book-row [book_item]="book_item" [index]="i" (click)="onViewBookDetail(book_item.book_id)"></app-book-row>
       </ng-container>
       <app-page-pagination class="mt-auto" (navigate)="navigate($event)" [paginationOpt]="current_pagination_opt$" [currentPage]="current_page$ | async">

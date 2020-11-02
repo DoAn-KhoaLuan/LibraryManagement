@@ -72,6 +72,5 @@ def SearchOrders(req: SearchOrdersReq):
                                                   models.Orders.order_id == req.order_id,
                                                   models.Orders.employee_id == req.employee_id,
                                                   models.Orders.order_date == req.order_date)).all()
-    # print(search_orders)
     orders = ConvertModelListToDictList(search_orders)
     return orders

@@ -27,13 +27,12 @@ export class MessageBoxComponent implements OnInit {
         'customer_account_id': this.accountQuery.getValue().auth_info.current_account.account_id
       }
       let conversation = await this.messageService.GetConversationByCustomerAccountId(req);
-      console.log(conversation)
       this.messageService.SetActiveConversation(conversation)
       this.messageService.SetActiveConversationId(conversation['conversation_id'])
     }
 
     this.webSocketService.emit('join', {'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': this.messageQuery.getValue().active_conversation?.conversation_id});
-    
+
     this.webSocketService.listen('message').subscribe(message => {
       this.ListenMessage(message)
     })
@@ -45,7 +44,7 @@ export class MessageBoxComponent implements OnInit {
     }).then(_ => {
       this.messages=this.messageQuery.getValue().messages_list;
     })
-    
+
     this.MessageScrollToBottom()
   }
 

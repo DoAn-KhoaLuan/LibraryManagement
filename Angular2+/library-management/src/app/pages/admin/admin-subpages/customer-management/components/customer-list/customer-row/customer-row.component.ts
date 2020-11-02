@@ -11,7 +11,6 @@ export class CustomerRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.customer_item)
   }
 
 }

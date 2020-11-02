@@ -97,6 +97,9 @@ export class AccountService {
         localStorage.setItem('auth_info', JSON.stringify(this.accountQuery.getValue().auth_info));
     }
 
+    async SessionInfo() {
+      return await this.accountApiService.CheckToken();
+    }
     Logout() {
         this.accountStore.reset();
         localStorage.removeItem('auth_info')

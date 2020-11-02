@@ -1,11 +1,8 @@
-import { async } from '@angular/core/testing';
 import { BookStore } from './../../../../../../states/book-store/book.store';
 import { BookQuery } from './../../../../../../states/book-store/book.query';
 import { BookService } from './../../../../../../states/book-store/book.service';
 import { Router } from '@angular/router';
 import { PaginationOpt, NavigationDirection } from './../../../../../../shared/page-pagination/page-pagination.component';
-import { Subject } from 'rxjs';
-import { ApiBookService } from './../../../../../../API/api-book.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -17,7 +14,8 @@ export class BookListComponent implements OnInit {
   book_list$ = this.bookQuery.book_list_view$;
   current_pagination_opt$ = this.bookQuery.current_pagination_opt$;
   current_page$ = this.bookQuery.current_page$;
-  currentPaginationOpt = new PaginationOpt();
+
+  searchKeyword = '';
 
   constructor(private router: Router, private bookService: BookService, private bookQuery: BookQuery, private bookStore: BookStore, private ref: ChangeDetectorRef) { }
 
@@ -29,6 +27,28 @@ export class BookListComponent implements OnInit {
     await this.bookService.getBooks(this.bookQuery.getValue().filter_page).then(() => {
       this.bookService.setupPagination();
     })
+  }
+
+  async SearchBooks() {
+    if(!this.searchKeyword) {
+      await this.onRequestNewPage();
+    }
+    const req = {
+      book_id: this.searchKeyword,
+      book_name: this.searchKeyword,
+    }
+    let books = await this.bookService.searchBooks(req);
+    let book_view = this.bookStore.getValue().book_list_view;
+    if(books.books.length) {
+      this.bookStore.update({
+        book_list_view: {...book_view,
+          items: books.books,
+          has_next: false,
+          has_prev: false,
+          current_page: 1
+        },
+      })
+    }
   }
 
   async navigate(direction) {

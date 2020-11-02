@@ -11,7 +11,6 @@ export class AccountRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.account_item)
   }
 
 }

@@ -31,7 +31,6 @@ export class ResetPasswordComponent implements OnInit {
   async ResetPassword() {
     try{
       const form_data = this.reset_password_form.value
-      console.log(form_data)
       if(form_data.password != form_data.confirm_password) {
         return toastr.error("Đặt lại mật khẩu mới thất bại", "Mật khẩu nhập lại không chính xác")
       }

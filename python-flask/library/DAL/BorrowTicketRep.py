@@ -21,7 +21,10 @@ def GetBorrowTicketsByPage(req: GetItemsByPageReq):
 
 
 def CreateBorrowTicket(req: CreateBorrowTicketReq):
-
+    is_cus_lending_book = len(ConvertModelListToDictList(models.Borrowtickets.query.filter(models.Borrowtickets.customer_id == req.customer_id and models.Borrowtickets.return_date == None))) > 0
+    if(is_cus_lending_book):
+        raise ErrorRsp(code=400, message='Khách hàng đang có một phiếu mượn khác. Vui lòng hoàn thành phiếu mượn cũ trước khi mượn sách', msg='Khách hàng đang có một phiếu mượn khác. Vui lòng hoàn thành phiếu mượn cũ trước khi mượn sách')
+    print(is_cus_lending_book)
     create_borrow_ticket = models.Borrowtickets(customer_id=req.customer_id,
                                                 employee_id=req.employee_id,
                                                 quantity=len(req.borrow_book_ids),
@@ -32,16 +35,13 @@ def CreateBorrowTicket(req: CreateBorrowTicketReq):
     db.session.begin_nested()
     db.session.add(create_borrow_ticket)
     db.session.commit()
-    print(create_borrow_ticket.serialize())
     count = 0
     for borrow_ticket_detail in req.borrow_book_ids:
         borrow_book = models.Books.query.get(borrow_ticket_detail)
         count += 1
         if borrow_book and count <= 3:
-            models.Books.old_amount -= 1
-            new_borrow_ticket_detail = models.Borrowticketdetails(book_id=borrow_ticket_detail,
-                                                                  borrow_ticket_id=create_borrow_ticket.serialize()[
-                                                                      'borrow_ticket_id'])
+            borrow_book.old_amount -= 1
+            new_borrow_ticket_detail = models.Borrowticketdetails(book_id=borrow_ticket_detail,borrow_ticket_id=create_borrow_ticket.serialize()['borrow_ticket_id'])
             create_borrow_ticket.borrow_ticket_detail.append(new_borrow_ticket_detail)
         else:
             db.session.rollback()
@@ -74,15 +74,8 @@ def DeleteBorrowTicket(req: DeleteBorrowTicketReq):
 
 
 def SearchBorrowTicket(req: SearchBorrowTicketReq):
-    search_borrow_ticket = models.Borrowtickets.query.filter(or_(models.Borrowtickets.customer_id == req.customer_id,
-                                                                 models.Borrowtickets.employee_id == req.employee_id,
-                                                                 models.Borrowtickets.borrow_date == req.borrow_date,
-                                                                 models.Borrowtickets.return_date == req.return_date,
-                                                                 models.Borrowtickets.status == req.status,
-                                                                 models.Borrowtickets.borrow_ticket_id == req.borrow_ticket_id,
-                                                                 )).all()
-    # first = search_borrow_ticket[0]
-    # print(first.books)
+    search_borrow_ticket = models.Borrowtickets.query.filter(or_(models.Borrowtickets.customer_id == req.customer_id,models.Borrowtickets.employee_id == req.employee_id,models.Borrowtickets.borrow_ticket_id == req.borrow_ticket_id)).all()
+
     borrow_tickets = ConvertModelListToDictList(search_borrow_ticket)
     return borrow_tickets
 

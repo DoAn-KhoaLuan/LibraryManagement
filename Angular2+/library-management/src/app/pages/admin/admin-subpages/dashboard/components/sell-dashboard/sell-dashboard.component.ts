@@ -79,7 +79,7 @@ export class SellDashboardComponent implements OnInit {
 
     var options = {
       title: "Doanh thu trong tháng",
-      bar: {groupWidth: "50%"},
+      bar: {groupWidth: "75%"},
       legend: { position: "none" },
     };
     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));

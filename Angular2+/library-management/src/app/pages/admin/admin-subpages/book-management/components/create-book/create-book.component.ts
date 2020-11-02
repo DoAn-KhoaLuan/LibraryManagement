@@ -109,7 +109,6 @@ export class CreateBookComponent implements OnInit {
         supplier_id: book_data.supplier.supplier_id,
         author_id: book_data.author.author_id,
       }
-      console.log(book_req)
       let created_book = await this.bookService.CreateBook(book_req)
       this.router.navigateByUrl(`/admin/book-management/book-detail/${created_book.book_id}`);
       toastr.success("Tạo mới sách thành công.");
@@ -120,7 +119,7 @@ export class CreateBookComponent implements OnInit {
 
   goBack() {
     this.router.navigateByUrl('admin/book-management/book-list')
-  }  
+  }
 
   OpenAddAuthorModal() {
     const modal = this.modalController.create({
@@ -138,7 +137,7 @@ export class CreateBookComponent implements OnInit {
         } catch(e) {
           toastr.error("Thêm mới tác giả thất bại.", e.msg || e.message)
         }
-      
+
       }
     });
   }
@@ -161,7 +160,7 @@ export class CreateBookComponent implements OnInit {
         } catch(e) {
           toastr.error("Thêm mới thể loại sách thất bại.", e.msg || e.message)
         }
-      
+
       }
     });
   }
@@ -192,7 +191,6 @@ export class CreateBookComponent implements OnInit {
       let fd = new FormData();
       fd.append('image', event.target.files[0], event.target.files[0].name)
       let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
-      console.log(res)
       this.createBookForm.patchValue({
         image: res.image
       })

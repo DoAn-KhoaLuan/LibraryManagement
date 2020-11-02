@@ -33,7 +33,6 @@ def CreateOrder():
 def RedirectMomoPage():
     req = CreateOrderReq(request.json)
     res = OrderSvc.CreateOrderByMomo(req)
-    print(res)
     if res['errorCode'] == 0:
         result = OrderSvc.CreateOrder(req)
     return jsonify(res)
@@ -62,5 +61,4 @@ def SearchOrders():
 
 @app.route("/admin/order-management/test-create-order-momo", methods=['POST', 'GET'])
 def TestCreateOrder():
-    print("HẢI DEP TRAI QUÁ, ĐÂY LÀ TEST CREATE ORDER MOMOO")
     return jsonify({'test': 111})
