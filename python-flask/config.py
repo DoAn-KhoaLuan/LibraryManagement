@@ -1,5 +1,7 @@
+import urllib
+
 SECRET_KEY = "SERECT-KEY-IS-SECRET"
-SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:@localhost/doan"
+SQLALCHEMY_DATABASE_URI = "mssql+pyodbc://sa:123456@DESKTOP-63Q49CT/doan?driver=SQL+Server"
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 MAIL_SERVER = 'smp.googlemail.com'
 MAIL_USERNAME = "shinichi24567@gmail.com"

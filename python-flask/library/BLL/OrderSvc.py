@@ -3,7 +3,7 @@ import hmac
 import json
 import urllib
 import uuid
-
+from library.Common.util import phone
 from library.Common.Req.OrderReq import CreateOrderReq
 from library.Common.Rsp.SingleRsp import ErrorRsp
 from library.DAL import OrderRep
@@ -29,6 +29,7 @@ def GetOrdersByPage(req):
 def CreateOrder(req):
     try:
         create_order = OrderRep.CreateOrder(req)
+        phone('Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!')
         return create_order
     except ErrorRsp as e:
         raise e
@@ -77,6 +78,7 @@ def CreateOrderByMomo(req: CreateOrderReq):
 
     response = f.read()
     f.close()
+    phone('cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!')
     return json.loads(response)
 
 def UpdateOrder(req):
