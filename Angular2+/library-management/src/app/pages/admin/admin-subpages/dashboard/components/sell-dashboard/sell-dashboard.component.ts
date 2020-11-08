@@ -29,7 +29,7 @@ export class SellDashboardComponent implements OnInit {
     revenues.forEach(revenue => {
       let revenueItem = []
       let date = new Date(revenue.date)
-      revenueItem.push(date.getDate() + '-' + date.getMonth());
+      revenueItem.push(date.getDate() + '-' + (date.getMonth()+1));
       revenueItem.push(revenue.revenue);
       revenueItem.push("stroke-width: 100");
       revenueData.push(revenueItem);

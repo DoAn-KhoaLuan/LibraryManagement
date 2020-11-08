@@ -11,6 +11,22 @@
     <div class=" col-12 d-flex flex-column">
       <div class="d-flex flex-column">
         <div class="row py-3">
+          <div class="col-2 app-flex"><b>Ảnh đại diện: </b></div>
+          <div class="col-9 text-center">
+            <label class="logo-upload m-0 border rounded "
+                   [style.background-image]="'url(' + (update_form.value.image || 'assets/images/default-avatar.png') + ')'">
+              <div class="mask pt-2">Upload ảnh <i class="fas fa-cloud-upload-alt text-white"></i></div>
+              <div class="over-logo rounded m-0 p-0">
+                <i class="fa fa-camera" aria-hidden="true"></i>
+              </div>
+              <div class="upload-loading m-0 p-0">
+                <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
+              </div>
+              <input accept="image/png,image/jpg,image/jpeg,image/gif" name = "file"  class="d-none" type="file" (change)="onChangeLogo($event)"/>
+            </label>
+          </div>
+        </div>
+        <div class="row py-3">
           <div class="col-2 app-flex"><b>Họ: </b></div>
           <div class="col-9">
             <input type="text" class="form-control" placeholder="Nhập họ" formControlName="last_name"
@@ -57,7 +73,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-app btn-outline-app" (click)="dismissModal()">Đóng</button>

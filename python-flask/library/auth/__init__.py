@@ -13,6 +13,10 @@ from library.DAL import EmployeeRep, CustomerRep
 @app.route('/update-session-info', methods=['POST', 'GET'])
 def UpdateSessionInfo():
     auth_headers = request.headers.get('Authorization', '').split()
+    not_authenticated_msg = {
+        'message': 'Bạn không có quyền truy cập.',
+        'authenticated': False
+    }
     invalid_msg = {
         'message': 'Token không hợp lệ.',
         'authenticated': False
@@ -21,9 +25,10 @@ def UpdateSessionInfo():
         'message': 'Token hết hạn sử dụng.',
         'authenticated': False
     }
-
+    print(auth_headers)
     if len(auth_headers) != 2:
-        return jsonify(invalid_msg), 401
+        print("leng khac 2 na")
+        return jsonify(not_authenticated_msg)
     try:
         token = auth_headers[1]
         data = jwt.decode(token, app.config['SECRET_KEY'])
@@ -51,6 +56,11 @@ def token_required(f):
     def _verify():
         auth_headers = request.headers.get('Authorization', '').split()
 
+        not_authenticated_msg = {
+            'message': 'Bạn không có quyền truy cập.',
+            'authenticated': False
+        }
+
         invalid_msg = {
             'message': 'Token không hợp lệ.',
             'authenticated': False
@@ -61,7 +71,7 @@ def token_required(f):
         }
 
         if len(auth_headers) != 2:
-            return jsonify(invalid_msg), 401
+            return jsonify(not_authenticated_msg), 401
         try:
             token = auth_headers[1]
             data = jwt.decode(token, app.config['SECRET_KEY'])

@@ -38,7 +38,7 @@ def CreateOrderByMomo(req: CreateOrderReq):
     partnerCode = "MOMOY1ZA20200907" #busssiness momo
     accessKey = "rVuWIV2U6YHmb803"#busssiness momo
     serectkey = "EQeEkD4sirbclirmqPv5qXDrcLu2h5EZ"#busssiness momo
-    orderInfo = "pay with MoMo" #hieenj lên thông tin info
+    orderInfo = "Thanh toán bằng Momo" #hieenj lên thông tin info
     returnUrl = "http://localhost:4200/admin/pos-management" # redicrect sau đi hoàn tất thanh toán
     notifyUrl = "http://localhost:5000/admin/order-management/test-create-order-momo"
     amount = str(req.total) #Số tiền của hóa đơn
@@ -94,7 +94,7 @@ def SearchOrders(req):
     for order in search_orders:
         total_quantity = 0
         for order_detail in order['order_details']:
-            total_quantity = order_detail['quantity']
+            total_quantity += order_detail['quantity']
         order['total_quantity'] = total_quantity
 
     return search_orders

@@ -10,6 +10,7 @@ import { BookService } from 'src/app/states/book-store/book.service';
 import { AddSupplierModalComponent } from '../add-supplier-modal/add-supplier-modal.component';
 import { AddCategoryModalComponent } from '../add-category-modal/add-category-modal.component';
 import { AddAuthorModalComponent } from '../add-author-modal/add-author-modal.component';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-book-detail',
@@ -37,7 +38,9 @@ export class BookDetailComponent implements OnInit, OnChanges {
     private ref: ChangeDetectorRef,
     private route: ActivatedRoute,
     private modalController: ModalController,
-    private bookStore: BookStore) { }
+    private bookStore: BookStore,
+    private http: HttpClient,
+  ) { }
 
     updateBookForm = this.fb.group({
       book_id: [''],
@@ -134,6 +137,8 @@ export class BookDetailComponent implements OnInit, OnChanges {
       'old_amount': store_detail_book?.old_amount,
       'new_amount': store_detail_book?.new_amount,
       'note': store_detail_book?.note,
+      'image': store_detail_book?.image,
+
     });
 
   }
@@ -227,5 +232,19 @@ export class BookDetailComponent implements OnInit, OnChanges {
 
   get author() {
     return  this.bookQuery.getValue().detail_book.author;
+  }
+
+  async onChangeLogo(event) {
+    try{
+      let fd = new FormData();
+      fd.append('image', event.target.files[0], event.target.files[0].name)
+      let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
+      this.updateBookForm.patchValue({
+        image: res.image
+      })
+    }
+    catch(e){
+      toastr.error("Cập nhật ảnh thất bại!", e.msg || e.message)
+    }
   }
 }

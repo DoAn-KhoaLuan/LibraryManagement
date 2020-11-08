@@ -59,15 +59,15 @@ def UpdateBook():
 
 
 @app.route('/admin/book-management/search-books', methods=['POST'])
-def SearchBook():
+def SearchBooks():
     req = SearchBookReq(request.json)
-    result = BookSvc.SearchBook(req)
+    result = BookSvc.SearchBooks(req)
     res = SearchBookRsp(result).serialize()
     return jsonify(res)
 
 @app.route('/admin/book-management/upload-book-image', methods=['POST'])
 def UploadBookImage():
-    import cloudinary, cloudinary.uploader
+    import cloudinary.uploader
     file = request.files['image']
     tail_image = file.filename.split('.')[1]
     filename = secure_filename(str(randint(1,10000000000000))+'.'+tail_image)

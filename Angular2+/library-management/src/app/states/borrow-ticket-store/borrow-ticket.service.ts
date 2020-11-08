@@ -75,6 +75,9 @@ export class BorrowTicketService {
         return await this.borrowTicketApiService.FinishBorrowTicket(req);
     }
 
+    async SendEmailForLateTicket(email, message){
+
+    }
     async GetCategories(filter) {
         let category_res = await this.categoryApiService.GetCategories(filter);
         this.borrowTicketStore.update({categories: category_res['items']})
@@ -102,5 +105,9 @@ export class BorrowTicketService {
 
     async CreateBorrowTicket(borrowticket) {
         return await this.borrowTicketApiService.CreateBorrowTicket(borrowticket)
+    }
+
+    async SendEmailForLateBorrowTicket(info) {
+      return await this.borrowTicketApiService.SendEmailForLateBorrowTicket(info)
     }
 }

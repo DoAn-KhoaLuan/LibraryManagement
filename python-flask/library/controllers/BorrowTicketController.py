@@ -4,7 +4,7 @@ import json
 
 from library.BLL import BorrowTicketSvc
 from library.Common.Req.BorrowTicketReq import CreateBorrowTicketReq, UpdateBorrowTicketReq, DeleteBorrowTicketReq, \
-    SearchBorrowTicketReq, FinishBorrowTicketReq
+    SearchBorrowTicketReq, FinishBorrowTicketReq, SendEmailForLateBorrowTicketReq
 from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.Common.Rsp.BorrowTicketRsp import SearchBorrowTicketRsp
 from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
@@ -57,3 +57,9 @@ def SearchBorrowTicket():
     result = BorrowTicketSvc.SearchBorrowTicket(req)
     res = SearchBorrowTicketRsp(result).serialize()
     return jsonify(res)
+
+@app.route('/admin/borrow-ticket-management/send-email-for-late-borrow-ticket', methods=['POST', 'GET'])
+def SendEmailForLateBorrowTicket():
+    req = SendEmailForLateBorrowTicketReq(request.json)
+    result = BorrowTicketSvc.SendMessageForLate(req)
+    return jsonify(result)

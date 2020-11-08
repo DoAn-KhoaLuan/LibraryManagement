@@ -45,8 +45,9 @@
 }
 
 .upload-photo-wrapper {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem!important;
+    height: 6rem!important;
+    object-fit: cover;
 }
 
 .line-logo {

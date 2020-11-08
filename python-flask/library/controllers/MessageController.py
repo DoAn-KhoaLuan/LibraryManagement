@@ -11,6 +11,7 @@ from library.Common.Rsp.MessageRsp import SendMessageRsp
 
 @app.route('/message/get-messages', methods=['POST', 'GET'])
 def GetMessages(): #page = 0, là lấy page cuối cùng, những tin nhắn mới nhất
+    print("request na", request.json)
     req = GetMessagesInConversationByFilterReq(request.json)
     result = MessageSvc.GetMessagesInConversationByPage(req)
     res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
@@ -42,17 +43,21 @@ def on_message(data):
     result = MessageSvc.SendMessage(req)
     res = SendMessageRsp(result).serialize()
     room = data["room"]
+    print("on message naf")
     send(res, room=room)
 
 
 @socketio.on('join')
 def on_join(data):
     """User joins a room"""
+    print('data', data)
     session['auth_info']=data['auth_info']
     room = data["room"]
-    join_room(room)
+    print('data: ', data)
 
-    send({"content" : "Someone has joined the room."}, room=room)
+    join_room(room)
+    print('join na')
+    # send({"msg":"Someone has join the room"}, room=room)
 
 
 @socketio.on('leave')

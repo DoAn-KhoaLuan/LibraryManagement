@@ -29,8 +29,8 @@ def UpdateBook(req):
     return book
 
 
-def SearchBook(req):
-    book = BookRep.SearchBook(req)
-    return book
+def SearchBooks(req):
+    books = BookRep.SearchBooks(req)
+    return books
 
 
