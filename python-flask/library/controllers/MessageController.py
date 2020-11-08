@@ -11,6 +11,7 @@ from library.Common.Rsp.MessageRsp import SendMessageRsp
 
 @app.route('/message/get-messages', methods=['POST', 'GET'])
 def GetMessages(): #page = 0, là lấy page cuối cùng, những tin nhắn mới nhất
+    print("request na", request.json)
     req = GetMessagesInConversationByFilterReq(request.json)
     result = MessageSvc.GetMessagesInConversationByPage(req)
     res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
