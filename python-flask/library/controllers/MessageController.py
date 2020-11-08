@@ -42,17 +42,21 @@ def on_message(data):
     result = MessageSvc.SendMessage(req)
     res = SendMessageRsp(result).serialize()
     room = data["room"]
+    print("on message naf")
     send(res, room=room)
 
 
 @socketio.on('join')
 def on_join(data):
     """User joins a room"""
+    print('data', data)
     session['auth_info']=data['auth_info']
     room = data["room"]
-    join_room(room)
+    print('data: ', data)
 
-    send({"content" : "Someone has joined the room."}, room=room)
+    join_room(room)
+    print('join na')
+    # send({"msg":"Someone has join the room"}, room=room)
 
 
 @socketio.on('leave')

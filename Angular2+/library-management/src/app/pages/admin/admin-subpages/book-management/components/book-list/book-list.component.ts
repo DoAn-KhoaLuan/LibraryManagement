@@ -34,7 +34,6 @@ export class BookListComponent implements OnInit {
       await this.onRequestNewPage();
     }
     const req = {
-      book_id: this.searchKeyword,
       book_name: this.searchKeyword,
     }
     let books = await this.bookService.searchBooks(req);

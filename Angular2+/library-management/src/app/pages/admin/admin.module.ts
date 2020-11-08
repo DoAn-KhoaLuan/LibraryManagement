@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './admin-routing.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
+import { SendEmailModalComponent } from './admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/send-email-modal/send-email-modal.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { AdminComponent } from './admin.component';
     MaterialModule,
     SidebarMenuModule
   ],
-  declarations: [AdminComponent, BookManagementComponent],
+  declarations: [AdminComponent, BookManagementComponent, SendEmailModalComponent],
   exports: [BookManagementComponent]
 })
 export class AdminModule { }

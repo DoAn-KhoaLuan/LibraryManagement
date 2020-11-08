@@ -69,7 +69,7 @@
               <ng-container *ngFor="let book of books">
                 <div class="product-card" (click)="AddToChart(book)">
                   <div  class="product-card-item"><div class="box-card">
-                    <img class="product-img h-100" src="assets/images/default-book.png"  alt="">
+                    <img class="product-img h-100" [src]="book?.image || 'assets/images/default-book.png'"  alt="" style="width: 120px!important; height: 180px!important;object-fit: cover">
 
                     <div class="product-quantity">Tồn: {{book.new_amount}}
                     </div>

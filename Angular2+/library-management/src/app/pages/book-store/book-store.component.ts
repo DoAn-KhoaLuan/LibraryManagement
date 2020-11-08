@@ -32,9 +32,9 @@ export class BookStoreComponent implements OnInit {
 
     this.webSocketService.emit('join', {'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': this.messageQuery.getValue().active_conversation?.conversation_id});
 
-    this.webSocketService.listen('message').subscribe(message => {
-      this.ListenMessage(message)
-    })
+    // this.webSocketService.listen('message').subscribe(message => {
+    //   this.ListenMessage(message)
+    // })
 
     await this.messageService.GetMoreMessageAndPushIntoStore({
       page:0,

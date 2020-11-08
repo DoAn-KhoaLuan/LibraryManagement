@@ -43,7 +43,7 @@ def DeleteAccount():
     return jsonify(res.serialize())
 
 
-@app.route('/admin/account-management/search-accounts', methods=['POST'])
+@app.route('/admin/account-management/get-account', methods=['POST'])
 def SearchAccounts():
     req = SearchAccountsReq(request.json)
     info_accounts = AccountSvc.SearchAccounts(req)

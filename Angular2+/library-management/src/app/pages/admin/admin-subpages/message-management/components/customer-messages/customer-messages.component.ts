@@ -13,9 +13,9 @@ import { Subscription } from 'rxjs';
 export class CustomerMessagesComponent implements OnInit, OnDestroy {
   @ViewChild('mes',{static: false}) message: ElementRef;
   chatText =''
-  is_loading = false; 
- 
-  listen_message$: Subscription 
+  is_loading = false;
+
+  listen_message$: Subscription
   all_conversations$ = this.messageQuery.all_conversations$
   active_conversation$ = this.messageQuery.active_conversation$
 
@@ -65,9 +65,9 @@ export class CustomerMessagesComponent implements OnInit, OnDestroy {
       let message_account_id_from_server = message['account_id'];
       let customer_account_id = this.messageQuery.getValue().active_conversation.account.account_id;
       const isReplyMessage = message_account_id_from_server == customer_account_id;
-  
+
       message.type = isReplyMessage ? 'reply' : 'send';
-  
+
       let store_all_conversations = this.messageQuery.getValue().all_conversations;
       let conversation_of_message = store_all_conversations.find(conv => message.conversation_id == conv.conversation_id)
 
@@ -87,7 +87,7 @@ export class CustomerMessagesComponent implements OnInit, OnDestroy {
         let index = store_all_conversations.findIndex(conv => conversation_of_message['conversation_id']  == conv['conversation_id'])
         store_all_conversations.splice(index, 1)
         store_all_conversations.unshift(swap_conversation_of_message)
-        this.SetActiveConversation(swap_conversation_of_message)
+        // this.SetActiveConversation(swap_conversation_of_message)
       }
 
       this.messageService.UpdateAllConversations(store_all_conversations)

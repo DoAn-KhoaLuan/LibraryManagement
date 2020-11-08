@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col align-self-center  text-center text-app font-weight-bold" style="max-width: 150px;">{{employee_item?.employee_id | standardizedId}}</div>
       <div class="col align-self-center text-center" style="max-width: 150px;">
-        <img [src]="employee_item?.image || 'assets/images/default-book.png'"
+        <img [src]="employee_item?.image || 'assets/images/default-avatar.png'"
              style="height: 80px; width: 60px; object-fit: cover;" alt="" />
       </div>
       <div class="col align-self-center text-center text-app "><b>{{employee_item?.last_name + ' ' + employee_item?.first_name || "-"}}</b></div>
@@ -13,4 +13,3 @@
       <div class="col align-self-center text-center" >{{employee_item?.note || "-"}}</div>
     </div>
   </div>
-  

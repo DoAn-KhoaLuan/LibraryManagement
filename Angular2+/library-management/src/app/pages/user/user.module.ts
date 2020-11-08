@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { PipeModule } from 'src/app/pipes/pipe/pipe.module';
 import { MaterialModule } from 'src/app/shared/material.module';
+import {ShareComponentModule} from "../components/share-component.module";
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { MaterialModule } from 'src/app/shared/material.module';
     PipeModule,
     ReactiveFormsModule,
     MaterialModule,
-    
+    ShareComponentModule
   ],
   declarations: [UserComponent, UserRegisterAccountComponent, UserLoginComponent]
 })

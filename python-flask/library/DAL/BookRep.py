@@ -66,13 +66,19 @@ def UpdateBook(req):
     return book
 
 
-def SearchBook(req: SearchBookReq):
+def SearchBooks(req: SearchBookReq):
+    print("name", req.book_name)
+    print("id", req.book_id)
+    if(req.book_id):
+        model_books = models.Books.query.filter(models.Books.book_id == req.book_id)
+        return ConvertModelListToDictList(model_books)
+
     model_books = models.Books.query.filter(or_(
-            models.Books.book_id == req.book_id,
-            models.Books.book_name == req.book_name,
-            models.Books.author_id == req.author_id,
-            models.Books.category_id == req.category_id,
-            models.Books.supplier_id == req.supplier_id,
+            models.Books.book_name.contains(req.book_name),
+            # models.Books.author_id == req.author_id,
+            # models.Books.category_id == req.category_id,
+            # models.Books.supplier_id == req.supplier_id,
     )).all()
+    print(model_books)
     books = ConvertModelListToDictList(model_books)
     return books

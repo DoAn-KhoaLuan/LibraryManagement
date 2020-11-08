@@ -4,7 +4,7 @@
   </div>
   <ng-container *ngIf="!isEditing, else updateForm">
     <div class="d-flex flex-row p-5 mb-4">
-      <div class="avatar col-3 mb-4"> 
+      <div class="avatar col-3 mb-4">
         <div class="d-flex flex-column app-flex">
           <img [src]="(detail_account$ | async)?.image || 'assets/images/default-avatar.png'" style="height: 400px; width: 300px; object-fit: cover;" alt="Avatar" />
           <h1 class="text-app text-left font-weight-bold text-center my-4" *ngIf="(detail_account$ | async)?.account?.role?.role_id == 1 || (detail_account$ | async)?.account?.role?.role_id == 2">Mã nhân viên: <b (click)="ViewToEmployee()"  class="cursor-pointer">
@@ -55,7 +55,7 @@
                 <span style="width: 60px;">Xóa bỏ</span>
               </div>
               <div class="btn-app  align-self-center" (click)="OpenChangePasswordModal()">
-                <span>Đổi mật khẩu</span>
+                <span>Đặt lại mật khẩu</span>
               </div>
             </div>
           </div>
@@ -158,6 +158,6 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   </ng-template>
 </ng-container>

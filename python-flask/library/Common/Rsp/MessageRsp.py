@@ -1,6 +1,5 @@
 class SendMessageRsp():
     def __init__(self, req):
-        print('self is read na ', req['is_read'])
         self.message_id = req['message_id'] if req['message_id'] else None
         self.conversation_id = req['conversation_id'] if req['conversation_id'] else None
         self.content = req['content'] if req['content'] else None

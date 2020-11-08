@@ -7,7 +7,7 @@
       <div class="d-flex flex-column flex-app">
         <div class="product-detail-img">
           <label class="logo-upload m-0 border rounded h-100 w-75"
-            [style.background-image]="'url(' + (createBookForm.value.image || 'assets/images/default-avatar.png') + ')'">
+            [style.background-image]="'url(' + (createBookForm.value.image || 'assets/images/default-book.png') + ')'">
             <div class="mask pt-2">Upload ảnh <i class="fas fa-cloud-upload-alt text-white"></i></div>
             <div class="over-logo rounded m-0 p-0">
               <i class="fa fa-camera" aria-hidden="true"></i>
@@ -18,7 +18,7 @@
             <input accept="image/png,image/jpg,image/jpeg,image/gif" name = "file"  class="d-none" type="file" (change)="onChangeLogo($event)"/>
           </label>
         </div>
-        <h1 class="text-app text-center font-weight-bold">Ảnh bìa</h1>
+        <h1 class="text-app text-center font-weight-bold">Tải ảnh bìa</h1>
       </div>
     </div>
     <div class=" col-9 d-flex flex-column">

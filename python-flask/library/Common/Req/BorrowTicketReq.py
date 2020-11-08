@@ -30,6 +30,10 @@ class DeleteBorrowTicketReq():
     def __init__(self, req):
         self.borrow_ticket_id = req['borrow_ticket_id'] if 'borrow_ticket_id' in req else None
 
+class SendEmailForLateBorrowTicketReq():
+    def __init__(self, req):
+        self.message = req['message'] if 'message' in req else None
+        self.customer_email = req['customer_email'] if 'customer_email' in req else None
 
 class SearchBorrowTicketReq():
     def __init__(self, req):

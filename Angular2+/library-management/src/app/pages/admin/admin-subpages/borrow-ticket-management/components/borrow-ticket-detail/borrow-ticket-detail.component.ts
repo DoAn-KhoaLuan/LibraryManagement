@@ -8,6 +8,7 @@ import { Component, OnInit, Input, OnChanges, ChangeDetectorRef } from '@angular
 import { FormBuilder } from '@angular/forms';
 import { BorrowTicketService } from 'src/app/states/borrow-ticket-store/borrow-ticket.service';
 import { ConfirmFinishBorrowTicketModalComponent } from '../borrow-ticket-list/confirm-finish-borrow-ticket-modal/confirm-finish-borrow-ticket-modal.component';
+import {SendEmailModalComponent} from "./send-email-modal/send-email-modal.component";
 
 @Component({
   selector: 'app-borrow-ticket-detail',
@@ -23,7 +24,7 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
   borrow_status: any =  "Hoàn thành"  || "Trả trễ" || "Đang trễ" || "Đang mượn";
   isEditing = false;
   detail_borrow_ticket$ = this.borrowTicketQuery.detail_borrow_ticket$;
-
+  isSendEmail = false;
 
   constructor(
     private borrowTicketQuery: BorrowTicketQuery,
@@ -64,7 +65,7 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
     }
     const res = await this.borrowTicketService.searchBorrowTickets(borrow_ticket_id);
     const detail_borrow_ticket = res.borrow_tickets[0];
-    
+
     this.borrowTicketService.setDetailBorrowTicket(detail_borrow_ticket);
 
     const current_date = new Date().getTime();
@@ -85,14 +86,14 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
       this.router.navigateByUrl('admin/borrow-ticket-management/borrow-ticket-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -120,7 +121,7 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
   }
 
   setupDataForm() {
-    let store_detail_borrow_ticket = this.borrowTicketQuery.getValue().detail_borrow_ticket; 
+    let store_detail_borrow_ticket = this.borrowTicketQuery.getValue().detail_borrow_ticket;
     this.updateBorrowTicketForm.patchValue({
       'borrow_ticket_id': store_detail_borrow_ticket?.borrow_ticket_id,
       'borrow_ticket_name': store_detail_borrow_ticket?.borrow_ticket_name,
@@ -138,7 +139,7 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
     });
 
   }
-  
+
 
   async UpdateBorrowTicket() {
     let update_borrow_ticket = this.updateBorrowTicketForm.value;
@@ -149,7 +150,7 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
       author_id: update_borrow_ticket.author.author_id,
     };
     try {
-      let updated_borrow_ticket = await this.borrowTicketService.UpdateBorrowTicket(update_req) 
+      let updated_borrow_ticket = await this.borrowTicketService.UpdateBorrowTicket(update_req)
       this.borrowTicketStore.update({detail_borrow_ticket: updated_borrow_ticket})
       toastr.success("Cập nhật sách thành công.")
       this.router.navigateByUrl('admin/borrow-ticket-management/borrow-ticket-list')
@@ -184,6 +185,33 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
   }
 
   get author() {
-    return  this.borrowTicketQuery.getValue().detail_borrow_ticket.author; 
+    return  this.borrowTicketQuery.getValue().detail_borrow_ticket.author;
+  }
+
+  async openSendEmailModal() {
+      const modal = this.modalController.create({
+        component: SendEmailModalComponent,
+        cssClass: 'modal-lg',
+        componentProps: {
+        },
+      });
+      modal.show().then();
+      modal.onDismiss().then(async message => {
+        if(message) {
+          try {
+            const customerEmail = this.borrowTicketQuery.getValue().detail_borrow_ticket.customer.email;
+            const req = {
+              customer_email : customerEmail,
+              message: message
+            }
+            await this.borrowTicketService.SendEmailForLateBorrowTicket(req);
+            this.isSendEmail = true;
+            toastr.success("Bạn đã gửi email nhắc nhở thành công");
+          } catch(e) {
+            toastr.error("Bạn đã gửi email nhắc nhở không thành công", e.msg || e.message)
+          }
+        }
+      });
+
   }
 }

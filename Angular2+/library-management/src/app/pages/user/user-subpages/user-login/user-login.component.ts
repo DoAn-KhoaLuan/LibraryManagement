@@ -36,7 +36,7 @@ export class UserLoginComponent implements OnInit {
         password: login_form_data.password,
       }
       await this.accountService.Login(login_req)
-      this.router.navigateByUrl('book-store')
+      this.router.navigateByUrl('user')
       toastr.success("Đăng nhập thành công")
     } catch(e) {
       toastr.error("Đăng nhập thất bại", e.msg || e.message)
