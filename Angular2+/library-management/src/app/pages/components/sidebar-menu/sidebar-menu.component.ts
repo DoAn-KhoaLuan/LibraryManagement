@@ -61,7 +61,12 @@ export class SidebarMenuComponent implements OnInit {
       routerLink: "supplier-management"
 
     },
+    {
+      iconHtml:`<i class="fa fa-2x fa fa-calendar" aria-hidden="true"></i>`,
+      itemTitle: "Quản lý ca làm",
+      routerLink: "schedule-management"
 
+    },
     {
       iconHtml:`<i class="fa fa-2x fa-user-circle" aria-hidden="true"></i>`,
       itemTitle: "Quản lý tài khoản",

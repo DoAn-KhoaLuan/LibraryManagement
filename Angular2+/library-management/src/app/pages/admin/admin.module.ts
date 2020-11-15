@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { SendEmailModalComponent } from './admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/send-email-modal/send-email-modal.component';
+import { ScheduleManagementComponent } from './admin-subpages/schedule-management/schedule-management.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { SendEmailModalComponent } from './admin-subpages/borrow-ticket-manageme
     MaterialModule,
     SidebarMenuModule
   ],
-  declarations: [AdminComponent, BookManagementComponent, SendEmailModalComponent],
+  declarations: [AdminComponent, BookManagementComponent, SendEmailModalComponent, ScheduleManagementComponent],
   exports: [BookManagementComponent]
 })
 export class AdminModule { }

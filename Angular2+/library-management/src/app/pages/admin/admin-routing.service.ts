@@ -61,6 +61,7 @@ import { EmployeeMessagesComponent } from './admin-subpages/message-management/c
 import {DashboardComponent} from "./admin-subpages/dashboard/dashboard.component";
 import { SellDashboardComponent } from './admin-subpages/dashboard/components/sell-dashboard/sell-dashboard.component';
 import {ShareComponentModule} from "../components/share-component.module";
+import {ScheduleManagementComponent} from "./admin-subpages/schedule-management/schedule-management.component";
 
 const routes: Routes = [
     { path: '', component: AdminComponent, children: [
@@ -113,7 +114,6 @@ const routes: Routes = [
             { path: '**', redirectTo: 'borrow-ticket-list' },
         ]},
         { path: 'pos-management', component: POSComponent, children:[
-
           ]},
         { path: 'order-management', component: OrderManagementComponent, children:[
             { path: 'order-list', component: OrderListComponent},
@@ -132,6 +132,12 @@ const routes: Routes = [
             { path: 'management-dashboard', component: ManagementDashboardComponent},
             { path: '', redirectTo: 'sell-dashboard',pathMatch: 'full'},
             { path: '**', redirectTo: 'sell-dashboard' },
+          ]},
+        { path: 'schedule-management', component: ScheduleManagementComponent, children:[
+            // { path: 'schedule-list', component: CustomerMessagesComponent},
+            // { path: 'employee-messages', component: EmployeeMessagesComponent},
+            { path: '', redirectTo: 'schedule-list',pathMatch: 'full'},
+            { path: '**', redirectTo: 'schedule-list' },
           ]},
         { path: '', redirectTo: 'book-management',pathMatch: 'full'},
         { path: '**', redirectTo: 'book-management' },
