@@ -67,8 +67,6 @@ def UpdateBook(req):
 
 
 def SearchBooks(req: SearchBookReq):
-    print("name", req.book_name)
-    print("id", req.book_id)
     if(req.book_id):
         model_books = models.Books.query.filter(models.Books.book_id == req.book_id)
         return ConvertModelListToDictList(model_books)

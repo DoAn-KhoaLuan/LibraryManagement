@@ -2,7 +2,7 @@
   <div class="row d-flex flex-row">
 
     <div class="col font-weight-bold text-app app-flex flex-column text-center" style="max-width:200px;">
-      {{(order_item?.order_id| standardizedId) || "-"}}
+      {{(order_item?.order_id | standardizedId) || "-"}}
     </div>
 
     <div class="col font-weight-bold text-app app-flex flex-column text-center" style="max-width:200px;">
@@ -16,7 +16,7 @@
     <div class="col app-flex flex-column text-center text-app font-weight-bolder" style="max-width:200px;">{{(order_item?.total | vnd)}}
     </div>
 
-    <div class="col app-flex flex-column text-center" style="max-width:200px;">{{order_item?.type == 'in' && "Nhập" || "Xuất"}}</div>
+    <div class="col app-flex flex-column text-center" style="max-width:200px;">{{order_item?.type == 'in' || "Xuất"}}</div>
 
     <div class="col app-flex flex-column text-center text-app font-weight-bolder" style="max-width:200px;">{{(order_item?.total_quantity)}}
     </div>
