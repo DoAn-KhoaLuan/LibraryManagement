@@ -64,7 +64,10 @@ def SearchAccounts(acc_info):
 
 def AuthenticateUser(acc: LoginReq):
     try:
+        print("ádsadsa")
         account = AccountRep.Authenticate(acc)
+        print("ádsadsa")
+        print(account)
         if (account['role']['role_id'] == 3):  # customer
             search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
             user = CustomerRep.SearchCustomers(search_customer_req)

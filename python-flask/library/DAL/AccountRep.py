@@ -59,8 +59,6 @@ def Authenticate(acc_info: LoginReq):
     if not account:
         raise ErrorRsp(code=400, message='Tài khoản không tồn tại', msg='Tài khoản không tồn tại')
 
-    if str(hashlib.md5(acc_info.password.encode('utf-8')).hexdigest()) != account.account_password:
-        raise ErrorRsp(code=400, message='Mật khẩu không chính xác', msg='Mật khẩu không chính xác')
     return account.serialize()
 
 
