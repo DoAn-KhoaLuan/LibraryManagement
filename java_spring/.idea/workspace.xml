@@ -5,13 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="147bbc9b-2931-4b61-ab6c-0b3b224dad96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../1751012051_NguyenThanhPhong.rar" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicketDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Conversation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/District.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/OrderDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Province.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicketDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Supplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Ward.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/33f84bf3-a791-4ac4-96d5-d6ee4fc15007.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/33f84bf3-a791-4ac4-96d5-d6ee4fc15007.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/LibraryManagementApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/LibraryManagementApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/LibraryManagementGroup/LibraryManagement/LibraryManagementApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/LibraryManagementGroup/LibraryManagement/LibraryManagementApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/LibraryManagementGroup/LibraryManagement/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/LibraryManagementGroup/LibraryManagement/entity/Book.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseLocalColorSettings">
+    <colors>
+      <entry key="LibraryManagement/33f84bf3-a791-4ac4-96d5-d6ee4fc15007:SCHEMA" value="Green" />
+    </colors>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -22,6 +50,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
@@ -61,15 +97,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
