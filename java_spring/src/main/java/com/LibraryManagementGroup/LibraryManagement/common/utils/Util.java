@@ -1,4 +1,4 @@
-package common.utils;
+package com.LibraryManagementGroup.LibraryManagement.common.utils;
 
 import net.minidev.json.JSONObject;
 import org.springframework.stereotype.Component;
