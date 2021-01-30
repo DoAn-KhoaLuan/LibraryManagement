@@ -1,11 +1,14 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
+@Setter
+@Getter
 @Entity
 @Table(name="supplier")
 public class Supplier {

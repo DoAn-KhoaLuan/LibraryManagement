@@ -1,8 +1,15 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import net.minidev.json.JSONObject;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Map;
 
+@Setter
+@Getter
 @Entity
 @Table(name="account")
 public class Account {
@@ -25,4 +32,5 @@ public class Account {
     private String note;
 
     private Date deleted_at;
+
 }

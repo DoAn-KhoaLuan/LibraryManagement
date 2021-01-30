@@ -1,5 +1,8 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -8,6 +11,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="book")
+@Setter
+@Getter
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

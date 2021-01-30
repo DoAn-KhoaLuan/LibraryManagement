@@ -1,10 +1,13 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@Setter
+@Getter
 @Entity
 @Table(name="borrow_ticket_detail")
 public class BorrowTicketDetail {
