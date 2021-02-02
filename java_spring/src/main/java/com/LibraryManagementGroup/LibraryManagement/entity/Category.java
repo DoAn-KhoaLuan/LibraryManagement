@@ -1,41 +1,28 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 
-import javax.persistence.Column;
-
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
 @Setter
 @Getter
 @Entity
-@Table(name = "category")
+@Table(name="category")
 public class Category {
     @Id
-    @GeneratedValue
-    @Column(unique = true)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Product> productList;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Book> books;
 
-    @Column(name = "category_name")
-    private String categoryName;
+    private String category_name;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "note")
     private String note;
 
-    @Column(name = "delete_at")
-    private String deteleAt;
-
-    @Column(name = "create_at")
-    private String createAt;
+    private Date deleted_at;
 }

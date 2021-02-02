@@ -1,8 +1,10 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 @Setter
 @Getter
@@ -11,18 +13,19 @@ import java.util.List;
 public class Conversation {
     @Id
     @GeneratedValue
-    @Column(unique = true)
-    private Integer id;
+    private int id;
 
-    @Column(name = "last_message",length = 1000)
-    private String lastMessage;
+    @OneToOne(mappedBy="conversation", cascade=CascadeType.ALL)
+    private Account account;
 
-    @Column(name = "is_read")
-    private Boolean isRead;
+    @OneToMany(mappedBy = "conversation")
+    private List<Message> messages;
 
-    @Column(name = "delete_at")
-    private String deteleAt;
+    private Date created_at;
 
-    @Column(name = "create_at")
-    private String createAt;
+    private Date updated_at;
+
+    private String last_message;
+
+    private boolean is_read;
 }

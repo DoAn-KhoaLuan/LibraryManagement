@@ -9,8 +9,9 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name="orderr")
-public class Order {
+@Table(name="stocktake_ticket")
+public class StocktakeTicket {
+
     @Id
     @GeneratedValue
     private int id;
@@ -23,16 +24,17 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetail> order_details;
+    @OneToMany(mappedBy = "stocktake_ticket")
+    private List<StocktakeTicketDetail> stocktake_ticket_details;
 
-    private Date order_date;
+    private String stock_take_type;
 
-    private float total;
+    private String book_type;
+
+    private Date date;
+
+    private float disparity_price;
 
     private Date deteled_at;
-
-    private Date created_at;
-
 
 }

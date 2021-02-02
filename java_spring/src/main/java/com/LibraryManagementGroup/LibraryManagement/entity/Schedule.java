@@ -5,12 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name="orderr")
-public class Order {
+@Table(name="schedule")
+public class Schedule {
     @Id
     @GeneratedValue
     private int id;
@@ -23,16 +22,12 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetail> order_details;
-
-    private Date order_date;
-
-    private float total;
-
+    private Date date;
+    private Date time_from;
+    private Date time_to;
+    private float actual_hour;
+    private float expected_hour;
+    private float salary;
     private Date deteled_at;
-
-    private Date created_at;
-
-
+    private String note;
 }

@@ -21,6 +21,8 @@ target/
 *.workspace.xml
 /out/
 out/
+/**/.idea/*
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

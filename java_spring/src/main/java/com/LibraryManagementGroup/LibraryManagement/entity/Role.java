@@ -5,26 +5,22 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name="message")
-public class Message {
+@Table(name="role")
+public class Role {
     @Id
     @GeneratedValue
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="conversation_id")
-    private Conversation conversation;
+    @OneToMany(mappedBy = "role",cascade = CascadeType.ALL)
+    private List<Account> accounts;
 
-    private String content;
+    private String role_name;
 
-    private Date created_at;
-
-    private Date updated_at;
+    private String note;
 
     private Date deleted_at;
-
-
 }
