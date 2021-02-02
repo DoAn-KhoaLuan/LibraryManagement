@@ -1,30 +1,26 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
-
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
-@Table(name="message")
+@Table(name = "message")
 public class Message {
     @Id
     @GeneratedValue
-    private int id;
+    @Column(unique = true)
+    private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="conversation_id")
-    private Conversation conversation;
-
+    @Column(name = "content", length = 1000)
     private String content;
 
-    private Date created_at;
+    @Column(name = "delete_at")
+    private String deteleAt;
 
-    private Date updated_at;
-
-    private Date deleted_at;
-
-
+    @Column(name = "create_at")
+    private String createAt;
 }

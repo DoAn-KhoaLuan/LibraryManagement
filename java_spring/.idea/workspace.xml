@@ -5,58 +5,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="147bbc9b-2931-4b61-ab6c-0b3b224dad96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../java_spring.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/authorrequests/CreateAuthor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/bookrequests/CreateBookRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/categoryrequests/CreateCategoryRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/categoryrequests/UpdateCategoryRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/commons/DeleteItemRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/commons/GetPageItemsRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/response/commons/GetPageItemsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/AuthorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/dto/bookdto/AuthorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/repository/AuthorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/repository/BookRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/IBookService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/serviceImp/BookServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documents/Database_DoAn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Documents/Northwind.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LibraryManagement.zip" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/SetUpDataApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/OrderType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/RoleName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Shop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/ShopAddress.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular2+/library-management/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular2+/library-management/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Documents/Database.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_4_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_4_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_4_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_test_5_4_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_4_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/33f84bf3-a791-4ac4-96d5-d6ee4fc15007.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/33f84bf3-a791-4ac4-96d5-d6ee4fc15007.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibraryManagement.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryManagement.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/AuthorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/BookController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/dto/bookdto/AuthorDto.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicketDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicketDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Author.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/BorrowTicketDetail.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Conversation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Conversation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/District.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/District.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/District.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Employee.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/OrderDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Province.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Province.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Schedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicketDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicketDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Province.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Schedule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/StocktakeTicketDetail.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Ward.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Ward.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Ward.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/repository/AuthorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/repository/BookRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/IBookService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/serviceImp/BookServiceImp.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/LibraryManagementGroup/LibraryManagement/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/LibraryManagementGroup/LibraryManagement/entity/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/LibraryManagementGroup/LibraryManagement/entity/Book.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,8 +62,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -133,7 +125,20 @@
       <recent name="com.LibraryManagementGroup.LibraryManagement" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.LibraryManagementApplication">
+    <configuration name="SetUpDataApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.LibraryManagementGroup.LibraryManagement.SetUpDataApplication" />
+      <module name="LibraryManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.LibraryManagementGroup.LibraryManagement.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LibraryManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="LibraryManagement" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.LibraryManagementGroup.LibraryManagement.LibraryManagementApplication" />
@@ -141,6 +146,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SetUpDataApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -167,7 +177,12 @@
       <workItem from="1611908976771" duration="444000" />
       <workItem from="1611919288739" duration="705000" />
       <workItem from="1611972133022" duration="742000" />
-      <workItem from="1611996283290" duration="259000" />
+      <workItem from="1611996283290" duration="2686000" />
+      <workItem from="1612008701839" duration="8990000" />
+      <workItem from="1612232195288" duration="420000" />
+      <workItem from="1612251230896" duration="6887000" />
+      <workItem from="1612258515067" duration="1646000" />
+      <workItem from="1612262089889" duration="1471000" />
     </task>
     <servers />
   </component>
