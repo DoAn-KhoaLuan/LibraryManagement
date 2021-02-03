@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -14,9 +17,9 @@ public class District {
     @Column(name="id",unique = true)
     private String id;
 
-    @Column(name = "province_id")
-    private String provinceId;
-
     @Column(name = "name")
     private String name;
+
+    @Column(name = "province_id")
+    private String provinceId;
 }

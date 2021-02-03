@@ -17,9 +17,10 @@ public class Ward {
     @Column(unique = true)
     private String id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "district_id")
     private String districtId;
 
-    @Column(name = "name")
-    private String name;
 }
