@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+
 @Setter
 @Getter
 @Entity
@@ -12,26 +12,28 @@ import java.util.Date;
 public class OrderDetail {
     @Id
     @GeneratedValue
-    private int id;
+    @Column(unique = true)
+    private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_id")
+    @Column(name = "retail_price")
+    private Float retailPrice;
 
-    private Book book;
+    @Column(name = "quantity")
+    private Integer quantity;
 
-    private float retail_price;
+    @Column(name = "discount")
+    private Float discount;
 
-    private int quantity;
+    @Column(name = "total")
+    private Float total;
 
-    private float discount;
-
-    private float total;
-
+    @Column(name = "note", length = 1000)
     private String note;
 
-    private Date deteled_at;
+    @Column(name = "create_at")
+    private String createAt;
 }

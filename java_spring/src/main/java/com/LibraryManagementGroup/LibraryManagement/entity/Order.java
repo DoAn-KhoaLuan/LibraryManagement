@@ -5,34 +5,38 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
+
 @Setter
 @Getter
 @Entity
-@Table(name="orderr")
+@Table(name = "shop_order")
 public class Order {
     @Id
     @GeneratedValue
-    private int id;
+    @Column(unique = true)
+    private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @ManyToOne
+    @JoinColumn(name="customer_id", nullable = false)
+    private Account customerAccount;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name="shop_id", nullable = false)
+    private Account shopAccount;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderDetail> order_details;
+    private Set<OrderDetail> orderDetailList;
 
-    private Date order_date;
+    @Column(name = "total")
+    private Float total;
 
-    private float total;
+    @Column(name = "type")
+    private OrderType type;
 
-    private Date deteled_at;
+    @Column(name = "delete_at")
+    private String deteleAt;
 
-    private Date created_at;
-
-
+    @Column(name = "create_at")
+    private String createAt;
 }

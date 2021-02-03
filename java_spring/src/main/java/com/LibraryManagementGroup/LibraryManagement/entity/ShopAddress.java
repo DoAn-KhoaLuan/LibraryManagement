@@ -1,24 +1,32 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+
 @Setter
 @Getter
 @Entity
-@Table(name = "conversation")
-public class Conversation {
+@Table(name = "shop_address")
+public class ShopAddress {
     @Id
     @GeneratedValue
     @Column(unique = true)
     private Integer id;
 
-    @Column(name = "last_message",length = 1000)
-    private String lastMessage;
+    @ManyToOne
+    @JoinColumn(name = "shop_id", nullable = false)
+    private Shop shop;
 
-    @Column(name = "is_read")
-    private Boolean isRead;
+    @Column(name = "province_id")
+    private String provinceId;
+
+    @Column(name = "district_id")
+    private String districtId;
+
+    @Column(name = "ward_id")
+    private String wardId;
 
     @Column(name = "delete_at")
     private String deteleAt;

@@ -2,36 +2,31 @@ package com.LibraryManagementGroup.LibraryManagement.entity;
 
 import javax.persistence.Column;
 
-import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Setter
 @Getter
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "tag")
+public class Tag {
     @Id
     @GeneratedValue
     @Column(unique = true)
     private Integer id;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Product> productList;
+    @ManyToMany(mappedBy = "tagList")
+    private List<Product> posts = new ArrayList<>();
 
-    @Column(name = "category_name")
-    private String categoryName;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "note")
-    private String note;
+    @Column(name = "tag_name")
+    private String tagName;
 
     @Column(name = "delete_at")
     private String deteleAt;

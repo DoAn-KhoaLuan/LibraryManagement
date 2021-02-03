@@ -1,7 +1,5 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 
-import javax.persistence.Column;
-
 import javax.persistence.*;
 
 import lombok.Getter;
@@ -9,29 +7,29 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
-
 @Setter
 @Getter
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "comment")
+public class Comment {
     @Id
     @GeneratedValue
     @Column(unique = true)
     private Integer id;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Product> productList;
+    @ManyToOne
+    @JoinColumn(name="product_id", nullable = false)
+    private Product product;
 
-    @Column(name = "category_name")
-    private String categoryName;
+    @ManyToOne
+    @JoinColumn(name="customer_id", nullable = false)
+    private Account account;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "comment_title")
+    private String commentTitle;
 
-    @Column(name = "note")
-    private String note;
+    @Column(name = "comment_content")
+    private String commentContent;
 
     @Column(name = "delete_at")
     private String deteleAt;
