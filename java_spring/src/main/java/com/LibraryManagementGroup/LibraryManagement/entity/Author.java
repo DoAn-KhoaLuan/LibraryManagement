@@ -18,20 +18,8 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Book> books;
-
     private String author_name;
 
     private Date deleted_at;
-
-    public JSONObject toObject() {
-        JSONObject obj = new JSONObject();
-        obj.put("id", id);
-        obj.put("books", books);
-        obj.put("authorName", author_name);
-        obj.put("deletedAt", deleted_at);
-        return obj;
-    };
 
 }

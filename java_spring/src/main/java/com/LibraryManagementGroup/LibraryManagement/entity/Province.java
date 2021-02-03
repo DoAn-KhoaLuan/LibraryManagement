@@ -4,20 +4,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 @Setter
 @Getter
 @Entity
 @Table(name = "province")
 public class Province {
     @Id
-    @GeneratedValue
-    private int id;
+    @Column(name = "id")
+    private String id;
 
-    @OneToMany(mappedBy = "province")
-    private List<District> districts;
+    @Column(name = "name")
+    private String name;
 
-    private String  name;
-    private String  region;
+    @Column(name = "region")
+    private String region;
 
 }

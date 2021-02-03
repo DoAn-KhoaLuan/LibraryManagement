@@ -4,23 +4,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+import java.util.Set;
+
 @Setter
 @Getter
 @Entity
-@Table(name="district")
+@Table(name = "district")
 public class District {
     @Id
-    @GeneratedValue
-    private int id;
+    @Column(name="id",unique = true)
+    private String id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "province_id")
-    private Province province;
-
-    @OneToMany(mappedBy = "district")
-    private List<Ward> wards;
-
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "province_id")
+    private String provinceId;
 }

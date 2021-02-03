@@ -8,15 +8,16 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name="ward")
+@Table(name = "ward")
 public class Ward {
     @Id
-    @GeneratedValue
-    private int id;
+    @Column(unique = true)
+    private String id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "district_id")
-    private District district;
-
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "district_id")
+    private String districtId;
+
 }
