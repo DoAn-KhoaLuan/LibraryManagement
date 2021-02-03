@@ -19,6 +19,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Comment> commentList;
 
+    @OneToMany(mappedBy = "product")
+    private Set<OrderDetail> orderDetails;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

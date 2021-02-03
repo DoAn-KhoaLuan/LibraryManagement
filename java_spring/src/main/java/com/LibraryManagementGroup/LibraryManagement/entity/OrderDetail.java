@@ -19,6 +19,10 @@ public class OrderDetail {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
     @Column(name = "retail_price")
     private Float retailPrice;
 
