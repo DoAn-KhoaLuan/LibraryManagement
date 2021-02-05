@@ -1,0 +1,86 @@
+li a{
+  color: #333333;
+  line-height:2.5
+}
+.animate-border {
+  position: relative;
+  display: block;
+  width: 115px;
+  height: 3px;
+  background: #007bff; }
+
+.animate-border:after {
+  position: absolute;
+  content: "";
+  width: 35px;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  border-left: 10px solid #fff;
+  border-right: 10px solid #fff;
+  -webkit-animation: animborder 2s linear infinite;
+  animation: animborder 2s linear infinite; }
+@keyframes animborder {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px); }
+  100% {
+    -webkit-transform: translateX(113px);
+    transform: translateX(113px); } }
+
+.animate-border.border-white:after {
+  border-color: #fff; }
+
+.animate-border.border-yellow:after {
+  border-color: #F5B02E; }
+
+.animate-border.border-orange:after {
+  border-right-color: #007bff;
+  border-left-color: #007bff; }
+
+.animate-border.border-ash:after {
+  border-right-color: #EEF0EF;
+  border-left-color: #EEF0EF; }
+
+.animate-border.border-offwhite:after {
+  border-right-color: #F7F9F8;
+  border-left-color: #F7F9F8; }
+
+.dk-footer-form {
+  position: relative; }
+.dk-footer-form input[type=email] {
+  padding: 14px 28px;
+  border-radius: 50px;
+  height: 47px;
+  background: #ffffff;
+  border: 1px solid #007bff; }
+.dk-footer-form input::-webkit-input-placeholder, .dk-footer-form input::-moz-placeholder, .dk-footer-form input:-ms-input-placeholder, .dk-footer-form input::-ms-input-placeholder, .dk-footer-form input::-webkit-input-placeholder {
+  color: #878787;
+  font-size: 14px; }
+.dk-footer-form input::-webkit-input-placeholder, .dk-footer-form input::-moz-placeholder, .dk-footer-form input:-ms-input-placeholder, .dk-footer-form input::-ms-input-placeholder, .dk-footer-form input::placeholder {
+  color: #878787;
+  font-size: 14px; }
+.dk-footer-form button[type=submit] {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  padding: 12px 24px 12px 17px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border: 1.6px solid #007bff;
+  background: #007bff;
+  color: #fff; }
+.dk-footer-form button:hover {
+  cursor: pointer; }
+
+.footer-widget h5 {
+  font-size: 20px;
+  color: black;
+  position: relative;
+  max-width: fit-content; }
+
+.footer-widget:after {
+  content: "";
+  display: block;
+  clear: both; }
+
