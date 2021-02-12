@@ -1,6 +1,7 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -76,5 +77,11 @@ public class Account {
     @Override
     public String toString() {
         return String.format(accountName + " + i" + accountName);
+    }
+
+    public void encodePassword() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(16);
+        String encodedPassword = passwordEncoder.encode(this.getAccountPassword());
+        this.setAccountPassword(encodedPassword);
     }
 }

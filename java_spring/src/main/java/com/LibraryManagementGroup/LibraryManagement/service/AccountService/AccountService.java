@@ -15,8 +15,8 @@ public class AccountService implements IAccountService {
     @Override
     public RegisterAccountResponse registerAccount(Account accountEntity) {
         ModelMapper modelMapper = new ModelMapper();
+        accountEntity.encodePassword();
         Account resAcc = accountRepository.saveAndFlush(accountEntity);
-
         RegisterAccountResponse resDTO = modelMapper.map(resAcc, RegisterAccountResponse.class);
         return resDTO;
     }
