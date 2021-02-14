@@ -17,14 +17,11 @@ public class Shop {
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name="account_id", nullable = false)
+    @JoinColumn(name="account_id")
     private Account account;
 
     @OneToMany(mappedBy = "shop")
     private Set<Product> productList;
-
-    @OneToMany(mappedBy = "shop")
-    private Set<ShopAddress> shopAddress;
 
     @Column(name = "shop_name")
     private String shopName;
@@ -34,6 +31,15 @@ public class Shop {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(name = "province_id")
+    private String provinceId;
+
+    @Column(name = "district_id")
+    private String districtId;
+
+    @Column(name = "ward_id")
+    private String wardId;
 
     @Column(name = "delete_at")
     private String deteleAt;
