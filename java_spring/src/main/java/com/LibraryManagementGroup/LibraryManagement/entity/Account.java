@@ -1,6 +1,7 @@
 package com.LibraryManagementGroup.LibraryManagement.entity;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -44,13 +45,13 @@ public class Account {
     private String accountName;
 
     @Column(name = "account_password")
-    private String account_password;
+    private String accountPassword;
 
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "phone")
     private String phone;
@@ -59,10 +60,10 @@ public class Account {
     private String email;
 
     @Column(name = "birth_date")
-    private Date birthdate;
+    private Date birthDate;
 
     @Column(name = "image_url", length = 1000)
-    private String image_url;
+    private String imageUrl;
 
     @Column(name = "note", length = 1000)
     private String note;
@@ -72,4 +73,15 @@ public class Account {
 
     @Column(name = "create_at")
     private String createAt;
+
+    @Override
+    public String toString() {
+        return String.format(accountName + " + i" + accountName);
+    }
+
+    public void encodePassword() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(16);
+        String encodedPassword = passwordEncoder.encode(this.getAccountPassword());
+        this.setAccountPassword(encodedPassword);
+    }
 }
