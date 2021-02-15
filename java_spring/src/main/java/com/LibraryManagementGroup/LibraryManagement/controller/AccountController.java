@@ -1,5 +1,6 @@
 package com.LibraryManagementGroup.LibraryManagement.controller;
 
+import com.LibraryManagementGroup.LibraryManagement.common.requests.accountrequests.LoginRequest;
 import com.LibraryManagementGroup.LibraryManagement.common.requests.accountrequests.RegisterAccountRequest;
 import com.LibraryManagementGroup.LibraryManagement.common.response.accountresponses.RegisterAccountResponse;
 import com.LibraryManagementGroup.LibraryManagement.entity.Account;
@@ -15,6 +16,18 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
     @Autowired
     AccountService accountService;
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginAccount(@RequestBody LoginRequest loginReq) {
+        try {
+//            RegisterAccountResponse res = accountService.registerAccount(accountReq);
+            return ResponseEntity.ok(loginReq);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
 
     @PostMapping("/register")
     public ResponseEntity<?> registerAccount(@RequestBody Account accountReq) {
