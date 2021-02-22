@@ -38,4 +38,9 @@ public class AppController {
     public List<Ward> getWards(@RequestBody JSONObject req) {
         return locationService.getWards();
     }
+
+    @PostMapping("/test")
+    public String test(@RequestBody JSONObject req) {
+        return "TEST";
+    }
 }
