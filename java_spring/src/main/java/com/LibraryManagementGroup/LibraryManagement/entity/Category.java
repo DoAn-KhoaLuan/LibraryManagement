@@ -31,7 +31,7 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Product> productList;
 
-    @Column(name = "category_name")
+    @Column(name = "category_name", unique=true)
     private String categoryName;
 
     @Column(name = "description")

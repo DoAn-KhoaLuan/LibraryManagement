@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="147bbc9b-2931-4b61-ab6c-0b3b224dad96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/CategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/repository/CategoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/AppService/AppService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/AppService/IAppService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/CategoryService/CategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/CategoryService/ICategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibraryManagement.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryManagement.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/MyUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/MyUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/SecurityConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/SecurityConfigurer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Shop.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +38,29 @@
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feat-category" />
+                    <option name="lastUsedInstant" value="1614160714" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="JWT-theo-youtube" />
+                    <option name="lastUsedInstant" value="1614160713" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProjectId" id="1ms1Gb5YjtG3tJ93ScXZonVsbSH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -139,7 +148,7 @@
       <workItem from="1614144326743" duration="4385000" />
       <workItem from="1614152239636" duration="42000" />
       <workItem from="1614152300652" duration="51000" />
-      <workItem from="1614152461314" duration="5778000" />
+      <workItem from="1614152461314" duration="6177000" />
     </task>
     <servers />
   </component>
