@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="147bbc9b-2931-4b61-ab6c-0b3b224dad96" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Shop.java" afterDir="false" />
-    </list>
+    <list default="true" id="147bbc9b-2931-4b61-ab6c-0b3b224dad96" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +83,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Angular2+" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
