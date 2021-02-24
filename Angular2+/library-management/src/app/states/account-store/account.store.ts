@@ -6,7 +6,7 @@ import { filter_page } from 'src/app/models/app-models';
 import { PaginationOpt } from 'src/app/shared/page-pagination/page-pagination.component';
 
 export interface AccountState {
-    account_list_view: GetItemsByPageRsp;
+    account_list_view:  GetItemsByPageRsp;
     current_page: number,
     filter_page: filter_page,
     current_pagination_opt : PaginationOpt;

@@ -9,6 +9,7 @@ import { PipeModule } from 'src/app/pipes/pipe/pipe.module';
 import { MaterialModule } from 'src/app/shared/material.module';
 import {ShareComponentModule} from "../components/share-component.module";
 
+
 @NgModule({
   imports: [
     CommonModule,

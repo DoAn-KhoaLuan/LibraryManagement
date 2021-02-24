@@ -41,7 +41,7 @@ public class Account {
     @Column(name = "role_name")
     private RoleName roleName;
 
-    @Column(name = "account_name")
+    @Column(name = "account_name", unique = true)
     private String accountName;
 
     @Column(name = "account_password")

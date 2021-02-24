@@ -19,7 +19,7 @@ public class AccountService implements IAccountService {
     public RegisterAccountResponse registerAccount(Account accountEntity) {
         ModelMapper modelMapper = new ModelMapper();
 
-        accountEntity.encodePassword();
+//        accountEntity.encodePassword();
         accountEntity.setCreateAt(new Date().toString());
 
         Account resAcc = accountRepository.saveAndFlush(accountEntity);
@@ -28,6 +28,12 @@ public class AccountService implements IAccountService {
     }
 
     public Account getAccountById(Integer accountId) {
-        return accountRepository.getOne(accountId);
+        return accountRepository.getAccountById(accountId);
+    }
+    public RegisterAccountResponse getAccountByAccountName(String accountName) {
+        ModelMapper modelMapper = new ModelMapper();
+        Account resAcc = accountRepository.getAccountByAccountName(accountName);
+        RegisterAccountResponse resDTO = modelMapper.map(resAcc, RegisterAccountResponse.class);
+        return resDTO;
     }
 }

@@ -23,7 +23,7 @@ public class Shop {
     @OneToMany(mappedBy = "shop")
     private Set<Product> productList;
 
-    @Column(name = "shop_name")
+    @Column(name = "shop_name", unique = true)
     private String shopName;
 
     @Column(name = "website_url")
