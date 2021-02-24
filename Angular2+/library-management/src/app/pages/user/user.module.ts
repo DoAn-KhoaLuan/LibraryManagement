@@ -8,7 +8,7 @@ import { UserComponent } from './user.component';
 import { PipeModule } from 'src/app/pipes/pipe/pipe.module';
 import { MaterialModule } from 'src/app/shared/material.module';
 import {ShareComponentModule} from "../components/share-component.module";
-import { HeaderComponent } from './header/header.component';
+
 
 @NgModule({
   imports: [
@@ -19,6 +19,6 @@ import { HeaderComponent } from './header/header.component';
     MaterialModule,
     ShareComponentModule
   ],
-  declarations: [UserComponent, UserRegisterAccountComponent, UserLoginComponent, HeaderComponent]
+  declarations: [UserComponent, UserRegisterAccountComponent, UserLoginComponent]
 })
 export class UserModule { }
