@@ -1,8 +1,6 @@
 package com.LibraryManagementGroup.LibraryManagement.JWTConfiguration;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -52,4 +50,27 @@ public class JwtUtil {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+
+//    public boolean validateToken(String authToken) throws Exception {
+//        try {
+//            Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(authToken);
+//            return true;
+//        } catch (SignatureException ex) {
+//            throw new Exception("Invalid JWT signature");
+//            return false;
+//        } catch (MalformedJwtException ex) {
+//            throw new Exception("Invalid JWT token");
+//            return false;
+//        } catch (ExpiredJwtException ex) {
+//            throw new Exception("Expired JWT token");
+//            return false;
+//        } catch (UnsupportedJwtException ex) {
+//            throw new Exception("Unsupported JWT token");
+//            return false;
+//        } catch (IllegalArgumentException ex) {
+//            throw new Exception("JWT claims string is empty.");
+//            return false;
+//        }
+//        return false;
+//    }
 }

@@ -16,6 +16,13 @@ import java.util.Set;
 @Entity
 @Table(name = "category")
 public class Category {
+//    public Category(String categoryName, String description, String note, String createAt) {
+//        this.categoryName = categoryName;
+//        this.description = description;
+//        this.note = note;
+//        this.createAt = createAt;
+//    }
+
     @Id
     @GeneratedValue
     @Column(unique = true)
@@ -35,6 +42,19 @@ public class Category {
 
     @Column(name = "delete_at")
     private String deteleAt;
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", productList=" + productList +
+                ", categoryName='" + categoryName + '\'' +
+                ", description='" + description + '\'' +
+                ", note='" + note + '\'' +
+                ", deteleAt='" + deteleAt + '\'' +
+                ", createAt='" + createAt + '\'' +
+                '}';
+    }
 
     @Column(name = "create_at")
     private String createAt;

@@ -3,6 +3,7 @@ package com.LibraryManagementGroup.LibraryManagement.controller;
 import com.LibraryManagementGroup.LibraryManagement.entity.District;
 import com.LibraryManagementGroup.LibraryManagement.entity.Province;
 import com.LibraryManagementGroup.LibraryManagement.entity.Ward;
+import com.LibraryManagementGroup.LibraryManagement.service.AppService.IAppService;
 import com.LibraryManagementGroup.LibraryManagement.service.LocationService.ILocationService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import java.util.List;
 public class AppController {
     @Autowired
     ILocationService locationService;
+
+    @Autowired
+    IAppService appService;
 
     @PostMapping("/load-and-insert-locations")
     public void loadAndInsertLocations(@RequestBody JSONObject req) {
@@ -43,4 +47,7 @@ public class AppController {
     public String test(@RequestBody JSONObject req) {
         return "TEST";
     }
+
+
+
 }

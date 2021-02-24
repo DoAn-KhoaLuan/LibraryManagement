@@ -28,6 +28,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        System.out.println("configure");
+
         http.cors().and().csrf().disable()
                 .authorizeRequests().antMatchers("/admin/account-management/login").permitAll()
                 .anyRequest().authenticated()

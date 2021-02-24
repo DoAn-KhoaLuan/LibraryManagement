@@ -36,6 +36,8 @@ public class AccountController {
     @PostMapping("/login")
     public ResponseEntity<?> loginAccount(@RequestBody LoginRequest loginReq) throws Exception {
         try {
+            System.out.println("loginAccount");
+
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getUsername(), loginReq.getPassword()));
             RegisterAccountResponse account = accountService.getAccountByAccountName(loginReq.getUsername());
             UserDetails userDetails = myUserDetailsService.loadUserByUsername(loginReq.getUsername());
