@@ -21,7 +21,6 @@ public class AccountService implements IAccountService {
 
 //        accountEntity.encodePassword();
         accountEntity.setCreateAt(new Date().toString());
-
         Account resAcc = accountRepository.saveAndFlush(accountEntity);
         RegisterAccountResponse resDTO = modelMapper.map(resAcc, RegisterAccountResponse.class);
         return resDTO;

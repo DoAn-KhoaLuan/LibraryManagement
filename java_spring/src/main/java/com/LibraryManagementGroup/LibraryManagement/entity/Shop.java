@@ -23,6 +23,9 @@ public class Shop {
     @OneToMany(mappedBy = "shop")
     private Set<Product> productList;
 
+    @OneToMany(mappedBy = "shop")
+    private Set<Supplier> supplierList;
+
     @Column(name = "shop_name", unique = true)
     private String shopName;
 

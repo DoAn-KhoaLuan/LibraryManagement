@@ -60,7 +60,7 @@ public class Product {
     private Float costPrice;
 
     @Column(name = "retail_price")
-    private String retailPrice;
+    private Float retailPrice;
 
     @Column(name = "discount")
     private Float discount;

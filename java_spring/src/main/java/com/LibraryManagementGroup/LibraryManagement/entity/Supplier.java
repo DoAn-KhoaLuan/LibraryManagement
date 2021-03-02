@@ -24,4 +24,8 @@ public class Supplier {
 
     @Column(name = "create_at")
     private String createAt;
+
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 }

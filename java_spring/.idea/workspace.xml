@@ -24,7 +24,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -75,6 +75,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -83,7 +84,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Angular2+" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../local.env" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -94,7 +95,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -107,6 +108,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LibraryManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="LibraryManagement" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.LibraryManagementGroup.LibraryManagement.LibraryManagementApplication" />
@@ -147,6 +161,18 @@
       <workItem from="1614152239636" duration="42000" />
       <workItem from="1614152300652" duration="51000" />
       <workItem from="1614152461314" duration="6177000" />
+      <workItem from="1614164514339" duration="72000" />
+      <workItem from="1614217788130" duration="87000" />
+      <workItem from="1614229086152" duration="2411000" />
+      <workItem from="1614264157373" duration="2018000" />
+      <workItem from="1614305519423" duration="13000" />
+      <workItem from="1614305933891" duration="85000" />
+      <workItem from="1614307176017" duration="668000" />
+      <workItem from="1614396308254" duration="435000" />
+      <workItem from="1614398509054" duration="5824000" />
+      <workItem from="1614651445160" duration="2871000" />
+      <workItem from="1614654478540" duration="73000" />
+      <workItem from="1614654568083" duration="2838000" />
     </task>
     <servers />
   </component>
