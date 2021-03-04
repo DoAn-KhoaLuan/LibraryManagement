@@ -15,9 +15,11 @@ public class ProductDto {
     private String material;
     private String origin;
     private String size;
+    private float rateStart;
     private float costPrice;
     private float retailPrice;
     private float discount;
+    private Integer rateCount;
     private Integer shopId;
     private Integer categoryId;
     private Integer supplierId;

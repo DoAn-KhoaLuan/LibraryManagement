@@ -1,10 +1,8 @@
 package com.LibraryManagementGroup.LibraryManagement.controller;
 
 import com.LibraryManagementGroup.LibraryManagement.common.dto.ProductDto;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.CreateProductRequest;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.CreateTagRequest;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.DeteleProductRequest;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.UpdateProductRequest;
+import com.LibraryManagementGroup.LibraryManagement.common.requests.commons.GetItemRequest;
+import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.*;
 import com.LibraryManagementGroup.LibraryManagement.entity.Product;
 import com.LibraryManagementGroup.LibraryManagement.service.CategoryService.CategoryService;
 import com.LibraryManagementGroup.LibraryManagement.service.ProductService.ProductService;
@@ -34,6 +32,11 @@ public class ProductController {
         return productService.deleteProduct(req);
     }
 
+    @PostMapping("/get-product")
+    public Product getProduct(@RequestBody GetItemRequest req) {
+        return productService.getProduct(req);
+    }
+
     @PostMapping("/update-product")
     public UpdateProductRequest updateProduct(@RequestBody UpdateProductRequest req) {
         return productService.updateProduct(req);
@@ -50,5 +53,10 @@ public class ProductController {
         List<ProductDto> products = productService.getProductsByShopId(18);
         res.put("products", products);
         return res;
+    }
+
+    @PostMapping("/rate-product")
+    public ProductDto rateProduct(@RequestBody RateProductRequest req) {
+        return productService.rateProduct(req);
     }
 }

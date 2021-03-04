@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="147bbc9b-2931-4b61-ab6c-0b3b224dad96" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/dto/CategoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/commons/GetItemRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/requests/productrequests/RateProductRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/dto/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/dto/ProductDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/entity/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/CategoryService/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/CategoryService/CategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/CategoryService/ICategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/CategoryService/ICategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/ProductService/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/ProductService/IProductService.java" afterDir="false" />
@@ -181,7 +185,7 @@
       <workItem from="1614654478540" duration="73000" />
       <workItem from="1614654568083" duration="2838000" />
       <workItem from="1614788574541" duration="136000" />
-      <workItem from="1614825338932" duration="8333000" />
+      <workItem from="1614825338932" duration="14398000" />
     </task>
     <servers />
   </component>

@@ -1,10 +1,8 @@
 package com.LibraryManagementGroup.LibraryManagement.service.ProductService;
 
 import com.LibraryManagementGroup.LibraryManagement.common.dto.ProductDto;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.CreateProductRequest;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.CreateTagRequest;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.DeteleProductRequest;
-import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.UpdateProductRequest;
+import com.LibraryManagementGroup.LibraryManagement.common.requests.commons.GetItemRequest;
+import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.*;
 import com.LibraryManagementGroup.LibraryManagement.common.response.accountresponses.RegisterAccountResponse;
 import com.LibraryManagementGroup.LibraryManagement.entity.*;
 import com.LibraryManagementGroup.LibraryManagement.repository.*;
@@ -73,9 +71,15 @@ public class ProductService implements IProductService {
         productRepository.save(createdProduct);
         return prod;
     }
+
     @Override
     public Integer deleteProduct(DeteleProductRequest req) {
         return productRepository.deleteProduct(req.getId(), new Date().toString());
+    }
+
+    @Override
+    public Product getProduct(GetItemRequest req) {
+        return productRepository.getOne(req.getId());
     }
 
     @Override
@@ -154,5 +158,18 @@ public class ProductService implements IProductService {
             dtoProducts.add(productDto);
         }
         return dtoProducts;
+    }
+
+    @Override
+    public ProductDto rateProduct(RateProductRequest req) {
+        ModelMapper modelMapper = new ModelMapper();
+        System.out.println("product" + req.getProductId());
+        Product product = productRepository.getOne(req.getProductId());
+        float newStar = ((product.getRateStart() * product.getRateCount()) + req.getProductStar()) / (product.getRateCount() + 1);
+        product.setRateStart(newStar);
+        product.setRateCount(product.getRateCount() + 1);
+        productRepository.save(product);
+        ProductDto dtoProduct = modelMapper.map(product,ProductDto.class);
+        return dtoProduct;
     }
 }

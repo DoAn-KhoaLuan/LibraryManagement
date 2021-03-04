@@ -16,7 +16,7 @@ public class Product {
     @Column(unique = true)
     private Integer id;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(fetch = FetchType.LAZY ,mappedBy = "product")
     private Set<Comment> comments = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
@@ -94,4 +94,34 @@ public class Product {
 
     @Column(name = "create_at")
     private String createAt;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", comments=" + comments +
+                ", orderDetails=" + orderDetails +
+                ", category=" + category +
+                ", shop=" + shop +
+                ", supplier=" + supplier +
+                ", tags=" + tags +
+                ", productName='" + productName + '\'' +
+                ", amount=" + amount +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", description='" + description + '\'' +
+                ", costPrice=" + costPrice +
+                ", retailPrice=" + retailPrice +
+                ", discount=" + discount +
+                ", rateStart=" + rateStart +
+                ", rateCount=" + rateCount +
+                ", note='" + note + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", material='" + material + '\'' +
+                ", size='" + size + '\'' +
+                ", feature='" + feature + '\'' +
+                ", origin='" + origin + '\'' +
+                ", deteleAt='" + deteleAt + '\'' +
+                ", createAt='" + createAt + '\'' +
+                '}';
+    }
 }
