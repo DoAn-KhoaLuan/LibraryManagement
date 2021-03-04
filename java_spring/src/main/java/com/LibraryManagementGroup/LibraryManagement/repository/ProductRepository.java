@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
@@ -15,4 +16,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query(nativeQuery = true, value="UPDATE product SET delete_at =?2  WHERE id=?1")
     int deleteProduct(int id, String currentTime);
+
+
+    @Query(nativeQuery = true, value="select * from product WHERE shop_id=?1")
+    List<Product> getProductsByShopId(int id);
 }

@@ -17,12 +17,12 @@ public class Product {
     private Integer id;
 
     @OneToMany(mappedBy = "product")
-    private Set<Comment> commentList;
+    private Set<Comment> comments = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
-    private Set<OrderDetail> orderDetails;
+    private Set<OrderDetail> orderDetails = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -42,7 +42,7 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private List<Tag> tagList = new ArrayList<>();
+    private List<Tag> tags = new ArrayList<>();
 
     @Column(name = "product_name")
     private String productName;

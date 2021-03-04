@@ -1,23 +1,21 @@
 package com.LibraryManagementGroup.LibraryManagement.service.ProductService;
 
+import com.LibraryManagementGroup.LibraryManagement.common.dto.ProductDto;
 import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.CreateProductRequest;
+import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.CreateTagRequest;
 import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.DeteleProductRequest;
 import com.LibraryManagementGroup.LibraryManagement.common.requests.productrequests.UpdateProductRequest;
 import com.LibraryManagementGroup.LibraryManagement.common.response.accountresponses.RegisterAccountResponse;
-import com.LibraryManagementGroup.LibraryManagement.entity.Account;
-import com.LibraryManagementGroup.LibraryManagement.entity.Category;
-import com.LibraryManagementGroup.LibraryManagement.entity.Product;
-import com.LibraryManagementGroup.LibraryManagement.entity.Shop;
-import com.LibraryManagementGroup.LibraryManagement.entity.Supplier;
-import com.LibraryManagementGroup.LibraryManagement.repository.CategoryRepository;
-import com.LibraryManagementGroup.LibraryManagement.repository.ProductRepository;
-import com.LibraryManagementGroup.LibraryManagement.repository.ShopRepository;
-import com.LibraryManagementGroup.LibraryManagement.repository.SupplierRepository;
+import com.LibraryManagementGroup.LibraryManagement.entity.*;
+import com.LibraryManagementGroup.LibraryManagement.repository.*;
+import net.minidev.json.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -35,6 +33,10 @@ public class ProductService implements IProductService {
     @Autowired
     SupplierRepository supplierRepository;
 
+    @Autowired
+    TagRepository tagRepository;
+
+    @Override
     public CreateProductRequest createProduct(CreateProductRequest prod) {
 
         Product createdProduct = new Product();
@@ -61,14 +63,22 @@ public class ProductService implements IProductService {
         Supplier productSupplier = supplierRepository.getOne(prod.getSupplierId());
         createdProduct.setSupplier(productSupplier);
 
+        String[] tags = prod.getTags();
+        for (String tag: tags) {
+            Tag tagEnt = new Tag();
+            tagEnt.setTagName(tag);
+            tagEnt.setCreateAt(new Date().toString());
+            tagEnt.addProducts(createdProduct);
+        }
         productRepository.save(createdProduct);
         return prod;
     }
-
+    @Override
     public Integer deleteProduct(DeteleProductRequest req) {
         return productRepository.deleteProduct(req.getId(), new Date().toString());
     }
 
+    @Override
     public UpdateProductRequest updateProduct(UpdateProductRequest prod) {
         Product updateProduct = productRepository.getOne(prod.getId());
         if (prod.getAmount() != null) {
@@ -126,4 +136,23 @@ public class ProductService implements IProductService {
         return prod;
     }
 
+    @Override
+    public CreateTagRequest createTag(CreateTagRequest tag) {
+        Tag createTag = new Tag();
+        createTag.setTagName(tag.getTagName());
+        tagRepository.save(createTag);
+        return tag;
+    }
+
+    @Override
+    public List<ProductDto> getProductsByShopId(int shopId) {
+        ModelMapper modelMapper = new ModelMapper();
+        List<Product> entityProducts = productRepository.getProductsByShopId(shopId);
+        List<ProductDto> dtoProducts = new ArrayList<>();
+        for (Product entityProduct:entityProducts) {
+            ProductDto productDto = modelMapper.map(entityProduct, ProductDto.class);
+            dtoProducts.add(productDto);
+        }
+        return dtoProducts;
+    }
 }

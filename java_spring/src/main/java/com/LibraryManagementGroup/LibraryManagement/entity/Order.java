@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -26,7 +27,7 @@ public class Order {
     private Account shopAccount;
 
     @OneToMany(mappedBy = "order")
-    private Set<OrderDetail> orderDetailList;
+    private Set<OrderDetail> orderDetails = new HashSet<>();
 
     @Column(name = "total")
     private Float total;

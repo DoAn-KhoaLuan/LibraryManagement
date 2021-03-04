@@ -22,8 +22,13 @@ public class Tag {
     @Column(unique = true)
     private Integer id;
 
-    @ManyToMany(mappedBy = "tagList")
-    private List<Product> posts = new ArrayList<>();
+    @ManyToMany(mappedBy = "tags")
+    private Set<Product> products = new HashSet<>();
+
+    public void addProducts(Product product) {
+        products.add(product);
+        product.getTags().add(this);
+    }
 
     @Column(name = "tag_name")
     private String tagName;
@@ -33,4 +38,6 @@ public class Tag {
 
     @Column(name = "create_at")
     private String createAt;
+
+
 }

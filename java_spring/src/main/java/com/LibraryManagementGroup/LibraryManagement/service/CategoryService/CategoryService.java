@@ -1,10 +1,13 @@
 package com.LibraryManagementGroup.LibraryManagement.service.CategoryService;
 
+import com.LibraryManagementGroup.LibraryManagement.common.dto.CategoryDto;
 import com.LibraryManagementGroup.LibraryManagement.entity.Category;
 import com.LibraryManagementGroup.LibraryManagement.repository.CategoryRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,10 +17,15 @@ public class CategoryService implements ICategoryService {
     CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> getAllCategories() {
-        List<Category> categories = categoryRepository.findAll();
-        System.out.println("categories: " + categories);
-        return categories;
+    public List<CategoryDto> getAllCategories() {
+        ModelMapper mapper = new ModelMapper();
+        List<Category> categories = categoryRepository.getAllCategories();
+        List<CategoryDto> dtoCategories = new ArrayList<>();
+        for (Category cateEntity:categories) {
+            CategoryDto dtoCategory = mapper.map(cateEntity, CategoryDto.class);
+            dtoCategories.add(dtoCategory);
+        }
+        return dtoCategories;
     }
 
     @Override

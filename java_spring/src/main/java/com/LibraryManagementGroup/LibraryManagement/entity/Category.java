@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,11 +29,11 @@ public class Category {
     @Column(unique = true)
     private Integer id;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Product> productList;
-
     @Column(name = "category_name", unique=true)
     private String categoryName;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    private Set<Product> products  = new HashSet<>();
 
     @Column(name = "description")
     private String description;
@@ -47,7 +48,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "id=" + id +
-                ", productList=" + productList +
+                ", productList=" + products +
                 ", categoryName='" + categoryName + '\'' +
                 ", description='" + description + '\'' +
                 ", note='" + note + '\'' +

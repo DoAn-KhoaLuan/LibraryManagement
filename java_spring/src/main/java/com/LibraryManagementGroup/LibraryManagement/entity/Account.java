@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -18,13 +19,13 @@ public class Account {
     private Integer id;
 
     @OneToMany(mappedBy = "account")
-    private Set<Comment> commentList;
+    private Set<Comment> comments = new HashSet<>();;
 
     @OneToMany(mappedBy = "customerAccount")
-    private Set<Order> BuyOrderList;
+    private Set<Order> buyOrders = new HashSet<>();;
 
     @OneToMany(mappedBy = "shopAccount")
-    private Set<Order> SellOrderList;
+    private Set<Order> sellOrders = new HashSet<>();;
 
     @Column(name = "province_id")
     private String provinceId;

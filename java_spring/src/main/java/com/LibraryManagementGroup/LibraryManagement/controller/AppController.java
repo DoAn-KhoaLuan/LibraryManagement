@@ -4,6 +4,7 @@ import com.LibraryManagementGroup.LibraryManagement.entity.District;
 import com.LibraryManagementGroup.LibraryManagement.entity.Province;
 import com.LibraryManagementGroup.LibraryManagement.entity.Ward;
 import com.LibraryManagementGroup.LibraryManagement.service.AppService.IAppService;
+import com.LibraryManagementGroup.LibraryManagement.service.CategoryService.CategoryService;
 import com.LibraryManagementGroup.LibraryManagement.service.LocationService.ILocationService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class AppController {
 
     @Autowired
     IAppService appService;
+
+    @Autowired
+    CategoryService categoryService;
 
     @PostMapping("/load-and-insert-locations")
     public void loadAndInsertLocations(@RequestBody JSONObject req) {
@@ -48,6 +52,11 @@ public class AppController {
         return "TEST";
     }
 
-
+    @PostMapping("/init-data")
+    public Boolean initData(@RequestBody JSONObject req) {
+        this.loadAndInsertLocations(req);
+        categoryService.insertCategories();
+        return true;
+    }
 
 }
