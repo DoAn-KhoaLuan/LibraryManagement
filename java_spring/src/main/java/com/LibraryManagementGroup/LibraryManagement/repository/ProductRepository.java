@@ -18,6 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     int deleteProduct(int id, String currentTime);
 
 
+    @Transactional
     @Query(nativeQuery = true, value="select * from product WHERE shop_id=?1")
     List<Product> getProductsByShopId(int id);
 }

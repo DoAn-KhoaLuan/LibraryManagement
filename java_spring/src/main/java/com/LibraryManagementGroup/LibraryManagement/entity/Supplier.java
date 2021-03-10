@@ -17,7 +17,7 @@ public class Supplier {
     @Column(unique = true)
     private Integer id;
 
-    @OneToMany( mappedBy = "supplier")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "supplier")
     private Set<Product> products= new HashSet<>();
 
     @Column(name = "delete_at")

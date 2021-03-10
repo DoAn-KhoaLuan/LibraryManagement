@@ -16,6 +16,10 @@ public class Product {
     @Column(unique = true)
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
+
     @OneToMany(fetch = FetchType.LAZY ,mappedBy = "product")
     private Set<Comment> comments = new HashSet<>();
 
@@ -30,9 +34,7 @@ public class Product {
     @JoinColumn(name = "shop_id")
     private Shop shop;
 
-    @ManyToOne
-    @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
+
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
