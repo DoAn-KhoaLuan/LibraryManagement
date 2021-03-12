@@ -11,9 +11,12 @@ app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
 app.config.from_object('config')
+app.debug = True
+app.host = 'localhost'
+app.port = 8080
 db = SQLAlchemy(app)
 smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 socketio = SocketIO(app, cors_allowed_origins="*")
-from library import controllers
+from library import controller
 
 

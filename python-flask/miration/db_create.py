@@ -1,2 +1,2 @@
-from library.DAL.models import *
+from miration.models import *
 db.create_all()

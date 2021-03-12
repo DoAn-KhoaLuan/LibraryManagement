@@ -13,6 +13,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/repository/OrderRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/OrderService/IOrderService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/OrderService/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../python-flask/miration/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/JWTConfiguration/JwtRequestFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/dto/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/common/dto/ProductDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/controller/ProductController.java" afterDir="false" />
@@ -25,8 +26,51 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/ProductService/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/ProductService/IProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/ProductService/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/LibraryManagementGroup/LibraryManagement/service/ProductService/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python-flask/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python-flask/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/AccountSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/AccountSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/AuthorSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/AuthorSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/BookSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/BookSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/BorrowTicketSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/BorrowTicketSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/CategorySvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/CategorySvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/CustomerSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/CustomerSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/EmployeeSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/EmployeeSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/MessageSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/MessageSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/OrderDetailSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/OrderDetailSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/OrderSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/OrderSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/RevenueSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/RevenueSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/ScheduleSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/ScheduleSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/SupplierSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/SupplierSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/AccountRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/AccountRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/AuthorRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/AuthorRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/BookRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/BookRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/BorrowTicketRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/BorrowTicketRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/CategoryRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/CategoryRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/CustomerRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/CustomerRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/EmployeeRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/EmployeeRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/MessageRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/MessageRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/OrderDetailRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/OrderDetailRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/OrderRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/OrderRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/RevenueRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/RevenueRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/ScheduleRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/ScheduleRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/SupplierRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/SupplierRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/AccountController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/AccountController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/AppController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/AppController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/AuthorController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/AuthorController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/BookController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/BookController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/BorrowTicketController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/BorrowTicketController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/CategoryController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/CategoryController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/CustomerController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/CustomerController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/EmployeeController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/EmployeeController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/MessageController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/MessageController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/OrderController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/OrderController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/OrderDetailController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/OrderDetailController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/RevenueController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/RevenueController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/ScheduleController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/ScheduleController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/SupplierController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/SupplierController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/controllers/UploadImageController.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/controllers/UploadImageController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/miration/db_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/miration/db_create.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +240,9 @@
       <workItem from="1615030847325" duration="598000" />
       <workItem from="1615116153164" duration="598000" />
       <workItem from="1615255920727" duration="63000" />
+      <workItem from="1615387201751" duration="4426000" />
+      <workItem from="1615428735598" duration="3764000" />
+      <workItem from="1615560487513" duration="5399000" />
     </task>
     <servers />
   </component>
