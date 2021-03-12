@@ -1,4 +1,5 @@
 from library import app, socketio
 
 if __name__ == "__main__":
-    socketio.run(app)
+    app.debug = True
+    socketio.run(app, "localhost", 8000)
