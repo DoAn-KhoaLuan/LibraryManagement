@@ -5,7 +5,8 @@ import requests
 from werkzeug.utils import secure_filename
 
 from library import app
-from library.service import BookSvc
+from library.common.Req.ProductReq import *
+from library.service import ProductSvc
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 
 from library.common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateBookRsp, SearchBookRsp
@@ -15,7 +16,7 @@ from flask import jsonify, request, make_response, render_template, send_file
 import json
 
 from library.common.Rsp.SingleRsp import ErrorRsp
-from library.auth import token_required
+from library.auth import user_required
 # from library.controller.UploadImageController import allowed_file
 
 
@@ -32,14 +33,15 @@ from library.auth import token_required
 #         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
 #
 #
-# @app.route('/admin/book-management/create-book', methods=['POST'])
-# def CreateBook():
-#     req = CreateBookReq(request.json)
-#     result = BookSvc.CreateBook(req)
-#     res = CreateBookRsp(result).serialize()
-#     return jsonify(res)
-#
-#
+@app.route('/admin/product-management/create-product', methods=['POST'])
+@user_required
+def CreateBook():
+    req = CreateProductReq(request.json)
+    result = ProductSvc.CreateBook(req)
+    res = CreateBookRsp(result).serialize()
+    return jsonify(res)
+
+
 # @app.route('/admin/book-management/delete-book', methods=['POST'])
 # def DeleteBookById():
 #     req = DeleteBookByIdReq(request.json)

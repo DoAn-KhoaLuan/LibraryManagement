@@ -64,6 +64,14 @@ def CreateAccount(req: CreateAccountReq):
 #     return info_accounts
 #
 #
+
+def extractToken(token):
+    payload = jwt.decode(token, app.config['SECRET_KEY'])
+    accountId = payload["accountId"]
+    account = AccountRep.getAccountById(accountId)
+    return account
+
+
 def sessionInfo(token):
     invalid_msg = {
         'message': 'Token không hợp lệ.',

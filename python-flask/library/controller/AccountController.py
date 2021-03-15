@@ -32,7 +32,7 @@ from library.common.Req.AccountReq import *
 from miration.models import *
 
 
-@app.route('/abc', methods=['POST'])
+@app.route('/abc', methods=['POST','GET'])
 def DeleteAccount():
     return "Test"
 
@@ -84,7 +84,7 @@ def LoginAccount():
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
 
 
-@app.route('/admin/account-management/login', methods=['POST', 'GET'])
+@app.route('/admin/account-management/session-info', methods=['POST', 'GET'])
 def GetSessionInfo():
     auth_headers = request.headers.get('Authorization', '').split()
     token = auth_headers[1]

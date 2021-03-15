@@ -1,48 +1,53 @@
-class CreateBookReq(object):
-    def __init__(self, req):
-        self.book_name = req['book_name'] if 'book_name' in req else None
-        self.supplier_id = req['supplier_id'] if 'supplier_id' in req else None
-        self.category_id = req['category_id'] if 'category_id' in req else None
-        self.author_id = req['author_id'] if 'author_id' in req else None
-        self.old_amount = req['old_amount'] if 'old_amount' in req else None
-        self.new_amount = req['new_amount'] if 'new_amount' in req else None
-        self.image = req['image'] if 'image' in req else None
-        self.page_number = req['page_number'] if 'page_number' in req else None
-        self.description = req['description'] if 'description' in req else None
-        self.cost_price = req['cost_price'] if 'cost_price' in req else None
-        self.retail_price = req['retail_price'] if 'retail_price' in req else None
+
+
+
+class CreateProductReq(object):
+    def init(self, req):
+        self.name = req['name'] if 'name' in req else None
+        self.retailPrice = req['retailPrice'] if 'retailPrice' in req else None
+        self.costPrice = req['costPrice'] if 'costPrice' in req else None
         self.discount = req['discount'] if 'discount' in req else None
-        self.ranking = req['ranking'] if 'ranking' in req else None
-
-
-class DeleteBookByIdReq():
-    def __init__(self, req):
-        self.book_id = req['book_id'] if 'book_id' in req else None
-
-
-class UpdateBookReq():
-    def __init__(self, req):
-        self.book_id = req['book_id'] if 'book_id' in req else None
-        self.book_name = req['book_name'] if 'book_name' in req else None
-        self.supplier_id = req['supplier_id'] if 'supplier_id' in req else 0
-        self.category_id = req['category_id'] if 'category_id' in req else 0
-        self.author_id = req['author_id'] if 'author_id' in req else 0
-        self.old_amount = req['old_amount'] if 'old_amount' in req else None
-        self.new_amount = req['new_amount'] if 'new_amount' in req else None
-        self.image = req['image'] if 'image' in req else None
-        self.page_number = req['page_number'] if 'page_number' in req else None
-        self.description = req['description'] if 'description' in req else None
-        self.cost_price = req['cost_price'] if 'cost_price' in req else None
-        self.retail_price = req['retail_price'] if 'retail_price' in req else None
-        self.discount = req['discount'] if 'discount' in req else None
-        self.ranking = req['ranking'] if 'ranking' in req else None
+        self.rateStar = req['rateStar'] if 'rateStar' in req else None
+        self.brandName = req['brandName'] if 'brandName' in req else None
+        self.material = req['material'] if 'material' in req else None
+        self.size = req['size'] if 'size' in req else None
+        self.feature = req['feature'] if 'feature' in req else None
+        self.origin = req['origin'] if 'origin' in req else None
+        self.amount = req['amount'] if 'amount' in req else None
+        self.rateCount = req['rateCount'] if 'rateCount' in req else None
         self.note = req['note'] if 'note' in req else None
+        self.description = req['description'] if 'description' in req else None
 
-
-class SearchBookReq:
-    def __init__(self, req):
-        self.book_id = req['book_id'] if 'book_id' in req else None
-        self.book_name = req['book_name'] if 'book_name' in req else None
-        self.author_id = req['author_id'] if 'author_id' in req else 0
-        self.category_id = req['category_id'] if 'category_id' in req else 0
-        self.supplier_id = req['supplier_id'] if 'supplier_id' in req else 0
+#
+#
+# class DeleteBookByIdReq():
+#     def init(self, req):
+#         self.bookid = req['bookid'] if 'bookid' in req else None
+#
+#
+# class UpdateBookReq():
+#     def init(self, req):
+#         self.bookid = req['bookid'] if 'bookid' in req else None
+#         self.bookname = req['bookname'] if 'bookname' in req else None
+#         self.supplierid = req['supplierid'] if 'supplierid' in req else 0
+#         self.categoryid = req['categoryid'] if 'categoryid' in req else 0
+#         self.authorid = req['authorid'] if 'authorid' in req else 0
+#         self.oldamount = req['oldamount'] if 'oldamount' in req else None
+#         self.newamount = req['newamount'] if 'newamount' in req else None
+#         self.image = req['image'] if 'image' in req else None
+#         self.pagenumber = req['pagenumber'] if 'pagenumber' in req else None
+#         self.description = req['description'] if 'description' in req else None
+#         self.costprice = req['costprice'] if 'costprice' in req else None
+#         self.retailprice = req['retailprice'] if 'retailprice' in req else None
+#         self.discount = req['discount'] if 'discount' in req else None
+#         self.ranking = req['ranking'] if 'ranking' in req else None
+#         self.note = req['note'] if 'note' in req else None
+#
+#
+# class SearchBookReq:
+#     def init(self, req):
+#         self.bookid = req['bookid'] if 'bookid' in req else None
+#         self.bookname = req['bookname'] if 'bookname' in req else None
+#         self.authorid = req['authorid'] if 'authorid' in req else 0
+#         self.categoryid = req['categoryid'] if 'categoryid' in req else 0
+#         self.supplierid = req['supplierid'] if 'supplierid' in req else 0

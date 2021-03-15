@@ -7,10 +7,14 @@ from flask import jsonify, request
 from werkzeug.utils import secure_filename
 
 from library import app
+from library.auth import owner_required
 from library.repository import LocationRep, CategoryRep
 from miration.models import Category
 
-
+@app.route('/test', methods=['POST'])
+@owner_required
+def test(account):
+    return account
 
 @app.route('/init-data', methods=['POST'])
 def initData():
