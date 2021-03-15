@@ -22,12 +22,14 @@
 #     return has_next, has_prev, categories
 #
 #
-# def CreateCategory(new_cate: CreateCategoryReq):
-#     new_category = models.Categories(category_name=new_cate.category_name, description=new_cate.description,
-#                                      note=new_cate.note)
-#     db.session.add(new_category)
-#     db.session.commit()
-#     return new_category.serialize()
+from library import db
+from miration.models import *
+
+
+def CreateCategory(newCate):
+    db.session.add(newCate)
+    db.session.commit()
+    return newCate.serialize()
 #
 #
 # def UpdateCategory(update_cate: UpdateCategoryReq):

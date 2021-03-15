@@ -1,33 +1,51 @@
-# from flask import jsonify, url_for
+from datetime import datetime
+
+from flask import jsonify, url_for
 # from flask_bcrypt import check_password_hash
 # from sqlalchemy import or_
-# import hashlib
-# from library import db
-# from library.common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
+import hashlib
+from library import db
+from library.common.Req.AccountReq import *
 #     ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
 # from library.common.Rsp.SingleRsp import ErrorRsp
 # from library.common.util import ConvertModelListToDictList
-# from library.repository import models
 # from datetime import datetime
 # from library import bcrypt
+from library.common.Rsp.SingleRsp import ErrorRsp
+
+from miration import models
+from miration.models import *
+
+
+def CreateAccount(req: CreateAccountReq):
+    hashedPassword = hashlib.md5(req.accountPassword.encode('utf-8')).hexdigest()
+    createAccount = models.Account(
+        provinceId= req.provinceId,
+        districtId= req.districtId,
+        wardId= req.wardId,
+        address= req.address,
+        roleName= AccountRole.USER,
+        accountName= req.accountName,
+        accountPassword= hashedPassword,
+        lastName= req.lastName,
+        firstName= req.firstName,
+        phone= req.phone,
+        email= req.email,
+        birthDate= req.birthDate,
+        imageUrl= req.imageUrl,
+        note= req.note,
+        createAt = datetime.now()
+    )
+    db.session.add(createAccount)
+    db.session.commit()
+    return createAccount.serialize()
 #
 #
-# def CreateAccount(req: CreateAccountReq):
-#     hashed_password = hashlib.md5(req.account_password.encode('utf-8')).hexdigest()
-#     create_account = models.Accounts(account_name=req.account_name,
-#                                      account_password=hashed_password,
-#                                      note=req.note, delete_at=req.deleted_at, role_id=req.role_id)
-#     db.session.add(create_account)
-#     db.session.commit()
-#     return create_account.serialize()
-#
-#
-# def ValidateAccountName(acc_name: str):
-#     acc = models.Accounts.query.filter(
-#         models.Accounts.account_name == acc_name and models.Accounts.delete_at is None).first()
-#     return True if acc else False
-#
-#
+def ValidateAccountName(accountName: str):
+    acc = models.Account.query.filter(
+        models.Account.accountName == accountName and models.Accounts.delete_at is None).first()
+    return True if acc else False
+
 # def GetAccountsByPage(req):
 #     account_pagination = models.Accounts.query.filter(models.Accounts.delete_at == None).paginate(page=req.page,
 #                                                                                                   per_page=req.per_page)
@@ -54,14 +72,14 @@
 #     return acc_info
 #
 #
-# def Authenticate(acc_info: LoginReq):
-#     account = models.Accounts.query.filter_by(account_name=acc_info.user_name).first()
-#     if not account:
-#         raise ErrorRsp(code=400, message='Tài khoản không tồn tại', msg='Tài khoản không tồn tại')
-#
-#     return account.serialize()
-#
-#
+def Authenticate(acc: LoginReq):
+    account = models.Account.query.filter(models.Account.accountName == acc.accountName).first()
+    if not account:
+        raise ErrorRsp(code=400, message='Tài khoản không tồn tại', msg='Tài khoản không tồn tại')
+
+    return account.serialize()
+
+
 # def GetAccountByCustomerEmail(req):
 #     customer_email = req.email
 #     account = models.Customers.query.filter(models.Customers.email == customer_email).first().account.serialize()
@@ -169,3 +187,7 @@
 #     db.session.commit()
 #
 #     return create_account.serialize(), create_employee.serialize()
+
+def getAccountById(id):
+    accountModel = models.Account.query.filter(models.Account.id == id).first();
+    return accountModel.serialize()

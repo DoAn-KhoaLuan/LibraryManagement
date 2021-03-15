@@ -34,9 +34,10 @@ class Account(db.Model):
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
+        shop = None if (len(self.shops) == 0)  else self.shops[0].serialize()
         return {
             "id": self.id,
-            "shop": self.shops[0].serialize(),
+            "shop": shop,
             "provinceId": self.provinceId,
             "districtId": self.districtId,
             "wardId": self.wardId,
@@ -58,10 +59,11 @@ class Account(db.Model):
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
     products = db.relationship("Product", backref="category", lazy=False)
-    categoryName = db.Column(db.String(50),name="category_name", unique=True)
+    categoryName = db.Column(db.String(50),name="category_name")
     description = db.Column(db.String(2000), name="description")
     note = db.Column(db.String(1000), name="note")
     deteleAt = db.Column(db.DateTime, name="delete_at")
+    createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
         return {
@@ -70,13 +72,14 @@ class Category(db.Model):
             "description": self.description,
             "note": self.note,
             "deteleAt": self.deteleAt,
+            "createAt": self.createAt,
         }
 
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
     accountId = db.Column(db.Integer, db.ForeignKey('account.id'), name="account_id")
-    productId = db.Column(db.Integer, db.ForeignKey('account.id'), name="product_id")
+    productId = db.Column(db.Integer, db.ForeignKey('product.id'), name="product_id")
 
     title = db.Column(db.String(50),name="title")
     content = db.Column(db.String(2000))
@@ -116,9 +119,15 @@ class Conversation(db.Model):
 
 
 class District(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
+    id = db.Column(db.String(10), primary_key=True, nullable=False, unique=True)
     name = db.Column(db.String(50))
     provinceId = db.Column(db.String(50), name="province_id")
+
+    def __init__(self, id, name, provinceId) -> None:
+        self.id = id
+        self.name = name
+        self.provinceId = provinceId
+        super().__init__()
 
     def serialize(self):
         return {
@@ -150,11 +159,11 @@ class Order(db.Model):
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
 
-    buyerAccountId = db.Column(db.Integer, db.ForeignKey("account.id"))
-    sellerAccountId = db.Column(db.Integer, db.ForeignKey("account.id"))
-
-    buyerAccount = db.relationship("Account")
-    sellerAccount = db.relationship("Account")
+    # buyerAccountId = db.Column(db.Integer, db.ForeignKey("account.id"))
+    # sellerAccountId = db.Column(db.Integer, db.ForeignKey("account.id"))
+    #
+    # buyerAccount = db.relationship("Account")
+    # sellerAccount = db.relationship("Account")
     orderDetails = db.relationship('OrderDetail', backref="order", lazy=False)
 
     total = db.Column(db.Float, name="total")
@@ -255,9 +264,15 @@ class Product(db.Model):
 
 
 class Province(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
+    id = db.Column(db.String(10), primary_key=True, nullable=False,unique=True)
     name = db.Column(db.String(50))
     region = db.Column(db.String(50), name="region")
+
+    def __init__(self, id, name, region) -> None:
+        self.id = id
+        self.name = name
+        self.region = region
+        super().__init__()
 
     def serialize(self):
         return {
@@ -299,9 +314,15 @@ class Shop(db.Model):
 
 
 class Ward(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
+    id = db.Column(db.String(10), primary_key=True, nullable=False, unique=True)
     name = db.Column(db.String(50))
     districtId = db.Column(db.String(50), name="district_id")
+
+    def __init__(self, id, name, districtId) -> None:
+        self.id = id
+        self.name = name
+        self.districtId = districtId
+        super().__init__()
 
     def serialize(self):
         return {

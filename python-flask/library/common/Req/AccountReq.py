@@ -1,10 +1,17 @@
 class CreateAccountReq():
     def __init__(self, req):
-        self.role_id = req['role_id'] if 'role_id' in req else None
-        self.account_name = req['account_name'] if 'account_name' in req else None
-        self.account_password = req['account_password'] if 'account_password' in req else None
-        self.confirm_account_password = req['confirm_account_password'] if 'confirm_account_password' in req else None
-        self.deleted_at = req['deleted_at'] if 'deleted_at' in req else None
+        self.provinceId = req['provinceId'] if 'provinceId' in req else None
+        self.districtId = req['districtId'] if 'districtId' in req else None
+        self.wardId = req['wardId'] if 'wardId' in req else None
+        self.address = req['address'] if 'address' in req else None
+        self.accountName = req['accountName'] if 'accountName' in req else None
+        self.accountPassword = req['accountPassword'] if 'accountPassword' in req else None
+        self.lastName = req['lastName'] if 'lastName' in req else None
+        self.firstName = req['firstName'] if 'firstName' in req else None
+        self.phone = req['phone'] if 'phone' in req else None
+        self.email = req['email'] if 'email' in req else None
+        self.birthDate = req['birthDate'] if 'birthDate' in req else None
+        self.imageUrl = req['imageUrl'] if 'imageUrl' in req else None
         self.note = req['note'] if 'note' in req else None
 
 
@@ -22,23 +29,20 @@ class DeleteAccountReq():
 
 class LoginReq():
     def __init__(self, req):
-        self.user_name = req['user_name']
-        self.password = req['password']
+        self.accountName = req['accountName']
+        self.accountPassword = req['accountPassword']
 
 
 class LoginRsp():
     def __init__(self, req):
-        self.access_token = req['access_token'] if 'access_token' in req else None
-        self.user_info = req['user_info'] if 'user_info' in req else None
+        self.accessToken = req['accessToken'] if 'accessToken' in req else None
         self.account = req['account'] if 'account' in req else None
 
     def serialize(self):
         return {
-            "access_token": self.access_token.decode('utf-8'),
-            "user_info": self.user_info,
-            "current_account": self.account
+            "accessToken": self.accessToken.decode('utf-8'),
+            "account": self.account
         }
-
 
 class SearchAccountsReq():
     def __init__(self, req):

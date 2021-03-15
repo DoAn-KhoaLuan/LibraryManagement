@@ -1,11 +1,11 @@
 # from email.message import EmailMessage
 #
-# import jwt
-# from datetime import datetime, timedelta
+import jwt
+from datetime import datetime, timedelta
 #
-# from flask import jsonify
+from flask import jsonify
 #
-# from library import app, smtp
+from library import app, smtp
 #
 # from library.common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
 #     ResetPasswordReq, ChangePasswordReq
@@ -16,16 +16,18 @@
 #
 # from library.common.Rsp.SingleRsp import ErrorRsp
 #
-# from library.repository import AccountRep, CustomerRep, EmployeeRep, MessageRep
+from library.common.Req.AccountReq import *
+from library.common.Rsp.SingleRsp import ErrorRsp
+from library.repository import AccountRep
 #
 #
-# def CreateAccount(req):
-#     is_account_existed = AccountRep.ValidateAccountName(req.account_name)
-#     if (is_account_existed):
-#         return jsonify({'msg': "Taif khoan da ton tai "}), 401
-#     else:
-#         res = AccountRep.CreateAccount(req)
-#         return res
+def CreateAccount(req: CreateAccountReq):
+    is_account_existed = AccountRep.ValidateAccountName(req.accountName)
+    if (is_account_existed):
+        return jsonify({'msg': "Tài khoản đã tồn tại"}), 401
+    else:
+        res = AccountRep.CreateAccount(req)
+        return res
 #
 #
 # def GetAccountsByPage(req):
@@ -62,37 +64,52 @@
 #     return info_accounts
 #
 #
-# def AuthenticateUser(acc: LoginReq):
-#     try:
-#         print("ádsadsa")
-#         account = AccountRep.Authenticate(acc)
-#         print("ádsadsa")
-#         print(account)
-#         if (account['role']['role_id'] == 3):  # customer
-#             search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
-#             user = CustomerRep.SearchCustomers(search_customer_req)
-#
-#         if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
-#             search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
-#             user = EmployeeRep.SearchEmployees(search_employee_req)
-#
-#         secect_key = app.config['SECRET_KEY']
-#         payload = {
-#             'account_id': account['account_id'],
-#             'iat': datetime.utcnow(),
-#             'exp': datetime.utcnow() + timedelta(minutes=30)
-#         }
-#         access_token = jwt.encode(payload, secect_key)
-#         result = {
-#             'access_token': access_token,
-#             'account': account,
-#             'user_info': user[0] if len(user) > 0 else None
-#         }
-#         return result
-#     except ErrorRsp as e:
-#         raise e
-#
-#
+def sessionInfo(token):
+    invalid_msg = {
+        'message': 'Token không hợp lệ.',
+        'authenticated': False
+    }
+    expired_msg = {
+        'message': 'Token hết hạn sử dụng.',
+        'authenticated': False
+    }
+    try:
+        payload = jwt.decode(token, app.config['SECRET_KEY'])
+        accountId = payload["accountId"]
+        account = AccountRep.getAccountById(accountId)
+        result = {
+            'accessToken': token,
+            'account': account,
+        }
+        return result
+
+    except jwt.ExpiredSignatureError:
+        return jsonify(expired_msg), 401  # 401 is Unauthorized HTTP status code
+    except (jwt.InvalidTokenError) as e:
+        return jsonify(invalid_msg), 401
+
+
+def Login(acc: LoginReq):
+    try:
+        account = AccountRep.Authenticate(acc)
+
+        secrectKey = app.config['SECRET_KEY']
+        payload = {
+            'accountId': account['id'],
+            'iat': datetime.utcnow(),
+            'exp': datetime.utcnow() + timedelta(minutes=30)
+        }
+        accessToken = jwt.encode(payload, secrectKey)
+        result = {
+            'accessToken': accessToken,
+            'account': account,
+        }
+
+        return result
+    except ErrorRsp as e:
+        raise e
+
+
 # def SendResetPasswordEmailCustomer(req: SendResetPasswordEmailReq):
 #     smtp.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
 #     account = AccountRep.GetAccountByCustomerEmail(req)
