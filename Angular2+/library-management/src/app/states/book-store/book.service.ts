@@ -98,7 +98,7 @@ export class BookService {
         return await this.bookApiService.CreateBook(book)
     }
 
-    async UploadBookImage(imageFile) {
+    async uploadImage(imageFile) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'multipart/form-data',
@@ -106,6 +106,6 @@ export class BookService {
           };
           let formData: FormData = new FormData();
           formData.append('file', imageFile);
-        await this.bookApiService.UpdateBookImage(formData, httpOptions);
+        await this.bookApiService.uploadImage(formData, httpOptions);
     }
 }

@@ -1,4 +1,5 @@
 from library import db
+from miration import models
 from miration.models import *
 
 
@@ -18,3 +19,17 @@ def createWard(ward):
     wardModel = Ward((ward["code"]), ward["name"], ward["district_code"]);
     db.session.add(wardModel)
     db.session.commit()
+
+
+def getProvinces():
+    modelProvinces = Province.query.all();
+    return ConvertModelListToDictList(modelProvinces)
+
+
+def getDistricts():
+    modelDistricts = District.query.all();
+    return ConvertModelListToDictList(modelDistricts)
+
+def getWards():
+    modelWards = Ward.query.all();
+    return ConvertModelListToDictList(modelWards)

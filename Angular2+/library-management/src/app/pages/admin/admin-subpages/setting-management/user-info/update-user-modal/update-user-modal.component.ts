@@ -109,7 +109,7 @@ export class UpdateUserModalComponent implements OnInit {
     try{
       let fd = new FormData();
       fd.append('image', event.target.files[0], event.target.files[0].name)
-      let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
+      let res : any = await this.http.post('http://localhost:5000/upload-image', fd).toPromise();
       this.update_form.patchValue({
         image: res.image
       })

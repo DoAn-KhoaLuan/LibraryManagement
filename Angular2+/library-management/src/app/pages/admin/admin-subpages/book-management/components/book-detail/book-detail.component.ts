@@ -238,13 +238,13 @@ export class BookDetailComponent implements OnInit, OnChanges {
     try{
       let fd = new FormData();
       fd.append('image', event.target.files[0], event.target.files[0].name)
-      let res : any = await this.http.post('http://localhost:5000/admin/book-management/upload-book-image', fd).toPromise();
+      let res : any = await this.http.post('http://localhost:5000/upload-image', fd).toPromise();
       this.updateBookForm.patchValue({
         image: res.image
-      })
+      });
     }
-    catch(e){
-      toastr.error("Cập nhật ảnh thất bại!", e.msg || e.message)
+    catch (e) {
+      toastr.error("Cập nhật ảnh thất bại!", e.msg || e.message);
     }
   }
 }
