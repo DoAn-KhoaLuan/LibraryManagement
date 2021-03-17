@@ -6,17 +6,12 @@
 # from flask import request, jsonify
 #
 import json
-from datetime import datetime
-import requests
 from flask import request, jsonify
-from pymysql import Date
 
 from library import app
 from library.common.Rsp.AccountRsp import SessionInfoRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
-from library.repository import *
-from library.repository import CategoryRep, LocationRep
-from library.service import AccountSvc, CategorySvc
+from library.service import AccountSvc
 # from library.common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, LoginRsp, SearchAccountsReq, \
 #     SendResetPasswordEmailReq, ResetPasswordReq, ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
 # from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
@@ -29,7 +24,6 @@ from library.service import AccountSvc, CategorySvc
 # from email.message import EmailMessage
 #
 from library.common.Req.AccountReq import *
-from miration.models import *
 
 
 @app.route('/abc', methods=['POST','GET'])

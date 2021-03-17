@@ -1,10 +1,9 @@
 from datetime import datetime
 
-from flask import jsonify, url_for
 # from flask_bcrypt import check_password_hash
 # from sqlalchemy import or_
 import hashlib
-from library import db
+from library.miration import models
 from library.common.Req.AccountReq import *
 #     ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
 # from library.common.Rsp.SingleRsp import ErrorRsp
@@ -12,9 +11,6 @@ from library.common.Req.AccountReq import *
 # from datetime import datetime
 # from library import bcrypt
 from library.common.Rsp.SingleRsp import ErrorRsp
-
-from miration import models
-from miration.models import *
 
 
 def CreateAccount(req: CreateAccountReq):

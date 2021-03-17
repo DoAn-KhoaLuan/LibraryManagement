@@ -1,16 +1,10 @@
-import json
 from functools import wraps
 
 import jwt
 from flask import request, jsonify
-from library import app
-from library.common.Rsp.SingleRsp import ErrorRsp
+
+from library.miration.models import AccountRole
 from library.service import AccountSvc
-from library.common.Req.AccountReq import SearchAccountsReq, LoginReq, LoginRsp
-from library.common.Req.CustomerReq import SearchCustomersReq
-from library.common.Req.EmployeeReq import SearchEmployeesReq
-from library.repository import EmployeeRep, CustomerRep
-from miration.models import AccountRole
 
 
 def user_required(function):

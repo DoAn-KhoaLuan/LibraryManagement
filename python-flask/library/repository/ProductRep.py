@@ -17,8 +17,8 @@ from datetime import datetime
 #
 #
 from library import db
+from library.miration import models
 from library.common.Req.ProductReq import CreateProductReq
-from miration import models
 
 
 def createProduct(req: CreateProductReq):

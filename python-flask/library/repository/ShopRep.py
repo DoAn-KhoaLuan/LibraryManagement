@@ -1,9 +1,7 @@
 from datetime import datetime
 
-from library import db
+from library.miration import models
 from library.common.Req.ShopReq import *
-from miration import models
-from miration.models import *
 
 
 def CreateShop(req: CreateShopReq):

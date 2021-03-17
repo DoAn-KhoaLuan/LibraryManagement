@@ -23,7 +23,6 @@
 #
 #
 from library import db
-from miration.models import *
 
 
 def CreateCategory(newCate):

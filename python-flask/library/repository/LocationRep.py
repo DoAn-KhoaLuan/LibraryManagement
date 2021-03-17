@@ -1,6 +1,6 @@
 from library import db
-from miration import models
-from miration.models import *
+from library.common.util import ConvertModelListToDictList
+from library.miration.models import Province, District, Ward
 
 
 def createProvince(province):
