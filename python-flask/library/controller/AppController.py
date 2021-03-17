@@ -1,11 +1,8 @@
-import datetime
+from datetime import datetime
 from random import randint
-from urllib import response
-
 import requests
 from flask import jsonify, request
 from werkzeug.utils import secure_filename
-
 from library import app
 from library.auth import owner_required
 from library.repository import LocationRep, CategoryRep
@@ -18,7 +15,7 @@ def test(account):
 
 @app.route('/init-data', methods=['POST'])
 def initData():
-    loadAndInsertData()
+    # loadAndInsertData()
     insertCategories()
     return "True"
 

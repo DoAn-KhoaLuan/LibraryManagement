@@ -1,4 +1,4 @@
-# from datetime import datetime
+from datetime import datetime
 #
 # from sqlalchemy import or_
 #
@@ -16,25 +16,36 @@
 #     return has_next, has_prev, books
 #
 #
-# def CreateBook(req: CreateBookReq):
-#     book = models.Books(
-#                         book_name=req.book_name,
-#                         supplier_id=req.supplier_id,
-#                         category_id=req.category_id,
-#                         author_id=req.author_id,
-#                         old_amount=req.old_amount,
-#                         new_amount=req.new_amount,
-#                         image=req.image,
-#                         page_number=req.page_number,
-#                         description=req.description,
-#                         cost_price=req.cost_price,
-#                         retail_price=req.retail_price,
-#                         discount=req.discount,
-#                         ranking=req.ranking)
-#
-#     db.session.add(book)
-#     db.session.commit()
-#     return book
+from library import db
+from library.common.Req.ProductReq import CreateProductReq
+from miration import models
+
+
+def createProduct(req: CreateProductReq):
+    product = models.Product(
+                        shopId=req.shopId,
+                        categoryId=req.categoryId,
+                        retailPrice=req.retailPrice,
+                        costPrice=req.costPrice,
+                        discount=req.discount,
+                        rateStar=0.0,
+                        name=req.name,
+                        brandName=req.brandName,
+                        material=req.material,
+                        size=req.size,
+                        feature=req.feature,
+                        origin=req.origin,
+                        amount=req.amount,
+                        rateCount=0,
+                        imageUrl=req.imageUrl,
+                        note=req.note,
+                        description=req.description,
+                        createAt=datetime.now(),
+    )
+
+    db.session.add(product)
+    db.session.commit()
+    return product.serialize()
 #
 #
 # def DeleteBookById(req):

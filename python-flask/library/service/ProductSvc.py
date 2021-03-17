@@ -14,9 +14,12 @@
 #     return result
 #
 #
-# def CreateBook(req):
-#     book = BookRep.CreateBook(req)
-#     return book
+from library.repository import ProductRep
+
+
+def createProduct(req):
+    product = ProductRep.createProduct(req)
+    return product
 #
 #
 # def DeleteBookById(req):

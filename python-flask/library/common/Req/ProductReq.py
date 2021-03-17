@@ -1,8 +1,7 @@
-
-
-
 class CreateProductReq(object):
-    def init(self, req):
+    def __init__(self, req):
+        self.shopId = req['shopId'] if 'shopId' in req else None
+        self.categoryId = req['categoryId'] if 'categoryId' in req else None
         self.name = req['name'] if 'name' in req else None
         self.retailPrice = req['retailPrice'] if 'retailPrice' in req else None
         self.costPrice = req['costPrice'] if 'costPrice' in req else None
@@ -17,7 +16,7 @@ class CreateProductReq(object):
         self.rateCount = req['rateCount'] if 'rateCount' in req else None
         self.note = req['note'] if 'note' in req else None
         self.description = req['description'] if 'description' in req else None
-
+        self.imageUrl = req['imageUrl'] if 'imageUrl' in req else None
 #
 #
 # class DeleteBookByIdReq():

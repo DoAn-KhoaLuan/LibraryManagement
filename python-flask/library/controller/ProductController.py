@@ -1,22 +1,17 @@
-import os
-import time
-from random import Random, randint
-import requests
-from werkzeug.utils import secure_filename
 
 from library import app
 from library.common.Req.ProductReq import *
 from library.service import ProductSvc
-from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 
-from library.common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateBookRsp, SearchBookRsp
+from library.common.Rsp.BookRsp import DeleteBookByIdRsp, UpdateBookRsp, SearchBookRsp, CreateProductRsp
 
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from flask import jsonify, request, make_response, render_template, send_file
-import json
+from flask import jsonify, request
 
 from library.common.Rsp.SingleRsp import ErrorRsp
-from library.auth import user_required
+from library.auth import user_required, owner_required
+
+
 # from library.controller.UploadImageController import allowed_file
 
 
@@ -34,11 +29,12 @@ from library.auth import user_required
 #
 #
 @app.route('/admin/product-management/create-product', methods=['POST'])
-@user_required
-def CreateBook():
+@owner_required
+def CreateBook(account):
     req = CreateProductReq(request.json)
-    result = ProductSvc.CreateBook(req)
-    res = CreateBookRsp(result).serialize()
+    req.shopId = account["shop"]["id"]
+    result = ProductSvc.createProduct(req)
+    res = CreateProductRsp(result).serialize()
     return jsonify(res)
 
 
