@@ -13,6 +13,7 @@ class SearchItemsReq():
         self.shopId = req['shopId'] if 'shopId' in req else None
         self.id = req['id'] if 'id' in req else None
         self.name = req['name'] if 'name' in req else None
+        self.categoryId = req['categoryId'] if 'categoryId' in req else None
 
     def serialize(self):
         return {

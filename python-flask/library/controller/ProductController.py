@@ -50,13 +50,21 @@ def deleteProduct():
     return jsonify(res)
 #
 #
-# @app.route('/admin/product-management/search-products-by-shop', methods=['POST'])
-# @owner_required
-# def searchProducts(account):
-#     req = SearchItemsReq(request.json)
-#     req.shopId = account["shop"]["id"]
-#     result = ProductSvc.searchProducts(req)
-#     return jsonify(result)
+@app.route('/admin/product-management/search-products-by-shop', methods=['POST'])
+@owner_required
+def searchProducts(account):
+    req = SearchItemsReq(request.json)
+    req.shopId = account["shop"]["id"]
+    result = ProductSvc.searchProducts(req)
+    res = GetItemsByPageRsp(items=result).serialize()
+    return jsonify(res)
+
+
+@app.route('/admin/product-management/rate-product', methods=['POST'])
+def rateProduct():
+    req = RateProductReq(request.json)
+    result = ProductSvc.rateProduct(req)
+    return jsonify(result)
 #
 #
 # @app.route('/admin/book-management/get-book', methods=['POST'])

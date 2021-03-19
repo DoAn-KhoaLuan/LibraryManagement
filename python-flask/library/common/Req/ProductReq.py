@@ -48,10 +48,9 @@ class UpdateProductReq():
         self.imageUrl = req['imageUrl'] if 'imageUrl' in req else None
 #
 #
-# class SearchBookReq:
-#     def init(self, req):
-#         self.bookid = req['bookid'] if 'bookid' in req else None
-#         self.bookname = req['bookname'] if 'bookname' in req else None
-#         self.authorid = req['authorid'] if 'authorid' in req else 0
-#         self.categoryid = req['categoryid'] if 'categoryid' in req else 0
-#         self.supplierid = req['supplierid'] if 'supplierid' in req else 0
+class RateProductReq:
+    def __init__(self, req):
+        self.star = req['star'] if 'star' in req else 0.0
+        self.id = req['id'] if 'id' in req else None
+
+

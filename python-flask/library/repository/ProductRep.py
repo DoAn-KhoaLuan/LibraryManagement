@@ -17,7 +17,7 @@ from library.common.Req import GetItemsByPageReq
 from library.common.Req.PageReq import DeleteItemReq, SearchItemsReq
 from library.common.util import ConvertModelListToDictList
 from library.miration import models
-from library.common.Req.ProductReq import CreateProductReq, UpdateProductReq
+from library.common.Req.ProductReq import CreateProductReq, UpdateProductReq, RateProductReq
 from library.miration.models import Tag
 
 
@@ -86,14 +86,17 @@ def updateProduct(req: UpdateProductReq):
     return updateProduct
 #
 #
-# def searchProducts(req: SearchItemsReq):
-#     modelProducts = models.Product.query.filter(or_(
-#             models.Product.id == req.id,
-#             models.Product.name == req.name)
-#
-#     ).all()
-#     products = ConvertModelListToDictList(modelProducts)
-#     return products
+def searchProducts(req: SearchItemsReq):
+    modelProducts = models.Product.query.filter(or_(
+            models.Product.id == req.id,
+            models.Product.name == req.name,
+            models.Product.categoryId == req.categoryId,
+        ),
+        models.Product.shopId == req.shopId,
+        models.Product.deteleAt == None,
+    ).all()
+    products = ConvertModelListToDictList(modelProducts)
+    return products
 
 
 def deleteProduct(req: DeleteItemReq):
@@ -102,3 +105,19 @@ def deleteProduct(req: DeleteItemReq):
     db.session.add(product)
     db.session.commit()
     return product.serialize()
+
+
+def rateProduct(req: RateProductReq):
+    rateProduct: models.Product = models.Product.query.get(req.id)
+
+    oldStar = rateProduct.rateStar
+    oldCount = rateProduct.rateCount
+    newStar = req.star
+
+    avgStar = ((oldStar * oldCount) + newStar) / (oldCount + 1)
+    rateProduct.rateStar = avgStar
+    rateProduct.rateCount = oldCount + 1
+
+    db.session.add(rateProduct);
+    db.session.commit()
+    return rateProduct.serialize()

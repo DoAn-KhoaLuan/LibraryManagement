@@ -243,7 +243,7 @@ class Product(db.Model):
             "category": self.category.serialize(),
             "shopId": self.shopId,
             "tags": ConvertModelListToDictList(self.tags),
-            "comments": ConvertModelListToDictList(self.comments),
+            # "comments": ConvertModelListToDictList(self.comments),
             "retailPrice": self.retailPrice,
             "costPrice": self.costPrice,
             "discount": self.discount,

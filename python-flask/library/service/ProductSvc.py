@@ -4,6 +4,7 @@
 #
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.common.Req.PageReq import SearchItemsReq
+from library.common.Req.ProductReq import RateProductReq
 from library.common.Rsp.SingleRsp import ErrorRsp
 from library.repository import ProductRep
 
@@ -37,8 +38,11 @@ def updateProduct(req):
     return product
 #
 #
-# def searchProducts(req: SearchItemsReq):
-#     products = ProductRep.searchProducts(req)
-#     return products
+def searchProducts(req: SearchItemsReq):
+    products = ProductRep.searchProducts(req)
+    return products
 #
 #
+def rateProduct(req: RateProductReq):
+    product = ProductRep.rateProduct(req)
+    return product
