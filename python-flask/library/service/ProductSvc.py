@@ -38,11 +38,16 @@ def updateProduct(req):
     return product
 #
 #
-def searchProducts(req: SearchItemsReq):
+def searchProductsByShop(req: SearchItemsReq):
     products = ProductRep.searchProducts(req)
     return products
 #
 #
+def searchProducts(req: SearchItemsReq):
+    products = ProductRep.searchProducts(req, byShop=False)
+    return products
+
+
 def rateProduct(req: RateProductReq):
     product = ProductRep.rateProduct(req)
     return product

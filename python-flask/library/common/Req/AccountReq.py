@@ -63,9 +63,9 @@ class ResetPasswordReq():
 
 class ChangePasswordReq():
     def __init__(self, req):
-        self.account_id = req['account_id'] if 'account_id' in req else None
-        self.current_password = req['current_password'] if 'current_password' in req else None
-        self.new_password = req['new_password'] if 'new_password' in req else None
+        self.id = req['accountId'] if 'accountId' in req else None
+        self.currentPassword = req['currentPassword'] if 'currentPassword' in req else None
+        self.newPassword = req['newPassword'] if 'newPassword' in req else None
 
 
 class CreateCustomerAccountReq():

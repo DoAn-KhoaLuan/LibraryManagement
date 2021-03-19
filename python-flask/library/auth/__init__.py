@@ -78,6 +78,7 @@ def owner_required(f):
         return jsonify(invalid_role), 403
     return _verify
 
+
 def manager_required(f):
     @wraps(f)
     def _verify(auth_info):

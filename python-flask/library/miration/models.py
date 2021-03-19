@@ -30,7 +30,7 @@ class Account(db.Model):
     birthDate = db.Column(db.DateTime, name="birth_date")
     imageUrl = db.Column(db.String(1000), name="image_url")
     note = db.Column(db.String(1000), name="note")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
@@ -51,7 +51,7 @@ class Account(db.Model):
             "birthDate": self.birthDate,
             "imageUrl": self.imageUrl,
             "note": self.note,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt
         }
 

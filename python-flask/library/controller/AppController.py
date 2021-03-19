@@ -85,6 +85,7 @@ def loadAndInsertData():
     for ward in wards:
         LocationRep.createWard(ward)
 
+
 def insertCategories():
     categoryDicts = [
         {

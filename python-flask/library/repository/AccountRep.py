@@ -1,3 +1,4 @@
+from builtins import print
 from datetime import datetime
 
 # from flask_bcrypt import check_password_hash
@@ -62,19 +63,28 @@ def ValidateAccountName(accountName: str):
 #     return accounts
 #
 #
-# def DeleteAccount(acc_info: DeleteAccountReq):
-#     deleted_account = models.Accounts.query.filter((models.Accounts.account_name == acc_info.account_name) | (
-#             models.Accounts.account_id == acc_info.account_id)).first()
-#     deleted_account.delete_at = datetime.now()
-#     db.session.add(deleted_account)
-#     db.session.commit()
-#     return acc_info
+def deleteAccount(account):
+    deleteAccount = models.Account.query.filter((models.Account.id == account['shop']['id'])).first()
+    print(deleteAccount)
+    deleteAccount.deleteAt = datetime.now()
+    db.session.add(deleteAccount)
+    db.session.commit()
+    return deleteAccount.serialize()
 #
 #
-def Authenticate(acc: LoginReq):
+def authenticate(acc: LoginReq):
     account = models.Account.query.filter(models.Account.accountName == acc.accountName).first()
+    hashedCurrentPassword = str(hashlib.md5(acc.accountPassword.strip().encode("utf-8")).hexdigest())
+
     if not account:
         raise ErrorRsp(code=400, message='Tài khoản không tồn tại', msg='Tài khoản không tồn tại')
+
+    if account.accountPassword != hashedCurrentPassword:
+        raise ErrorRsp(code=400, message='Mật khẩu không chính xác', msg='Mật khẩu không chính xác')
+
+    if account.deleteAt != None:
+        raise ErrorRsp(code=400, message='Tài khoản đã bị vô hiệu hóa', msg='Tài khoản đã bị vô hiệu hóa')
+
 
     return account.serialize()
 
@@ -98,18 +108,18 @@ def Authenticate(acc: LoginReq):
 #     return account.serialize()
 #
 #
-# def ChangePassword(req: ChangePasswordReq):
-#     account = models.Accounts.query.get(int(req.account_id))
-#     hashed_new_password = str(hashlib.md5(req.new_password.strip().encode("utf-8")).hexdigest())
-#     hashed_current_password = str(hashlib.md5(req.current_password.strip().encode("utf-8")).hexdigest())
-#
-#     if account.account_password == hashed_current_password:
-#         account.account_password = hashed_new_password
-#         db.session.commit()
-#     else:
-#         raise ErrorRsp(code=400, message='Mật khẩu không chính xác', msg="Mật khẩu không chính xác")
-#
-#     return account.serialize()
+def changePassword(req: ChangePasswordReq):
+    account = models.Account.query.get(int(req.id))
+    hashedNewPassword = str(hashlib.md5(req.newPassword.strip().encode("utf-8")).hexdigest())
+    hashedCurrentPassword = str(hashlib.md5(req.currentPassword.strip().encode("utf-8")).hexdigest())
+
+    if account.accountPassword == hashedCurrentPassword:
+        account.accountPassword = hashedNewPassword
+        db.session.commit()
+    else:
+        raise ErrorRsp(code=400, message='Mật khẩu không chính xác', msg="Mật khẩu không chính xác")
+
+    return account.serialize()
 #
 #
 # def CreateCustomerAccount(req: CreateCustomerAccountReq):
@@ -188,5 +198,5 @@ def Authenticate(acc: LoginReq):
 #     return create_account.serialize(), create_employee.serialize()
 
 def getAccountById(id):
-    accountModel = models.Account.query.filter(models.Account.id == id).first();
+    accountModel = models.Account.query.filter(models.Account.id == id).first()
     return accountModel.serialize()

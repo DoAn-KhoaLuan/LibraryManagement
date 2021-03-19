@@ -9,6 +9,7 @@ import json
 from flask import request, jsonify
 
 from library import app
+from library.auth import owner_required, user_required
 from library.common.Rsp.AccountRsp import SessionInfoRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
 from library.service import AccountSvc
@@ -35,11 +36,7 @@ def CreateAccount():
     req = CreateAccountReq(request.json)
     result = AccountSvc.CreateAccount(req)
     return result
-# @app.route('/admin/account-management/create-account', methods=['POST'])
-# def CreateAccount() -> CreateAccountReq:
-#     req = CreateAccountReq(request.json)
-#     result = AccountSvc.CreateAccount(req)
-#     return result
+
 #
 #
 # @app.route('/admin/account-management/get-accounts', methods=['POST'])
@@ -52,11 +49,11 @@ def CreateAccount():
 #     return jsonify(res)
 #
 #
-# @app.route('/admin/account-management/delete-account', methods=['POST'])
-# def DeleteAccount():
-#     req = DeleteAccountReq(request.json)
-#     res = AccountSvc.DeleteAccount(req)
-#     return jsonify(res.serialize())
+@app.route('/admin/account-management/delete-account', methods=['POST'])
+@owner_required
+def deleteAccount(account):
+    res = AccountSvc.deleteAccount(account)
+    return jsonify(res)
 #
 #
 # @app.route('/admin/account-management/get-account', methods=['POST'])
@@ -71,7 +68,7 @@ def CreateAccount():
 def LoginAccount():
     try:
         req = LoginReq(request.json)
-        result = AccountSvc.Login(req)
+        result = AccountSvc.login(req)
         res = LoginRsp(result).serialize()
         return jsonify(res)
     except ErrorRsp as e:
@@ -112,14 +109,17 @@ def GetSessionInfo():
 #     return jsonify(result)
 #
 #
-# @app.route('/change-password', methods=['POST'])
-# def ChangePassword():
-#     try:
-#         req = ChangePasswordReq(request.json)
-#         result = AccountSvc.ChangePassword(req)
-#         return jsonify(result)
-#     except ErrorRsp as e:
-#         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
+@app.route('/admin/account-management/change-password', methods=['POST'])
+@user_required
+def changePassword(account):
+    try:
+        req = ChangePasswordReq(request.json)
+        req.id=account["id"]
+        print(req.__dict__)
+        result = AccountSvc.changePassword(req)
+        return jsonify(result)
+    except ErrorRsp as e:
+        return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
 #
 #
 # @app.route('/create-customer-account', methods=['POST'])

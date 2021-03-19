@@ -52,9 +52,18 @@ def deleteProduct():
 #
 @app.route('/admin/product-management/search-products-by-shop', methods=['POST'])
 @owner_required
-def searchProducts(account):
+def searchProductsByShop(account):
     req = SearchItemsReq(request.json)
     req.shopId = account["shop"]["id"]
+    result = ProductSvc.searchProductsByShop(req)
+    res = GetItemsByPageRsp(items=result).serialize()
+    return jsonify(res)
+
+
+@app.route('/admin/product-management/search-products', methods=['POST'])
+@owner_required
+def searchProducts(account):
+    req = SearchItemsReq(request.json)
     result = ProductSvc.searchProducts(req)
     res = GetItemsByPageRsp(items=result).serialize()
     return jsonify(res)

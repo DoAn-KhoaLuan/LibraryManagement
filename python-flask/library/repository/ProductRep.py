@@ -86,15 +86,24 @@ def updateProduct(req: UpdateProductReq):
     return updateProduct
 #
 #
-def searchProducts(req: SearchItemsReq):
-    modelProducts = models.Product.query.filter(or_(
+def searchProducts(req: SearchItemsReq, byShop = True):
+    if byShop:
+        modelProducts = models.Product.query.filter(or_(
+                models.Product.id == req.id,
+                models.Product.name == req.name,
+                models.Product.categoryId == req.categoryId,
+            ),
+            models.Product.shopId == req.shopId,
+            models.Product.deteleAt == None,
+        ).all()
+    else:
+        modelProducts = models.Product.query.filter(or_(
             models.Product.id == req.id,
             models.Product.name == req.name,
             models.Product.categoryId == req.categoryId,
-        ),
-        models.Product.shopId == req.shopId,
-        models.Product.deteleAt == None,
-    ).all()
+            ),
+            models.Product.deteleAt == None,
+            ).all()
     products = ConvertModelListToDictList(modelProducts)
     return products
 

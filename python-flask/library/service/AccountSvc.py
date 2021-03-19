@@ -40,9 +40,9 @@ def CreateAccount(req: CreateAccountReq):
 #     return result
 #
 #
-# def DeleteAccount(req: DeleteAccountReq):
-#     res = AccountRep.DeleteAccount(req)
-#     return res
+def deleteAccount(account):
+    res = AccountRep.deleteAccount(account)
+    return res
 #
 #
 # def SearchAccounts(acc_info):
@@ -97,9 +97,9 @@ def sessionInfo(token):
         return jsonify(invalid_msg), 401
 
 
-def Login(acc: LoginReq):
+def login(acc: LoginReq):
     try:
-        account = AccountRep.Authenticate(acc)
+        account = AccountRep.authenticate(acc)
 
         secrectKey = app.config['SECRET_KEY']
         payload = {
@@ -183,12 +183,12 @@ def Login(acc: LoginReq):
 #     return result
 #
 #
-# def ChangePassword(req: ChangePasswordReq):
-#     try:
-#         result = AccountRep.ChangePassword(req)
-#         return result
-#     except ErrorRsp as e:
-#         raise e
+def changePassword(req: ChangePasswordReq):
+    try:
+        result = AccountRep.changePassword(req)
+        return result
+    except ErrorRsp as e:
+        raise e
 #
 #
 # def CreateCustomerAccount(req):
