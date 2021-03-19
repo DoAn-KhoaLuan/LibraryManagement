@@ -15,11 +15,11 @@
 #
 # def GetCategoriesByPage(req):
 #     category_pagination = models.Categories.query.filter(models.Categories.delete_at == None).paginate(page=req.page, per_page=req.per_page)
-#     has_next = category_pagination.has_next
-#     has_prev = category_pagination.has_prev
+#     hasNext = category_pagination.hasNext
+#     hasPrev = category_pagination.hasPrev
 #     print("category_pagination.items: ", category_pagination.items)
 #     categories = ConvertModelListToDictList(category_pagination.items)
-#     return has_next, has_prev, categories
+#     return hasNext, hasPrev, categories
 #
 #
 from library import db

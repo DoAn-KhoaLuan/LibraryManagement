@@ -3,10 +3,10 @@
 #
 #
 # def GetCategoriesByPage(req):
-#     has_next, has_prev, categories = CategoryRep.GetCategoriesByPage(req)
+#     hasNext, hasPrev, categories = CategoryRep.GetCategoriesByPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "categories": categories
 #     }
 #     return result

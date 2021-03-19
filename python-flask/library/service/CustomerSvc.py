@@ -2,10 +2,10 @@
 #
 #
 # def GetCustomersByPage(req):
-#     has_next, has_prev, customers = CustomerRep.GetCustomersByPage(req)
+#     hasNext, hasPrev, customers = CustomerRep.GetCustomersByPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "customers": customers
 #     }
 #     return result

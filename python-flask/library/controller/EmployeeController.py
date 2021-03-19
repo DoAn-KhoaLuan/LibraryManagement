@@ -14,7 +14,7 @@
 # def GetEmployees():
 #     req = GetItemsByPageReq(request.json)
 #     result = EmployeeSvc.GetEmployeesByPage(req)
-#     res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
+#     res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
 #                             items=result['employees']).serialize()
 #     return jsonify(res)
 #

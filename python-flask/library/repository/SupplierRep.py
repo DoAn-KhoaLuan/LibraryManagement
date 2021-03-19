@@ -12,10 +12,10 @@
 #
 # def GetSuppliersByPage(req: GetItemsByPageReq):
 #     supplier_pagination = Suppliers.query.filter(Suppliers.delete_at == None).paginate(per_page=req.per_page, page=req.page)
-#     has_next = supplier_pagination.has_next
-#     has_prev = supplier_pagination.has_prev
+#     hasNext = supplier_pagination.hasNext
+#     hasPrev = supplier_pagination.hasPrev
 #     suppliers = ConvertModelListToDictList(supplier_pagination.items)
-#     return has_next, has_prev, suppliers
+#     return hasNext, hasPrev, suppliers
 #
 #
 # def CreateSupplier(req: CreateSupplierReq):

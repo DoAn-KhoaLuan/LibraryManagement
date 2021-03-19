@@ -16,10 +16,10 @@
 #
 # def GetCustomersByPage(req: GetItemsByPageReq):
 #     customers_pagination = models.Customers.query.filter(models.Customers.delete_at == None).paginate(per_page=req.per_page, page=req.page)
-#     has_next = customers_pagination.has_next
-#     has_prev = customers_pagination.has_prev
+#     hasNext = customers_pagination.hasNext
+#     hasPrev = customers_pagination.hasPrev
 #     customers = ConvertModelListToDictList(customers_pagination.items)
-#     return has_next, has_prev, customers
+#     return hasNext, hasPrev, customers
 #
 #
 # def CreatCustomer(req: CreateCustomerReq):

@@ -2,10 +2,10 @@
 #
 #
 # def GetEmployeesByPage(req):
-#     has_next, has_prev, employees = EmployeeRep.GetEmployeesbyPage(req)
+#     hasNext, hasPrev, employees = EmployeeRep.GetEmployeesbyPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "employees": employees
 #     }
 #     return result

@@ -15,10 +15,10 @@
 #
 # def GetEmployeesbyPage(req: GetItemsByPageReq):
 #     employees_pagination = models.Employees.query.filter(models.Employees.delete_at == None).paginate(per_page=req.per_page, page=req.page)
-#     has_next = employees_pagination.has_next
-#     has_prev = employees_pagination.has_prev
+#     hasNext = employees_pagination.hasNext
+#     hasPrev = employees_pagination.hasPrev
 #     employees = ConvertModelListToDictList(employees_pagination.items)
-#     return has_next, has_prev, employees
+#     return hasNext, hasPrev, employees
 #
 #
 # def CreateEmployee(req: CreateEmployeeReq):

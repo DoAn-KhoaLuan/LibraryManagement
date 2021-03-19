@@ -11,10 +11,10 @@
 #
 # def GetScheduleByPage(req: GetItemsByPageReq):
 #     schedule_pagination = models.Schedules.query.filter(models.Schedules.delete_at == None).paginate(per_page=req.per_page, page=req.page)
-#     has_next = schedule_pagination.has_next
-#     has_prev = schedule_pagination.has_prev
+#     hasNext = schedule_pagination.hasNext
+#     hasPrev = schedule_pagination.hasPrev
 #     schedules = ConvertModelListToDictList(schedule_pagination.items)
-#     return has_next, has_prev, schedules
+#     return hasNext, hasPrev, schedules
 #
 #
 # def CreateSchedule(req: CreateScheduleReq):

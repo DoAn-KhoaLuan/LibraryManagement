@@ -3,6 +3,8 @@ from datetime import datetime
 # from flask_bcrypt import check_password_hash
 # from sqlalchemy import or_
 import hashlib
+
+from library import db
 from library.miration import models
 from library.common.Req.AccountReq import *
 #     ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
@@ -11,6 +13,7 @@ from library.common.Req.AccountReq import *
 # from datetime import datetime
 # from library import bcrypt
 from library.common.Rsp.SingleRsp import ErrorRsp
+from library.miration.models import AccountRole
 
 
 def CreateAccount(req: CreateAccountReq):
@@ -45,10 +48,10 @@ def ValidateAccountName(accountName: str):
 # def GetAccountsByPage(req):
 #     account_pagination = models.Accounts.query.filter(models.Accounts.delete_at == None).paginate(page=req.page,
 #                                                                                                   per_page=req.per_page)
-#     has_next = account_pagination.has_next
-#     has_prev = account_pagination.has_prev
+#     hasNext = account_pagination.hasNext
+#     hasPrev = account_pagination.hasPrev
 #     accounts = ConvertModelListToDictList(account_pagination.items)
-#     return has_next, has_prev, accounts
+#     return hasNext, hasPrev, accounts
 #
 #
 # def SearchAccounts(acc_info):

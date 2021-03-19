@@ -4,10 +4,10 @@
 #
 #
 # def GetMessagesInConversationByPage(req:  GetMessagesInConversationByFilterReq):
-#     has_next, has_prev, messages, current_page = MessageRep.GetMessagesInConversationByPage(req)
+#     hasNext, hasPrev, messages, current_page = MessageRep.GetMessagesInConversationByPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "messages": messages,
 #         "current_page": current_page
 #     }

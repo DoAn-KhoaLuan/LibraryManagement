@@ -8,10 +8,10 @@
 #
 #
 # def GetBorrowTicketsByPage(req):
-#     has_next, has_prev, borrow_tickets = BorrowTicketRep.GetBorrowTicketsByPage(req)
+#     hasNext, hasPrev, borrow_tickets = BorrowTicketRep.GetBorrowTicketsByPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "borrow_tickets": borrow_tickets
 #     }
 #     return result

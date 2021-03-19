@@ -14,7 +14,7 @@
 # def GetSchedules():
 #     req = GetItemsByPageReq(request.json)
 #     result = ScheduleSvc.GetScheduleByPage(req)
-#     res = GetItemsByPageRsp(has_prev=result['has_prev'], has_next=result['has_next'],
+#     res = GetItemsByPageRsp(hasPrev=result['hasPrev'], hasNext=result['hasNext'],
 #                             items=result['schedules']).serialize()
 #     return jsonify(res)
 #

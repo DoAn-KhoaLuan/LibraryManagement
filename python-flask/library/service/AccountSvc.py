@@ -31,10 +31,10 @@ def CreateAccount(req: CreateAccountReq):
 #
 #
 # def GetAccountsByPage(req):
-#     has_next, has_prev, accounts = AccountRep.GetAccountsByPage(req)
+#     hasNext, hasPrev, accounts = AccountRep.GetAccountsByPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "accounts": accounts
 #     }
 #     return result
@@ -105,7 +105,7 @@ def Login(acc: LoginReq):
         payload = {
             'accountId': account['id'],
             'iat': datetime.utcnow(),
-            'exp': datetime.utcnow() + timedelta(minutes=30)
+            'exp': datetime.utcnow() + timedelta(minutes=3600)
         }
         accessToken = jwt.encode(payload, secrectKey)
         result = {

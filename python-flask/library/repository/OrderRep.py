@@ -14,10 +14,10 @@
 #
 # def GetOrdersbyPage(req: GetItemsByPageReq):
 #     orders_pagination = models.Orders.query.filter(models.Orders.delete_at == None).paginate(per_page=req.per_page, page = req.page)
-#     has_next = orders_pagination.has_next
-#     has_prev = orders_pagination.has_prev
+#     hasNext = orders_pagination.hasNext
+#     hasPrev = orders_pagination.hasPrev
 #     orders = ConvertModelListToDictList(orders_pagination.items)
-#     return has_next, has_prev, orders
+#     return hasNext, hasPrev, orders
 #
 #
 # def CreateOrder(order: CreateOrderReq):

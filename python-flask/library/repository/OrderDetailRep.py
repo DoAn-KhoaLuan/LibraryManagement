@@ -11,10 +11,10 @@
 #
 # def GetOrderDetailsByPage(req: GetItemsByPageReq):
 #     order_detail_pagination = models.Orderdetails.query.filter(models.Orderdetails.delete_at == None).paginate(per_page=req.per_page, page=req.page)
-#     has_next = order_detail_pagination.has_next
-#     has_prev = order_detail_pagination.has_prev
+#     hasNext = order_detail_pagination.hasNext
+#     hasPrev = order_detail_pagination.hasPrev
 #     order_details = ConvertModelListToDictList(order_detail_pagination.items)
-#     return has_next, has_prev, order_details
+#     return hasNext, hasPrev, order_details
 #
 #
 # def CreateOrderDetail(req: CreateOrderDetailReq):

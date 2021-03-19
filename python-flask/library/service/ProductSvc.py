@@ -2,19 +2,24 @@
 # from library.repository import BookRep
 #
 #
-# def GetBooksByPage(req):
-#     has_next, has_prev, books = BookRep.GetBooksByPage(req)
-#     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
-#         "books": books
-#     }
-#     if (req.per_page == 0):
-#         raise ErrorRsp(code=400, message='Per page không được bằng 0')
-#     return result
-#
-#
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.PageReq import SearchItemsReq
+from library.common.Rsp.SingleRsp import ErrorRsp
 from library.repository import ProductRep
+
+
+def getProductsByPage(req: GetItemsByPageReq):
+    hasNext, hasPrev, products = ProductRep.getProductsByPage(req)
+    result = {
+        "hasNext": hasNext,
+        "hasPrev": hasPrev,
+        "products": products
+    }
+    if (req.perPage == 0):
+        raise ErrorRsp(code=400, message='Per page không được bằng 0')
+    return result
+
+
 
 
 def createProduct(req):
@@ -22,18 +27,18 @@ def createProduct(req):
     return product
 #
 #
-# def DeleteBookById(req):
-#     book = BookRep.DeleteBookById(req)
-#     return book
+def deleteProduct(req):
+    book = ProductRep.deleteProduct(req)
+    return book
 #
 #
-# def UpdateBook(req):
-#     book = BookRep.UpdateBook(req)
-#     return book
+def updateProduct(req):
+    product = ProductRep.updateProduct(req)
+    return product
 #
 #
-# def SearchBooks(req):
-#     books = BookRep.SearchBooks(req)
-#     return books
+# def searchProducts(req: SearchItemsReq):
+#     products = ProductRep.searchProducts(req)
+#     return products
 #
 #

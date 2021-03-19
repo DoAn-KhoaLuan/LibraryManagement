@@ -16,19 +16,19 @@
 #         last_page_number = total_messages_amount // req.per_page if total_messages_amount % req.per_page == 0 else total_messages_amount // req.per_page + 1
 #         messages_pagination = models.Messages.query.filter(models.Messages.conversation_id == req.conversation_id) \
 #             .paginate(page=last_page_number, per_page=req.per_page)
-#         has_next = messages_pagination.has_next
-#         has_prev = messages_pagination.has_prev
+#         hasNext = messages_pagination.hasNext
+#         hasPrev = messages_pagination.hasPrev
 #         messages = ConvertModelListToDictList(messages_pagination.items)
 #         current_page = last_page_number
-#         return has_next, has_prev, messages, current_page
+#         return hasNext, hasPrev, messages, current_page
 #     else:
 #         messages_pagination = models.Messages.query.filter(models.Messages.conversation_id == req.conversation_id) \
 #             .paginate(page=req.page, per_page=req.per_page)
-#         has_next = messages_pagination.has_next
-#         has_prev = messages_pagination.has_prev
+#         hasNext = messages_pagination.hasNext
+#         hasPrev = messages_pagination.hasPrev
 #         messages = ConvertModelListToDictList(messages_pagination.items)
 #         current_page = req.page
-#         return has_next, has_prev, messages, current_page
+#         return hasNext, hasPrev, messages, current_page
 #
 # def SendMessage(req: SendMessageReq):
 #     create_message = models.Messages(conversation_id=req.conversation_id, content=req.content, account_id=req.account_id, created_at= datetime.now(tz=pytz.timezone("Asia/Ho_Chi_Minh")))

@@ -13,7 +13,7 @@
 # def GetOrderDetails():
 #     req = GetItemsByPageReq(request.json)
 #     result = OrderDetailSvc.GeOrderDetailsByPage(req)
-#     res = GetItemsByPageRsp(has_prev=result['has_prev'], has_next=result['has_next'],
+#     res = GetItemsByPageRsp(hasPrev=result['hasPrev'], hasNext=result['hasNext'],
 #                             items=result['order_details']).serialize()
 #     return jsonify(res)
 #

@@ -10,7 +10,7 @@
 #
 #
 # def GetOrdersByPage(req):
-#     has_next, has_prev, orders = OrderRep.GetOrdersbyPage(req)
+#     hasNext, hasPrev, orders = OrderRep.GetOrdersbyPage(req)
 #
 #     for order in orders:
 #         total_quantity = 0
@@ -19,8 +19,8 @@
 #         order['total_quantity'] = total_quantity
 #
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "orders": orders
 #     }
 #     return result

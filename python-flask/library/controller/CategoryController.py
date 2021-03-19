@@ -15,7 +15,7 @@
 # def GetCategories():
 #     req = GetItemsByPageReq(request.json)
 #     result = CategorySvc.GetCategoriesByPage(req)
-#     res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
+#     res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
 #                             items=result['categories']).serialize()
 #     return jsonify(res)
 #

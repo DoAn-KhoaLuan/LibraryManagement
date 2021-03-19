@@ -15,7 +15,7 @@
 # def GetBorrowTickets():
 #     req = GetItemsByPageReq(request.json)
 #     result = BorrowTicketSvc.GetBorrowTicketsByPage(req)
-#     res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
+#     res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
 #                             items=result['borrow_tickets']).serialize()
 #     return jsonify(res)
 #

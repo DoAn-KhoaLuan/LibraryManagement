@@ -2,10 +2,10 @@
 #
 #
 # def GeOrderDetailsByPage(req):
-#     has_next, has_prev, order_details = OrderDetailRep.GetOrderDetailsByPage(req)
+#     hasNext, hasPrev, order_details = OrderDetailRep.GetOrderDetailsByPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "order_details": order_details
 #     }
 #     return result

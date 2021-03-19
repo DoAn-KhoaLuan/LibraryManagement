@@ -1,9 +1,12 @@
+import json
 
 from library import app
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.PageReq import DeleteItemReq, SearchItemsReq
 from library.common.Req.ProductReq import *
 from library.service import ProductSvc
 
-from library.common.Rsp.BookRsp import DeleteBookByIdRsp, UpdateBookRsp, SearchBookRsp, CreateProductRsp
+from library.common.Rsp.ProductRsp import DeleteBookByIdRsp, SearchBookRsp, CreateProductRsp, UpdateProductRsp
 
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request
@@ -15,22 +18,23 @@ from library.auth import user_required, owner_required
 # from library.controller.UploadImageController import allowed_file
 
 
-# @app.route('/admin/book-management/get-books', methods=['POST'])
-# @token_required
-# def GetBooks(auth_info):
-#     try:
-#         req = GetItemsByPageReq(request.json)
-#         result = BookSvc.GetBooksByPage(req)
-#         res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
-#                                 items=result['books']).serialize()
-#         return jsonify(res)
-#     except ErrorRsp as e:
-#         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
+@app.route('/admin/product-management/get-products-by-shop', methods=['POST'])
+@owner_required
+def getProductsByPage(account):
+    try:
+        req = GetItemsByPageReq(request.json)
+        req.shopId = account["shop"]["id"]
+        result = ProductSvc.getProductsByPage(req)
+        res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
+                                items=result['products']).serialize()
+        return jsonify(res)
+    except ErrorRsp as e:
+        return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
 #
 #
 @app.route('/admin/product-management/create-product', methods=['POST'])
 @owner_required
-def CreateBook(account):
+def CreateProduct(account):
     req = CreateProductReq(request.json)
     req.shopId = account["shop"]["id"]
     result = ProductSvc.createProduct(req)
@@ -38,20 +42,21 @@ def CreateBook(account):
     return jsonify(res)
 
 
-# @app.route('/admin/book-management/delete-book', methods=['POST'])
-# def DeleteBookById():
-#     req = DeleteBookByIdReq(request.json)
-#     result = BookSvc.DeleteBookById(req)
-#     res = DeleteBookByIdRsp(result).serialize()
-#     return jsonify(res)
+@app.route('/admin/product-management/delete-product', methods=['POST'])
+def deleteProduct():
+    req = DeleteItemReq(request.json)
+    result = ProductSvc.deleteProduct(req)
+    res = DeleteItemReq(result).serialize()
+    return jsonify(res)
 #
 #
-# @app.route('/admin/book-management/update-book', methods=['POST'])
-# def UpdateBook():
-#     req = UpdateBookReq(request.json)
-#     result = BookSvc.UpdateBook(req)
-#     res = UpdateBookRsp(result).serialize()
-#     return jsonify(res)
+# @app.route('/admin/product-management/search-products-by-shop', methods=['POST'])
+# @owner_required
+# def searchProducts(account):
+#     req = SearchItemsReq(request.json)
+#     req.shopId = account["shop"]["id"]
+#     result = ProductSvc.searchProducts(req)
+#     return jsonify(result)
 #
 #
 # @app.route('/admin/book-management/get-book', methods=['POST'])

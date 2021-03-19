@@ -1,6 +1,6 @@
 from datetime import datetime
 #
-# from sqlalchemy import or_
+from sqlalchemy import or_
 #
 # from library import db
 # from library.common.Req.BookReq import SearchBookReq, CreateBookReq
@@ -8,17 +8,17 @@ from datetime import datetime
 # from library.common.util import ConvertModelListToDictList
 #
 #
-# def GetBooksByPage(req):
-#     book_pagination = models.Books.query.filter(models.Books.delete_at == None).paginate(page=req.page, per_page=req.per_page)
-#     has_next = book_pagination.has_next
-#     has_prev = book_pagination.has_prev
-#     books = ConvertModelListToDictList(book_pagination.items)
-#     return has_next, has_prev, books
+
 #
 #
+
 from library import db
+from library.common.Req import GetItemsByPageReq
+from library.common.Req.PageReq import DeleteItemReq, SearchItemsReq
+from library.common.util import ConvertModelListToDictList
 from library.miration import models
-from library.common.Req.ProductReq import CreateProductReq
+from library.common.Req.ProductReq import CreateProductReq, UpdateProductReq
+from library.miration.models import Tag
 
 
 def createProduct(req: CreateProductReq):
@@ -45,49 +45,60 @@ def createProduct(req: CreateProductReq):
 
     db.session.add(product)
     db.session.commit()
+    for tag in req.tags:
+        tag = Tag(name=tag['name'], trimName=tag['trimName'], createAt=datetime.now())
+        product.tags.append(tag)
+        db.session.commit()
     return product.serialize()
+
+
+def getProductsByPage(req: GetItemsByPageReq):
+    productPagination = models.Product.query.filter(
+        (models.Product.deteleAt == None),
+        (models.Product.shopId == req.shopId)
+            )\
+        .paginate(page=req.page, per_page=req.perPage)
+    hasNext = productPagination.has_next
+    hasPrev = productPagination.has_prev
+    products = ConvertModelListToDictList(productPagination.items)
+    return hasNext, hasPrev, products
+
+
+def updateProduct(req: UpdateProductReq):
+    updateProduct = models.Product.query.get(req.productId)
+    updateProduct.shopId=req.shopId,
+    updateProduct.categoryId=req.categoryId,
+    updateProduct.retailPrice=req.retailPrice,
+    updateProduct.costPrice=req.costPrice,
+    updateProduct.discount=req.discount,
+    updateProduct.name=req.name,
+    updateProduct.brandName=req.brandName,
+    updateProduct.material=req.material,
+    updateProduct.size=req.size,
+    updateProduct.feature=req.feature,
+    updateProduct.origin=req.origin,
+    updateProduct.amount=req.amount,
+    updateProduct.imageUrl=req.imageUrl,
+    updateProduct.note=req.note,
+    updateProduct.description=req.description,
+    db.session.add(updateProduct)
+    db.session.commit()
+    return updateProduct
 #
 #
-# def DeleteBookById(req):
-#     book = models.Books.query.get(req.book_id)
-#     book.delete_at = datetime.now()
-#     db.session.add(book)
-#     db.session.commit()
-#     return book.serialize()
+# def searchProducts(req: SearchItemsReq):
+#     modelProducts = models.Product.query.filter(or_(
+#             models.Product.id == req.id,
+#             models.Product.name == req.name)
 #
-#
-# def UpdateBook(req):
-#     book = models.Books.query.get(req.book_id)
-#     book.book_name = req.book_name
-#     book.supplier_id = req.supplier_id
-#     book.category_id = req.category_id
-#     book.author_id = req.author_id
-#     book.old_amount = req.old_amount
-#     book.new_amount = req.new_amount
-#     book.image = req.image
-#     book.page_number = req.page_number
-#     book.description = req.description
-#     book.cost_price = req.cost_price
-#     book.retail_price = req.retail_price
-#     book.discount = req.discount
-#     book.ranking = req.ranking
-#     book.note = req.note
-#     db.session.add(book)
-#     db.session.commit()
-#     return book
-#
-#
-# def SearchBooks(req: SearchBookReq):
-#     if(req.book_id):
-#         model_books = models.Books.query.filter(models.Books.book_id == req.book_id)
-#         return ConvertModelListToDictList(model_books)
-#
-#     model_books = models.Books.query.filter(or_(
-#             models.Books.book_name.contains(req.book_name),
-#             # models.Books.author_id == req.author_id,
-#             # models.Books.category_id == req.category_id,
-#             # models.Books.supplier_id == req.supplier_id,
-#     )).all()
-#     print(model_books)
-#     books = ConvertModelListToDictList(model_books)
-#     return books
+#     ).all()
+#     products = ConvertModelListToDictList(modelProducts)
+#     return products
+
+
+def deleteProduct(req: DeleteItemReq):
+    product = models.Product.query.get(req.id)
+    product.deteleAt = datetime.now()
+    db.session.add(product)
+    db.session.commit()
+    return product.serialize()

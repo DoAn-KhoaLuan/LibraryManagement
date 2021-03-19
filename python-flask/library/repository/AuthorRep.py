@@ -13,10 +13,10 @@
 #
 # def GetAuthorsByPage(req):
 #     author_pagination = models.Authors.query.filter(models.Authors.delete_at == None).paginate(page=req.page, per_page=req.per_page)
-#     has_next = author_pagination.has_next
-#     has_prev = author_pagination.has_prev
+#     hasNext = author_pagination.hasNext
+#     hasPrev = author_pagination.hasPrev
 #     authors = ConvertModelListToDictList(author_pagination.items)
-#     return has_next, has_prev, authors
+#     return hasNext, hasPrev, authors
 #
 #
 # def CreateAuthor(req):

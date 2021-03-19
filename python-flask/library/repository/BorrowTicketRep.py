@@ -14,10 +14,10 @@
 # def GetBorrowTicketsByPage(req: GetItemsByPageReq):
 #     borrowticket_pagination = models.Borrowtickets.query.paginate \
 #         (per_page=req.per_page, page=req.page)
-#     has_next = borrowticket_pagination.has_next
-#     has_prev = borrowticket_pagination.has_prev
+#     hasNext = borrowticket_pagination.hasNext
+#     hasPrev = borrowticket_pagination.hasPrev
 #     borrow_tickets = ConvertModelListToDictList(borrowticket_pagination.items)
-#     return has_next, has_prev, borrow_tickets
+#     return hasNext, hasPrev, borrow_tickets
 #
 #
 # def CreateBorrowTicket(req: CreateBorrowTicketReq):

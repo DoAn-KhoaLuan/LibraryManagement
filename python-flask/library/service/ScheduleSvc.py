@@ -2,10 +2,10 @@
 #
 #
 # def GetScheduleByPage(req):
-#     has_next, has_prev, schedules = ScheduleRep.GetScheduleByPage(req)
+#     hasNext, hasPrev, schedules = ScheduleRep.GetScheduleByPage(req)
 #     result = {
-#         "has_next": has_next,
-#         "has_prev": has_prev,
+#         "hasNext": hasNext,
+#         "hasPrev": hasPrev,
 #         "schedules": schedules
 #     }
 #     return result
