@@ -23,7 +23,7 @@ from library.common.Rsp.SingleRsp import ErrorRsp
 from library.repository import AccountRep
 #
 #
-def CreateAccount(req: CreateAccountReq):
+def createAccount(req: CreateAccountReq):
     is_account_existed = AccountRep.ValidateAccountName(req.accountName)
     if (is_account_existed):
         return jsonify({'msg': "Tài khoản đã tồn tại"}), 401

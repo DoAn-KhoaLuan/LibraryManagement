@@ -1,12 +1,12 @@
-# import hashlib
-# import hmac
-# import json
-# import urllib
-# import uuid
-#
-# from library.common.Req.OrderReq import CreateOrderReq
-# from library.common.Rsp.SingleRsp import ErrorRsp
-# from library.repository import OrderRep
+import hashlib
+import hmac
+import json
+import urllib
+import uuid
+
+from library.common.Req.OrderReq import CreateOrderReq
+from library.common.Rsp.SingleRsp import ErrorRsp
+from library.repository import OrderRep
 #
 #
 # def GetOrdersByPage(req):
@@ -26,12 +26,12 @@
 #     return result
 #
 #
-# def CreateOrder(req):
-#     try:
-#         create_order = OrderRep.CreateOrder(req)
-#         return create_order
-#     except ErrorRsp as e:
-#         raise e
+def createOrder(req):
+    try:
+        createOrder = OrderRep.createOrder(req)
+        return createOrder
+    except ErrorRsp as e:
+        raise e
 #
 # def CreateOrderByMomo(req: CreateOrderReq):
 #     endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor"

@@ -54,7 +54,7 @@ def createProduct(req: CreateProductReq):
 
 def getProductsByPage(req: GetItemsByPageReq):
     productPagination = models.Product.query.filter(
-        (models.Product.deteleAt == None),
+        (models.Product.deleteAt == None),
         (models.Product.shopId == req.shopId)
             )\
         .paginate(page=req.page, per_page=req.perPage)
@@ -94,7 +94,7 @@ def searchProducts(req: SearchItemsReq, byShop = True):
                 models.Product.categoryId == req.categoryId,
             ),
             models.Product.shopId == req.shopId,
-            models.Product.deteleAt == None,
+            models.Product.deleteAt == None,
         ).all()
     else:
         modelProducts = models.Product.query.filter(or_(
@@ -102,7 +102,7 @@ def searchProducts(req: SearchItemsReq, byShop = True):
             models.Product.name == req.name,
             models.Product.categoryId == req.categoryId,
             ),
-            models.Product.deteleAt == None,
+            models.Product.deleteAt == None,
             ).all()
     products = ConvertModelListToDictList(modelProducts)
     return products
@@ -110,7 +110,7 @@ def searchProducts(req: SearchItemsReq, byShop = True):
 
 def deleteProduct(req: DeleteItemReq):
     product = models.Product.query.get(req.id)
-    product.deteleAt = datetime.now()
+    product.deleteAt = datetime.now()
     db.session.add(product)
     db.session.commit()
     return product.serialize()

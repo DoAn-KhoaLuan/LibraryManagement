@@ -15,7 +15,8 @@ class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
     shops = db.relationship('Shop', backref='account')
     comments = db.relationship('Comment', backref='account', lazy='subquery')
-
+    buyerOrders = db.relationship("Order", foreign_keys='Order.buyerAccountId', back_populates="buyerAccount")
+    sellerOrders = db.relationship("Order", foreign_keys='Order.sellerAccountId', back_populates="sellerAccount")
     provinceId = db.Column(db.String(50),name="province_id")
     districtId = db.Column(db.String(50), name="district_id")
     wardId = db.Column(db.String(50), name="ward_id")
@@ -62,7 +63,7 @@ class Category(db.Model):
     categoryName = db.Column(db.String(50),name="category_name")
     description = db.Column(db.String(2000), name="description")
     note = db.Column(db.String(1000), name="note")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
@@ -71,7 +72,7 @@ class Category(db.Model):
             "categoryName": self.categoryName,
             "description": self.description,
             "note": self.note,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
         }
 
@@ -83,7 +84,7 @@ class Comment(db.Model):
 
     title = db.Column(db.String(50),name="title")
     content = db.Column(db.String(2000))
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
@@ -93,7 +94,7 @@ class Comment(db.Model):
             "productId": self.productId,
             "title": self.title,
             "content": self.content,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
         }
 
@@ -105,7 +106,7 @@ class Conversation(db.Model):
 
     isRead = db.Column(db.Boolean)
     lastMessage = db.Column(db.String(1000), name="last_message")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
@@ -113,7 +114,7 @@ class Conversation(db.Model):
             "id": self.id,
             "isRead": self.isRead,
             "lastMessage": self.lastMessage,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
         }
 
@@ -142,14 +143,14 @@ class Message(db.Model):
     conversation_id = db.Column(db.Integer, db.ForeignKey('conversation.id'), nullable=False)
 
     content = db.Column(db.String(2000))
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
         return {
             "id": self.id,
             "content": self.content,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
 
         }
@@ -159,29 +160,30 @@ class Order(db.Model):
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
 
-    # buyerAccountId = db.Column(db.Integer, db.ForeignKey("account.id"))
-    # sellerAccountId = db.Column(db.Integer, db.ForeignKey("account.id"))
+    buyerAccountId = db.Column(db.Integer, db.ForeignKey(Account.id))
+    sellerAccountId = db.Column(db.Integer, db.ForeignKey(Account.id))
     #
-    # buyerAccount = db.relationship("Account")
-    # sellerAccount = db.relationship("Account")
+    buyerAccount = db.relationship("Account", backref="buyerAccount", uselist=False, foreign_keys=[buyerAccountId])
+    sellerAccount = db.relationship("Account", backref="sellerAccount", uselist=False, foreign_keys=[sellerAccountId])
+
     orderDetails = db.relationship('OrderDetail', backref="order", lazy=False)
 
     total = db.Column(db.Float, name="total")
     type = db.Column(db.Enum("online", "offline"), name="type", default="offline")
     note = db.Column(db.String(1000), name="note")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
         return {
             "id": self.id,
-            "buyerAccount": self.buyerAccount[0].serialize(),
-            "sellerAccount": self.sellerAccount[0].serialize(),
+            # "buyerAccount": self.buyerAccount[0].serialize(),
+            # "sellerAccount": self.sellerAccount[0].serialize(),
             "orderDetails": ConvertModelListToDictList(self.orderDetails),
             "total": self.total,
             "type": self.type,
             "note": self.note,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
         }
 
@@ -194,8 +196,6 @@ class OrderDetail(db.Model):
     total = db.Column(db.Float, name="total")
     quantity = db.Column(db.Integer, name="quantity")
     discount = db.Column(db.Float, name="discount")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
-    createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
         return {
@@ -205,8 +205,6 @@ class OrderDetail(db.Model):
             "total": self.total,
             "quantity": self.quantity,
             "discount": self.discount,
-            "deteleAt": self.deteleAt,
-            "createAt": self.createAt,
         }
 
 
@@ -234,7 +232,7 @@ class Product(db.Model):
     imageUrl = db.Column(db.String(1000), name="imageUrl")
     note = db.Column(db.String(1000), name="note")
     description = db.Column(db.String(2000), name="description")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
@@ -258,7 +256,7 @@ class Product(db.Model):
             "imageUrl": self.imageUrl,
             "note": self.note,
             "description": self.description,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
         }
 
@@ -294,7 +292,7 @@ class Shop(db.Model):
     provinceId = db.Column(db.String(50), name="province_id")
     districtId = db.Column(db.String(50), name="district_id")
     wardId = db.Column(db.String(50), name="ward_id")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
@@ -308,7 +306,7 @@ class Shop(db.Model):
             "provinceId": self.provinceId,
             "districtId": self.districtId,
             "wardId": self.wardId,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
         }
 
@@ -338,7 +336,7 @@ class Tag(db.Model):
     productId = db.Column(db.Integer, db.ForeignKey("product.id"))
     name = db.Column(db.String(50))
     trimName = db.Column(db.String(50), name="trim_name")
-    deteleAt = db.Column(db.DateTime, name="delete_at")
+    deleteAt = db.Column(db.DateTime, name="delete_at")
     createAt = db.Column(db.DateTime, name="create_at")
 
     def serialize(self):
@@ -347,7 +345,7 @@ class Tag(db.Model):
             "productId": self.productId,
             "name": self.name,
             "trimName": self.trimName,
-            "deteleAt": self.deteleAt,
+            "deleteAt": self.deleteAt,
             "createAt": self.createAt,
         }
 

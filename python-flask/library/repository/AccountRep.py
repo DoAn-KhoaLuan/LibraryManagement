@@ -45,7 +45,7 @@ def CreateAccount(req: CreateAccountReq):
 #
 def ValidateAccountName(accountName: str):
     acc = models.Account.query.filter(
-        models.Account.accountName == accountName and models.Accounts.delete_at is None).first()
+        models.Account.accountName == accountName and models.Account.deleteAt is None).first()
     return True if acc else False
 
 # def GetAccountsByPage(req):

@@ -34,7 +34,7 @@ def DeleteAccount():
 @app.route('/admin/account-management/create-account', methods=['POST'])
 def CreateAccount():
     req = CreateAccountReq(request.json)
-    result = AccountSvc.CreateAccount(req)
+    result = AccountSvc.createAccount(req)
     return result
 
 #

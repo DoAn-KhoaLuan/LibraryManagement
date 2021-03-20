@@ -1,13 +1,14 @@
-# from library import app
-# from library.service import OrderSvc
-# from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
-# from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
-# from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-# from flask import jsonify, request, make_response
-# import json
+from library import app
+from library.auth import owner_required
+from library.service import OrderSvc
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from flask import jsonify, request, make_response
+import json
 #
 # from library.common.Rsp.OrderRsp import SearchOrdersRsp
-# from library.common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 #
 #
 # @app.route("/admin/order-management/get-orders", methods=['POST', 'GET'])
@@ -17,17 +18,19 @@
 #     res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
 #                             items=result['orders']).serialize()
 #     return jsonify(res)
-#
-#
-# @app.route("/admin/order-management/create-order", methods=['POST', 'GET'])
-# def CreateOrder():
-#     try:
-#         req = CreateOrderReq(request.json)
-#         result = OrderSvc.CreateOrder(req)
-#
-#         return jsonify(result)
-#     except ErrorRsp as e:
-#         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
+
+
+@app.route("/admin/order-management/create-order", methods=['POST', 'GET'])
+@owner_required
+def createOrder(account):
+    try:
+        req = CreateOrderReq(request.json)
+        req.sellerAccountId = account["id"]
+        result = OrderSvc.createOrder(req)
+
+        return jsonify(result)
+    except ErrorRsp as e:
+        return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
 #
 # @app.route('/admin/order-management/create-order-by-momo', methods=['GET', 'POST'])
 # def RedirectMomoPage():
