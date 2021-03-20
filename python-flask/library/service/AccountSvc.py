@@ -1,5 +1,7 @@
 # from email.message import EmailMessage
 #
+from email.message import EmailMessage
+
 import jwt
 from datetime import datetime, timedelta
 #
@@ -147,46 +149,46 @@ def login(acc: LoginReq):
 #     return " Vui lòng kiểm tra email để reset mật khẩu"
 #
 #
-# def SendResetPasswordEmailEmployee(req: SendResetPasswordEmailReq):
-#     smtp.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
-#     account = AccountRep.GetAccountByEmployeeEmail(req)
-#     secect_key = app.config['SECRET_KEY']
-#     payload = {
-#         'account_id': account['account_id'],
-#         'iat': datetime.utcnow(),
-#         'exp': datetime.utcnow() + timedelta(minutes=30)
-#     }
-#     reset_email_token = jwt.encode(payload, secect_key).decode('utf-8')
-#
-#     msg = EmailMessage()
-#     msg['Subject'] = 'Khôi phục mật khẩu Thư quán Đại học Mở TPHCM'
-#     msg['From'] = app.config['MAIL_USERNAME']
-#     msg['To'] = req.email
-#     msg.set_content(
-#         f'''    Gửi {app.config['MAIL_USERNAME']},
-#     Bạn (hoặc một ai đó) đang muốn khôi phục mật khẩu của tài khoản shinichi24567@gmail.com-01-test.
-#     Nếu là bạn, hãy bấm vào liên kết bên dưới để khôi phục mật khẩu: (có hiệu lực trong 24 giờ)
-#
-#     http://localhost:4200/reset-password?token={reset_email_token}
-#     Nếu không phải bạn, hãy bỏ qua email này.
-#
-#     Đội ngũ quản lý thư quán Đại học Mở TPHCM!
-# ''')
-#     smtp.send_message(msg)
-#     return {msg: 'Vui lòng kiểm tra email để reset mật khẩu'}
-#
-#
-# def ResetPassword(req: ResetPasswordReq):
-#     payload = jwt.decode(req.token, app.config['SECRET_KEY'])
-#     account_id = payload['account_id']
-#     result = AccountRep.ResetPassword(account_id, req.password)
-#     return result
+def sendResetPasswordEmail(req: SendResetPasswordEmailReq):
+    smtp.login(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+    account = AccountRep.getAccountByEmail(req.email)
+    secect_key = app.config['SECRET_KEY']
+    payload = {
+        'accountId': account['id'],
+        'iat': datetime.utcnow(),
+        'exp': datetime.utcnow() + timedelta(minutes=30)
+    }
+    resetEmailToken = jwt.encode(payload, secect_key).decode('utf-8')
+
+    msg = EmailMessage()
+    msg['Subject'] = 'Khôi phục mật khẩu Hatubo'
+    msg['From'] = app.config['MAIL_USERNAME']
+    msg['To'] = req.email
+    msg.set_content(
+        f'''    Gửi {account['firstName']} {account['lastName']},
+    Bạn (hoặc một ai đó) đang muốn khôi phục mật khẩu của tài khoản {account['accountName']}.
+    Nếu là bạn, hãy bấm vào liên kết bên dưới để khôi phục mật khẩu: (có hiệu lực trong 24 giờ)
+
+    http://localhost:4200/reset-password?token={resetEmailToken}
+    Nếu không phải bạn, hãy bỏ qua email này.
+
+    Đội ngũ quản lý Hatubo!
+''')
+    smtp.send_message(msg)
+    return {msg: 'Vui lòng kiểm tra email để reset mật khẩu'}
 #
 #
 def changePassword(req: ChangePasswordReq):
     try:
         result = AccountRep.changePassword(req)
         return result
+    except ErrorRsp as e:
+        raise e
+
+
+def resetPassword(req: ResetPasswordReq):
+    try:
+        return AccountRep.resetPassword(req)
     except ErrorRsp as e:
         raise e
 #

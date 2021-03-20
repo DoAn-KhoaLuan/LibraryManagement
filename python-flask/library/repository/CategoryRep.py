@@ -13,13 +13,14 @@
 # from library.repository.models import Categories
 #
 #
-# def GetCategoriesByPage(req):
-#     category_pagination = models.Categories.query.filter(models.Categories.delete_at == None).paginate(page=req.page, per_page=req.per_page)
-#     hasNext = category_pagination.hasNext
-#     hasPrev = category_pagination.hasPrev
-#     print("category_pagination.items: ", category_pagination.items)
-#     categories = ConvertModelListToDictList(category_pagination.items)
-#     return hasNext, hasPrev, categories
+from library.common.util import ConvertModelListToDictList
+from library.miration import models
+
+
+def getCategories():
+    category_pagination = models.Category.query.all()
+    categories = ConvertModelListToDictList(category_pagination)
+    return categories
 #
 #
 from library import db

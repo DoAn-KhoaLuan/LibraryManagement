@@ -88,27 +88,22 @@ def GetSessionInfo():
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
 
 
-# @app.route('/send-reset-password-email-customer', methods=['POST'])
-# def SendResetPasswordEmailCustomer():
-#     req = SendResetPasswordEmailReq(request.json)
-#     result = AccountSvc.SendResetPasswordEmailCustomer(req)
-#     return jsonify(result)
+@app.route('/send-reset-password-email', methods=['POST'])
+def SendResetPasswordEmailCustomer():
+    req = SendResetPasswordEmailReq(request.json)
+    result = AccountSvc.sendResetPasswordEmail(req)
+    return jsonify(result)
 #
 #
-# @app.route('/send-reset-password-email-employee', methods=['POST'])
-# def SendResetPasswordEmailEmployee():
-#     req = SendResetPasswordEmailReq(request.json)
-#     result = AccountSvc.SendResetPasswordEmailEmployee(req)
-#     return result
+@app.route('/reset-password', methods=['POST'])
+def ResetPassword():
+    req = ResetPasswordReq(request.json)
+    result = AccountSvc.resetPassword(req)
+    return jsonify(result)
 #
 #
-# @app.route('/reset-password', methods=['POST'])
-# def ResetPassword():
-#     req = ResetPasswordReq(request.json)
-#     result = AccountSvc.ResetPassword(req)
-#     return jsonify(result)
-#
-#
+
+
 @app.route('/admin/account-management/change-password', methods=['POST'])
 @user_required
 def changePassword(account):
@@ -120,23 +115,3 @@ def changePassword(account):
         return jsonify(result)
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
-#
-#
-# @app.route('/create-customer-account', methods=['POST'])
-# def CreateCustomerAccount():
-#     try:
-#         req = CreateCustomerAccountReq(request.json)
-#         result = AccountSvc.CreateCustomerAccount(req)
-#         return jsonify(result)
-#     except ErrorRsp as e:
-#         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf-8'), 401
-#
-#
-# @app.route('/create-employee-account', methods=['POST'])
-# def CreateEmployeeAccount():
-#     try:
-#         req = CreateEmployeeAccountReq(request.json)
-#         result = AccountSvc.CreateEmployeeAccount(req)
-#         return jsonify(result)
-#     except ErrorRsp as e:
-#         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf-8'), 401

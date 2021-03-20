@@ -35,6 +35,11 @@ def getWards():
     return jsonify(LocationRep.getWards())
 
 
+@app.route('/get-categories', methods=['POST'])
+def getCategories():
+    return jsonify({"categories":CategoryRep.getCategories()})
+
+
 @app.route('/upload-image', methods=['POST'])
 def UploadBookImage():
     print("upload ảnh nè")
