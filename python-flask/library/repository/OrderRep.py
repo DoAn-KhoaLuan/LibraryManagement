@@ -10,14 +10,17 @@ from library.common.util import ConvertModelListToDictList
 from flask import jsonify, json
 
 from datetime import datetime
-#
-#
-# def GetOrdersbyPage(req: GetItemsByPageReq):
-#     orders_pagination = models.Orders.query.filter(models.Orders.delete_at == None).paginate(per_page=req.per_page, page = req.page)
-#     hasNext = orders_pagination.hasNext
-#     hasPrev = orders_pagination.hasPrev
-#     orders = ConvertModelListToDictList(orders_pagination.items)
-#     return hasNext, hasPrev, orders
+
+
+def GetOrdersbyPage(req: GetItemsByPageReq):
+    orderPagination = models.Order.query.filter(models.Order.deleteAt == None,
+                                                models.Order.shopId == req.shopId
+                                                )\
+        .paginate(per_page=req.perPage, page = req.page)
+    hasNext = orderPagination.has_next
+    hasPrev = orderPagination.has_prev
+    orders = ConvertModelListToDictList(orderPagination.items)
+    return hasNext, hasPrev, orders
 #
 from library.miration import models
 
@@ -27,6 +30,7 @@ def createOrder(order: CreateOrderReq):
     buyerAccount = models.Account.query.get(order.buyerAccountId)
     createOrder = models.Order(sellerAccount=sellerAccount,
                                buyerAccount=buyerAccount,
+                               shopId=order.shopId,
                                 createAt=datetime.now(),
                                 type=order.type,
                                 note=order.note)
@@ -34,6 +38,7 @@ def createOrder(order: CreateOrderReq):
     db.session.add(createOrder)
     db.session.commit()
     total = 0.0
+    quantity = 0
     for orderDetail in order.orderDetailList:
         orderProduct = models.Product.query.get(orderDetail['productId'])
         orderProduct.amount -= orderDetail['quantity']
@@ -48,8 +53,10 @@ def createOrder(order: CreateOrderReq):
                                             total=detailTotal
                                             )
         total += detailTotal
+        quantity += orderDetail['quantity']
         createOrder.orderDetails.append(newOrderDetail)
     createOrder.total = total
+    createOrder.quantity = quantity
     db.session.commit()
     return createOrder.serialize()
 
@@ -67,7 +74,7 @@ def createOrder(order: CreateOrderReq):
 #     retuer.serialize()
 #
 #
-def DeleteOrder(req: DeleteItemReq):
+def deleteOrder(req: DeleteItemReq):
     deleteOrder = models.Order.query.get(req.id)
     deleteOrder.deleteAt = datetime.now()
     db.session.add(deleteOrder)

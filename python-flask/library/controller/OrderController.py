@@ -11,13 +11,15 @@ import json
 from library.common.Rsp.SingleRsp import ErrorRsp
 #
 #
-# @app.route("/admin/order-management/get-orders", methods=['POST', 'GET'])
-# def GetOrders():
-#     req = GetItemsByPageReq(request.json)
-#     result = OrderSvc.GetOrdersByPage(req)
-#     res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
-#                             items=result['orders']).serialize()
-#     return jsonify(res)
+@app.route("/admin/order-management/get-orders-by-shop", methods=['POST', 'GET'])
+@owner_required
+def GetOrders(account):
+    req = GetItemsByPageReq(request.json)
+    req.shopId = account["shop"]["id"]
+    result = OrderSvc.GetOrdersByPage(req)
+    res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
+                            items=result['orders']).serialize()
+    return jsonify(res)
 
 
 @app.route("/admin/order-management/create-order", methods=['POST', 'GET'])
@@ -26,6 +28,7 @@ def createOrder(account):
     try:
         req = CreateOrderReq(request.json)
         req.sellerAccountId = account["id"]
+        req.shopId = account["shop"]["id"]
         result = OrderSvc.createOrder(req)
 
         return jsonify(result)
@@ -39,20 +42,22 @@ def createOrder(account):
 #     if res['errorCode'] == 0:
 #         result = OrderSvc.CreateOrder(req)
 #     return jsonify(res)
-#
-# @app.route("/admin/order-management/update-order", methods=['POST', 'GET'])
-# def UpdateOrder():
-#     req = UpdateOrderReq(request.json)
-#     result = OrderSvc.UpdateOrder(req)
-#     return jsonify(result)
-#
-#
-# @app.route("/admin/order-management/delete-order", methods=['POST', 'GET'])
-# def DeleteOrder():
-#     req = DeleteOrderReq(request.json)
-#     result = OrderSvc.DeleteOrder(req)
-#
-#     return jsonify(result)
+
+
+@app.route("/admin/order-management/update-order", methods=['POST', 'GET'])
+def UpdateOrder():
+    req = UpdateOrderReq(request.json)
+    result = OrderSvc.UpdateOrder(req)
+    return jsonify(result)
+
+
+@app.route("/admin/order-management/delete-order", methods=['POST', 'GET'])
+@owner_required
+def deleteOrder(account):
+    req = DeleteOrderReq(request.json)
+    result = OrderSvc.deleteOrder(req)
+
+    return jsonify(result)
 #
 #
 # @app.route("/admin/order-management/search-orders", methods=['POST', 'GET'])

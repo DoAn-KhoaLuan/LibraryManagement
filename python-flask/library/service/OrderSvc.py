@@ -9,21 +9,15 @@ from library.common.Rsp.SingleRsp import ErrorRsp
 from library.repository import OrderRep
 #
 #
-# def GetOrdersByPage(req):
-#     hasNext, hasPrev, orders = OrderRep.GetOrdersbyPage(req)
-#
-#     for order in orders:
-#         total_quantity = 0
-#         for order_detail in order['order_details']:
-#             total_quantity = order_detail['quantity']
-#         order['total_quantity'] = total_quantity
-#
-#     result = {
-#         "hasNext": hasNext,
-#         "hasPrev": hasPrev,
-#         "orders": orders
-#     }
-#     return result
+def GetOrdersByPage(req):
+    hasNext, hasPrev, orders = OrderRep.GetOrdersbyPage(req)
+
+    result = {
+        "hasNext": hasNext,
+        "hasPrev": hasPrev,
+        "orders": orders
+    }
+    return result
 #
 #
 def createOrder(req):
@@ -84,9 +78,9 @@ def createOrder(req):
 #     return update_order
 #
 #
-# def DeleteOrder(req):
-#     delete_order = OrderRep.DeleteOrder(req)
-#     return delete_order
+def deleteOrder(req):
+    deleteOrder = OrderRep.deleteOrder(req)
+    return deleteOrder
 #
 #
 # def SearchOrders(req):

@@ -159,6 +159,7 @@ class Message(db.Model):
 class Order(db.Model):
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
+    shopId = db.Column(db.Integer, db.ForeignKey('shop.id'), nullable=False)
 
     buyerAccountId = db.Column(db.Integer, db.ForeignKey(Account.id))
     sellerAccountId = db.Column(db.Integer, db.ForeignKey(Account.id))
@@ -169,6 +170,7 @@ class Order(db.Model):
     orderDetails = db.relationship('OrderDetail', backref="order", lazy=False)
 
     total = db.Column(db.Float, name="total")
+    quantity = db.Column(db.Integer, name="quantity", default=0)
     type = db.Column(db.Enum("online", "offline"), name="type", default="offline")
     note = db.Column(db.String(1000), name="note")
     deleteAt = db.Column(db.DateTime, name="delete_at")
@@ -181,6 +183,7 @@ class Order(db.Model):
             # "sellerAccount": self.sellerAccount[0].serialize(),
             "orderDetails": ConvertModelListToDictList(self.orderDetails),
             "total": self.total,
+            "quantity": self.quantity,
             "type": self.type,
             "note": self.note,
             "deleteAt": self.deleteAt,
@@ -285,6 +288,7 @@ class Shop(db.Model):
     accountId = db.Column(db.Integer, db.ForeignKey("account.id"), name="account_id")
 
     products = db.relationship("Product", backref="shop", lazy=True)
+    orders = db.relationship("Order", backref="shop", lazy=True)
     name = db.Column(db.String(200), unique=True)
     websiteUrl = db.Column(db.String(200), name="website_url")
     imageUrl = db.Column(db.String(200), name="image_url")

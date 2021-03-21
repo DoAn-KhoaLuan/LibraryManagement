@@ -5,6 +5,7 @@ class CreateOrderReq():
         self.total = req['order_date'] if 'order_date' in req else None
         self.type = req['type'] if 'type' in req else None
         self.note = req['note'] if 'note' in req else None
+        self.shopId = req['shopId'] if 'shopId' in req else None
         self.orderDetailList = req['orderDetailList'] if 'orderDetailList' in req else None
 
 
