@@ -179,8 +179,8 @@ class Order(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            # "buyerAccount": self.buyerAccount[0].serialize(),
-            # "sellerAccount": self.sellerAccount[0].serialize(),
+            "buyerAccount": self.buyerAccount.serialize(),
+            "sellerAccount": self.sellerAccount.serialize(),
             "orderDetails": ConvertModelListToDictList(self.orderDetails),
             "total": self.total,
             "quantity": self.quantity,

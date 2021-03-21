@@ -42,7 +42,6 @@ def getCategories():
 
 @app.route('/upload-image', methods=['POST'])
 def UploadBookImage():
-    print("upload ảnh nè")
     import cloudinary.uploader
     file = request.files['image']
     tail_image = file.filename.split('.')[1]

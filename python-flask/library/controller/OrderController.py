@@ -1,5 +1,6 @@
 from library import app
 from library.auth import owner_required
+from library.common.Req.PageReq import SearchItemsReq
 from library.service import OrderSvc
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
@@ -7,7 +8,7 @@ from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 #
-# from library.common.Rsp.OrderRsp import SearchOrdersRsp
+from library.common.Rsp.OrderRsp import SearchOrdersRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
 #
 #
@@ -60,12 +61,14 @@ def deleteOrder(account):
     return jsonify(result)
 #
 #
-# @app.route("/admin/order-management/search-orders", methods=['POST', 'GET'])
-# def SearchOrders():
-#     req = SearchOrdersReq(request.json)
-#     orders = OrderSvc.SearchOrders(req)
-#     res = SearchOrdersRsp(orders).serialize()
-#     return jsonify(res)
+@app.route("/admin/order-management/search-orders-by-shop", methods=['POST', 'GET'])
+@owner_required
+def searchOrdersByShop(account):
+    req = SearchItemsReq(request.json)
+    req.shopId = account["shop"]["id"]
+    orders = OrderSvc.searchOrdersByShop(req)
+    res = SearchOrdersRsp(orders).serialize()
+    return jsonify(res)
 #
 # @app.route("/admin/order-management/test-create-order-momo", methods=['POST', 'GET'])
 # def TestCreateOrder():

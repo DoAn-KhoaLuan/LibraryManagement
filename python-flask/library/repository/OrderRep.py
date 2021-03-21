@@ -1,9 +1,11 @@
+from builtins import print
+
 from sqlalchemy import or_
 
 from library import db
 from library.common.Req import GetItemsByPageReq
 from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
-from library.common.Req.PageReq import DeleteItemReq
+from library.common.Req.PageReq import DeleteItemReq, SearchItemsReq
 from library.common.Rsp.OrderRsp import SearchOrdersRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
 from library.common.util import ConvertModelListToDictList
@@ -83,10 +85,17 @@ def deleteOrder(req: DeleteItemReq):
     return deleteOrder.serialize()
 #
 #
-# def SearchOrders(req: SearchOrdersReq):
-#     search_orders = models.Orders.query.filter(or_(models.Orders.customer_id == req.customer_id,
-#                                                   models.Orders.order_id == req.order_id,
-#                                                   models.Orders.employee_id == req.employee_id,
-#                                                   models.Orders.order_date == req.order_date)).all()
-#     orders = ConvertModelListToDictList(search_orders)
-#     return orders
+def searchOrdersByShop(req: SearchItemsReq):
+    searchOrders = models.Order.query.filter(or_(models.Order.id == req.id,
+                                                 models.Order.createAt == req.createAt,
+                                                 models.Order.type == req.orderType,
+                                                 ),
+                                                models.Order.shopId == req.shopId,
+                                                models.Order.deleteAt == None
+                                             ).all()
+    orders = []
+    for order in searchOrders:
+        if order.buyerAccount.phone == req.customerPhone:
+            orders.append(order)
+    orders = ConvertModelListToDictList(orders)
+    return orders

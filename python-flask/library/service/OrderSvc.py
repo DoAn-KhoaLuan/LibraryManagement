@@ -83,14 +83,8 @@ def deleteOrder(req):
     return deleteOrder
 #
 #
-# def SearchOrders(req):
-#     search_orders = OrderRep.SearchOrders(req)
-#     for order in search_orders:
-#         total_quantity = 0
-#         for order_detail in order['order_details']:
-#             total_quantity += order_detail['quantity']
-#         order['total_quantity'] = total_quantity
-#
-#     return search_orders
+def searchOrdersByShop(req):
+    search_orders = OrderRep.searchOrdersByShop(req)
+    return search_orders
 #
 #
