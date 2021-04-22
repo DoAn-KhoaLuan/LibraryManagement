@@ -18,7 +18,7 @@
       </div>
       <div class="menu-list py-3">
         <div class="box setting-box mt-0 h-100">
-          <h1 class="setting-header text-app font-weight-bold mb-2">Danh sách tin nhắn</h1>
+          <h1 class="setting-header text-app font-weight-bold mb-2">Danh sản phẩm tin nhắn</h1>
           <div class="setting-body p-2" style="height: 89%">
             <div class="search-convertation-input w-100">
               <i class="fas fa-search"></i>
@@ -27,7 +27,7 @@
             <ng-container *ngFor="let conversation of (all_conversations$ | async)">
               <div class="message-box w-100" [class.active]="(active_conversation$ | async) == conversation" (click)="SetActiveConversation(conversation)">
                 <div class="avatar-message-box">
-                  <img [src]="'assets/images/default-avatar.png'" alt="" class="w-100">              
+                  <img [src]="'assets/images/default-avatar.png'" alt="" class="w-100">
                 </div>
                 <div class="overview-message-box">
                   <h3 class="mb-0 line-clamp" [class.font-weight-bold] ="!conversation.is_read">{{conversation?.account?.account_name}}</h3>
@@ -52,7 +52,7 @@
         <div class="box setting-box mt-0 h-100 d-flex flex-column" (click)="SetActiveConversation(active_conversation)">
           <h1 class="setting-header text-app font-weight-bold mb-2 app-flex">
             <div class="avatar-message-box">
-              <img [src]="'assets/images/default-avatar.png'" alt="" class="w-100">              
+              <img [src]="'assets/images/default-avatar.png'" alt="" class="w-100">
             </div>
             <h3 class="mb-0 line-clamp" [class.font-weight-bold] ="true">{{(active_conversation$ | async)?.account?.account_name}}</h3>
             <div class="icons ml-auto d-flex">
@@ -65,7 +65,7 @@
             <ng-container *ngIf="(active_conversation$ |async)?.messages?.length > 0; else noMess">
                 <div class="cursor-pointer text-center text-app" (click)="LoadMoreMessages(active_conversation)"  *ngIf="(active_conversation$ |async)?.current_page > 1">
                   <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true" *ngIf="is_loading"></i>
-                  Nhấp vào để đọc thêm tin nhắn 
+                  Nhấp vào để đọc thêm tin nhắn
                 </div>
                 <div *ngFor="let message of (active_conversation$ |async)?.messages" class="message"
                     [class.flex-row-reverse]="message.type=='reply'"
@@ -78,7 +78,7 @@
                         {{message.content}}
                     </div>
                 </div>
-            </ng-container> 
+            </ng-container>
             <ng-template #noMess>
                 <p class="d-flex app-flex" style="color: rgba(153, 153, 153, 1);">
                     Bạn chưa có tin nhắn nào!

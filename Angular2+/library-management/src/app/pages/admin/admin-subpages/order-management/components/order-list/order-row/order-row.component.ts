@@ -46,12 +46,12 @@ export class OrderRowComponent implements OnInit, OnChanges {
   //       try {
   //         await this.OrderService.FinishOrder(this.order_item.order_id);
   //         await this.OrderService.getOrders(this.OrderQuery.getValue().filter_page)
-  //         toastr.success("Hoàn thành phiếu mượn sách thành công")
+  //         toastr.success("Hoàn thành phiếu mượn sản phẩm thành công")
   //       } catch(e) {
-  //         toastr.error("Hoàn thành phiếu mượn sáchkhông thành thông", e.msg || e.message)
+  //         toastr.error("Hoàn thành phiếu mượn sản phẩmkhông thành thông", e.msg || e.message)
   //       }
   //     }
   //   });
-    
+
   // }
 }

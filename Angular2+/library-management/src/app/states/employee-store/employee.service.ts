@@ -3,7 +3,7 @@ import { ApiEmployeeService } from './../../API/api-employee.service';
 import { ApiCategoryService } from '../../API/api-book-category.service';
 import { filter_page } from 'src/app/models/app-models';
 import { GetItemsByPageRsp } from '../../models/resp';
-import { ApiBookService } from '../../API/api-book.service';
+import { ApiProductService } from '../../API/api-product.service';
 import { Injectable } from '@angular/core';
 import { NavigationDirection } from 'src/app/shared/page-pagination/page-pagination.component';
 import { ApiAuthorService } from 'src/app/API/api-author.service';

@@ -1,12 +1,12 @@
 import { Router, NavigationEnd } from '@angular/router';
 import { UtilService } from 'src/app/services/util.service';
 import { BorrowTicketService } from './../../../../../../states/borrow-ticket-store/borrow-ticket.service';
-import { BookQuery } from './../../../../../../states/book-store/book.query';
+import { BookQuery } from '../../../../../../states/product-store/book.query';
 import { startWith, map, tap } from 'rxjs/operators';
 import { BorrowTicket } from './../../../../../../models/req';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { BookService } from './../../../../../../states/book-store/book.service';
+import { ProductService } from '../../../../../../states/product-store/product.service';
 import { AccountQuery } from './../../../../../../states/account-store/account.query';
 import { AccountStore } from './../../../../../../states/account-store/account.store';
 import { CustomerStore } from './../../../../../../states/customer-store/customer.store';
@@ -43,7 +43,7 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
   mySubscription: any;
   constructor(
     private borrowTicketService: BorrowTicketService,
-    private bookService: BookService,
+    private bookService: ProductService,
     private bookQuery: BookQuery,
     private customerService: CustomerService,
     private customerStore: CustomerStore,
@@ -67,14 +67,14 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
 
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   async ngOnInit() {
     this.employee_id = JSON.parse(localStorage.getItem('auth_info')).user_info.employee_id;
 
     await this.customerService.GetCustomers(this.filter);
-    await this.bookService.getBooks(this.filter);
+    await this.bookService.getProductsByShop(this.filter);
 
     this.all_books = this.bookQuery.getValue().book_list_view.items;
     this.all_customers = this.customerQuery.getValue().customer_list_view.items;
@@ -128,7 +128,7 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
   AddBookToTicket() {
     const req_book_ids = this.borrowTicket.books.map(book => book.book_id)
     if(req_book_ids.indexOf(this.book_item.book_id) != -1) {
-      return toastr.error("Thêm sách vào phiếu mượn không thành công", "Mỗi quyển sách chỉ được mượn với số lượng là 1");
+      return toastr.error("Thêm sản phẩm vào phiếu mượn không thành công", "Mỗi quyển sản phẩm chỉ được mượn với số lượng là 1");
     }
     this.borrowTicket.books.push(this.book_item);
     this.book_control.setValue("");
@@ -144,15 +144,15 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
       const req_book_ids = this.borrowTicket.books.map(book => book.book_id)
       let isDuplicateExists = this.util.isDuplicateExists(req_book_ids);
       if(isDuplicateExists) {
-        return toastr.error("Tạo phiếu mượn sách không thành công", "Mỗi quyển sách chỉ được mượn với số lượng là 1");
+        return toastr.error("Tạo phiếu mượn sản phẩm không thành công", "Mỗi quyển sản phẩm chỉ được mượn với số lượng là 1");
       }
 
       if(!this.customer_item) {
-        return toastr.error("Tạo phiếu mượn sách không thành công", "Vui lòng chọn đọc giả");
+        return toastr.error("Tạo phiếu mượn sản phẩm không thành công", "Vui lòng chọn đọc giả");
       }
 
       if(!req_book_ids || !req_book_ids.length) {
-        return toastr.error("Tạo phiếu mượn sách không thành công", "Vui lòng chọn sách mượn");
+        return toastr.error("Tạo phiếu mượn sản phẩm không thành công", "Vui lòng chọn sản phẩm mượn");
       }
       const api_req = {
         customer_id: this.customer_item.customer_id,
@@ -164,9 +164,9 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
       if(res) {
         this.confirm_borrow_ticket = res;
       }
-      toastr.success("Tạo phiếu mượn sách thành công");
+      toastr.success("Tạo phiếu mượn sản phẩm thành công");
     } catch(e) {
-      toastr.error("Tạo phiếu mượn sách không thành công", e.msg || e.message)
+      toastr.error("Tạo phiếu mượn sản phẩm không thành công", e.msg || e.message)
     }
   }
 

@@ -3,7 +3,7 @@ import { filter_page } from 'src/app/models/app-models';
 import { BookQuery } from './book.query';
 import { BookStore } from './book.store';
 import { GetItemsByPageRsp } from './../../models/resp';
-import { ApiBookService } from './../../API/api-book.service';
+import { ApiProductService } from '../../API/api-product.service';
 import { Injectable } from '@angular/core';
 import { NavigationDirection } from 'src/app/shared/page-pagination/page-pagination.component';
 import { ApiAuthorService } from 'src/app/API/api-author.service';
@@ -13,17 +13,22 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable({
     providedIn: 'root'
 })
-export class BookService {
-    constructor(private bookApiService: ApiBookService, private bookStore: BookStore, private bookQuery: BookQuery, private categoryApiService: ApiCategoryService, private authorApiService: ApiAuthorService, private supplierApiService: ApiSupplierService) {
+export class ProductService {
+    constructor(private bookApiService: ApiProductService, private bookStore: BookStore, private bookQuery: BookQuery, private categoryApiService: ApiCategoryService, private authorApiService: ApiAuthorService, private supplierApiService: ApiSupplierService) {
     }
 
-    async getBooks(filter) {
-        let res: GetItemsByPageRsp = await this.bookApiService.GetBooks(filter);
+    async getProductsByShop(filter) {
+        let res: GetItemsByPageRsp = await this.bookApiService.GetProductsByShop(filter);
         this.bookStore.update({
             book_list_view: res,
         })
     }
-
+     async SearchShopProducts(filter) {
+        let res = await this.bookApiService.SearchShopProduct(filter);
+        this.bookStore.update({
+          book_list_view: res,
+        })
+    }
     setupPagination() {
         this.bookStore.update({
             current_pagination_opt: {
@@ -53,8 +58,8 @@ export class BookService {
         this.bookStore.update({filter_page: filter});
     }
 
-    async searchBooks(req) {
-        return await this.bookApiService.SearchBooks(req);
+    async getShopProductById(req) {
+        return await this.bookApiService.GetShopProductById(req);
     }
 
     setDetailBook(book) {
@@ -62,16 +67,16 @@ export class BookService {
     }
 
     async DeleteBookById(id) {
-        return await this.bookApiService.DeleteBook({book_id: id});
+        return await this.bookApiService.DeleteProduct({id});
     }
 
     async UpdateBook(book) {
-        return await this.bookApiService.UpdateBook(book);
+        return await this.bookApiService.UpdateProduct(book);
     }
 
     async GetCategories(filter) {
         let category_res = await this.categoryApiService.GetCategories(filter);
-        this.bookStore.update({categories: category_res['items']})
+        this.bookStore.update({categories: category_res['categories']})
     }
 
     async GetAuthors(filter) {
@@ -95,7 +100,7 @@ export class BookService {
     }
 
     async CreateBook(book) {
-        return await this.bookApiService.CreateBook(book)
+        return await this.bookApiService.CreateProduct(book)
     }
 
     async uploadImage(imageFile) {
@@ -106,6 +111,6 @@ export class BookService {
           };
           let formData: FormData = new FormData();
           formData.append('file', imageFile);
-        await this.bookApiService.uploadImage(formData, httpOptions);
+        await this.bookApiService.UploadImage(formData, httpOptions);
     }
 }

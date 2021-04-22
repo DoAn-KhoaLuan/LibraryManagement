@@ -19,7 +19,7 @@ import { ChangePasswordModalComponent } from './change-password-modal/change-pas
 export class AccountDetailComponent implements OnInit {
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   isEditing = false;
@@ -147,10 +147,10 @@ export class AccountDetailComponent implements OnInit {
     try{
       let updated_account = await this.accountService.UpdateAccount(update_req)
       this.accountStore.update({detail_account: updated_account})
-      toastr.success("Cập nhật sách thành công.")
+      toastr.success("Cập nhật sản phẩm thành công.")
       this.router.navigateByUrl('admin/account-management/account-list')
     } catch(e) {
-      toastr.error("Cập nhật sách thất bại.", e.msg || e.message)
+      toastr.error("Cập nhật sản phẩm thất bại.", e.msg || e.message)
     }
   }
 

@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 export class ScheduleManagementComponent implements OnInit {
   headerItems = [
     {
-      itemName: "Danh sách ca làm",
+      itemName: "Danh sản phẩm ca làm",
       url: "schedule-list"
     },
     {

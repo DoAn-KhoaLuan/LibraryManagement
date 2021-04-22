@@ -1,9 +1,11 @@
 import json
 
 from library import app
-from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, GetShopItemById
 from library.common.Req.PageReq import DeleteItemReq, SearchItemsReq
 from library.common.Req.ProductReq import *
+from library.miration import models
+from library.miration.models import Account
 from library.service import ProductSvc
 
 from library.common.Rsp.ProductRsp import DeleteBookByIdRsp, SearchBookRsp, CreateProductRsp, UpdateProductRsp
@@ -17,10 +19,24 @@ from library.auth import user_required, owner_required
 
 # from library.controller.UploadImageController import allowed_file
 
+@app.route('/admin/product-management/get-shop-product-by-id', methods=['POST'])
+@owner_required
+def GetShopProductById(account: Account ):
+    req = GetShopItemById(request.json)
+    req.shopId = account["shop"]["id"]
+    modelProduct = models.Product.query.filter(
+        (models.Product.id == req.id),
+        (models.Product.deleteAt == None),
+        (models.Product.shopId == req.shopId)
+            ).first()
+
+    return jsonify(modelProduct.serialize())
+
+
 
 @app.route('/admin/product-management/get-products-by-shop', methods=['POST'])
 @owner_required
-def getProductsByPage(account):
+def GetProductsByPage(account):
     try:
         req = GetItemsByPageReq(request.json)
         req.shopId = account["shop"]["id"]
@@ -50,9 +66,9 @@ def deleteProduct():
     return jsonify(res)
 #
 #
-@app.route('/admin/product-management/search-products-by-shop', methods=['POST'])
+@app.route('/admin/product-management/search-shop-products', methods=['POST'])
 @owner_required
-def searchProductsByShop(account):
+def searchProductsByShopShop(account):
     req = SearchItemsReq(request.json)
     req.shopId = account["shop"]["id"]
     result = ProductSvc.searchProductsByShop(req)

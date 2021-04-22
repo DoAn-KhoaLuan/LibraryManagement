@@ -14,7 +14,7 @@ import { SupplierQuery } from 'src/app/states/supplier-store/supplier.query';
 export class CreateSupplierComponent implements OnInit {
   filter = {
     page : 1,
-    per_page : 1000
+    perPage : 1000
   }
 
   createSupplierForm = this.fb.group({
@@ -76,6 +76,6 @@ export class CreateSupplierComponent implements OnInit {
 
   goBack() {
     this.router.navigateByUrl('admin/supplier-management/supplier-list')
-  }  
+  }
 
 }

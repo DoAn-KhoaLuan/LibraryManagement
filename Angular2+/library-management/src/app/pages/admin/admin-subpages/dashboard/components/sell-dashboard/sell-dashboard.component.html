@@ -121,7 +121,7 @@
                  *ngFor="let book of dashboard?.most_favorite_books?.value, let i = index">
               <div class="col-9 text-left  ">{{i + 1}}.
                 <img [src]="book?.book?.image || 'assets/images/default-book.png'" style="width:30px; background-size: cover; height: 40px;" alt="">
-                {{book?.book?.book_name}}  </div>
+                {{book?.book?.name}}  </div>
               <div class="col-3 text-right font-weight-bolder text-break" >{{book?.total_quantity}}</div>
             </div>
           </ng-template>

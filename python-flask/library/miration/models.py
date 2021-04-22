@@ -264,6 +264,21 @@ class Product(db.Model):
         }
 
 
+#
+# class Author(db.Model):
+#     authorAd = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+#     authorName = db.Column(db.String(50))
+#
+#     products = db.relationship('Product', backref='author', lazy=True)
+#     deleteIdt = db.Column(db.DateTime, default=None)
+#     shopId = db.Column(db.Integer, db.ForeignKey("shop.id"), name="shop_id")
+#
+#     def serialize(self):
+#         return {"authorId": self.author_id, "authorName": self.author_name}
+#
+#     def __repr__(self):
+#         return f"Author('{self.author_id}','{self.author_name}')"
+
 class Province(db.Model):
     id = db.Column(db.String(10), primary_key=True, nullable=False,unique=True)
     name = db.Column(db.String(50))
@@ -699,15 +714,3 @@ class Tag(db.Model):
 #                f"'{self.email}', '{self.delete_at}')"
 #
 #
-# class Authors(db.Model):
-#     author_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
-#     author_name = db.Column(db.String(50))
-#
-#     books = db.relationship('Books', backref='author', lazy=True)
-#     delete_at = db.Column(db.DateTime, default=None)
-#
-#     def serialize(self):
-#         return {"author_id": self.author_id, "author_name": self.author_name}
-#
-#     def __repr__(self):
-#         return f"Author('{self.author_id}','{self.author_name}')"

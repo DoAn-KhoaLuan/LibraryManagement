@@ -24,12 +24,12 @@
                       </div>
                       <div class="flex-fill product-name">
                         <div class="w-100">
-                          <div  class="text-wrap text-truncate text-app font-weight-bold">{{order_line.book_name}}</div>
+                          <div  class="text-wrap text-truncate text-app font-weight-bold">{{order_line.name}}</div>
                           <div  class="text-default font-10"> Tồn: {{order_line.new_amount}}</div>
                         </div>
                       </div>
                       <div class="line-price m-1 text-right">
-                        <div  class="font-weight-bold">{{order_line.retail_price | vnd}}</div>
+                        <div  class="font-weight-bold">{{order_line.retailPrice | vnd}}</div>
                         <i *ngIf="order_line.discount">Giảm giá: {{order_line.discount * 100}}%</i>
                       </div>
                       <div  class="d-flex align-items-center line-quantity ml-5" >
@@ -73,9 +73,9 @@
 
                     <div class="product-quantity">Tồn: {{book.new_amount}}
                     </div>
-                    <div class="product-price">{{book.retail_price | vnd}}</div>
+                    <div class="product-price">{{book.retailPrice | vnd}}</div>
                   </div>
-                    <div placement="top" class="product-name-card font-weight-bold">{{book.book_name}}</div>
+                    <div placement="top" class="product-name-card font-weight-bold">{{book.name}}</div>
                   </div>
                 </div>
               </ng-container>

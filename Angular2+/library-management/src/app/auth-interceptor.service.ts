@@ -18,7 +18,7 @@ intercept(req: HttpRequest<any>, next: HttpHandler){
         return next.handle(req);
       }
       const modifiedReq = req.clone({
-        params: new HttpParams().set('Authorization', "Bearer " + JSON.parse(localStorage.getItem('auth_info')).access_token),
+        params: new HttpParams().set('Authorization', "Bearer " + JSON.parse(localStorage.getItem('auth_info')).accessToken),
       });
       return next.handle(modifiedReq);
     })

@@ -3,7 +3,7 @@
     <div class="box setting-box mt-0 w-75" >
       <div class="setting-header">
         <div class="d-flex justify-content-center align-items-center text-app">
-          <h1 class="font-weight-bold text-app">Phiếu mượn sách</h1>
+          <h1 class="font-weight-bold text-app">Phiếu mượn sản phẩm</h1>
         </div>
       </div>
       <div class="setting-body" style="border-bottom: 1px solid lightgrey">
@@ -84,11 +84,11 @@
           </div>
 
           <div class="row app-flex flex-row">
-            <div class="col-2  detail-title font-weight-bold text-app">Mã sách </div>
+            <div class="col-2  detail-title font-weight-bold text-app">Mã sản phẩm </div>
             <div class="col-10 detail-info">
               <form class="example-form">
                 <mat-form-field class="example-full-width">
-                  <input type="text" placeholder="Mã sách" aria-label="Number" matInput [formControl]="book_control"
+                  <input type="text" placeholder="Mã sản phẩm" aria-label="Number" matInput [formControl]="book_control"
                     [matAutocomplete]="bookAuto">
                   <mat-autocomplete autoActiveFirstOption #bookAuto="matAutocomplete">
                     <mat-option *ngFor="let bookOption of book_filtered_options | async" [value]="bookOption">
@@ -100,7 +100,7 @@
             </div>
           </div>
           <ng-container *ngIf="book_item">
-            <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Thông tin chi tiết sách</h3>
+            <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Thông tin chi tiết sản phẩm</h3>
             <div class="item-row py-2 my-4 w-75">
               <div class="row d-flex flex-row">
                 <div class="col align-self-center  font-weight-bold text-app" style="max-width:150px;">
@@ -109,14 +109,14 @@
                   <img [src]="book_item?.image || 'assets/images/default-book.png'"
                     style="height: 80px; width: 60px; object-fit: cover;" alt="" />
                 </div>
-                <div class="col align-self-center">{{book_item?.book_name || "-"}}</div>
+                <div class="col align-self-center">{{book_item?.name || "-"}}</div>
                 <div class="col align-self-center" style="max-width: 150px;">{{book_item?.category?.category_name || "-"}}</div>
                 <div class="col align-self-center">
                   {{book_item?.author?.author_name || "-"}}
                 </div>
                 <div class="col align-self-center" style="max-width: 150px;" (click)="AddBookToTicket()">
                   <div class="btn-add px-3 py-2 position-relative">
-                    <i class="fa fa-plus"></i> Thêm sách
+                    <i class="fa fa-plus"></i> Thêm sản phẩm
                   </div>
                 </div>
               </div>
@@ -124,7 +124,7 @@
           </ng-container>
 
           <ng-container *ngIf="borrowTicket?.books?.length > 0">
-            <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Danh sách sách mượn</h3>
+            <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Danh sản phẩm sản phẩm mượn</h3>
             <div *ngFor="let selected_book of borrowTicket.books; let i = index" [attr.data-index]="i">
               <div class="item-row mt-4 ">
                 <div class="row d-flex flex-row">
@@ -135,7 +135,7 @@
                     <img [src]="selected_book?.image || 'assets/images/default-avatar.png'"
                       style="height: 80px; width: 60px; object-fit: cover;" alt="" />
                   </div>
-                  <div class="col align-self-center">{{selected_book?.book_name || "-"}}</div>
+                  <div class="col align-self-center">{{selected_book?.name || "-"}}</div>
                   <div class="col align-self-center" style="max-width: 150px;">{{selected_book?.category?.category_name || "-"}}</div>
                   <div class="col align-self-center">
                     {{selected_book?.author?.author_name || "-"}}
@@ -154,7 +154,7 @@
 
       <div class="setting-footer flex-end">
         <div class="d-flex align-items-center ml-auto  ">
-          <span *ngIf="borrowTicket?.books?.length" class="mr-4">Số lượng sách mượn:
+          <span *ngIf="borrowTicket?.books?.length" class="mr-4">Số lượng sản phẩm mượn:
             <b>{{borrowTicket.books?.length}}</b>
           </span>
           <div class="btn-outline-app" (click)="CreateBorrowTicket()">
@@ -182,7 +182,7 @@
     <div class="box setting-box mt-0 w-75" >
       <div class="setting-header">
         <div class="d-flex justify-content-center align-items-center text-app">
-          <h1 class="font-weight-bold text-app">Xác nhận phiếu mượn sách</h1>
+          <h1 class="font-weight-bold text-app">Xác nhận phiếu mượn sản phẩm</h1>
         </div>
       </div>
       <div class="setting-body" style="border-bottom: 1px solid lightgrey">
@@ -229,7 +229,7 @@
         </div>
 
         <ng-container *ngIf="confirm_borrow_ticket?.borrow_ticket_details?.length > 0">
-          <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Danh sách sách mượn</h3>
+          <h3 class="text-center text-app font-weight-bold mb-2 mt-4">Danh sản phẩm sản phẩm mượn</h3>
           <div *ngFor="let selected_book of borrowTicket.books; let i = index" [attr.data-index]="i">
             <div class="item-row mt-4 ">
               <div class="row d-flex flex-row">
@@ -240,7 +240,7 @@
                   <img [src]="selected_book?.image || 'assets/images/default-avatar.png'"
                     style="height: 80px; width: 60px; object-fit: cover;" alt="" />
                 </div>
-                <div class="col align-self-center">{{selected_book?.book_name || "-"}}</div>
+                <div class="col align-self-center">{{selected_book?.name || "-"}}</div>
                 <div class="col align-self-center" style="max-width: 150px;">{{selected_book?.category?.category_name || "-"}}</div>
                 <div class="col align-self-center">
                   {{selected_book?.author?.author_name || "-"}}
@@ -254,7 +254,7 @@
 
       <div class="setting-footer flex-end">
         <div class="d-flex align-items-center ml-auto  ">
-          <span *ngIf="borrowTicket?.books?.length" class="mr-4">Số lượng sách mượn:
+          <span *ngIf="borrowTicket?.books?.length" class="mr-4">Số lượng sản phẩm mượn:
             <b>{{borrowTicket.books?.length}}</b>
           </span>
           <div class="btn-outline-app" (click)="DeleteBorrowTicket()" style="width:6rem">

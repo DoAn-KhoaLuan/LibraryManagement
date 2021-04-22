@@ -71,11 +71,11 @@
   </ng-container>
 
   <ng-container class="container-fluid">
-    <h1 class="font-weight-bold text-center text-app  mb-2 mt-4">Danh sách sách mượn</h1>
+    <h1 class="font-weight-bold text-center text-app  mb-2 mt-4">Danh sản phẩm sản phẩm mượn</h1>
     <div class="table-header row font-weight-bold text-uppercase ng-star-inserted align-items-center my-5">
       <div class="col text-center text-app" style="max-width: 200px" >STT</div>
-      <div class="col text-center text-app" style="max-width: 200px">Mã sách</div>
-      <div class="col text-center text-app" >Tên sách</div>
+      <div class="col text-center text-app" style="max-width: 200px">Mã sản phẩm</div>
+      <div class="col text-center text-app" >Tên sản phẩm</div>
       <div class="col text-center text-app" style="max-width: 150px">Số lượng</div>
       <div class="col text-center text-app" >Đơn giá</div>
       <div class="col text-center text-app" >Giảm giá</div>
@@ -86,9 +86,9 @@
       <div class="row">
         <div class="col text-center " style="max-width: 200px" >{{i + 1}}</div>
         <div class="col text-center text-app font-weight-bold" style="max-width: 200px">{{(order_detail.book?.book_id | standardizedId) || '-'}}</div>
-        <div class="col text-center " >{{(order_detail.book?.book_name ) || '-'}}</div>
+        <div class="col text-center " >{{(order_detail.book?.name ) || '-'}}</div>
         <div class="col text-center " style="max-width: 150px">{{(order_detail.quantity ) || '-'}}</div>
-        <div class="col text-center " >{{(order_detail?.retail_price | vnd ) || '-'}}</div>
+        <div class="col text-center " >{{(order_detail?.retailPrice | vnd ) || '-'}}</div>
         <div class="col text-center " >{{(order_detail?.discount | vnd ) || '-'}}</div>
         <div class="col text-center text-app font-weight-bold" >{{(order_detail?.total | vnd ) || '-'}}</div>
       </div>

@@ -44,19 +44,18 @@ def createProduct(req: CreateProductReq):
     )
 
     db.session.add(product)
+    # if len(req.tags) > 0:
+    #     for tag in req.tags:
+    #         tag = Tag(name=tag['name'], trimName=tag['trimName'], createAt=datetime.now())
+    #         product.tags.append(tag)
     db.session.commit()
-    for tag in req.tags:
-        tag = Tag(name=tag['name'], trimName=tag['trimName'], createAt=datetime.now())
-        product.tags.append(tag)
-        db.session.commit()
     return product.serialize()
 
 
 def getProductsByPage(req: GetItemsByPageReq):
     productPagination = models.Product.query.filter(
         (models.Product.deleteAt == None),
-        (models.Product.shopId == req.shopId)
-            )\
+        (models.Product.shopId == req.shopId))\
         .paginate(page=req.page, per_page=req.perPage)
     hasNext = productPagination.has_next
     hasPrev = productPagination.has_prev
@@ -87,23 +86,20 @@ def updateProduct(req: UpdateProductReq):
 #
 #
 def searchProducts(req: SearchItemsReq, byShop = True):
-    if byShop:
-        modelProducts = models.Product.query.filter(or_(
-                models.Product.id == req.id,
-                models.Product.name == req.name,
-                models.Product.categoryId == req.categoryId,
-            ),
-            models.Product.shopId == req.shopId,
-            models.Product.deleteAt == None,
-        ).all()
-    else:
-        modelProducts = models.Product.query.filter(or_(
+    modelProducts = models.Product.query \
+        .filter(models.Product.deleteAt == None)
+
+    if byShop == True:
+        modelProducts = modelProducts.filter(models.Product.shopId == req.shopId)
+
+    if req.id != None or req.categoryId != None or req.name != None:
+        modelProducts = modelProducts.filter(or_(
             models.Product.id == req.id,
-            models.Product.name == req.name,
             models.Product.categoryId == req.categoryId,
-            ),
-            models.Product.deleteAt == None,
-            ).all()
+            models.Product.name.contains(req.name)
+        ),)
+
+    modelProducts = modelProducts.all()
     products = ConvertModelListToDictList(modelProducts)
     return products
 

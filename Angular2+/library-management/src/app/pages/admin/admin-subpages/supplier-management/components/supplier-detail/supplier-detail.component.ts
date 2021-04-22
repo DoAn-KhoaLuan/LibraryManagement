@@ -15,7 +15,7 @@ import { SupplierService } from 'src/app/states/supplier-store/supplier.service'
 export class SupplierDetailComponent implements OnInit, OnChanges {
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   isEditing = false;
@@ -62,14 +62,14 @@ export class SupplierDetailComponent implements OnInit, OnChanges {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
       this.router.navigateByUrl('admin/supplier-management/supplier-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -97,7 +97,7 @@ export class SupplierDetailComponent implements OnInit, OnChanges {
   }
 
   setupDataForm() {
-    let store_detail_supplier = this.supplierQuery.getValue().detail_supplier; 
+    let store_detail_supplier = this.supplierQuery.getValue().detail_supplier;
     this.updateSupplierForm.patchValue({
       'supplier_id': store_detail_supplier?.supplier_id,
       'contact_name': store_detail_supplier?.contact_name,
@@ -108,7 +108,7 @@ export class SupplierDetailComponent implements OnInit, OnChanges {
     });
   }
 
-  
+
   get supplier_detail_in_store() {
     return this.supplierQuery.getValue().detail_supplier.supplier.supplier_id
   }
@@ -119,7 +119,7 @@ export class SupplierDetailComponent implements OnInit, OnChanges {
       ...update_supplier,
     };
     try{
-      let updated_supplier = await this.supplierService.UpdateSupplier(update_req) 
+      let updated_supplier = await this.supplierService.UpdateSupplier(update_req)
       this.supplierStore.update({detail_supplier: updated_supplier})
       toastr.success("Cập nhật nhà cung cấp thành công.")
       this.router.navigateByUrl('admin/supplier-management/supplier-list')
@@ -129,6 +129,6 @@ export class SupplierDetailComponent implements OnInit, OnChanges {
   }
 
   get author() {
-    return  this.supplierQuery.getValue().detail_supplier.author; 
+    return  this.supplierQuery.getValue().detail_supplier.author;
   }
 }

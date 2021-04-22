@@ -15,7 +15,7 @@ import { ForgotPasswordModalComponent } from 'src/app/pages/components/forgot-pa
 export class LoginComponent implements OnInit {
   account :any ={};
   loading = false;
- 
+
   login_form = this.fb.group({
     user_name: [''],
     password: [''],
@@ -41,14 +41,14 @@ export class LoginComponent implements OnInit {
     let elementPass = <HTMLInputElement>document.querySelector('#password');
     elementPass.type = 'password';
   }
-  
+
   async Login() {
     try{
       let login_form_data = this.login_form.value
       const login_req = {
-        user_name: login_form_data.user_name,
-        password: login_form_data.password,
-      }
+        accountName: login_form_data.user_name,
+        accountPassword: login_form_data.password,
+      };
       await this.accountService.Login(login_req)
       this.router.navigateByUrl('admin/book-management/book-list')
       toastr.success("Đăng nhập thành công")

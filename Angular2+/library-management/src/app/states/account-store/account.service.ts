@@ -91,7 +91,7 @@ export class AccountService {
         let login_res: auth_info = await this.accountApiService.Login(loginReq);
         this.accountStore.update({
             auth_info: login_res,
-        })
+        });
         localStorage.setItem('auth_info', JSON.stringify(this.accountQuery.getValue().auth_info));
     }
 

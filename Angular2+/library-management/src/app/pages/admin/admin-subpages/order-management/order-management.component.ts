@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class OrderManagementComponent implements OnInit {
   headerItems = [
     {
-      itemName: "Danh sách hóa đơn",
+      itemName: "Danh sản phẩm hóa đơn",
       url: "order-list"
     },
   ]

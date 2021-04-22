@@ -1,9 +1,14 @@
-# from library import app
+from urllib import request
+
+from flask import jsonify
+
+from library import app
 # from library.service import BookSvc, CategorySvc
 # from library.common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
 #     SearchCategoryReq
 # from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
-# from library.common.Rsp.CategoryRsp import SearchCategoryRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Rsp.CategoryRsp import SearchCategoryRsp
 # from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 # from flask import jsonify, request, make_response
 # import json
@@ -11,13 +16,17 @@
 # from library.common.Rsp.SingleRsp import ErrorRsp
 #
 #
-# @app.route('/admin/category-management/get-categories', methods=['GET', 'POST'])
-# def GetCategories():
-#     req = GetItemsByPageReq(request.json)
-#     result = CategorySvc.GetCategoriesByPage(req)
-#     res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
-#                             items=result['categories']).serialize()
-#     return jsonify(res)
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.service import CategorySvc
+
+
+@app.route('/admin/category-management/get-categories', methods=['GET', 'POST'])
+def GetCategories():
+    req = GetItemsByPageReq(request.json)
+    result = CategorySvc.GetCategoriesByPage(req)
+    res = GetItemsByPageRsp(hasNext=result['hasNext'], hasPrev=result['hasPrev'],
+                            items=result['categories']).serialize()
+    return jsonify(res)
 #
 #
 # @app.route('/admin/category-management/create-category', methods=['POST'])

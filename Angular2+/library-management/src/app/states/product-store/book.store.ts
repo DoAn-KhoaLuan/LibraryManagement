@@ -7,9 +7,9 @@ import { PaginationOpt } from 'src/app/shared/page-pagination/page-pagination.co
 export interface BookState {
     book_list_view: GetItemsByPageRsp;
     detail_book: any;
-    current_page: number,
-    filter_page: filter_page,
-    current_pagination_opt : PaginationOpt;
+    current_page: number;
+    filter_page: filter_page;
+    current_pagination_opt: PaginationOpt;
     authors: any[];
     categories: any[];
     suppliers: any[];
@@ -21,7 +21,7 @@ const initState = {
     current_page : 1,
     filter_page: {
         page: 1,
-        per_page: 20,
+        perPage: 20,
     },
     current_pagination_opt: {
         nextDisabled: false,

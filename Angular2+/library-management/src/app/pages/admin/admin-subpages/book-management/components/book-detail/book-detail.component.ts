@@ -1,12 +1,12 @@
-import { BookStore } from './../../../../../../states/book-store/book.store';
-import { BookQuery } from 'src/app/states/book-store/book.query';
+import { BookStore } from '../../../../../../states/product-store/book.store';
+import { BookQuery } from 'src/app/states/product-store/book.query';
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
 import { ModalController } from './../../../../../../core/modal-controller/modal-controller.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiBookService } from './../../../../../../API/api-book.service';
+import { ApiProductService } from '../../../../../../API/api-product.service';
 import { Component, OnInit, Input, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BookService } from 'src/app/states/book-store/book.service';
+import { ProductService } from 'src/app/states/product-store/product.service';
 import { AddSupplierModalComponent } from '../add-supplier-modal/add-supplier-modal.component';
 import { AddCategoryModalComponent } from '../add-category-modal/add-category-modal.component';
 import { AddAuthorModalComponent } from '../add-author-modal/add-author-modal.component';
@@ -20,7 +20,7 @@ import {HttpClient} from "@angular/common/http";
 export class BookDetailComponent implements OnInit, OnChanges {
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   isEditing = false;
@@ -32,7 +32,7 @@ export class BookDetailComponent implements OnInit, OnChanges {
 
   constructor(
     private bookQuery: BookQuery,
-    private bookService: BookService,
+    private bookService: ProductService,
     private router: Router,
     private fb: FormBuilder,
     private ref: ChangeDetectorRef,
@@ -44,13 +44,13 @@ export class BookDetailComponent implements OnInit, OnChanges {
 
     updateBookForm = this.fb.group({
       book_id: [''],
-      book_name: [''],
+      name: [''],
       author:[''],
       supplier: [''],
       category: [''],
       page_number: [''],
-      cost_price: [''],
-      retail_price: [''],
+      costPrice: [''],
+      retailPrice: [''],
       discount: [''],
       old_amount: [''],
       new_amount: [''],
@@ -61,10 +61,10 @@ export class BookDetailComponent implements OnInit, OnChanges {
 
   async ngOnInit() {
     const book_id = {
-      book_id: parseInt(this.route.snapshot.params['id'])
+      id: parseInt(this.route.snapshot.params['id'])
     }
-    const res = await this.bookService.searchBooks(book_id);
-    const detail_book = res.books[0];
+    const res = await this.bookService.getShopProductById(book_id);
+    const detail_book = res;
     this.bookService.setDetailBook(detail_book);
     await this.SetupData()
   }
@@ -73,9 +73,9 @@ export class BookDetailComponent implements OnInit, OnChanges {
   }
 
   async SetupData() {
-    await this.bookService.GetAuthors(this.filter);
-    await this.bookService.GetCategories(this.filter);
-    await this.bookService.GetSuppliers(this.filter);
+    // await this.bookService.GetAuthors(this.filter);
+    // await this.bookService.GetCategories(this.filter);
+    // await this.bookService.GetSuppliers(this.filter);
   }
 
   async onClickUpdateBtn() {
@@ -111,11 +111,11 @@ export class BookDetailComponent implements OnInit, OnChanges {
     modal.onDismiss().then(delete_book => {
       if(delete_book) {
         try {
-          this.bookService.DeleteBookById(delete_book.book_id)
+          this.bookService.DeleteBookById(delete_book.id);
           this.router.navigateByUrl('admin/book-management/book-list')
-          toastr.success("Bạn đã xóa sách thành công")
+          toastr.success("Bạn đã xóa sản phẩm thành công")
         } catch(e) {
-          toastr.error("Xóa sách không thành thông", e.msg || e.message)
+          toastr.error("Xóa sản phẩm không thành thông", e.msg || e.message)
         }
       }
     });
@@ -125,13 +125,13 @@ export class BookDetailComponent implements OnInit, OnChanges {
     let store_detail_book = this.bookQuery.getValue().detail_book;
     this.updateBookForm.patchValue({
       'book_id': store_detail_book?.book_id,
-      'book_name': store_detail_book?.book_name,
+      'name': store_detail_book?.name,
       'author': store_detail_book?.author,
       'supplier': store_detail_book?.supplier,
       'category': store_detail_book?.category,
       'page_number': store_detail_book?.page_number,
-      'cost_price':  store_detail_book?.cost_price,
-      'retail_price':store_detail_book?.retail_price,
+      'costPrice':  store_detail_book?.costPrice,
+      'retailPrice':store_detail_book?.retailPrice,
       'discount':store_detail_book?.discount,
       'description': store_detail_book?.description,
       'old_amount': store_detail_book?.old_amount,
@@ -178,9 +178,9 @@ export class BookDetailComponent implements OnInit, OnChanges {
         try {
           await this.bookService.CreateCategory(category);
           await this.bookService.GetCategories(this.filter);
-          toastr.success("Thêm mới thể loại sách thành công.")
+          toastr.success("Thêm mới thể loại sản phẩm thành công.")
         } catch(e) {
-          toastr.error("Thêm mới thể loại sách thất bại.", e.msg || e.message)
+          toastr.error("Thêm mới thể loại sản phẩm thất bại.", e.msg || e.message)
         }
 
       }
@@ -223,10 +223,10 @@ export class BookDetailComponent implements OnInit, OnChanges {
     try{
       let updated_book = await this.bookService.UpdateBook(update_req)
       this.bookStore.update({detail_book: updated_book})
-      toastr.success("Cập nhật sách thành công.")
+      toastr.success("Cập nhật sản phẩm thành công.")
       this.router.navigateByUrl('admin/book-management/book-list')
     } catch(e) {
-      toastr.error("Cập nhật sách thất bại.", e.msg || e.message)
+      toastr.error("Cập nhật sản phẩm thất bại.", e.msg || e.message)
     }
   }
 

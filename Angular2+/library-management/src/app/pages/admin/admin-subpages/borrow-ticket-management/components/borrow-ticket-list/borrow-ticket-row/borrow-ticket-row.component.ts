@@ -47,12 +47,12 @@ export class BorrowTicketRowComponent implements OnInit, OnChanges {
         try {
           await this.borrowTicketService.FinishBorrowTicket(this.borrow_ticket_item.borrow_ticket_id);
           await this.borrowTicketService.getBorrowTickets(this.borrowTicketQuery.getValue().filter_page)
-          toastr.success("Hoàn thành phiếu mượn sách thành công")
+          toastr.success("Hoàn thành phiếu mượn sản phẩm thành công")
         } catch(e) {
-          toastr.error("Hoàn thành phiếu mượn sáchkhông thành thông", e.msg || e.message)
+          toastr.error("Hoàn thành phiếu mượn sản phẩmkhông thành thông", e.msg || e.message)
         }
       }
     });
-    
+
   }
 }

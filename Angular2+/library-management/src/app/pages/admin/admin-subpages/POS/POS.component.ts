@@ -1,6 +1,6 @@
 import { CustomerStore } from './../../../../states/customer-store/customer.store';
-import { BookStore } from './../../../../states/book-store/book.store';
-import { BookService } from './../../../../states/book-store/book.service';
+import { BookStore } from '../../../../states/product-store/book.store';
+import { ProductService } from '../../../../states/product-store/product.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/states/customer-store/customer.service';
 import {FormBuilder, FormControl} from '@angular/forms';
@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 import {map, startWith, tap} from "rxjs/operators";
 import {CustomerQuery} from "../../../../states/customer-store/customer.query";
 import {order_line} from "../../../../models/app-models";
-import {BookQuery} from "../../../../states/book-store/book.query";
+import {BookQuery} from "../../../../states/product-store/book.query";
 import {ApiOrderService} from "../../../../API/api-order.service";
 import {Router} from "@angular/router";
 
@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./POS.component.scss']
 })
 export class POSComponent implements OnInit {
-  //Danh sách các Forms: Gio hàng, khách hàng, hóa đơn, sản phẩm
+  //Danh sản phẩm các Forms: Gio hàng, khách hàng, hóa đơn, sản phẩm
   order_lines: order_line[] = []
   search_keyword: string;
   books = []
@@ -43,11 +43,11 @@ export class POSComponent implements OnInit {
 
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   constructor(
-    private bookService: BookService,
+    private bookService: ProductService,
     private bookStore: BookStore,
     private bookQuery: BookQuery,
     private customerService: CustomerService,
@@ -59,7 +59,7 @@ export class POSComponent implements OnInit {
 
   async ngOnInit() {
     await this.customerService.GetCustomers(this.filter);
-    await this.bookService.getBooks(this.filter)
+    await this.bookService.getProductsByShop(this.filter)
     this.books= this.bookQuery.getValue().book_list_view.items
     this.all_customers = this.customerQuery.getValue().customer_list_view.items;
     this.all_customers.forEach(customer => {
@@ -110,9 +110,9 @@ export class POSComponent implements OnInit {
         book_id: book.book_id,
         quantity: 1,
         image: book.image,
-        book_name: book.book_name,
-        retail_price: book.retail_price,
-        total_price: book.retail_price * (1-book.discount),
+        name: book.name,
+        retailPrice: book.retailPrice,
+        total_price: book.retailPrice * (1-book.discount),
         new_amount: book.new_amount,
         discount: book.discount
       };
@@ -163,7 +163,7 @@ export class POSComponent implements OnInit {
 
   ChangeQuantity(order_line) {
     order_line.quantity = order_line.quantity < 0 ? Math.abs(order_line.quantity) : order_line.quantity;
-    order_line.total_price = order_line.retail_price * (1 - order_line.discount) * order_line.quantity;
+    order_line.total_price = order_line.retailPrice * (1 - order_line.discount) * order_line.quantity;
     this.SumOrder();
   }
 
@@ -189,7 +189,7 @@ export class POSComponent implements OnInit {
 
   SearchBooks() {
       let book_in_store = this.bookQuery.getValue().book_list_view.items;
-      this.books = book_in_store.filter(book =>  book.book_name.includes(this.search_keyword) || book.book_id == this.search_keyword)
+      this.books = book_in_store.filter(book =>  book.name.includes(this.search_keyword) || book.book_id == this.search_keyword)
   }
 
   async CreateOrderByMomo() {

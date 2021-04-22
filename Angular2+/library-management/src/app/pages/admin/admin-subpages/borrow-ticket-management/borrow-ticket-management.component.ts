@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BorrowTicketManagementComponent implements OnInit {
   headerItems = [
     {
-      itemName: "Danh sách phiếu mượn",
+      itemName: "Danh sản phẩm phiếu mượn",
       url: "borrow-ticket-list"
     },
     {

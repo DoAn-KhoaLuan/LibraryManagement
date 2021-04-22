@@ -16,7 +16,7 @@ import { OrderStore } from 'src/app/states/order-store/order.store';
 export class OrderDetailComponent implements OnInit, OnChanges {
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   borrow_status: any =  "Hoàn thành"  || "Trả trễ" || "Đang trễ" || "Đang mượn";
@@ -41,8 +41,8 @@ export class OrderDetailComponent implements OnInit, OnChanges {
       supplier: [''],
       category: [''],
       page_number: [''],
-      cost_price: [''],
-      retail_price: [''],
+      costPrice: [''],
+      retailPrice: [''],
       discount: [''],
       old_amount: [''],
       new_amount: [''],
@@ -63,7 +63,7 @@ export class OrderDetailComponent implements OnInit, OnChanges {
     }
     const res = await this.OrderService.searchOrders(order_id);
     const detail_order = res.orders[0];
-    
+
     this.OrderService.setDetailOrder(detail_order);
 
     const current_date = new Date().getTime();
@@ -84,14 +84,14 @@ export class OrderDetailComponent implements OnInit, OnChanges {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
       this.router.navigateByUrl('admin/order-management/order-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -110,16 +110,16 @@ export class OrderDetailComponent implements OnInit, OnChanges {
         try {
           this.OrderService.DeleteOrderById(delete_order.order_id)
           this.router.navigateByUrl('admin/order-management/order-list')
-          toastr.success("Bạn đã hủy phiếu mượn sách thành công")
+          toastr.success("Bạn đã hủy phiếu mượn sản phẩm thành công")
         } catch(e) {
-          toastr.error("Bạn đã hủy phiếu mượn sách không thành thông", e.msg || e.message)
+          toastr.error("Bạn đã hủy phiếu mượn sản phẩm không thành thông", e.msg || e.message)
         }
       }
     });
   }
 
   setupDataForm() {
-    let store_detail_order = this.OrderQuery.getValue().detail_order; 
+    let store_detail_order = this.OrderQuery.getValue().detail_order;
     this.updateOrderForm.patchValue({
       'order_id': store_detail_order?.order_id,
       'order_name': store_detail_order?.order_name,
@@ -127,8 +127,8 @@ export class OrderDetailComponent implements OnInit, OnChanges {
       'supplier': store_detail_order?.supplier,
       'category': store_detail_order?.category,
       'page_number': store_detail_order?.page_number,
-      'cost_price':  store_detail_order?.cost_price,
-      'retail_price':store_detail_order?.retail_price,
+      'costPrice':  store_detail_order?.costPrice,
+      'retailPrice':store_detail_order?.retailPrice,
       'discount':store_detail_order?.discount,
       'description': store_detail_order?.description,
       'old_amount': store_detail_order?.old_amount,
@@ -137,7 +137,7 @@ export class OrderDetailComponent implements OnInit, OnChanges {
     });
 
   }
-  
+
 
   async UpdateOrder() {
     let update_order = this.updateOrderForm.value;
@@ -148,12 +148,12 @@ export class OrderDetailComponent implements OnInit, OnChanges {
       author_id: update_order.author.author_id,
     };
     try {
-      let updated_order = await this.OrderService.UpdateOrder(update_req) 
+      let updated_order = await this.OrderService.UpdateOrder(update_req)
       this.OrderStore.update({detail_order: updated_order})
-      toastr.success("Cập nhật sách thành công.")
+      toastr.success("Cập nhật sản phẩm thành công.")
       this.router.navigateByUrl('admin/order-management/order-list')
     } catch(e) {
-      toastr.error("Cập nhật sách thất bại.", e.msg || e.message)
+      toastr.error("Cập nhật sản phẩm thất bại.", e.msg || e.message)
     }
   }
 
@@ -171,18 +171,18 @@ export class OrderDetailComponent implements OnInit, OnChanges {
   //         try {
   //           await this.OrderService.FinishOrder(finish_order_id)
   //           this.router.navigateByUrl('admin/order-management/order-list')
-  //           toastr.success("Hoàn thành phiếu mượn sách thành công");
+  //           toastr.success("Hoàn thành phiếu mượn sản phẩm thành công");
   //         } catch(e) {
-  //           toastr.error("Bạn đã hủy phiếu mượn sách không thành thông", e.msg || e.message)
+  //           toastr.error("Bạn đã hủy phiếu mượn sản phẩm không thành thông", e.msg || e.message)
   //         }
   //       }
   //     });
   //   } catch(e) {
-  //     toastr.error("Hoàn thành phiếu mượn sách không thành công", e.msg || e.message)
+  //     toastr.error("Hoàn thành phiếu mượn sản phẩm không thành công", e.msg || e.message)
   //   }
   // }
 
   get author() {
-    return  this.OrderQuery.getValue().detail_order.author; 
+    return  this.OrderQuery.getValue().detail_order.author;
   }
 }

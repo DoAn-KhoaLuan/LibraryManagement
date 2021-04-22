@@ -22,7 +22,7 @@ const initState = {
     current_page : 1,
     filter_page: {
         page: 1,
-        per_page: 5,
+        perPage: 5,
     },
     current_pagination_opt: {
         nextDisabled: false,

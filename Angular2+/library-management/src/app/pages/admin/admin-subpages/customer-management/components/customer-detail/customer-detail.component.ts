@@ -18,7 +18,7 @@ import { ConfirmDeleteCustomerComponent } from './confirm-delete-customer/confir
 export class CustomerDetailComponent implements OnInit {
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   isEditing = false;
@@ -76,14 +76,14 @@ export class CustomerDetailComponent implements OnInit {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
       this.router.navigateByUrl('admin/customer-management/customer-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -111,7 +111,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   setupDataForm() {
-    let store_detail_customer = this.customerQuery.getValue().detail_customer; 
+    let store_detail_customer = this.customerQuery.getValue().detail_customer;
     this.updateCustomerForm.patchValue({
       'first_name' :store_detail_customer?.first_name,
       'last_name' :store_detail_customer?.last_name,
@@ -124,7 +124,7 @@ export class CustomerDetailComponent implements OnInit {
       'gender': store_detail_customer?.gender,
       'birth_date':this.datePipe.transform(store_detail_customer?.birth_day, 'yyyy-MM-dd'),
       'note': store_detail_customer?.note,
-      
+
     });
 
   }
@@ -149,7 +149,7 @@ export class CustomerDetailComponent implements OnInit {
     //   }
     // });
   }
-  
+
   get customer_detail_in_store() {
     return this.customerQuery.getValue().detail_customer.supplier.supplier_id
   }
@@ -161,12 +161,12 @@ export class CustomerDetailComponent implements OnInit {
       gender: update_customer.gender == 'true' ? true : false,
     };
     try{
-      let updated_customer = await this.customerService.UpdateCustomer(update_req) 
+      let updated_customer = await this.customerService.UpdateCustomer(update_req)
       this.customerStore.update({detail_customer: updated_customer})
-      toastr.success("Cập nhật sách thành công.")
+      toastr.success("Cập nhật sản phẩm thành công.")
       this.router.navigateByUrl('admin/customer-management/customer-list')
     } catch(e) {
-      toastr.error("Cập nhật sách thất bại.", e.msg || e.message)
+      toastr.error("Cập nhật sản phẩm thất bại.", e.msg || e.message)
     }
   }
 

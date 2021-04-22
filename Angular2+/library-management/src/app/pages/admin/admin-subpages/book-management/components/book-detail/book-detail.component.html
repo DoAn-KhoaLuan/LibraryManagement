@@ -1,6 +1,6 @@
 <ng-container>
   <div class="d-flex justify-content-center align-items-center text-app font-weight-bold">
-    <h1 class="font-weight-bold">Thông tin chi tiết sách <span>{{ (detail_book$ | async)?.book_name}}</span></h1>
+    <h1 class="font-weight-bold">Thông tin chi tiết sản phẩm <span>{{ (detail_book$ | async)?.name}}</span></h1>
   </div>
 
   <ng-container *ngIf="!isEditing, else updateForm">
@@ -15,54 +15,66 @@
             <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
             <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
           </div>
-          <h1 class="text-app text-left font-weight-bold text-center my-4">Mã sách: {{(detail_book$ | async)?.book_id | standardizedId}}</h1>
+          <h1 class="text-app text-left font-weight-bold text-center my-4">Mã: {{(detail_book$ | async)?.id | standardizedId}}</h1>
         </div>
       </div>
       <div class=" col-9 d-flex flex-column">
         <div class="d-flex flex-column">
           <div class="row py-3">
-            <div class="col-2 text-center font-weight-bold"><b>Mã sách: </b></div>
-            <div class="col-9 text-app font-weight-bold">{{((detail_book$ | async)?.book_id | standardizedId ) || '-'}}</div>
+            <div class="col-2 text-center font-weight-bold"><b>Mã: </b></div>
+            <div class="col-9 text-app font-weight-bold">{{((detail_book$ | async)?.id | standardizedId ) || '-'}}</div>
           </div>
           <div class="row py-3">
-            <div class="col-2 text-center font-weight-bold"><b>Tên sách: </b></div>
-            <div class="col-9 text-app font-weight-bold">{{(detail_book$ | async)?.book_name || '-'}}</div>
+            <div class="col-2 text-center font-weight-bold"><b>Tên: </b></div>
+            <div class="col-9 text-app font-weight-bold">{{(detail_book$ | async)?.name || '-'}}</div>
           </div>
           <div class="row py-3">
-            <div class="col-2 text-center font-weight-bold"><b>Tác giả: </b></div>
-            <div class="col-9">{{(detail_book$ | async)?.author?.author_name || '-'}}</div>
+            <div class="col-2 text-center font-weight-bold"><b>Kích thước: </b></div>
+            <div class="col-9">{{(detail_book$ | async)?.size || '-'}}</div>
           </div>
           <div class="row py-3">
-            <div class="col-2 text-center font-weight-bold"><b>Nhà cung cấp: </b></div>
-            <div class="col-9">{{(detail_book$ | async)?.supplier?.contact_name || "-"}}</div>
+            <div class="col-2 text-center font-weight-bold"><b>Thương hiệu: </b></div>
+            <div class="col-9">{{(detail_book$ | async)?.brandName || "-"}}</div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Thể loại: </b></div>
-            <div class="col-9">{{(detail_book$ | async)?.category?.category_name || '-'}}</div>
+            <div class="col-9">{{(detail_book$ | async)?.category?.categoryName || '-'}}</div>
           </div>
           <div class="row py-3">
-            <div class="col-2 text-center font-weight-bold"><b>Số trang: </b></div>
-            <div class="col-9">{{(detail_book$ | async)?.page_number || 0}}</div>
+            <div class="col-2 text-center font-weight-bold"><b>Chất liệu: </b></div>
+            <div class="col-9">{{(detail_book$ | async)?.material || '-'}}</div>
+          </div>
+          <div class="row py-3">
+            <div class="col-2 text-center font-weight-bold"><b>Xuất sứ: </b></div>
+            <div class="col-9">{{(detail_book$ | async)?.origin || '-'}}</div>
+          </div>
+          <div class="row py-3">
+            <div class="col-2 text-center font-weight-bold"><b>Công dụng: </b></div>
+            <div class="col-9">{{(detail_book$ | async)?.feature || '-'}}</div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Giá vốn: </b></div>
-            <div class="col-9">{{((detail_book$ | async)?.cost_price |vnd)|| 0 }}</div>
+            <div class="col-9">{{((detail_book$ | async)?.costPrice |vnd)|| 0 }}</div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Giá bán: </b></div>
-            <div class="col-9">{{(detail_book$ | async)?.retail_price || 0}}</div>
+            <div class="col-9">{{(detail_book$ | async)?.retailPrice || 0}}</div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Giảm giá: </b></div>
             <div class="col-9">{{(detail_book$ | async)?.discount }}</div>
           </div>
           <div class="row py-3">
-            <div class="col-2 text-center font-weight-bold"><b>Tồn kho sách bán : </b></div>
-            <div class="col-9">{{(detail_book$ | async)?.new_amount }}</div>
+            <div class="col-2 text-center font-weight-bold"><b>Tồn kho : </b></div>
+            <div class="col-9">{{(detail_book$ | async)?.amount }}</div>
           </div>
           <div class="row py-3">
-            <div class="col-2 text-center font-weight-bold"><b>Tồn kho sách mượn: </b></div>
-            <div class="col-9">{{(detail_book$ | async)?.old_amount }}</div>
+            <div class="col-2 text-center font-weight-bold"><b>Tag : </b></div>
+            <div class="col-9">
+              <div *ngFor="let tag of (detail_book$ |async)?.tags">
+                {{tag.name}},
+              </div>
+            </div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Tóm tắt: </b></div>
@@ -128,15 +140,15 @@
             <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
             <img src='assets/images/default-book.png' style="height: 70px; width: 70px; object-fit: cover;" alt="Avatar"  class="p-1 m-2 real-avatar"/>
           </div>
-          <h1 class="text-app text-left font-weight-bold text-center my-4">Mã sách: {{(detail_book$ | async)?.studentCode}}</h1>
+          <h1 class="text-app text-left font-weight-bold text-center my-4">Mã sản phẩm: {{(detail_book$ | async)?.studentCode}}</h1>
         </div>
       </div>
       <!-- <div class=" col-9 d-flex flex-column">
         <div class="d-flex flex-column">
           <div class="row py-3">
-            <div class="col-2 app-flex"><b>Tên sách: </b></div>
+            <div class="col-2 app-flex"><b>Tên sản phẩm: </b></div>
             <div class="col-9">
-              <input type="text" class="form-control" placeholder="Nhập tên sách" formControlName="book_name"
+              <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" formControlName="name"
               />
             </div>
           </div>
@@ -159,7 +171,7 @@
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Thể loại: </b></div>
             <div class="col-9">
-              <input type="text" class="form-control" placeholder="Nhập thể loại sách"
+              <input type="text" class="form-control" placeholder="Nhập thể loại sản phẩm"
               formControlName="category_name"
               />
             </div>
@@ -175,14 +187,14 @@
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Giá vốn: </b></div>
             <div class="col-9">
-              <input type="number" class="form-control" placeholder="Nhập giá vốn "  formControlName="cost_price"
+              <input type="number" class="form-control" placeholder="Nhập giá vốn "  formControlName="costPrice"
               />
             </div>
           </div>
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Giá bán: </b></div>
             <div class="col-9">
-              <input type="number" class="form-control" placeholder="Nhập giá bán"  formControlName="retail_price"
+              <input type="number" class="form-control" placeholder="Nhập giá bán"  formControlName="retailPrice"
               />
             </div>
           </div>
@@ -197,7 +209,7 @@
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Tóm tắt: </b></div>
             <div class="col-9">
-              <input type="text" class="form-control" placeholder="Nhập tóm tắt nội dung sách"  formControlName="description"
+              <input type="text" class="form-control" placeholder="Nhập tóm tắt nội dung sản phẩm"  formControlName="description"
               />
             </div>
           </div>
@@ -229,9 +241,9 @@
       <div class=" col-9 d-flex flex-column">
         <div class="d-flex flex-column">
           <div class="row py-3">
-            <div class="col-2 app-flex"><b>Tên sách: </b></div>
+            <div class="col-2 app-flex"><b>Tên sản phẩm: </b></div>
             <div class="col-9">
-              <input type="text" class="form-control" placeholder="Nhập tên sách" formControlName="book_name"
+              <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" formControlName="name"
               />
             </div>
           </div>
@@ -272,7 +284,7 @@
                 <i class="fa fa-plus"></i>
               </div>
               <select class="w3-select w3-border form-control pl-1" name="category" formControlName="category"  >
-                  <option value="" disabled selected>Vui lòng chọn thể loại sách
+                  <option value="" disabled selected>Vui lòng chọn thể loại sản phẩm
                   </option>
                   <option *ngFor="let category of categories$ | async" [ngValue]="category" class="font-weight-bold">
                     {{category?.category_name}}
@@ -294,14 +306,14 @@
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Giá vốn: </b></div>
             <div class="col-9">
-              <input type="number" class="form-control" placeholder="Nhập giá vốn "  formControlName="cost_price"
+              <input type="number" class="form-control" placeholder="Nhập giá vốn "  formControlName="costPrice"
               />
             </div>
           </div>
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Giá bán: </b></div>
             <div class="col-9">
-              <input type="number" class="form-control" placeholder="Nhập giá bán"  formControlName="retail_price"
+              <input type="number" class="form-control" placeholder="Nhập giá bán"  formControlName="retailPrice"
               />
             </div>
           </div>
@@ -316,7 +328,7 @@
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Tóm tắt: </b></div>
             <div class="col-9">
-              <textarea class="form-control" placeholder="Nhập nhóm tắt nội dung sách" formControlName="description"></textarea>
+              <textarea class="form-control" placeholder="Nhập nhóm tắt nội dung sản phẩm" formControlName="description"></textarea>
             </div>
           </div>
           <div class="row py-3">

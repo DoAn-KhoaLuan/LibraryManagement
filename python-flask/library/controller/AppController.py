@@ -15,8 +15,8 @@ def test(account):
 
 @app.route('/init-data', methods=['POST'])
 def initData():
-    loadAndInsertData()
     insertCategories()
+    loadAndInsertData()
     return "True"
 
 

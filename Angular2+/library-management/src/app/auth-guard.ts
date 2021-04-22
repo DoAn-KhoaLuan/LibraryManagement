@@ -23,7 +23,7 @@ export class AdminPageGuard implements CanActivate{
               if(localStorage.getItem('auth_info')){
                   const auth_info = JSON.parse(localStorage.getItem('auth_info'));
 
-                if(auth_info.access_token && (auth_info.current_account.role.role_name == "admin" || auth_info.current_account.role.role_name == "admin-manager"|| auth_info.current_account.role.role_name == "admin manager")){
+                if(auth_info.accessToken && (auth_info.current_account.role.role_name == "admin" || auth_info.current_account.role.role_name == "admin-manager"|| auth_info.current_account.role.role_name == "admin manager")){
                     this.accountStore.update({
                         auth_info: auth_info,
                     })

@@ -12,7 +12,7 @@ export class ApiCategoryService {
     this.baseURL = this.apiAppService.baseURL;
   }
   async GetCategories(req) {
-    return await this.http.post(this.baseURL+"/admin/category-management/get-categories",req).toPromise();
+    return await this.http.post(this.baseURL+"/get-categories",req).toPromise();
   }
 
   async UpdateCategory(req) {

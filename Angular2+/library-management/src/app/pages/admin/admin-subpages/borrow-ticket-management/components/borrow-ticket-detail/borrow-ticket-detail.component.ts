@@ -18,7 +18,7 @@ import {SendEmailModalComponent} from "./send-email-modal/send-email-modal.compo
 export class BorrowTicketDetailComponent implements OnInit, OnChanges {
   filter = {
     page : 1,
-    per_page: 1000
+    perPage: 1000
   }
 
   borrow_status: any =  "Hoàn thành"  || "Trả trễ" || "Đang trễ" || "Đang mượn";
@@ -43,8 +43,8 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
       supplier: [''],
       category: [''],
       page_number: [''],
-      cost_price: [''],
-      retail_price: [''],
+      costPrice: [''],
+      retailPrice: [''],
       discount: [''],
       old_amount: [''],
       new_amount: [''],
@@ -112,9 +112,9 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
         try {
           this.borrowTicketService.DeleteBorrowTicketById(delete_borrow_ticket.borrow_ticket_id)
           this.router.navigateByUrl('admin/borrow-ticket-management/borrow-ticket-list')
-          toastr.success("Bạn đã hủy phiếu mượn sách thành công")
+          toastr.success("Bạn đã hủy phiếu mượn sản phẩm thành công")
         } catch(e) {
-          toastr.error("Bạn đã hủy phiếu mượn sách không thành thông", e.msg || e.message)
+          toastr.error("Bạn đã hủy phiếu mượn sản phẩm không thành thông", e.msg || e.message)
         }
       }
     });
@@ -129,8 +129,8 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
       'supplier': store_detail_borrow_ticket?.supplier,
       'category': store_detail_borrow_ticket?.category,
       'page_number': store_detail_borrow_ticket?.page_number,
-      'cost_price':  store_detail_borrow_ticket?.cost_price,
-      'retail_price':store_detail_borrow_ticket?.retail_price,
+      'costPrice':  store_detail_borrow_ticket?.costPrice,
+      'retailPrice':store_detail_borrow_ticket?.retailPrice,
       'discount':store_detail_borrow_ticket?.discount,
       'description': store_detail_borrow_ticket?.description,
       'old_amount': store_detail_borrow_ticket?.old_amount,
@@ -152,10 +152,10 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
     try {
       let updated_borrow_ticket = await this.borrowTicketService.UpdateBorrowTicket(update_req)
       this.borrowTicketStore.update({detail_borrow_ticket: updated_borrow_ticket})
-      toastr.success("Cập nhật sách thành công.")
+      toastr.success("Cập nhật sản phẩm thành công.")
       this.router.navigateByUrl('admin/borrow-ticket-management/borrow-ticket-list')
     } catch(e) {
-      toastr.error("Cập nhật sách thất bại.", e.msg || e.message)
+      toastr.error("Cập nhật sản phẩm thất bại.", e.msg || e.message)
     }
   }
 
@@ -173,14 +173,14 @@ export class BorrowTicketDetailComponent implements OnInit, OnChanges {
           try {
             await this.borrowTicketService.FinishBorrowTicket(finish_borrow_ticket_id)
             this.router.navigateByUrl('admin/borrow-ticket-management/borrow-ticket-list')
-            toastr.success("Hoàn thành phiếu mượn sách thành công");
+            toastr.success("Hoàn thành phiếu mượn sản phẩm thành công");
           } catch(e) {
-            toastr.error("Bạn đã hủy phiếu mượn sách không thành thông", e.msg || e.message)
+            toastr.error("Bạn đã hủy phiếu mượn sản phẩm không thành thông", e.msg || e.message)
           }
         }
       });
     } catch(e) {
-      toastr.error("Hoàn thành phiếu mượn sách không thành công", e.msg || e.message)
+      toastr.error("Hoàn thành phiếu mượn sản phẩm không thành công", e.msg || e.message)
     }
   }
 

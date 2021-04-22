@@ -7,5 +7,4 @@ class CreateShopReq:
         self.provinceId = req['provinceId'] if 'provinceId' in req else ''
         self.districtId = req['districtId'] if 'districtId' in req else ''
         self.wardId = req['wardId'] if 'wardId' in req else ''
-        self.provinceId = req['provinceId'] if 'provinceId' in req else ''
         self.note = req['note'] if 'note' in req else ''
