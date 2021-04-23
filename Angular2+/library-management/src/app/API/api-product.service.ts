@@ -24,7 +24,7 @@ export class ApiProductService {
   }
 
   async UpdateProduct(req) {
-    return await this.http.post(this.baseURL+"/admin/book-management/update-book",req).toPromise();
+    return await this.http.post(this.baseURL+"/admin/product-management/update-product  ",req).toPromise();
   }
 
   async CreateProduct(req) {

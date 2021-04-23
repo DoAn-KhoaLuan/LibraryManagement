@@ -43,19 +43,22 @@ export class BookDetailComponent implements OnInit, OnChanges {
   ) { }
 
     updateBookForm = this.fb.group({
-      book_id: [''],
+      id: [''],
       name: [''],
       author:[''],
       supplier: [''],
       category: [''],
-      page_number: [''],
       costPrice: [''],
       retailPrice: [''],
       discount: [''],
-      old_amount: [''],
-      new_amount: [''],
+      amount: [''],
       description: [''],
       image: '',
+      size: '',
+      material:'',
+      brandName: '',
+      origin: '',
+      feature: '',
       note: [''],
     });
 
@@ -67,12 +70,14 @@ export class BookDetailComponent implements OnInit, OnChanges {
     const detail_book = res;
     this.bookService.setDetailBook(detail_book);
     await this.SetupData()
+
   }
 
   async ngOnChanges() {
   }
 
   async SetupData() {
+    await this.bookService.GetCategories({});
     // await this.bookService.GetAuthors(this.filter);
     // await this.bookService.GetCategories(this.filter);
     // await this.bookService.GetSuppliers(this.filter);
@@ -81,7 +86,10 @@ export class BookDetailComponent implements OnInit, OnChanges {
   async onClickUpdateBtn() {
     if(this.isEditing) {
       let update_book = this.updateBookForm.value;
-      await this.bookService.UpdateBook(update_book)
+      await this.bookService.UpdateBook({
+        ...update_book,
+        categoryId : update_book.category.id
+      })
     } else {
       this.toggleEdit();
       this.setupDataForm();
@@ -124,23 +132,26 @@ export class BookDetailComponent implements OnInit, OnChanges {
   setupDataForm() {
     let store_detail_book = this.bookQuery.getValue().detail_book;
     this.updateBookForm.patchValue({
-      'book_id': store_detail_book?.book_id,
+      'id': store_detail_book?.id,
       'name': store_detail_book?.name,
       'author': store_detail_book?.author,
       'supplier': store_detail_book?.supplier,
       'category': store_detail_book?.category,
-      'page_number': store_detail_book?.page_number,
+      'size': store_detail_book?.size,
       'costPrice':  store_detail_book?.costPrice,
       'retailPrice':store_detail_book?.retailPrice,
       'discount':store_detail_book?.discount,
       'description': store_detail_book?.description,
-      'old_amount': store_detail_book?.old_amount,
+      'amount': store_detail_book?.amount,
       'new_amount': store_detail_book?.new_amount,
       'note': store_detail_book?.note,
       'image': store_detail_book?.image,
-
+      'origin': store_detail_book?.origin,
+      'feature': store_detail_book?.feature,
+      'brandName': store_detail_book?.brandName,
+      'material': store_detail_book?.material,
     });
-
+    console.log(this.updateBookForm.value)
   }
 
   OpenAddAuthorModal() {
@@ -216,9 +227,9 @@ export class BookDetailComponent implements OnInit, OnChanges {
     let update_book = this.updateBookForm.value;
     let update_req = {
       ...update_book,
-      category_id: update_book.category.category_id,
-      supplier_id: update_book.supplier.supplier_id,
-      author_id: update_book.author.author_id,
+      // category_id: update_book.category.category_id,
+      // supplier_id: update_book.supplier.supplier_id,
+      // author_id: update_book.author.author_id,
     };
     try{
       let updated_book = await this.bookService.UpdateBook(update_req)

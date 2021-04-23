@@ -5,4 +5,4 @@ if __name__ == "__main__":
     # initData()
     app.debug = True
     # app.run(debug=True)
-    socketio.run(app, "localhost", 4000)
+    socketio.run(app, "localhost", 5000)

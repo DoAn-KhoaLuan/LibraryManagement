@@ -241,7 +241,7 @@ class Product(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "category": self.category.serialize(),
+            "categoryId": self.categoryId,
             "shopId": self.shopId,
             "tags": ConvertModelListToDictList(self.tags),
             # "comments": ConvertModelListToDictList(self.comments),

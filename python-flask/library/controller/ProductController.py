@@ -1,6 +1,6 @@
 import json
 
-from library import app
+from library import app, db
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, GetShopItemById
 from library.common.Req.PageReq import DeleteItemReq, SearchItemsReq
 from library.common.Req.ProductReq import *
@@ -57,6 +57,29 @@ def CreateProduct(account):
     res = CreateProductRsp(result).serialize()
     return jsonify(res)
 
+@app.route('/admin/product-management/update-product', methods=['POST'])
+@owner_required
+def UpdateProduct(account):
+    req = UpdateProductReq(request.json)
+    req.shopId = account["shop"]["id"]
+    updateProduct = models.Product.query.get(req.id)
+    updateProduct.categoryId = req.categoryId,
+    updateProduct.retailPrice = req.retailPrice,
+    updateProduct.costPrice = req.costPrice,
+    updateProduct.discount = req.discount,
+    updateProduct.name = req.name,
+    updateProduct.brandName = req.brandName,
+    updateProduct.material = req.material,
+    updateProduct.size = req.size,
+    updateProduct.feature = req.feature,
+    updateProduct.origin = req.origin,
+    updateProduct.amount = req.amount,
+    updateProduct.imageUrl = req.imageUrl,
+    updateProduct.note = req.note,
+    updateProduct.description = req.description,
+    db.session.add(updateProduct)
+    db.session.commit()
+    return jsonify(updateProduct.serialize())
 
 @app.route('/admin/product-management/delete-product', methods=['POST'])
 def deleteProduct():

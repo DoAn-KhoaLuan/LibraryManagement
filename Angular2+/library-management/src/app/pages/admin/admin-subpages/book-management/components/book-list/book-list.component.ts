@@ -28,14 +28,13 @@ export class BookListComponent implements OnInit {
   async onRequestNewPage() {
     await this.bookService.GetCategories({});
     await this.bookService.getProductsByShop(this.bookQuery.getValue().filter_page).then(() => {
-      console.log(this.bookStore.getValue().categories)
       this.bookService.setupPagination();
     });
   }
 
   async SearchBooks() {
-    if(!this.searchKeyword) {
-      await this.onRequestNewPage();
+    if(!this.searchKeyword && !this.categoryId && !this.productName) {
+      return await this.onRequestNewPage();
     }
     const req = {
       id: parseInt(this.searchKeyword) || "",
