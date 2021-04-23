@@ -3,10 +3,10 @@ from datetime import datetime
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
+from library.common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
     SearchCategoryReq
 
-from library.Common.util import ConvertModelListToDictList
+from library.common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
 

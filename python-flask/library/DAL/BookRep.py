@@ -3,9 +3,9 @@ from datetime import datetime
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req.BookReq import SearchBookReq, CreateBookReq
+from library.common.Req.BookReq import SearchBookReq, CreateBookReq
 from library.DAL import models
-from library.Common.util import ConvertModelListToDictList
+from library.common.util import ConvertModelListToDictList
 
 
 def GetBooksByPage(req):

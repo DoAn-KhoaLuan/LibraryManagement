@@ -1,13 +1,13 @@
 from library import app
 from library.BLL import EmployeeSvc
-from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeesReq
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Rsp.EmployeeRsp import SearchEmployeeRsp
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeesReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Rsp.EmployeeRsp import SearchEmployeeRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route('/admin/employee-management/get-employees', methods=['POST', 'GET'])

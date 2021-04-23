@@ -1,13 +1,13 @@
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req.BorrowTicketReq import CreateBorrowTicketReq, UpdateBorrowTicketReq, DeleteBorrowTicketReq, \
+from library.common.Req.BorrowTicketReq import CreateBorrowTicketReq, UpdateBorrowTicketReq, DeleteBorrowTicketReq, \
     SearchBorrowTicketReq, FinishBorrowTicketReq
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 from library.DAL import models
 from flask import jsonify, json
-from library.Common.util import ConvertModelListToDictList
-from library.Common.Req import GetItemsByPageReq
+from library.common.util import ConvertModelListToDictList
+from library.common.Req import GetItemsByPageReq
 from datetime import datetime, timedelta
 
 

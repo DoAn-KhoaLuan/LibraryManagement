@@ -3,12 +3,12 @@ from flask import jsonify, request, make_response
 import json
 
 from library.BLL import BorrowTicketSvc
-from library.Common.Req.BorrowTicketReq import CreateBorrowTicketReq, UpdateBorrowTicketReq, DeleteBorrowTicketReq, \
+from library.common.Req.BorrowTicketReq import CreateBorrowTicketReq, UpdateBorrowTicketReq, DeleteBorrowTicketReq, \
     SearchBorrowTicketReq, FinishBorrowTicketReq, SendEmailForLateBorrowTicketReq
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Rsp.BorrowTicketRsp import SearchBorrowTicketRsp
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Rsp.BorrowTicketRsp import SearchBorrowTicketRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route('/admin/borrow-ticket-management/get-borrow-tickets', methods=['POST', 'GET'])

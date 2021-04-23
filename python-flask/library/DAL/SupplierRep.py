@@ -2,12 +2,12 @@ from datetime import datetime
 
 from sqlalchemy import or_
 
-from library.Common.Req import GetItemsByPageReq
+from library.common.Req import GetItemsByPageReq
 from library import db
-from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, \
+from library.common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, \
     SearchSuppliersReq
 from library.DAL.models import Suppliers
-from library.Common.util import ConvertModelListToDictList
+from library.common.util import ConvertModelListToDictList
 
 
 def GetSuppliersByPage(req: GetItemsByPageReq):

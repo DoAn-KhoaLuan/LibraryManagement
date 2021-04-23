@@ -3,9 +3,9 @@ from datetime import datetime, timezone
 import pytz
 from sqlalchemy import desc, asc
 from library import db
-from library.Common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
+from library.common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
     GetConversationByCustomerAccountIdReq, ReadConversationReq
-from library.Common.util import ConvertModelListToDictList
+from library.common.util import ConvertModelListToDictList
 from library.DAL import models
 
 

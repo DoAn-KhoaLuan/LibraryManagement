@@ -1,11 +1,11 @@
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req.OrderDetailReq import CreateOrderDetailReq
+from library.common.Req.OrderDetailReq import CreateOrderDetailReq
 from library.DAL import models
 from flask import jsonify, json
-from library.Common.util import ConvertModelListToDictList
-from library.Common.Req import GetItemsByPageReq
+from library.common.util import ConvertModelListToDictList
+from library.common.Req import GetItemsByPageReq
 from datetime import datetime
 
 

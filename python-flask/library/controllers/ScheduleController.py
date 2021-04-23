@@ -3,11 +3,11 @@ from flask import jsonify, request, make_response
 import json
 
 from library.BLL import ScheduleSvc
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Req.ScheduleReq import CreateScheduleReq, UpdateScheduleReq, SearchSchedulesReq
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.ScheduleRsp import SearchSchedulesRsp
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.ScheduleReq import CreateScheduleReq, UpdateScheduleReq, SearchSchedulesReq
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.ScheduleRsp import SearchSchedulesRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route('/admin/schedule-management/get-schedules', methods=['POST', 'GET'])

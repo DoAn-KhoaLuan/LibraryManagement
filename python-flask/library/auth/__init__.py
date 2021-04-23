@@ -4,9 +4,9 @@ import jwt
 from flask import request, jsonify
 from library import app
 from library.BLL import AccountSvc
-from library.Common.Req.AccountReq import SearchAccountsReq
-from library.Common.Req.CustomerReq import SearchCustomersReq
-from library.Common.Req.EmployeeReq import SearchEmployeesReq
+from library.common.Req.AccountReq import SearchAccountsReq
+from library.common.Req.CustomerReq import SearchCustomersReq
+from library.common.Req.EmployeeReq import SearchEmployeesReq
 from library.DAL import EmployeeRep, CustomerRep
 
 

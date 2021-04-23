@@ -4,10 +4,10 @@ from time import gmtime, strftime
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req import GetItemsByPageReq
-from library.Common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeesReq
-from library.Common.Rsp.EmployeeRsp import SearchEmployeeRsp
-from library.Common.util import ConvertModelListToDictList
+from library.common.Req import GetItemsByPageReq
+from library.common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeesReq
+from library.common.Rsp.EmployeeRsp import SearchEmployeeRsp
+from library.common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
 from datetime import datetime

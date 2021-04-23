@@ -1,9 +1,9 @@
 from email.message import EmailMessage
 
 from library import smtp, app
-from library.Common.Req.BorrowTicketReq import CreateBorrowTicketReq, \
+from library.common.Req.BorrowTicketReq import CreateBorrowTicketReq, \
     SendEmailForLateBorrowTicketReq
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 from library.DAL import BorrowTicketRep
 
 

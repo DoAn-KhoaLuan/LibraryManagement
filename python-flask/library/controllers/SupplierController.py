@@ -2,10 +2,10 @@ from flask import request, jsonify
 
 from library import app
 from library.BLL import SupplierSvc
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, SearchSuppliersReq
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.SupplierRsp import SearchSuppliersRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, SearchSuppliersReq
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.SupplierRsp import SearchSuppliersRsp
 
 
 @app.route('/admin/supplier-management/get-suppliers', methods=['GET', 'POST'])

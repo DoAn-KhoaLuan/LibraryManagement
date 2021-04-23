@@ -5,16 +5,16 @@ from functools import wraps
 import jwt
 from flask import request, jsonify
 
-from library import app, smtp
+from library import app, smtp, db
 from library.BLL import AccountSvc
-from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, LoginRsp, SearchAccountsReq, \
+from library.common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, LoginRsp, SearchAccountsReq, \
     SendResetPasswordEmailReq, ResetPasswordReq, ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Rsp.AccountRsp import SearchAccountsRsp
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Rsp.AccountRsp import SearchAccountsRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 from library.auth import token_required
-from library.DAL import EmployeeRep, CustomerRep, AccountRep
+from library.DAL import EmployeeRep, CustomerRep, AccountRep, models
 import smtplib
 from email.message import EmailMessage
 
@@ -111,3 +111,19 @@ def CreateEmployeeAccount():
         return jsonify(result)
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf-8'), 401
+
+@app.route('/create-role', methods=['POST'])
+def CreateRole():
+    try:
+        req = CreateEmployeeAccountReq(request.json)
+        role = models.Roles(role_id=1,role_name= "admin", note="note", delete_at=None)
+        role1 = models.Roles(role_id=2,role_name= "admin-manager", note="note", delete_at=None)
+        role2 = models.Roles(role_id=3,role_name= "user", note="note", delete_at=None)
+        db.session.add(role)
+        db.session.add(role1)
+        db.session.add(role2)
+        db.session.commit()
+        return jsonify({})
+    except ErrorRsp as e:
+        return json.dumps(e.__dict__, ensure_ascii=False).encode('utf-8'), 401
+

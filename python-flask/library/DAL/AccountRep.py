@@ -3,10 +3,10 @@ from flask_bcrypt import check_password_hash
 from sqlalchemy import or_
 import hashlib
 from library import db
-from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
+from library.common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
     ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
-from library.Common.Rsp.SingleRsp import ErrorRsp
-from library.Common.util import ConvertModelListToDictList
+from library.common.Rsp.SingleRsp import ErrorRsp
+from library.common.util import ConvertModelListToDictList
 from library.DAL import models
 from datetime import datetime
 from library import bcrypt

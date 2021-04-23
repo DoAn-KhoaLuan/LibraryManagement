@@ -3,10 +3,10 @@ from flask_socketio import send, join_room, leave_room
 
 from library import app, socketio
 from library.BLL import MessageSvc
-from library.Common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
+from library.common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
     GetConversationByCustomerAccountIdReq, ReadConversationReq
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.MessageRsp import SendMessageRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.MessageRsp import SendMessageRsp
 
 
 @app.route('/message/get-messages', methods=['POST', 'GET'])

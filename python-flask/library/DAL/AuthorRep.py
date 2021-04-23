@@ -3,9 +3,9 @@ from datetime import datetime
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req.AuthorReq import SearchAuthorReq
-from library.Common.Rsp.AuthorRsp import DeleteAuthorByIdRsp, UpdateAuthorRsp,SearchAuthorRsp
-from library.Common.util import ConvertModelListToDictList
+from library.common.Req.AuthorReq import SearchAuthorReq
+from library.common.Rsp.AuthorRsp import DeleteAuthorByIdRsp, UpdateAuthorRsp,SearchAuthorRsp
+from library.common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
 from library.DAL.models import Authors

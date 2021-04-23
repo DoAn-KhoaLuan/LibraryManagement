@@ -1,14 +1,14 @@
 from library import app
 from library.BLL import BookSvc, CategorySvc
-from library.Common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
+from library.common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
     SearchCategoryReq
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Rsp.CategoryRsp import SearchCategoryRsp
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Rsp.CategoryRsp import SearchCategoryRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route('/admin/category-management/get-categories', methods=['GET', 'POST'])

@@ -1,13 +1,13 @@
 from library import app
 from library.BLL import OrderSvc
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
-from library.Common.Rsp.OrderRsp import SearchOrdersRsp
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.OrderRsp import SearchOrdersRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route("/admin/order-management/get-orders", methods=['POST', 'GET'])

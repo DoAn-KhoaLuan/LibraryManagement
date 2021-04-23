@@ -3,11 +3,11 @@ from library.BLL import AuthorSvc
 from flask import jsonify, request, make_response
 import json
 
-from library.Common.Req.AuthorReq import CreateAuthorReq, DeleteAuthorByIdReq, UpdateAuthorReq, SearchAuthorReq
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Rsp.AuthorRsp import CreateAuthorRsp, SearchAuthorRsp
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Req.AuthorReq import CreateAuthorReq, DeleteAuthorByIdReq, UpdateAuthorReq, SearchAuthorReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Rsp.AuthorRsp import CreateAuthorRsp, SearchAuthorRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route('/admin/author-management/get-authors', methods=['POST'])

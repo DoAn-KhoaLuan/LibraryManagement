@@ -1,4 +1,4 @@
-from library.Common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
+from library.common.Req.MessageReq import GetMessagesInConversationByFilterReq, SendMessageReq, \
     GetConversationByCustomerAccountIdReq
 from library.DAL import MessageRep
 

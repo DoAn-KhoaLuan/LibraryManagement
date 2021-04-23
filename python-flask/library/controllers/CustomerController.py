@@ -1,13 +1,13 @@
 from library import app
 from library.BLL import CustomerSvc
-from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Rsp.CustomerRsp import SearchCustomersRsp
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Rsp.CustomerRsp import SearchCustomersRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route('/admin/customer-management/get-customers', methods=['POST', 'GET'])

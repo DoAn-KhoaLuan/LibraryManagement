@@ -6,17 +6,17 @@ from werkzeug.utils import secure_filename
 
 from library import app
 from library.BLL import BookSvc
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 
-from library.Common.Req.BookReq import CreateBookReq, DeleteBookByIdReq, UpdateBookReq, SearchBookReq
+from library.common.Req.BookReq import CreateBookReq, DeleteBookByIdReq, UpdateBookReq, SearchBookReq
 
-from library.Common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateBookRsp, SearchBookRsp
+from library.common.Rsp.BookRsp import CreateBookRsp, DeleteBookByIdRsp, UpdateBookRsp, SearchBookRsp
 
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response, render_template, send_file
 import json
 
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 from library.auth import token_required
 # from library.controllers.UploadImageController import allowed_file
 

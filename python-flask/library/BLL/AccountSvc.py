@@ -7,14 +7,14 @@ from flask import jsonify
 
 from library import app, smtp
 
-from library.Common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
+from library.common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, SendResetPasswordEmailReq, \
     ResetPasswordReq, ChangePasswordReq
 
-from library.Common.Req.CustomerReq import SearchCustomersReq
+from library.common.Req.CustomerReq import SearchCustomersReq
 
-from library.Common.Req.EmployeeReq import SearchEmployeesReq
+from library.common.Req.EmployeeReq import SearchEmployeesReq
 
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 from library.DAL import AccountRep, CustomerRep, EmployeeRep, MessageRep
 

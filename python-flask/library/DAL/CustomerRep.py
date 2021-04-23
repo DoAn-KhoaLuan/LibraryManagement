@@ -1,17 +1,17 @@
 from sqlalchemy import or_
 
 from library import db
-from library.Common.Req import GetItemsByPageReq
-from library.Common.Req.AccountReq import SendResetPasswordEmailReq
-from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq
-from library.Common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
-from library.Common.Rsp.CustomerRsp import SearchCustomersRsp
-from library.Common.util import ConvertModelListToDictList
+from library.common.Req import GetItemsByPageReq
+from library.common.Req.AccountReq import SendResetPasswordEmailReq
+from library.common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq
+from library.common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
+from library.common.Rsp.CustomerRsp import SearchCustomersRsp
+from library.common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
 from library.DAL.models import Accounts
 from datetime import datetime
-from library.Common.util import ConvertModelListToDictList
+from library.common.util import ConvertModelListToDictList
 
 
 def GetCustomersByPage(req: GetItemsByPageReq):

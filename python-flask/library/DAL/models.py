@@ -1,8 +1,11 @@
 from datetime import datetime
-
+from sqlalchemy.types import Enum
 from library import db
-from library.Common.util import ConvertModelListToDictList
+from library.common.util import ConvertModelListToDictList
 
+class OrderType(Enum):
+    ONLINE  = "online"
+    OFFLINE = "offline"
 
 class Accounts(db.Model):
     account_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
@@ -99,6 +102,7 @@ class Borrowtickets(db.Model):
 
 class Categories(db.Model):
     category_id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
+    books = db.relationship("Books", backref="category", lazy=False)
     category_name = db.Column(db.String(50))
     description = db.Column(db.String(1500))
     note = db.Column(db.String(1500))
@@ -123,6 +127,9 @@ class Customers(db.Model):
     email = db.Column(db.String(50), unique=True)
     phone = db.Column(db.String(50))
     birth_date = db.Column(db.DateTime)
+    province_id = db.Column(db.String(50), name="province_id")
+    district_id = db.Column(db.String(50), name="district_id")
+    ward_id = db.Column(db.String(50), name="ward_id")
     address = db.Column(db.String(1500))
     gender = db.Column(db.Boolean)
     note = db.Column(db.String(1500))
@@ -134,7 +141,10 @@ class Customers(db.Model):
         return {"customer_id": self.customer_id, "identity_id": self.identity_id, "note": self.note,
                 "account": self.account.serialize(), "student_code": self.student_code, "last_name": self.last_name,
                 "first_name": self.first_name, "email": self.email, "phone": self.phone, "birth_day": self.birth_date,
-                "address": self.address, "gender": self.gender, "delete_at": self.delete_at}
+                "provinceId": self.province_id,
+            "districtId": self.district_id,
+            "wardId": self.ward_d,
+            "address": self.address, "gender": self.gender, "delete_at": self.delete_at}
 
     def __repr__(self):
         return f"Customer('{self.customer_id}','{self.identity_id}','{self.note}','{self.account.serialize()}'," \
@@ -192,6 +202,9 @@ class Employees(db.Model):
     email = db.Column(db.String(50), nullable=False, unique=True)
     birth_date = db.Column(db.DateTime)
     hire_date = db.Column(db.DateTime)
+    province_id = db.Column(db.String(50), name="province_id")
+    district_id = db.Column(db.String(50), name="district_id")
+    ward_id = db.Column(db.String(50), name="ward_id")
     address = db.Column(db.String(1500))
     gender = db.Column(db.Boolean)
     image = db.Column(db.String(1500))
@@ -206,7 +219,10 @@ class Employees(db.Model):
     def serialize(self):
         return {"employee_id": self.employee_id, "identity_id": self.identity_id, "note": self.note,
                 "account": self.account.serialize(), "last_name": self.last_name, "first_name": self.first_name,
-                "phone": self.phone, "birth_day": self.birth_date, "address": self.address, "gender": self.gender,
+                "phone": self.phone, "birth_day": self.birth_date, "provinceId": self.province_id,
+                "districtId": self.district_id,
+                "wardId": self.ward_d,
+                "address": self.address, "gender": self.gender,
                 "image": self.image, "basic_rate": self.basic_rate, "delete_at": self.delete_at, "email": self.email,
                 "hire_date": self.hire_date}
 
@@ -242,7 +258,7 @@ class Orders(db.Model):
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     order_date = db.Column(db.DateTime)
     total = db.Column(db.Float)
-    type = db.Column(db.String(50))
+    type = db.Column(db.Enum("online", "offline"), name="type", default="offline")
     note = db.Column(db.String(1500))
     delete_at = db.Column(db.DateTime, default=None)
     create_at = db.Column(db.DateTime, default=datetime.now())
@@ -359,3 +375,58 @@ class Authors(db.Model):
 
     def __repr__(self):
         return f"Author('{self.author_id}','{self.author_name}')"
+
+class Ward(db.Model):
+    id = db.Column(db.String(10), primary_key=True, nullable=False, unique=True)
+    name = db.Column(db.String(50))
+    districtId = db.Column(db.String(50), name="district_id")
+
+    def __init__(self, id, name, districtId) -> None:
+        self.id = id
+        self.name = name
+        self.districtId = districtId
+        super().__init__()
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "districtId": self.districtId,
+
+        }
+
+class Province(db.Model):
+    id = db.Column(db.String(10), primary_key=True, nullable=False,unique=True)
+    name = db.Column(db.String(50))
+    region = db.Column(db.String(50), name="region")
+
+    def __init__(self, id, name, region) -> None:
+        self.id = id
+        self.name = name
+        self.region = region
+        super().__init__()
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "region": self.region,
+        }
+
+class District(db.Model):
+    id = db.Column(db.String(10), primary_key=True, nullable=False, unique=True)
+    name = db.Column(db.String(50))
+    provinceId = db.Column(db.String(50), name="province_id")
+
+    def __init__(self, id, name, provinceId) -> None:
+        self.id = id
+        self.name = name
+        self.provinceId = provinceId
+        super().__init__()
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "provinceId": self.provinceId,
+        }

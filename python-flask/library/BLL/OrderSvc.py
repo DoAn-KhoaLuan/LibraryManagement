@@ -4,8 +4,8 @@ import json
 import urllib
 import uuid
 
-from library.Common.Req.OrderReq import CreateOrderReq
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Req.OrderReq import CreateOrderReq
+from library.common.Rsp.SingleRsp import ErrorRsp
 from library.DAL import OrderRep
 
 

@@ -3,10 +3,10 @@ from flask import jsonify, request, make_response
 import json
 
 from library.BLL import OrderDetailSvc
-from library.Common.Req.GetItemsByPageReq import GetItemsByPageReq
-from library.Common.Req.OrderDetailReq import CreateOrderDetailReq
-from library.Common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
-from library.Common.Rsp.SingleRsp import ErrorRsp
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.OrderDetailReq import CreateOrderDetailReq
+from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
+from library.common.Rsp.SingleRsp import ErrorRsp
 
 
 @app.route('/admin/order-detail-management/get-order-details', methods=['POST', 'GET'])
