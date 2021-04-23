@@ -96,7 +96,7 @@ def searchProducts(req: SearchItemsReq, byShop = True):
         modelProducts = modelProducts.filter(or_(
             models.Product.id == req.id,
             models.Product.categoryId == req.categoryId,
-            models.Product.name.contains(req.name)
+            models.Product.name == (req.name)
         ),)
 
     modelProducts = modelProducts.all()

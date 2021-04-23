@@ -1,6 +1,9 @@
-from library import app
+from datetime import datetime
+
+from library import app, db
 from library.auth import owner_required
 from library.common.Req.PageReq import SearchItemsReq
+from library.miration import models
 from library.service import OrderSvc
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
@@ -27,12 +30,44 @@ def GetOrders(account):
 @owner_required
 def createOrder(account):
     try:
-        req = CreateOrderReq(request.json)
-        req.sellerAccountId = account["id"]
-        req.shopId = account["shop"]["id"]
-        result = OrderSvc.createOrder(req)
+        order = CreateOrderReq(request.json)
+        order.sellerAccountId = account["id"]
+        order.shopId = account["shop"]["id"]
 
-        return jsonify(result)
+        sellerAccount = models.Account.query.get(order.sellerAccountId)
+        buyerAccount = models.Account.query.get(order.buyerAccountId)
+        createOrder = models.Order(sellerAccount=sellerAccount,
+                                   buyerAccount=buyerAccount,
+                                   shopId=order.shopId,
+                                   createAt=datetime.now(),
+                                   type=order.type,
+                                   note=order.note)
+
+        db.session.add(createOrder)
+        db.session.commit()
+        total = 0.0
+        quantity = 0
+        for orderDetail in order.orderDetailList:
+            orderProduct = models.Product.query.get(orderDetail['productId'])
+            orderProduct.amount -= orderDetail['quantity']
+            if orderProduct.amount < 0:
+                raise ErrorRsp(code=400, message='Số lượng sản phẩm tồn kho đã hết.')
+            detailTotal = (1 - orderDetail['discount']) * (orderProduct.retailPrice * orderDetail['quantity'])
+            newOrderDetail = models.OrderDetail(orderId=createOrder.serialize()['id'],
+                                                productId=orderDetail['productId'],
+                                                retailPrice=orderProduct.retailPrice,
+                                                discount=orderDetail['discount'],
+                                                quantity=orderDetail['quantity'],
+                                                total=detailTotal
+                                                )
+            total += detailTotal
+            quantity += orderDetail['quantity']
+            createOrder.orderDetails.append(newOrderDetail)
+        createOrder.total = total
+        createOrder.quantity = quantity
+        db.session.commit()
+
+        return jsonify(createOrder.serialize())
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8')
 #

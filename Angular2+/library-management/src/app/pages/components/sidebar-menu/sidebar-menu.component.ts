@@ -33,11 +33,11 @@ export class SidebarMenuComponent implements OnInit {
       itemTitle: "Quản lý khách hàng",
       routerLink: "customer-management"
     },
-    {
-      iconHtml:`<i class="fa fa-2x fa-user" aria-hidden="true"></i>`,
-      itemTitle: "Quản lý nhân viên",
-      routerLink: "employee-management"
-    },
+    // {
+    //   iconHtml:`<i class="fa fa-2x fa-user" aria-hidden="true"></i>`,
+    //   itemTitle: "Quản lý nhân viên",
+    //   routerLink: "employee-management"
+    // },
     // {
     //   iconHtml:`<i class="fa fa-2x fa-ticket" aria-hidden="true"></i>`,
     //   itemTitle: "Quản lý mượn trả",
