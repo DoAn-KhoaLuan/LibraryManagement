@@ -2,7 +2,7 @@ from datetime import datetime
 
 from library import db
 from library.DAL import LocationRep, CategoryRep, models, AccountRep
-from library.DAL.models import Roles
+from library.DAL.models import Roles, Customers
 from library.common.Req.AccountReq import CreateEmployeeAccountReq
 from library.controllers import BookController
 from library.controllers import CategoryController
@@ -168,3 +168,10 @@ def initRoles():
     db.session.add(role2)
     db.session.add(role3)
     db.session.commit()
+
+def initAnomyCustomer():
+    indepentCustomer = Customers(customer_id=1, identity_id=0, first_name="Khách lẻ")
+    db.session.add(indepentCustomer)
+    db.session.commit()
+
+

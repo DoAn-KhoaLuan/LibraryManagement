@@ -1,6 +1,6 @@
 <ng-container *ngIf="loading; else loaddone">
-  <div class="layout flex-column justify-content-center align-items-center " >
-    <div class="text-center" >
+  <div class="layout flex-column justify-content-center align-items-center ">
+    <div class="text-center">
       <img src="assets/images/library.jpg" style="width: 150px; margin-bottom: 10px">
       <h3 style="color: #265fa0; font-weight: bold;">Thư quán Đại học Mở TPHCM</h3>
       <img src="assets/images/loading.svg" style="width: 75px; margin-top: -10px;">
@@ -12,7 +12,7 @@
     <div class="login-body">
       <div class="left-side d-flex flex-column">
         <div class="d-flex  p-3 mb-4 align-items-center title-school">
-          <img src="assets/images/library.jpg" alt="Logo Ou University" style="width: 50px;" />
+          <img src="assets/images/library.jpg" alt="Logo Ou University" style="width: 50px;"/>
           <div class="ml-2 brand-text">
             Thư quán Trường đại học Mở Thành phố Hồ Chí Minh
           </div>
@@ -50,47 +50,69 @@
             </p>
           </div>
           <div class="form-group">
-            <input type="text" class="rounded-pill  form-control" placeholder="Nhập tên tài khoản(*)" autofocus name="userName" formControlName="userName"/>
+            <input type="text" class="rounded-pill  form-control" placeholder="Nhập tên tài khoản(*)" autofocus
+                   name="userName" formControlName="userName"/>
           </div>
           <div class="form-group position-relative">
             <div (mousedown)="showPassword()" (mouseup)="hidePassword()" class="position-absolute changephone-text">
               Hiển thị
             </div>
-            <input id="password" type="password" class="rounded-pill form-control" placeholder="Nhập mật khẩu(*)"  formControlName="password" name="password" />
+            <input id="password" type="password" class="rounded-pill form-control" placeholder="Nhập mật khẩu(*)"
+                   formControlName="password" name="password"/>
           </div>
           <div class="form-group position-relative">
             <div (mousedown)="showPassword()" (mouseup)="hidePassword()" class="position-absolute changephone-text">
               Hiển thị
             </div>
-            <input  type="password" class="rounded-pill form-control" placeholder="Nhập lại mật khẩu(*)"  formControlName="confirmPassword" name="password" />
+            <input type="password" class="rounded-pill form-control" placeholder="Nhập lại mật khẩu(*)"
+                   formControlName="confirmPassword" name="password"/>
           </div>
           <div class="form-group d-flex flex-row">
-            <input type="text" class="rounded-pill  form-control" placeholder="Nhập họ" autofocus name="userName" formControlName="lastName"/>
-            <input type="text" class="rounded-pill  form-control" placeholder="Nhập tên" autofocus name="userName" formControlName="firstName"/>
+            <input type="text" class="rounded-pill  form-control" placeholder="Nhập họ" autofocus name="userName"
+                   formControlName="lastName"/>
+            <input type="text" class="rounded-pill  form-control" placeholder="Nhập tên" autofocus name="userName"
+                   formControlName="firstName"/>
+          </div>
+          <ng-container [formGroup]="locationForm">
+            <div class="form-group d-flex flex-row">
+              <app-material-input-autocomplete
+                placeholder="Chọn tỉnh thành" textLabel="Tỉnh thành (*)" [options]="provincesList$ | async"
+                [displayMap]="displayMap" [valueMap]="valueMap" register="true"
+                formControlName="provinceCode">
+              </app-material-input-autocomplete>
+              <app-material-input-autocomplete
+                placeholder="Chọn quận huyện" textLabel="Quận huyện (*)" [options]="(districtsList$ | async) || []"
+                [displayMap]="displayMap" [valueMap]="valueMap"
+                formControlName="districtCode">
+              </app-material-input-autocomplete>
+              <app-material-input-autocomplete
+                placeholder="Chọn phường xã" textLabel="Phường xã (*)" [options]="(wardsList$ | async) || []"
+                [displayMap]="displayMap" [valueMap]="valueMap"
+                formControlName="wardCode">
+              </app-material-input-autocomplete>
+            </div>
+            <div class="form-group d-flex flex-row">
+              <input type="text" class="rounded-pill  form-control" placeholder="Nhập địa chỉ" autofocus
+                     formControlName="address"/>
+            </div>
+          </ng-container>
+          <div class="form-group">
+            <input type="email" class="rounded-pill  form-control" placeholder="Nhập địa chỉ email(*)" autofocus
+                   formControlName="email"/>
           </div>
           <div class="form-group">
-            <input type="text" class="rounded-pill  form-control" placeholder="Nhập mã thẻ căn cước(*)" autofocus  formControlName="identityId"/>
+            <input type="text" class="rounded-pill  form-control" placeholder="Nhập số điện thoại" autofocus
+                   formControlName="phone"/>
           </div>
           <div class="form-group">
-            <input type="email" class="rounded-pill  form-control" placeholder="Nhập địa chỉ email(*)" autofocus  formControlName="email"/>
+            <input type="text" class="rounded-pill  form-control" placeholder="Nhập chứng minh thư" autofocus
+                   formControlName="identity_id"/>
           </div>
           <div class="form-group">
-            <input type="text" class="rounded-pill  form-control" placeholder="Nhập số điện thoại" autofocus  formControlName="phone"/>
+            <input type="date" id="birthDate" name="birthDate" class="rounded-pill  form-control"
+                   placeholder="Nhập ngày sinh" autofocus formControlName="birthDate"
+                   matTooltip="Vui lòng nhập ngày sinh" matTooltipPosition="above"/>
           </div>
-          <div class="form-group">
-            <input type="date" id="birthDate" name="birthDate" class="rounded-pill  form-control" placeholder="Nhập ngày sinh" autofocus  formControlName="birthDate" matTooltip="Vui lòng nhập ngày sinh"  matTooltipPosition="above" />
-          </div>
-          <div class="form-group">
-            <input type="text" class="rounded-pill  form-control" placeholder="Nhập địa chỉ" autofocus  formControlName="address"/>
-          </div>
-          <div class="form-group">
-            <select class="rounded-pill  form-control" placeholder="Chọn giới tính" autofocus  formControlName="gender">
-              <option value="" selected disabled hidden>Chọn giới tính</option>
-              <option value="true" style="background-color: white; color: var(--app-color)">Nam</option>
-              <option value="false" style="background-color: white; color: var(--app-color)">Nữ</option>
-            </select>
-          </div>
-        
           <div class="rounded-pill d-block w-100 btn-outline-app" type="button" (click)="CreateCustomerAndAccount()">
             <!-- <i class="fa fa-spinner fa-spin mr-2" *ngIf="loading"></i> -->
             Đăng ký
@@ -100,7 +122,7 @@
           Quên mật khẩu?
         </div>
       </div>
-    </div>  
+    </div>
     <div class="login-footer">
       <div class="left-side px-4 py-1 d-flex justify-content-around" style="font-size: 13px; font-weight: 100px;">
         <div class="">
@@ -112,8 +134,8 @@
             <div>
               <i>
                 97 Võ Văn Tần, Phường 6, Quận 3, Hồ Chí Minh (Chi nhánh 1)
-                <br />371 Nguyễn Kiệm, Phường 3, Quận Gò Vấp, Hồ Chí Minh (Chi
-                nhánh 2) <br /></i>
+                <br/>371 Nguyễn Kiệm, Phường 3, Quận Gò Vấp, Hồ Chí Minh (Chi
+                nhánh 2) <br/></i>
             </div>
           </div>
         </div>

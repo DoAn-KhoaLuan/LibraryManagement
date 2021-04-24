@@ -15,5 +15,6 @@ export class AccountQuery extends Query<AccountState> {
     current_page$ = this.select('current_page')
     current_pagination_opt$ = this.select('current_pagination_opt')
     auth_info$ = this.select('auth_info')
-    detail_account$ = this.select('detail_account')
+    detail_account$ = this.select('detail_account');
+    roles$ = this.select('roles');
 }

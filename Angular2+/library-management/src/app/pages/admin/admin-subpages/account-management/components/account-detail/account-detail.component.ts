@@ -56,7 +56,7 @@ export class AccountDetailComponent implements OnInit {
       account_id: parseInt(this.route.snapshot.params['id'])
     }
     const res = await this.accountService.SearchAccounts(account_id);
-    const detail_account = res.accounts[0];
+    const detail_account = res[0];
     this.accountService.SetDetailAccount(detail_account);
   }
 

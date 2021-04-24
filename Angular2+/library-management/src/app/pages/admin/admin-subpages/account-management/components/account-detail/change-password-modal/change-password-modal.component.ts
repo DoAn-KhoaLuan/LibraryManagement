@@ -27,9 +27,6 @@ export class ChangePasswordModalComponent implements OnInit {
 
   validate() {
     let change_data = this.change_password_data;
-    if (!change_data?.current_password) {
-      throw new Error('Vui lòng nhập mật khẩu hiện tại.');
-    }
 
     if (!change_data?.new_password) {
       throw new Error('Vui lòng nhập mật khẩu mới.');

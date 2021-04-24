@@ -126,6 +126,9 @@ def CreateCustomerAccount(req: CreateCustomerAccountReq):
                                        birth_date=req.birth_date,
                                        address=req.address,
                                        gender=req.gender,
+                                       province_id=req.province_id,
+                                       district_id=req.district_id,
+                                       ward_id=req.ward_id,
                                        email=req.email)
 
     db.session.add(create_customer)
@@ -165,6 +168,9 @@ def CreateEmployeeAccount(req: CreateEmployeeAccountReq):
                                        gender=req.gender,
                                        image=req.image,
                                        basic_rate=req.basic_rate,
+                                       province_id=req.province_id,
+                                       district_id=req.district_id,
+                                       ward_id=req.ward_id,
                                        note=req.note)
 
     db.session.add(create_employee)

@@ -4,6 +4,10 @@ import { BookService } from './../../../../../../states/book-store/book.service'
 import { Router } from '@angular/router';
 import { PaginationOpt, NavigationDirection } from './../../../../../../shared/page-pagination/page-pagination.component';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {ApiSupplierService} from "../../../../../../API/api-supplier.service";
+import {SupplierQuery} from "../../../../../../states/supplier-store/supplier.query";
+import {SupplierService} from "../../../../../../states/supplier-store/supplier.service";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-book-list',
@@ -15,10 +19,13 @@ export class BookListComponent implements OnInit {
   current_pagination_opt$ = this.bookQuery.current_pagination_opt$;
   categories$ = this.bookQuery.categories$;
   current_page$ = this.bookQuery.current_page$;
+  suppliers$ = this.supplierQuery.select("supplier_list_view").pipe(map(view => view?.items));
   book_id = "";
   searchKeyword = '';
   category_id = "";
-  constructor(private router: Router, private bookService: BookService, private bookQuery: BookQuery, private bookStore: BookStore, private ref: ChangeDetectorRef) { }
+  supplier_id = "";
+  constructor(private router: Router, private bookService: BookService, private bookQuery: BookQuery, private bookStore: BookStore, private ref: ChangeDetectorRef,
+              private supplierService: SupplierService, private supplierQuery: SupplierQuery) { }
 
   async ngOnInit() {
     await this.onRequestNewPage();
@@ -28,16 +35,19 @@ export class BookListComponent implements OnInit {
     await this.bookService.getBooks(this.bookQuery.getValue().filter_page).then(() => {
       this.bookService.setupPagination();
     })
+    await this.supplierService.GetSuppliers(this.supplierQuery.getValue().filter_page).then(() => {
+    })
   }
 
   async SearchBooks() {
-    if(!this.searchKeyword && !this.book_id && !this.category_id) {
+    if(!this.searchKeyword && !this.book_id && !this.category_id && !this.supplier_id) {
       await this.onRequestNewPage();
     }
     const req = {
       book_id: this.book_id,
       book_name: this.searchKeyword,
-      category_id: this.category_id
+      category_id: this.category_id,
+      supplier_id: this.supplier_id
     }
     let books = await this.bookService.searchBooks(req);
     let book_view = this.bookStore.getValue().book_list_view;
@@ -50,7 +60,17 @@ export class BookListComponent implements OnInit {
           current_page: 1
         },
       })
+    } else {
+      this.bookStore.update({
+        book_list_view: {...book_view,
+          items: [],
+          has_next: false,
+          has_prev: false,
+          current_page: 1
+        },
+      })
     }
+
   }
 
   async navigate(direction) {

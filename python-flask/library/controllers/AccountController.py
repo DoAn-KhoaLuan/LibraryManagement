@@ -9,13 +9,17 @@ from library import app, smtp, db
 from library.BLL import AccountSvc
 from library.common.Req.AccountReq import CreateAccountReq, DeleteAccountReq, LoginReq, LoginRsp, SearchAccountsReq, \
     SendResetPasswordEmailReq, ResetPasswordReq, ChangePasswordReq, CreateCustomerAccountReq, CreateEmployeeAccountReq
-from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.CustomerReq import SearchCustomersReq
+from library.common.Req.EmployeeReq import SearchEmployeesReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Rsp.AccountRsp import SearchAccountsRsp
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
 from library.DAL import EmployeeRep, CustomerRep, AccountRep, models, LocationRep
 import smtplib
 from email.message import EmailMessage
+
+from library.common.util import ConvertModelListToDictList
 
 
 @app.route('/admin/account-management/create-account', methods=['POST'])
@@ -26,7 +30,6 @@ def CreateAccount() -> CreateAccountReq:
 
 
 @app.route('/admin/account-management/get-accounts', methods=['POST'])
-# @token_required
 def GetAccounts():
     req = GetItemsByPageReq(request.json)
     result = AccountSvc.GetAccountsByPage(req)
@@ -43,11 +46,65 @@ def DeleteAccount():
 
 
 @app.route('/admin/account-management/get-account', methods=['POST'])
-def SearchAccounts():
+def getAccount():
     req = SearchAccountsReq(request.json)
     info_accounts = AccountSvc.SearchAccounts(req)
     res = SearchAccountsRsp(info_accounts).serialize()
     return jsonify(res)
+
+
+@app.route('/admin/account-management/search-accounts', methods=['POST'])
+def SearchAccounts():
+    req = SearchItemsReq(request.json)
+    if (req.account_id):
+        accounts = models.Accounts.query.filter(models.Accounts.account_id == req.account_id).all()
+        info_accounts = []
+        for account in ConvertModelListToDictList(accounts):
+            user_info = {}
+            if (account['role']['role_id'] == 3):  # customer
+                search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
+                user_info = CustomerRep.SearchCustomers(search_customer_req)
+
+            if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
+                search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
+                user_info = EmployeeRep.SearchEmployees(search_employee_req)
+
+            account_info = user_info[0] if user_info else {'account': account}
+            account_info['account_id'] = account['account_id']
+            account_info['account_name'] = account['account_name']
+            account_info['role'] = account['role']
+            account_info['note'] = account['note']
+            account_info['delete_at'] = account['delete_at']
+            info_accounts.append(account_info)
+        return jsonify((info_accounts))
+    all_accounts = models.Accounts.query
+    if req.account_name != None:
+        all_accounts = all_accounts.filter(models.Accounts.account_name.contains(req.account_name))
+    if req.role_id != None:
+        all_accounts = all_accounts.filter(models.Accounts.role_id == (req.role_id))
+    all_accounts = all_accounts.filter(models.Accounts.delete_at == None)
+    accounts = ConvertModelListToDictList(all_accounts.all())
+    info_accounts = []
+    for account in accounts:
+        user_info = {}
+        if (account['role']['role_id'] == 3):  # customer
+            search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
+            user_info = CustomerRep.SearchCustomers(search_customer_req)
+
+        if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
+            search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
+            user_info = EmployeeRep.SearchEmployees(search_employee_req)
+
+        account_info = user_info[0] if user_info else {'account': account}
+        account_info['account_id'] = account['account_id']
+        account_info['account_name'] = account['account_name']
+        account_info['role'] = account['role']
+        account_info['note'] = account['note']
+        account_info['delete_at'] = account['delete_at']
+        info_accounts.append(account_info)
+    return jsonify(info_accounts)
+
+
 
 
 @app.route('/admin/account-management/login', methods=['POST'])
@@ -141,3 +198,9 @@ def getDistricts():
 @app.route('/get-wards', methods=['POST'])
 def getWards():
     return jsonify(LocationRep.getWards())
+
+
+@app.route('/admin/role-management/get-roles', methods=['POST'])
+def getRoles():
+    rolesModel = models.Roles.query.filter(models.Roles.delete_at == None).all()
+    return jsonify(ConvertModelListToDictList(rolesModel))

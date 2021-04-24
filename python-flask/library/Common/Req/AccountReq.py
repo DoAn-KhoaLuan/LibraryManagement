@@ -81,6 +81,9 @@ class CreateCustomerAccountReq():
         self.birth_date = req['birth_date'] if 'birth_date' in req else None
         self.address = req['address'] if 'address' in req else None
         self.gender = req['gender'] if 'gender' in req else None
+        self.province_id = req['province_id'] if 'province_id' in req else None
+        self.district_id = req['district_id'] if 'district_id' in req else None
+        self.ward_id = req['ward_id'] if 'ward_id' in req else None
 
 
 class CreateEmployeeAccountReq():
@@ -102,4 +105,6 @@ class CreateEmployeeAccountReq():
         self.image = req['image'] if 'image' in req else None
         self.basic_rate = req['basic_rate'] if 'basic_rate' in req else None
         self.note = req['note'] if 'note' in req else None
-
+        self.province_id = req['province_id'] if 'province_id' in req else None
+        self.district_id = req['district_id'] if 'district_id' in req else None
+        self.ward_id = req['ward_id'] if 'ward_id' in req else None

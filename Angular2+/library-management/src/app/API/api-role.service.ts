@@ -11,8 +11,8 @@ export class ApiRoleService {
   constructor(private http: HttpService, private apiAppService: ApiAppService) {
     this.baseURL = this.apiAppService.baseURL;
   }
-  async GetRoles(req) {
-    return await this.http.post(this.baseURL+"/admin/role-management/get-roles",req).toPromise();
+  async GetRoles() {
+    return await this.http.post(this.baseURL+"/admin/role-management/get-roles", {}).toPromise();
   }
 
   async UpdateRole(req) {

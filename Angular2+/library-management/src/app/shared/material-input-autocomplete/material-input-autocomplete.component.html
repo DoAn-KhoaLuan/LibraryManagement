@@ -1,0 +1,19 @@
+<div [class.register]="register" [class.error]="error" [class.disabled]="disabled">
+  <mat-form-field [appearance]="appearance || 'outline'">
+    <mat-label *ngIf="textLabel">{{textLabel}}</mat-label>
+    <input
+      #input="matInput" type="text" matInput [disabled]="disabled"
+      [placeholder]="placeholder" [matAutocomplete]="auto" (focus)="onSearch()"
+      [(ngModel)]="searchValue" (ngModelChange)="onSearch()">
+    <mat-icon
+      class="text-danger cursor-pointer" *ngIf="error"
+      container="body">
+      warning
+    </mat-icon>
+  </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectOption($event)">
+    <mat-option *ngFor="let option of filteredOptions" [value]="option">
+      <div [innerHTML]="(displayMap ? displayMap(option) : option) | safeHtml"></div>
+    </mat-option>
+  </mat-autocomplete>
+</div>

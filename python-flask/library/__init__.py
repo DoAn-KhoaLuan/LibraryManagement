@@ -8,7 +8,7 @@ from flask_bcrypt import Bcrypt
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 bcrypt = Bcrypt(app)
 app.config.from_object('config')
 db = SQLAlchemy(app)

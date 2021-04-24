@@ -20,8 +20,11 @@ class Accounts(db.Model):
     messages = db.relationship('Messages', backref='account', lazy='subquery')
 
     def serialize(self):
-        return {"account_id": self.account_id, "account_name": self.account_name, "note": self.note,
-                "delete_at": self.delete_at, "role": self.role.serialize()}
+        if self != None:
+            return {"account_id": self.account_id, "account_name": self.account_name, "note": self.note,
+                "delete_at": self.delete_at, "role": self.role.serialize() if self.role != None else None}
+        else:
+            return {}
 
     def __repr__(self):
         return f"Account('{self.account_id}','{self.account_name}','{self.note}', '{self.delete_at}', " \
@@ -141,11 +144,11 @@ class Customers(db.Model):
 
     def serialize(self):
         return {"customer_id": self.customer_id, "identity_id": self.identity_id, "note": self.note,
-                "account": self.account.serialize(), "student_code": self.student_code, "last_name": self.last_name,
+                "account": self.account.serialize() if self.account != None else None, "student_code": self.student_code, "last_name": self.last_name,
                 "first_name": self.first_name, "email": self.email, "phone": self.phone, "birth_day": self.birth_date,
-                "provinceId": self.province_id,
-            "districtId": self.district_id,
-            "wardId": self.ward_d,
+                "province_id": self.province_id,
+            "district_id": self.district_id,
+            "ward_id": self.ward_id,
             "address": self.address, "gender": self.gender, "delete_at": self.delete_at}
 
     def __repr__(self):

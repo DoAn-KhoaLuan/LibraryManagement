@@ -1,10 +1,13 @@
-import { UtilService } from './../../../../services/util.service';
-import { Router } from '@angular/router';
-import { AccountService } from './../../../../states/account-store/account.service';
-import { CustomerStore } from './../../../../states/customer-store/customer.store';
-import { CustomerService } from './../../../../states/customer-store/customer.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {UtilService} from './../../../../services/util.service';
+import {Router} from '@angular/router';
+import {AccountService} from './../../../../states/account-store/account.service';
+import {CustomerStore} from './../../../../states/customer-store/customer.store';
+import {CustomerService} from './../../../../states/customer-store/customer.service';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {combineLatest} from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
+import {LocationQuery} from '../../../../states/location-store';
 
 @Component({
   selector: 'app-user-register-account',
@@ -17,16 +20,21 @@ export class UserRegisterAccountComponent implements OnInit {
     userName: [''],
     password: [''],
     confirmPassword: [''],
-    firstName: 
-    '',
+    firstName: '',
     lastName: '',
-    identityId: '',
-    email:'',
+    email: '',
     phone: '',
     birthDate: '',
-    address: '',
     gender: '',
-  })
+    identity_id: ""
+  });
+
+  locationForm = this.fb.group({
+    provinceCode: '',
+    districtCode: '',
+    wardCode: '',
+    address: '',
+  });
 
   @ViewChild('passwordInput', {static: false}) passwordInput: ElementRef;
 
@@ -35,61 +43,86 @@ export class UserRegisterAccountComponent implements OnInit {
     private customerService: CustomerService,
     private customerStore: CustomerStore,
     private accountService: AccountService,
+    private locationQuery: LocationQuery,
     private router: Router,
     private util: UtilService
-    ) { }
+  ) {
+  }
+
+  provincesList$ = this.locationQuery.select('provincesList');
+  districtsList$ = combineLatest([
+    this.locationQuery.select('districtsList'),
+    this.locationForm.controls['provinceCode'].valueChanges]).pipe(
+    map(([districts, provinceCode]) => {
+      if (!provinceCode) {
+        return [];
+      }
+      return districts?.filter(dist => dist.province_code == provinceCode);
+    })
+  );
+  wardsList$ = combineLatest([
+    this.locationQuery.select('wardsList'),
+    this.locationForm.controls['districtCode'].valueChanges]).pipe(
+    map(([wards, districtCode]) => {
+      if (!districtCode) {
+        return [];
+      }
+      return wards?.filter(ward => ward.district_code == districtCode);
+    })
+  );
 
   ngOnInit() {
   }
 
   showPassword() {
-    let elementPass = <HTMLInputElement>document.querySelector('#password');
+    let elementPass = <HTMLInputElement> document.querySelector('#password');
     elementPass.type = 'text';
   }
 
   hidePassword() {
-    let elementPass = <HTMLInputElement>document.querySelector('#password');
+    let elementPass = <HTMLInputElement> document.querySelector('#password');
     elementPass.type = 'password';
   }
 
+  displayMap = option => option && option.name || null;
+  valueMap = option => option && option.code || null;
+
   async CreateCustomerAndAccount() {
     try {
-      let form_data = this.userRegisterForm.value
+      let form_data = this.userRegisterForm.value;
+      let location_data = this.locationForm.value;
 
-      if(form_data.password != form_data.confirmPassword) {
-        return toastr.error("Tạo mới tài khoản thất bại", "Mật khẩu nhập lại không chính xác")
+      if (form_data.password != form_data.confirmPassword) {
+        return toastr.error('Tạo mới tài khoản thất bại', 'Mật khẩu nhập lại không chính xác');
       }
-      
-      if(!form_data.identityId) {
-        return toastr.error("Tạo mới tài khoản thất bại", "Vui lòng nhập chứng minh nhân dân")
-      }
-
-      if(!this.util.validatePhoneNumber(form_data.phone)) {
+      if (!this.util.validatePhoneNumber(form_data.phone)) {
         return;
       }
-      if(!this.util.validEmail(form_data.email)) {
+      if (!this.util.validEmail(form_data.email)) {
         return;
       }
 
       const info_req = {
-        account_name : form_data.userName,
+        account_name: form_data.userName || null,
+        account_password: form_data.password || null,
+        identity_id: form_data.identity_id || null,
+        last_name: form_data.lastName || null,
+        first_name: form_data.firstName || null,
+        phone: form_data.phone || null,
+        email: form_data.email || null,
+        province_id: location_data.provinceCode || null,
+        district_id: location_data.districtCode || null,
+        ward_id: location_data.wardCode || null,
+        birth_date: form_data.birthDate || null,
+        address: form_data.address || null,
         role_id: 3,
-        account_password: form_data.password,
-        identity_id: form_data.identityId,
-        last_name: form_data.lastName,
-        first_name: form_data.firstName,
-        phone: form_data.phone,
-        email: form_data.email,
-        birth_date: form_data.birthDate,
-        address: form_data.address,
-        gender: Boolean(form_data.gender),
-      }
-      
-      let resp = await this.accountService.CreateAccountAndCustomer(info_req)
-      this.router.navigateByUrl('/user/login')
-      toastr.success("Tạo mới tài khoản thành công")
-    } catch(e) {
-      toastr.error("Tạo mới tài khoản thất bại", e.msg || e.message)
+      };
+
+      let resp = await this.accountService.CreateAccountAndCustomer(info_req);
+      this.router.navigateByUrl('/user/login');
+      toastr.success('Tạo mới tài khoản thành công');
+    } catch (e) {
+      toastr.error('Tạo mới tài khoản thất bại', e.msg || e.message);
     }
   }
 }

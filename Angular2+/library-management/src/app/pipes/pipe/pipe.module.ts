@@ -1,15 +1,22 @@
-import { standardizedId, VND } from './common.pipe';
-import { NgModule, Injectable } from '@angular/core';
-import { CommonModule } from '@angular/common';
-@Injectable({providedIn:"root"})
+import {standardizedId, VND} from './common.pipe';
+import {NgModule, Injectable} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SafeHtmlPipe} from './safe-html.pipe';
+import {LocationCompactPipe} from './location.pipe';
+
+@Injectable({providedIn: 'root'})
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [standardizedId, VND],
+  declarations: [standardizedId, VND, SafeHtmlPipe, LocationCompactPipe],
   exports: [
     standardizedId,
-    VND
-  ]
+    VND,
+    SafeHtmlPipe,
+    LocationCompactPipe
+  ],
+  providers: [LocationCompactPipe]
 })
-export class PipeModule { }
+export class PipeModule {
+}

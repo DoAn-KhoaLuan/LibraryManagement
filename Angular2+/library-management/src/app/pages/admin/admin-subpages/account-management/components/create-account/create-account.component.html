@@ -63,6 +63,65 @@
             </select>
           </div>
         </div>
+        <ng-container [formGroup]="locationForm">
+          <div class="row py-3">
+            <div class="col-2 app-flex">Địa chỉ: </div>
+            <div class="col-9">
+              <div class="form-group d-flex flex-row">
+                <select class="form-control mr-3" formControlName="provinceCode"  >
+                  <option value="" selected>Chọn tỉnh thành
+                  </option>
+                  <option *ngFor="let province of provincesList$ | async" [ngValue]="province.code" class="font-weight-bold">
+                    {{province?.name}}
+                    <div class=" px-3 py-2">
+                      <i class="fa fa-plus"></i>
+                    </div>
+                  </option>
+                </select>
+                <select class="form-control mr-3" formControlName="districtCode"  >
+                  <option value="" selected>Chọn quận huyện
+                  </option>
+                  <option *ngFor="let district of districtsList$ | async" [ngValue]="district.code" class="font-weight-bold">
+                    {{district?.name}}
+                    <div class=" px-3 py-2">
+                      <i class="fa fa-plus"></i>
+                    </div>
+                  </option>
+                </select>
+                <select class="form-control mr-3" formControlName="wardCode"  >
+                  <option value="" selected>Chọn phường xã
+                  </option>
+                  <option *ngFor="let ward of wardsList$ | async" [ngValue]="ward.code" class="font-weight-bold">
+                    {{ward?.name}}
+                    <div class=" px-3 py-2">
+                      <i class="fa fa-plus"></i>
+                    </div>
+                  </option>
+                </select>
+                <!--            <app-material-input-autocomplete-->
+                <!--              placeholder="Chọn tỉnh thành" textLabel="Tỉnh thành (*)" [options]="provincesList$ | async"-->
+                <!--              [displayMap]="displayMap" [valueMap]="valueMap" register="true"-->
+                <!--              formControlName="provinceCode">-->
+                <!--            </app-material-input-autocomplete>-->
+                <!--            <app-material-input-autocomplete-->
+                <!--              placeholder="Chọn quận huyện" textLabel="Quận huyện (*)" [options]="(districtsList$ | async) || []"-->
+                <!--              [displayMap]="displayMap" [valueMap]="valueMap"-->
+                <!--              formControlName="districtCode">-->
+                <!--            </app-material-input-autocomplete>-->
+                <!--            <app-material-input-autocomplete-->
+                <!--              placeholder="Chọn phường xã" textLabel="Phường xã (*)" [options]="(wardsList$ | async) || []"-->
+                <!--              [displayMap]="displayMap" [valueMap]="valueMap"-->
+                <!--              formControlName="wardCode">-->
+                <!--            </app-material-input-autocomplete>-->
+              </div>
+              <div class="form-group d-flex flex-row">
+                <input type="text" class="form-control" placeholder="Nhập địa chỉ" autofocus
+                       formControlName="address"/>
+              </div>
+            </div>
+          </div>
+
+        </ng-container>
         <div class="row py-3">
           <div class="col-2 app-flex"><b>Họ: </b></div>
           <div class="col-9">
@@ -103,12 +162,6 @@
           <div class="col-2 app-flex"><b>Ngày sinh: </b></div>
           <div class="col-9">
             <input type="date" id="birthDate" name="birthDate" class="form-control" placeholder="Nhập ngày sinh" autofocus  formControlName="birthdate" matTooltip="Vui lòng nhập ngày sinh"  matTooltipPosition="above" />
-          </div>
-        </div>
-        <div class="row py-3">
-          <div class="col-2 app-flex"><b>Địa chi: </b></div>
-          <div class="col-9">
-            <input type="text" class="  form-control" placeholder="Nhập địa chỉ" autofocus  formControlName="address"/>
           </div>
         </div>
         <div class="row py-3">

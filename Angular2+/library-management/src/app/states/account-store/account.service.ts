@@ -9,6 +9,7 @@ import { NavigationDirection } from 'src/app/shared/page-pagination/page-paginat
 import { ApiAuthorService } from 'src/app/API/api-author.service';
 import { ApiSupplierService } from 'src/app/API/api-supplier.service';
 import { ApiAccountService } from 'src/app/API/api-account.service';
+import {ApiRoleService} from "../../API/api-role.service";
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,8 @@ export class AccountService {
         private accountApiService: ApiAccountService,
         private accountStore: AccountStore,
         private accountQuery: AccountQuery,
-        private router: Router
+        private router: Router,
+        private apiRoleService: ApiRoleService
         ) {
     }
 
@@ -125,5 +127,12 @@ export class AccountService {
 
     SetDetailAccount(account) {
         this.accountStore.update({detail_account: account})
+    }
+
+    async getRoles() {
+       let roles = await this.apiRoleService.GetRoles();
+       this.accountStore.update({
+         roles
+       });
     }
 }
