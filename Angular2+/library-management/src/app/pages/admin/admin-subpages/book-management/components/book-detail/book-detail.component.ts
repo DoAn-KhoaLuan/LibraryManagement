@@ -63,8 +63,8 @@ export class BookDetailComponent implements OnInit, OnChanges {
     const book_id = {
       book_id: parseInt(this.route.snapshot.params['id'])
     }
-    const res = await this.bookService.searchBooks(book_id);
-    const detail_book = res.books[0];
+    const res = await this.bookService.getBookByID(book_id);
+    const detail_book = res;
     this.bookService.setDetailBook(detail_book);
     await this.SetupData()
   }
@@ -74,7 +74,6 @@ export class BookDetailComponent implements OnInit, OnChanges {
 
   async SetupData() {
     await this.bookService.GetAuthors(this.filter);
-    await this.bookService.GetCategories(this.filter);
     await this.bookService.GetSuppliers(this.filter);
   }
 
@@ -177,7 +176,6 @@ export class BookDetailComponent implements OnInit, OnChanges {
       if(category) {
         try {
           await this.bookService.CreateCategory(category);
-          await this.bookService.GetCategories(this.filter);
           toastr.success("Thêm mới thể loại sách thành công.")
         } catch(e) {
           toastr.error("Thêm mới thể loại sách thất bại.", e.msg || e.message)

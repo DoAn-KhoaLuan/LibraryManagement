@@ -175,3 +175,35 @@ def CreateCustomerAccount(req):
 def CreateEmployeeAccount(req):
     create_employee_account = AccountRep.CreateEmployeeAccount(req)
     return create_employee_account
+
+
+def extractToken(token):
+    payload = jwt.decode(token, app.config['SECRET_KEY'])
+    accountId = payload["account_id"]
+    account = AccountRep.getAccountById(accountId)
+    return account
+
+
+def sessionInfo(token):
+    invalid_msg = {
+        'message': 'Token không hợp lệ.',
+        'authenticated': False
+    }
+    expired_msg = {
+        'message': 'Token hết hạn sử dụng.',
+        'authenticated': False
+    }
+    try:
+        payload = jwt.decode(token, app.config['SECRET_KEY'])
+        accountId = payload["accountId"]
+        account = AccountRep.getAccountById(accountId)
+        result = {
+            'accessToken': token,
+            'account': account,
+        }
+        return result
+
+    except jwt.ExpiredSignatureError:
+        return jsonify(expired_msg), 401  # 401 is Unauthorized HTTP status code
+    except (jwt.InvalidTokenError) as e:
+        return jsonify(invalid_msg), 401

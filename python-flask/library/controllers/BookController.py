@@ -4,8 +4,9 @@ from random import Random, randint
 # import requests
 from werkzeug.utils import secure_filename
 
-from library import app
+from library import app, db
 from library.BLL import BookSvc
+from library.DAL import models
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 
 from library.common.Req.BookReq import CreateBookReq, DeleteBookByIdReq, UpdateBookReq, SearchBookReq
@@ -17,13 +18,11 @@ from flask import jsonify, request, make_response, render_template, send_file
 import json
 
 from library.common.Rsp.SingleRsp import ErrorRsp
-from library.auth import token_required
 # from library.controllers.UploadImageController import allowed_file
 
 
 @app.route('/admin/book-management/get-books', methods=['POST'])
-@token_required
-def GetBooks(auth_info):
+def GetBooks():
     try:
         req = GetItemsByPageReq(request.json)
         result = BookSvc.GetBooksByPage(req)
@@ -58,12 +57,19 @@ def UpdateBook():
     return jsonify(res)
 
 
-@app.route('/admin/book-management/get-book', methods=['POST'])
+@app.route('/admin/book-management/search-books', methods=['POST'])
 def SearchBooks():
     req = SearchBookReq(request.json)
     result = BookSvc.SearchBooks(req)
     res = SearchBookRsp(result).serialize()
     return jsonify(res)
+
+@app.route('/admin/book-management/get-book-by-id', methods=['POST'])
+def GetBookByID():
+    req = SearchBookReq(request.json)
+    result = models.Books.query.filter(models.Books.book_id == req.book_id)
+
+    return jsonify(result.first().serialize())
 
 @app.route('/admin/book-management/upload-book-image', methods=['POST'])
 def UploadBookImage():
@@ -82,3 +88,25 @@ def UploadBookImage():
     cloudinary.utils.cloudinary_url("sample_remote.jpg")
     return jsonify({'image': res['url']})
 
+
+class RateBooktReq:
+    def __init__(self, req):
+        self.star = req['star'] if 'star' in req else 0.0
+        self.id = req['id'] if 'id' in req else None
+
+@app.route('/admin/book-management/rate-product', methods=['POST'])
+def rateProduct():
+    req= RateBooktReq(request.json)
+    rateProduct: models.Product = models.Product.query.get(req.id)
+
+    oldStar = rateProduct.rateStar
+    oldCount = rateProduct.rateCount
+    newStar = req.star
+
+    avgStar = ((oldStar * oldCount) + newStar) / (oldCount + 1)
+    rateProduct.rateStar = avgStar
+    rateProduct.rateCount = oldCount + 1
+
+    db.session.add(rateProduct);
+    db.session.commit()
+    return rateProduct.serialize()

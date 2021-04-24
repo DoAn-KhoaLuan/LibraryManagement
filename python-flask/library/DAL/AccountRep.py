@@ -171,3 +171,7 @@ def CreateEmployeeAccount(req: CreateEmployeeAccountReq):
     db.session.commit()
 
     return create_account.serialize(), create_employee.serialize()
+
+def getAccountById(id):
+    accountModel = models.Account.query.filter(models.Account.id == id).first()
+    return accountModel.serialize()

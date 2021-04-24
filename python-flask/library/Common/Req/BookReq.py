@@ -41,7 +41,9 @@ class UpdateBookReq():
 
 class SearchBookReq:
     def __init__(self, req):
+
         self.book_id = req['book_id'] if 'book_id' in req else None
+        self.id = req['id'] if 'id' in req else None
         self.book_name = req['book_name'] if 'book_name' in req else None
         self.author_id = req['author_id'] if 'author_id' in req else 0
         self.category_id = req['category_id'] if 'category_id' in req else 0

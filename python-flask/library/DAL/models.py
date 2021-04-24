@@ -38,11 +38,13 @@ class Books(db.Model):
     new_amount = db.Column(db.Integer)
     image = db.Column(db.String(1000))
     page_number = db.Column(db.Integer)
-    description = db.Column(db.String(1500))
+    description = db.Column(db.TEXT(16383))
     cost_price = db.Column(db.Float)
     retail_price = db.Column(db.Float)
     discount = db.Column(db.Float, default=0.0)
     ranking = db.Column(db.String(50))
+    rate_star = db.Column(db.Float, name="rate_star")
+    rate_count = db.Column(db.Integer, name="rate_count")
     delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))
     order_details = db.relationship('Orderdetails', backref='book', lazy=True)
@@ -55,7 +57,7 @@ class Books(db.Model):
                 "author": self.author.serialize(),
                 "old_amount": self.old_amount, "new_amount": self.new_amount, "image": self.image,
                 "page_number": self.page_number, "description": self.description, "cost_price": self.cost_price,
-                "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking,
+                "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking, "rate_star": self.rate_star, "rate_count":self.rate_count,
                 "delete_at": self.delete_at}
 
     def __repr__(self):
@@ -221,7 +223,7 @@ class Employees(db.Model):
                 "account": self.account.serialize(), "last_name": self.last_name, "first_name": self.first_name,
                 "phone": self.phone, "birth_day": self.birth_date, "provinceId": self.province_id,
                 "districtId": self.district_id,
-                "wardId": self.ward_d,
+                "wardId": self.ward_id,
                 "address": self.address, "gender": self.gender,
                 "image": self.image, "basic_rate": self.basic_rate, "delete_at": self.delete_at, "email": self.email,
                 "hire_date": self.hire_date}
@@ -377,7 +379,8 @@ class Authors(db.Model):
         return f"Author('{self.author_id}','{self.author_name}')"
 
 class Ward(db.Model):
-    id = db.Column(db.String(10), primary_key=True, nullable=False, unique=True)
+    id = db.Column(db.String(10), nullable=False)
+    code = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50))
     districtId = db.Column(db.String(50), name="district_id")
 
@@ -396,7 +399,8 @@ class Ward(db.Model):
         }
 
 class Province(db.Model):
-    id = db.Column(db.String(10), primary_key=True, nullable=False,unique=True)
+    id = db.Column(db.String(10), nullable=False)
+    code = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50))
     region = db.Column(db.String(50), name="region")
 
@@ -414,7 +418,8 @@ class Province(db.Model):
         }
 
 class District(db.Model):
-    id = db.Column(db.String(10), primary_key=True, nullable=False, unique=True)
+    id = db.Column(db.String(10), nullable=False)
+    code = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50))
     provinceId = db.Column(db.String(50), name="province_id")
 

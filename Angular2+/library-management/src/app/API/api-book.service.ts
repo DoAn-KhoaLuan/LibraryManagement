@@ -34,4 +34,7 @@ export class ApiBookService {
   async UpdateBookImage(imageForm, opt) {
     return await this.http.post(this.baseURL+"/admin/book-management/upload-book-image",imageForm, opt).toPromise();
   }
+  async getBookByID(req) {
+    return await this.http.post(this.baseURL+"/admin/book-management/get-book-by-id",req).toPromise();
+  }
 }

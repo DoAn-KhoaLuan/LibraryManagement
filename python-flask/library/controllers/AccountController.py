@@ -13,8 +13,7 @@ from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
 from library.common.Rsp.AccountRsp import SearchAccountsRsp
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
-from library.auth import token_required
-from library.DAL import EmployeeRep, CustomerRep, AccountRep, models
+from library.DAL import EmployeeRep, CustomerRep, AccountRep, models, LocationRep
 import smtplib
 from email.message import EmailMessage
 
@@ -127,3 +126,18 @@ def CreateRole():
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf-8'), 401
 
+
+
+@app.route('/get-provinces', methods=['POST'])
+def getProvinces():
+    return jsonify(LocationRep.getProvinces())
+
+
+@app.route('/get-districts', methods=['POST'])
+def getDistricts():
+    return jsonify(LocationRep.getDistricts())
+
+
+@app.route('/get-wards', methods=['POST'])
+def getWards():
+    return jsonify(LocationRep.getWards())

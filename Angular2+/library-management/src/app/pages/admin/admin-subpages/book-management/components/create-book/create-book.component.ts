@@ -75,7 +75,6 @@ export class CreateBookComponent implements OnInit {
 
   async SetupData() {
     await this.bookService.GetAuthors(this.filter);
-    await this.bookService.GetCategories(this.filter);
     await this.bookService.GetSuppliers(this.filter);
   }
 
@@ -155,7 +154,6 @@ export class CreateBookComponent implements OnInit {
       if(category) {
         try {
           await this.bookService.CreateCategory(category);
-          await this.bookService.GetCategories(this.filter);
           toastr.success("Thêm mới thể loại sách thành công.")
         } catch(e) {
           toastr.error("Thêm mới thể loại sách thất bại.", e.msg || e.message)

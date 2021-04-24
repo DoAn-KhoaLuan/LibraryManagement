@@ -61,4 +61,14 @@ export class ApiAccountService {
   async CreateAccountAndEmployee(req) {
     return await this.http.post(this.baseURL + "/create-employee-account",req).toPromise();
   }
+  async getProvinces() {
+    return await this.http.post(this.baseURL+"/get-provinces",{}).toPromise();
+  }
+
+  async getDistricts() {
+    return await this.http.post(this.baseURL+"/get-districts",{}).toPromise();
+  }
+  async getWards() {
+    return await this.http.post(this.baseURL+"/get-wards",{}).toPromise();
+  }
 }

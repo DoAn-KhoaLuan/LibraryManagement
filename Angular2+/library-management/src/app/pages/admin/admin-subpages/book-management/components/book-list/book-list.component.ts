@@ -13,10 +13,11 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 export class BookListComponent implements OnInit {
   book_list$ = this.bookQuery.book_list_view$;
   current_pagination_opt$ = this.bookQuery.current_pagination_opt$;
+  categories$ = this.bookQuery.categories$;
   current_page$ = this.bookQuery.current_page$;
-
+  book_id = "";
   searchKeyword = '';
-
+  category_id = "";
   constructor(private router: Router, private bookService: BookService, private bookQuery: BookQuery, private bookStore: BookStore, private ref: ChangeDetectorRef) { }
 
   async ngOnInit() {
@@ -30,11 +31,13 @@ export class BookListComponent implements OnInit {
   }
 
   async SearchBooks() {
-    if(!this.searchKeyword) {
+    if(!this.searchKeyword && !this.book_id && !this.category_id) {
       await this.onRequestNewPage();
     }
     const req = {
+      book_id: this.book_id,
       book_name: this.searchKeyword,
+      category_id: this.category_id
     }
     let books = await this.bookService.searchBooks(req);
     let book_view = this.bookStore.getValue().book_list_view;

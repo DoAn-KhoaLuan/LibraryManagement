@@ -1,5 +1,6 @@
 from library import app
 from library.BLL import BookSvc, CategorySvc
+from library.DAL import models
 from library.common.Req.CategoryReq import CreateCategoryReq, UpdateCategoryReq, DeleteCategoryByIdReq, \
     SearchCategoryReq
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
@@ -9,15 +10,14 @@ from flask import jsonify, request, make_response
 import json
 
 from library.common.Rsp.SingleRsp import ErrorRsp
+from library.common.util import ConvertModelListToDictList
 
 
 @app.route('/admin/category-management/get-categories', methods=['GET', 'POST'])
 def GetCategories():
-    req = GetItemsByPageReq(request.json)
-    result = CategorySvc.GetCategoriesByPage(req)
-    res = GetItemsByPageRsp(has_next=result['has_next'], has_prev=result['has_prev'],
-                            items=result['categories']).serialize()
-    return jsonify(res)
+    categoriesModel = models.Categories.query.filter(models.Categories.delete_at == None)
+    categories = ConvertModelListToDictList(categoriesModel)
+    return jsonify(categories)
 
 
 @app.route('/admin/category-management/create-category', methods=['POST'])

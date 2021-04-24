@@ -57,6 +57,10 @@ export class BookService {
         return await this.bookApiService.SearchBooks(req);
     }
 
+    async getBookByID(req) {
+      return await this.bookApiService.getBookByID(req);
+    }
+
     setDetailBook(book) {
         this.bookStore.update({detail_book: book})
     }
@@ -71,7 +75,7 @@ export class BookService {
 
     async GetCategories(filter) {
         let category_res = await this.categoryApiService.GetCategories(filter);
-        this.bookStore.update({categories: category_res['items']})
+        this.bookStore.update({categories: category_res})
     }
 
     async GetAuthors(filter) {
