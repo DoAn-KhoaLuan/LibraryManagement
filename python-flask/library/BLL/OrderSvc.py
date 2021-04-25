@@ -34,18 +34,20 @@ def CreateOrder(req):
         raise e
 
 def CreateOrderByMomo(req: CreateOrderReq):
+    createOrder = CreateOrder(req)
+    dbOrderId = createOrder['order_id']
     endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor"
     partnerCode = "MOMOY1ZA20200907" #busssiness momo
     accessKey = "rVuWIV2U6YHmb803"#busssiness momo
     serectkey = "EQeEkD4sirbclirmqPv5qXDrcLu2h5EZ"#busssiness momo
     orderInfo = "Thanh toán bằng Momo" #hieenj lên thông tin info
-    returnUrl = "http://localhost:4200/admin/pos-management" # redicrect sau đi hoàn tất thanh toán
+    returnUrl = "http://localhost:4200/admin/pos-management?internalOrderId=" + str(dbOrderId) # redicrect sau đi hoàn tất thanh toán
     notifyUrl = "http://localhost:5000/admin/order-management/test-create-order-momo"
     amount = str(req.total) #Số tiền của hóa đơn
     orderId = str(uuid.uuid4()) # order id của momo chứ ko phải của chúng ta
     requestId = str(uuid.uuid4()) # như trên
     requestType = "captureMoMoWallet"
-    extraData = "merchantName=;merchantId="
+    extraData = "orderId=" + str(dbOrderId) +";merchantId="
 
     rawSignature = "partnerCode=" + partnerCode + "&accessKey=" + accessKey + "&requestId=" + requestId + "&amount=" + str(amount) + "&orderId=" + orderId + "&orderInfo=" + orderInfo + "&returnUrl=" + returnUrl + "&notifyUrl=" + notifyUrl + "&extraData=" + extraData
 
@@ -76,6 +78,7 @@ def CreateOrderByMomo(req: CreateOrderReq):
     f = urllib.request.urlopen(req)
 
     response = f.read()
+
     f.close()
     return json.loads(response)
 

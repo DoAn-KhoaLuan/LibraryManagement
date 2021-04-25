@@ -10,7 +10,7 @@ import {CustomerQuery} from "../../../../states/customer-store/customer.query";
 import {order_line} from "../../../../models/app-models";
 import {BookQuery} from "../../../../states/book-store/book.query";
 import {ApiOrderService} from "../../../../API/api-order.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-POS',
@@ -54,10 +54,25 @@ export class POSComponent implements OnInit {
     private customerQuery: CustomerQuery,
     private fb: FormBuilder,
     private apiOrderService: ApiOrderService,
-    private router: Router
+    private router: Router,
+  private route: ActivatedRoute,
   ) { }
 
   async ngOnInit() {
+    const internalOrderId =  this.route.snapshot.queryParamMap.get('internalOrderId');
+    const errorCode =  parseInt(this.route.snapshot.queryParamMap.get('errorCode'));
+    if (errorCode && errorCode !== 0) {
+      await this.apiOrderService.DeleteOrder({
+        order_id: internalOrderId
+      }).then(_ => {
+        this.router.navigateByUrl('/admin/pos-management');
+      })
+    }
+    // console.log("error code: " , this.route.snapshot.queryParamMap.get('extraData').split(";")[0]);
+    //
+    // if (errorCode) {
+    // }
+
     await this.customerService.GetCustomers(this.filter);
     await this.bookService.getBooks(this.filter)
     this.books= this.bookQuery.getValue().book_list_view.items
@@ -199,13 +214,13 @@ export class POSComponent implements OnInit {
         customer_id: this.customer_item.customer_id,
         employee_id: JSON.parse(localStorage.getItem('auth_info')).user_info.employee_id,
         order_date: Date.now(),
-        type:'in',
+        type:'offline',
         total: this.order.total.toFixed(0),
         note: this.order.note,
         order_detail_list: this.order_lines
       }
       let result = await this.apiOrderService.CreateOrderByMoMo(create_order_req)
-      if(result.errorCode == 0) {
+      if (result.errorCode === 0) {
         toastr.success('Thanh toán hóa đơn bằng MOMO thành công')
         window.location.href = result.payUrl
       }
