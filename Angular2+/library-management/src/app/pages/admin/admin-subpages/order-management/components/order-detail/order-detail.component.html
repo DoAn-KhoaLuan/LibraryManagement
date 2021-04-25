@@ -1,6 +1,6 @@
 <ng-container>
   <div class="d-flex justify-content-center align-items-center text-app font-weight-bold">
-    <h1 class="font-weight-bold">Thông tin chi tiết hóa đơn <span>{{ (detail_order$ | async)?.order_name}}</span></h1>
+    <h1 class="font-weight-bold">Thông tin chi tiết hóa đơn <span>{{ (detail_order$ | async)?.order_id}}</span></h1>
   </div>
   <ng-container>
     <div class="d-flex flex-row p-5 mb-4">
@@ -21,7 +21,7 @@
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Khách hàng: </b></div>
-            <div class="col-9 text-app font-weight-bold">{{((detail_order$ | async)?.customer?.customer_id | standardizedId) + '  -  ' + (detail_order$ | async)?.customer?.last_name + ' ' + (detail_order$ | async)?.customer?.first_name || '-'}}</div>
+            <div class="col-9 text-app font-weight-bold">{{((detail_order$ | async)?.customer?.customer_id | standardizedId) + '  -  ' + ((detail_order$ | async)?.customer?.last_name || " ") + ' ' + (detail_order$ | async)?.customer?.first_name || '-'}}</div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Nhân viên: </b></div>

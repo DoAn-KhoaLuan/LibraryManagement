@@ -27,6 +27,7 @@ def CreateOrder(order: CreateOrderReq):
                                  type=order.type,
                                  total=order.total,
                                  note=order.note,
+                                 create_at=datetime.now(),
                                  delete_at=order.delete_at)
 
     db.session.add(create_order)

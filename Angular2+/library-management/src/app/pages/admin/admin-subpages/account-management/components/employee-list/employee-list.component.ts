@@ -4,6 +4,7 @@ import { EmployeeQuery } from '../../../../../../states/employee-store/employee.
 import { Router } from '@angular/router';
 import { PaginationOpt } from '../../../../../../shared/page-pagination/page-pagination.component';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-employee-list',
@@ -15,8 +16,13 @@ export class EmployeeListComponent implements OnInit {
   current_pagination_opt$ = this.employeeQuery.current_pagination_opt$;
   current_page$ = this.employeeQuery.current_page$;
   currentPaginationOpt = new PaginationOpt();
-
+  searchForm = this.fb.group({
+    employee_id: '',
+    identity_id: '',
+    phone: '',
+  });
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     private ref: ChangeDetectorRef,
     private employeeQuery: EmployeeQuery,
@@ -39,6 +45,32 @@ export class EmployeeListComponent implements OnInit {
   }
 
   onViewEmployeeDetail(employee_id) {
-    this.router.navigateByUrl(`/admin/employee-management/employee-detail/${employee_id}`);
+    this.router.navigateByUrl(`/admin/account-management/employee-detail/${employee_id}`);
   }
+
+  async search() {
+    let {
+      employee_id,
+      phone,
+      identity_id
+    } = this.searchForm.value;
+    if (!employee_id && !phone && !identity_id) {
+      return await this.onRequestNewPage();
+    }
+    const req = {
+      employee_id: employee_id || null,
+      phone: phone || null,
+      identity_id: identity_id || null
+    };
+    let employees = await this.employeeService.SearchEmployees(req);
+    this.employeeStore.update({
+      employee_list_view: {
+        items: employees,
+        has_next: false,
+        has_prev: false,
+        current_page: 1
+      }
+    });
+  }
+
 }

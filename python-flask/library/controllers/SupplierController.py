@@ -2,10 +2,12 @@ from flask import request, jsonify
 
 from library import app
 from library.BLL import SupplierSvc
-from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.DAL import models
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Req.SupplierReq import CreateSupplierReq, UpdateSupplierReq, DeleteSupplierReq, SearchSuppliersReq
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from library.common.Rsp.SupplierRsp import SearchSuppliersRsp
+from library.common.util import ConvertModelListToDictList
 
 
 @app.route('/admin/supplier-management/get-suppliers', methods=['GET', 'POST'])
@@ -33,10 +35,21 @@ def UpdateSupplier():
 
 @app.route('/admin/supplier-management/search-suppliers', methods=['POST'])
 def SearchSuppliers():
-    req = SearchSuppliersReq(request.json)
-    result = SupplierSvc.SearchSuppliers(req)
-    res = SearchSuppliersRsp(result).serialize()
-    return jsonify(res['suppliers'])
+    req = SearchItemsReq(request.json)
+    if (req.supplier_id):
+        suppliers = models.Suppliers.query.filter(models.Suppliers.supplier_id == req.supplier_id)
+        return jsonify(ConvertModelListToDictList(suppliers))
+
+    suppliers = models.Suppliers.query.all()
+    if req.email != None:
+        suppliers = [supplier for supplier in suppliers if supplier.email == req.email]
+
+    if req.contact_name != None:
+        suppliers = [supplier for supplier in suppliers if supplier.contact_name == (req.contact_name)]
+
+    suppliers = [supplier for supplier in suppliers if supplier.delete_at == None]
+    suppliers = ConvertModelListToDictList(suppliers)
+    return jsonify(suppliers)
 
 
 @app.route('/admin/supplier-management/delete-supplier', methods=['POST'])

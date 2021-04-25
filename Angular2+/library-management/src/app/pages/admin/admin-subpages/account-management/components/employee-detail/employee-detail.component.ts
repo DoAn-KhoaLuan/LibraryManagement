@@ -73,14 +73,14 @@ export class EmployeeDetailComponent implements OnInit {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
-      this.router.navigateByUrl('admin/employee-management/employee-list')
+      this.router.navigateByUrl('admin/account-management/employee-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -98,7 +98,7 @@ export class EmployeeDetailComponent implements OnInit {
       if(delete_employee) {
         try {
           this.employeeService.DeleteEmployeeById(delete_employee.employee_id)
-          this.router.navigateByUrl('admin/employee-management/employee-list')
+          this.router.navigateByUrl('admin/account-management/employee-list')
           toastr.success("Bạn đã xóa nhân viên thành công")
         } catch(e) {
           toastr.error("Xóa nhân viên không thành thông", e.msg || e.message)
@@ -108,7 +108,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   setupDataForm() {
-    let store_detail_employee = this.employeeQuery.getValue().detail_employee; 
+    let store_detail_employee = this.employeeQuery.getValue().detail_employee;
     this.updateEmployeeForm.patchValue({
       'first_name' :store_detail_employee?.first_name,
       'last_name' :store_detail_employee?.last_name,
@@ -122,7 +122,7 @@ export class EmployeeDetailComponent implements OnInit {
       'basic_rate': store_detail_employee?.basic_rate,
       'birth_date':this.datePipe.transform(store_detail_employee?.birth_day, 'yyyy-MM-dd'),
       'note': store_detail_employee?.note,
-      
+
     });
 
   }
@@ -147,7 +147,7 @@ export class EmployeeDetailComponent implements OnInit {
     //   }
     // });
   }
-  
+
   get employee_detail_in_store() {
     return this.employeeQuery.getValue().detail_employee.supplier.supplier_id
   }
@@ -159,10 +159,10 @@ export class EmployeeDetailComponent implements OnInit {
       gender: update_employee.gender == 'true' ? true : false,
     };
     try{
-      let updated_employee = await this.employeeService.UpdateEmployee(update_req) 
+      let updated_employee = await this.employeeService.UpdateEmployee(update_req)
       this.employeeStore.update({detail_employee: updated_employee})
       toastr.success("Cập nhật sách thành công.")
-      this.router.navigateByUrl('admin/employee-management/employee-list')
+      this.router.navigateByUrl('admin/account-management/employee-list')
     } catch(e) {
       toastr.error("Cập nhật sách thất bại.", e.msg || e.message)
     }

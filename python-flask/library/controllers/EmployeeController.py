@@ -1,13 +1,15 @@
 from library import app
 from library.BLL import EmployeeSvc
+from library.DAL import models
 from library.common.Req.EmployeeReq import CreateEmployeeReq, UpdateEmployeeReq, DeleteEmployeeReq, SearchEmployeesReq
-from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Rsp.EmployeeRsp import SearchEmployeeRsp
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
 from library.common.Rsp.SingleRsp import ErrorRsp
+from library.common.util import ConvertModelListToDictList
 
 
 @app.route('/admin/employee-management/get-employees', methods=['POST', 'GET'])
@@ -40,10 +42,21 @@ def DeleteEmployee():
     return jsonify(result)
 
 
-@app.route('/admin/employee-management/search-employees', methods=['POST'])
+@app.route('/admin/employee-management/search-employees', methods=['POST', 'GET'])
 def SearchEmployees():
-    req = SearchEmployeesReq(request.json)
-    result = EmployeeSvc.SearchEmployee(req)
-    res = SearchEmployeeRsp(result).serialize()
-    return jsonify(result)
+    req = SearchItemsReq(request.json)
+    if (req.employee_id):
+        employees = models.Employees.query.filter(models.Employees.employee_id == req.employee_id, models.Employees.delete_at == None)
+        return jsonify(ConvertModelListToDictList(employees.all()))
+
+    employees = models.Employees.query
+    if req.phone != None:
+        employees = employees.filter(models.Employees.phone.contains(req.phone))
+
+    if req.identity_id != None:
+        employees = employees.filter(models.Employees.identity_id.contains(req.identity_id))
+
+    employees = employees.filter(models.Employees.delete_at == None)
+    employees = ConvertModelListToDictList(employees.all())
+    return jsonify(employees)
 

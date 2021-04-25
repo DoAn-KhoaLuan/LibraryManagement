@@ -1,6 +1,7 @@
 from library import app
 from library.BLL import OrderSvc
-from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.DAL import models
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
@@ -8,6 +9,7 @@ import json
 
 from library.common.Rsp.OrderRsp import SearchOrdersRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
+from library.common.util import ConvertModelListToDictList
 
 
 @app.route("/admin/order-management/get-orders", methods=['POST', 'GET'])
@@ -54,10 +56,21 @@ def DeleteOrder():
 
 @app.route("/admin/order-management/search-orders", methods=['POST', 'GET'])
 def SearchOrders():
-    req = SearchOrdersReq(request.json)
-    orders = OrderSvc.SearchOrders(req)
-    res = SearchOrdersRsp(orders).serialize()
-    return jsonify(res)
+    req = SearchItemsReq(request.json)
+    if (req.order_id):
+        orders = models.Orders.query.filter(models.Orders.order_id == req.order_id)
+        return jsonify(ConvertModelListToDictList(orders))
+
+    orders = models.Orders.query.all()
+    if req.type != None:
+        orders = [order for order in orders if order.type == req.type]
+
+    if req.customer_phone != None:
+        orders = [order for order in orders if order.customer != None and order.customer.phone == (req.customer_phone)]
+
+    orders = [order for order in orders if order.delete_at == None]
+    orders = ConvertModelListToDictList(orders)
+    return jsonify(orders)
 
 @app.route("/admin/order-management/test-create-order-momo", methods=['POST', 'GET'])
 def TestCreateOrder():

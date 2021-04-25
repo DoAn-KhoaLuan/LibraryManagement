@@ -101,9 +101,9 @@
                     <input type="text" placeholder="Mã đọc giả" aria-label="Number" matInput  [formControl]="customer_control"
                            [matAutocomplete]="customerAuto">
                     <mat-autocomplete autoActiveFirstOption #customerAuto="matAutocomplete">
-                      <mat-option *ngFor="let customer of customer_filtered_options | async" [value]="customer.customer_id">
+                      <mat-option *ngFor="let customer of customer_filtered_options | async" [value]="customer?.customer_id">
                         <b>
-                          {{customer.customer_id }} - {{customer.last_name }} {{customer.first_name }}
+                          {{customer?.customer_id }} - {{customer?.last_name }} {{customer?.first_name }}
                         </b>
                       </mat-option>
                     </mat-autocomplete>

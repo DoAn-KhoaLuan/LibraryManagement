@@ -170,20 +170,21 @@ export class POSComponent implements OnInit {
   async CreateOrder() {
     try {
       const create_order_req = {
-        customer_id: this.customer_item.customer_id,
+        customer_id: this.customer_item?.customer_id || 1,
         employee_id: JSON.parse(localStorage.getItem('auth_info')).user_info.employee_id,
         order_date: Date.now(),
-        type:'in',
+        type:'offline',
         total: this.order.total,
         note: this.order.note,
         order_detail_list: this.order_lines
-      }
-      await this.apiOrderService.CreateOrder(create_order_req)
-      toastr.success('Thanh toán hóa đơn thành công')
-      window.location.href = 'http://localhost:4200/admin/pos-management'
+      };
+      await this.apiOrderService.CreateOrder(create_order_req).then(_ =>  {
+        toastr.success('Thanh toán hóa đơn thành công');
+        location.reload();
+      });
 
     } catch (e) {
-      toastr.error('Thanh toán hóa đơn thất bại')
+      toastr.error('Thanh toán hóa đơn thất bại');
     }
   }
 

@@ -1,13 +1,15 @@
 from library import app
 from library.BLL import CustomerSvc
+from library.DAL import models
 from library.common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
-from library.common.Req.GetItemsByPageReq import GetItemsByPageReq
+from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Rsp.CustomerRsp import SearchCustomersRsp
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
 from library.common.Rsp.SingleRsp import ErrorRsp
+from library.common.util import ConvertModelListToDictList
 
 
 @app.route('/admin/customer-management/get-customers', methods=['POST', 'GET'])
@@ -42,9 +44,20 @@ def DeleteCustomer():
 
 @app.route('/admin/customer-management/search-customers', methods=['POST', 'GET'])
 def SearchCustomers():
-    req = SearchCustomersReq(request.json)
-    result = CustomerSvc.SearchCustomers(req)
-    res = SearchCustomersRsp(result)
-    return jsonify(result)
+    req = SearchItemsReq(request.json)
+    if (req.customer_id):
+        customers = models.Customers.query.filter(models.Customers.customer_id == req.customer_id)
+        return jsonify(ConvertModelListToDictList(customers))
+
+    customers = models.Customers.query
+    if req.phone != None:
+        customers = customers.filter(models.Customers.phone.contains(req.phone))
+
+    if req.identity_id != None:
+        customers = customers.filter(models.Customers.identity_id.contains(req.identity_id))
+
+    customers = customers.filter(models.Customers.delete_at == None)
+    customers = ConvertModelListToDictList(customers.all())
+    return jsonify(customers)
 
 

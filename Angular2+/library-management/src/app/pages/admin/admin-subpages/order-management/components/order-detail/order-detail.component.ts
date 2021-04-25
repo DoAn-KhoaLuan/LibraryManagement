@@ -62,8 +62,8 @@ export class OrderDetailComponent implements OnInit, OnChanges {
       order_id: parseInt(this.route.snapshot.params['id'])
     }
     const res = await this.OrderService.searchOrders(order_id);
-    const detail_order = res.orders[0];
-    
+    const detail_order = res[0];
+
     this.OrderService.setDetailOrder(detail_order);
 
     const current_date = new Date().getTime();
@@ -84,14 +84,14 @@ export class OrderDetailComponent implements OnInit, OnChanges {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
       this.router.navigateByUrl('admin/order-management/order-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -119,7 +119,7 @@ export class OrderDetailComponent implements OnInit, OnChanges {
   }
 
   setupDataForm() {
-    let store_detail_order = this.OrderQuery.getValue().detail_order; 
+    let store_detail_order = this.OrderQuery.getValue().detail_order;
     this.updateOrderForm.patchValue({
       'order_id': store_detail_order?.order_id,
       'order_name': store_detail_order?.order_name,
@@ -137,7 +137,7 @@ export class OrderDetailComponent implements OnInit, OnChanges {
     });
 
   }
-  
+
 
   async UpdateOrder() {
     let update_order = this.updateOrderForm.value;
@@ -148,7 +148,7 @@ export class OrderDetailComponent implements OnInit, OnChanges {
       author_id: update_order.author.author_id,
     };
     try {
-      let updated_order = await this.OrderService.UpdateOrder(update_req) 
+      let updated_order = await this.OrderService.UpdateOrder(update_req)
       this.OrderStore.update({detail_order: updated_order})
       toastr.success("Cập nhật sách thành công.")
       this.router.navigateByUrl('admin/order-management/order-list')
@@ -183,6 +183,6 @@ export class OrderDetailComponent implements OnInit, OnChanges {
   // }
 
   get author() {
-    return  this.OrderQuery.getValue().detail_order.author; 
+    return  this.OrderQuery.getValue().detail_order.author;
   }
 }

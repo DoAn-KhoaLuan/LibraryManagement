@@ -1,11 +1,11 @@
-import { account } from './../../../../../../models/app-models';
+import { account } from '../../../../../../models/app-models';
 import { DatePipe } from '@angular/common';
-import { CustomerStore } from './../../../../../../states/customer-store/customer.store';
-import { ModalController } from './../../../../../../core/modal-controller/modal-controller.service';
+import { CustomerStore } from '../../../../../../states/customer-store/customer.store';
+import { ModalController } from '../../../../../../core/modal-controller/modal-controller.service';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CustomerService } from './../../../../../../states/customer-store/customer.service';
-import { CustomerQuery } from './../../../../../../states/customer-store/customer.query';
+import { CustomerService } from '../../../../../../states/customer-store/customer.service';
+import { CustomerQuery } from '../../../../../../states/customer-store/customer.query';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ConfirmDeleteCustomerComponent } from './confirm-delete-customer/confirm-delete-customer.component';
 
@@ -76,14 +76,14 @@ export class CustomerDetailComponent implements OnInit {
       this.setupDataForm();
     }
   }
-    
+
   goBack() {
     if(this.isEditing) {
       this.toggleEdit()
     } else {
-      this.router.navigateByUrl('admin/customer-management/customer-list')
+      this.router.navigateByUrl('admin/account-management/customer-list')
     }
-  }  
+  }
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
@@ -101,7 +101,7 @@ export class CustomerDetailComponent implements OnInit {
       if(delete_customer) {
         try {
           this.customerService.DeleteCustomerById(delete_customer.customer_id)
-          this.router.navigateByUrl('admin/customer-management/customer-list')
+          this.router.navigateByUrl('admin/account-management/customer-list')
           toastr.success("Bạn đã xóa khách hàng thành công")
         } catch(e) {
           toastr.error("Xóa khách hàng không thành thông", e.msg || e.message)
@@ -111,7 +111,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   setupDataForm() {
-    let store_detail_customer = this.customerQuery.getValue().detail_customer; 
+    let store_detail_customer = this.customerQuery.getValue().detail_customer;
     this.updateCustomerForm.patchValue({
       'first_name' :store_detail_customer?.first_name,
       'last_name' :store_detail_customer?.last_name,
@@ -124,7 +124,7 @@ export class CustomerDetailComponent implements OnInit {
       'gender': store_detail_customer?.gender,
       'birth_date':this.datePipe.transform(store_detail_customer?.birth_day, 'yyyy-MM-dd'),
       'note': store_detail_customer?.note,
-      
+
     });
 
   }
@@ -149,7 +149,7 @@ export class CustomerDetailComponent implements OnInit {
     //   }
     // });
   }
-  
+
   get customer_detail_in_store() {
     return this.customerQuery.getValue().detail_customer.supplier.supplier_id
   }
@@ -161,10 +161,10 @@ export class CustomerDetailComponent implements OnInit {
       gender: update_customer.gender == 'true' ? true : false,
     };
     try{
-      let updated_customer = await this.customerService.UpdateCustomer(update_req) 
+      let updated_customer = await this.customerService.UpdateCustomer(update_req)
       this.customerStore.update({detail_customer: updated_customer})
       toastr.success("Cập nhật sách thành công.")
-      this.router.navigateByUrl('admin/customer-management/customer-list')
+      this.router.navigateByUrl('admin/account-management/customer-list')
     } catch(e) {
       toastr.error("Cập nhật sách thất bại.", e.msg || e.message)
     }

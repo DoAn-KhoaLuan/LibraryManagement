@@ -1,4 +1,4 @@
-import { ModalAction } from './../../../../../../../core/modal-controller/modal-action.service';
+import { ModalAction } from '../../../../../../../core/modal-controller/modal-action.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

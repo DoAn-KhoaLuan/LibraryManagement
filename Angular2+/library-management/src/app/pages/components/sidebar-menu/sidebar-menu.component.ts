@@ -29,22 +29,6 @@ export class SidebarMenuComponent implements OnInit {
       routerLink: "book-management"
     },
     {
-      iconHtml:`<i class="fa fa-2x fa-address-card" aria-hidden="true"></i>`,
-      itemTitle: "Quản lý khách hàng",
-      routerLink: "customer-management"
-    },
-    {
-      iconHtml:`<i class="fa fa-2x fa-user" aria-hidden="true"></i>`,
-      itemTitle: "Quản lý nhân viên",
-      routerLink: "employee-management"
-    },
-    {
-      iconHtml:`<i class="fa fa-2x fa-ticket" aria-hidden="true"></i>`,
-      itemTitle: "Quản lý mượn trả",
-      routerLink: "borrow-ticket-management"
-
-    },
-    {
       iconHtml:`<i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i>`,
       itemTitle: "POS",
       routerLink: "pos-management"
