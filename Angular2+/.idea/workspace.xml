@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1bdf6443-a587-4dc5-8672-55c0beb61967" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store-routing.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store-routing.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/book-store/book.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/states/book-store/book.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/book-store/book.store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/states/book-store/book.store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/BookRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/BookRep.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

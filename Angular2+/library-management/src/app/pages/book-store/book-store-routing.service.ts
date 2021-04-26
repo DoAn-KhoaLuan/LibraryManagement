@@ -8,12 +8,14 @@ import {EmployeeDetailComponent} from "../admin/admin-subpages/account-managemen
 import {CheckoutComponent} from "./components/checkout/checkout.component";
 import {DetailComponent} from "./components/detail/detail.component";
 import {HomeComponent} from "./components/home/home.component";
+import {SearchComponent} from "./components/search/search.component";
 
 const routes: Routes = [
   {
     path: '', component: BookStoreComponent, children: [
       {path: 'checkout', component: CheckoutComponent},
       {path: 'home', component: HomeComponent},
+      {path: 'search', component: SearchComponent},
       {path: 'detail/:id', component: DetailComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home'},

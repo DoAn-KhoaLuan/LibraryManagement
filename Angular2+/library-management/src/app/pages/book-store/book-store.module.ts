@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
 import {PipeModule} from "../../pipes/pipe/pipe.module";
 import {RatingModule} from "ng-starrating";
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import {RatingModule} from "ng-starrating";
     PipeModule,
     RatingModule
   ],
-  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent],
+  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent],
   bootstrap:    [ BookStoreComponent, HomeComponent ]
 })
 export class BookStoreModule { }
