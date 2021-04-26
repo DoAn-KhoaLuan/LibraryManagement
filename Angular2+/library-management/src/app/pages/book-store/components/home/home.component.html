@@ -1,3 +1,4 @@
+
 <div class="layout-content">
   <div class="container">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -29,12 +30,14 @@
     <div class="category layout-box">
       <h2>Danh mục nổi bật</h2>
       <div class="category-content">
-        <ng-container *ngFor="let item of [0,1,2,3,4,5,6,7,8,9]">
-          <a class="category-item">
-            <img class="category-img" src="assets/images/category-item.jpeg">
-            <span>Đồ dùng nhà</span>
-          </a>
-        </ng-container>
+        <div class="Container-itwfbd-0 jFkAwY">
+          <div data-view-id="home_quicklinks_tab_container" class="style__StyledIconWidgets-zkcvo4-0 gTeiZp">
+            <ng-container *ngFor="let category of (categories$ | async).slice(0,10)">
+              <a href="https://tiki.vn/khuyen-mai/ma-giam-gia?src=top_desktop_icon" class="item" data-view-id="home_quicklinks_tab_item" data-view-index="0"><img [src]="category?.image_url || 'assets/images/category-item.jpeg'" class="thumb"><span>{{category?.category_name}}</span></a>
+            </ng-container>
+
+          </div>
+        </div>
       </div>
     </div>
     <div class="home-search layout-box">
@@ -75,7 +78,16 @@
         </ng-container>
       </div>
     </div>
-
+    <div class="Container-itwfbd-0 jFkAwY">
+      <div data-view-id="home_quicklinks_tab_container" class="style__StyledIconWidgets-zkcvo4-0 gTeiZp">
+        <a href="https://tiki.vn/khuyen-mai/ma-giam-gia?src=top_desktop_icon" class="item" data-view-id="home_quicklinks_tab_item" data-view-index="0"><img src="https://salt.tikicdn.com/ts/upload/73/50/e1/83afc85db37c472de60ebef6eceb41a7.png" class="thumb"><span>Mã giảm giá</span></a>
+        <a href="https://tiki.vn/khuyen-mai/lich-su-kien-tiki?src=top_desktop_icon" class="item" data-view-id="home_quicklinks_tab_item" data-view-index="1"><img src="https://salt.tikicdn.com/ts/upload/94/13/c0/006f7c2b440cbd78144d6451ce695ef3.png" class="thumb"><span>Bí kíp săn sale</span></a>
+        <a href="https://tiki.vn/khuyen-mai/dac-quyen-thanh-vien-tiki-club?src=top_desktop_icon" class="item" data-view-id="home_quicklinks_tab_item" data-view-index="2"><img src="https://salt.tikicdn.com/ts/upload/e4/74/3d/aafbdc961842e88bdc8cfbb08debe4fa.png" class="thumb"><span>Độc quyền giảm 50%</span></a>
+        <a href="https://tiki.vn/chuong-trinh/mien-phi-van-chuyen?src=top_desktop_icon" class="item" data-view-id="home_quicklinks_tab_item" data-view-index="4"><img src="https://salt.tikicdn.com/ts/upload/c2/da/13/638cc2dc09b1be2e148c0571a107281a.png" class="thumb"><span>Free Ship</span></a>
+        <a href="https://tiki.vn/khuyen-mai/zalopay-tiki?src=top_desktop_icon" class="item" data-view-id="home_quicklinks_tab_item" data-view-index="8"><img src="https://salt.tikicdn.com/ts/upload/46/7e/06/64c9e7975b58b8953a74fe77dd4cb4b5.png" class="thumb"><span>Coupon 50%</span></a>
+        <a href="https://tiki.vn/khuyen-mai/uu-dai-doi-tac?src=top_desktop_icon" class="item" data-view-id="home_quicklinks_tab_item" data-view-index="10"><img src="https://salt.tikicdn.com/ts/upload/4a/b2/c5/b388ee0e511889c83fab1217608fe82f.png" class="thumb"><span>Ưu đãi đối tác</span></a>
+      </div>
+    </div>
     <div class="product-list layout-box">
       <div class="header">
         <div class="tab">
@@ -85,29 +97,15 @@
             </div>
           </div>
         </div>
-        <div class="tab">
-          <div style="width: 120px;">
-            <div>
-              <img src="https://salt.tikicdn.com/ts/upload/f4/67/1b/8f7b421be961d877af6ebebf45da2d62.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="tab">
-          <div style="width: 120px;">
-            <div>
-              <img src="https://salt.tikicdn.com/ts/upload/f4/67/1b/8f7b421be961d877af6ebebf45da2d62.png" alt="">
-            </div>
-          </div>
-        </div>
       </div>
+
       <div class="content">
         <ng-container *ngFor="let item of [1,2,3,4]">
           <a class="product-item">
               <span class="wrap-product-item">
                  <div class="thumbnail">
-                <img
-                  src="https://salt.tikicdn.com/cache/280x280/ts/product/82/89/db/70c5df10f8291a39365b335bcb152f78.jpg">
-              </div>
+                  <img src="https://salt.tikicdn.com/cache/280x280/ts/product/82/89/db/70c5df10f8291a39365b335bcb152f78.jpg">
+                 </div>
               <div class="info">
                 <div class="product-name">
                   Đồng hồ treo tường vân đá thời trang
@@ -120,6 +118,26 @@
           </a>
         </ng-container>
       </div>
+    </div>
+    <div class="category layout-box">
+      <h2>Tất cả sản phẩm</h2>
+        <div data-view-id="home_infinity_tab_content" data-view-index="0" class="style__StyledInfiniteScroll-sc-1xjioqa-0 jGFkeY">
+          <div class="content">
+            <ng-container *ngFor="let product of (book_list_view$ | async)?.items">
+              <div style="width: 20%; margin: 1.5rem" (click)="onDetail(product.book_id)">
+                <a class="product-item" data-view-id="home_infinity_products">
+                  <span class="style__StyledItem-sc-1bp67fh-0 khGMIT">
+                    <div>
+                      <div class="thumbnail">
+                        <div class="badge-top"></div>
+                        <img [src]="product?.image || 'https://salt.tikicdn.com/cache/280x280/ts/product/84/9d/ea/2ade5c2b210f67aef4699e400357db68.jpg'" alt="Combo 3 Tập Độc Giả Và Nhân Vật Chính Đích Thị Là Chân Tình (Tập 3-4-5) "></div><div class="info"><div class="badge-service"></div>
+                      <div class="name">
+                      <span>{{product?.book_name}} </span></div><div class="rating-review"><div class="rating"><div class="rating__total"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#c7c7c7" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(199, 199, 199);" ne="0.44717265765390124"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#c7c7c7" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(199, 199, 199);" ne="0.15174151178090267"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#c7c7c7" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(199, 199, 199);" ne="0.4629776165789872"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#c7c7c7" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(199, 199, 199);" ne="0.37146920567034214"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#c7c7c7" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(199, 199, 199);" ne="0.5835421053358021"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg></div><div class="rating__average" style="width: 94%;"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#fdd836" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(230, 214, 153);" ne="0.8141172550544347"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#fdd836" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(230, 214, 153);" ne="0.4837405503607197"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#fdd836" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(230, 214, 153);" ne="0.6353039783944852"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#fdd836" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(230, 214, 153);" ne="0.8882721932905131"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="12" color="#fdd836" height="12" width="12" xmlns="http://www.w3.org/2000/svg" style="color: rgb(230, 214, 153);" ne="0.3647343053482679"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg></div></div><div class="review">(17)</div></div><div class="price-discount"><div class="price-discount__price">{{product?.retail_price | vnd}}</div><div class="price-discount__discount">-30%</div></div><div class="badge-under-price"></div><div class="badge-benefits"></div><div class="badge-additional-info"></div></div></div></span></a>
+              </div>
+            </ng-container>
+          </div>
+          <a class="style__Wrapper-oim5hq-0 fwzWaW view-more" [class.disabled]="!(book_list_view$ | async)?.has_next" data-view-id="home_infinity_view.more" (click)="getMore()" >Xem Thêm</a>
+        </div>
     </div>
   </div>
 </div>

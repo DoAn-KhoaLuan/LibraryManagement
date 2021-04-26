@@ -24,6 +24,18 @@ export class BookService {
         })
     }
 
+    async getMore() {
+      await this.bookApiService.GetBooks(this.bookQuery.getValue().filter_page).then(res => {
+        this.bookStore.update({
+          book_list_view: {...this.bookQuery.getValue().book_list_view,
+            has_next: res.has_next,
+            has_prev: res.has_prev,
+            items: this.bookQuery.getValue().book_list_view?.items.concat(res?.items)
+          }
+        })
+      })
+    }
+
     setupPagination() {
         this.bookStore.update({
             current_pagination_opt: {
@@ -51,6 +63,14 @@ export class BookService {
             page: currentPage
         };
         this.bookStore.update({filter_page: filter});
+    }
+
+    setGetMoreFilter() {
+      const  filter = {
+        ...this.bookQuery.getValue().filter_page,
+        page: this.bookQuery.getValue().filter_page.page + 1
+      };
+      this.bookStore.update({filter_page: filter});
     }
 
     async searchBooks(req) {

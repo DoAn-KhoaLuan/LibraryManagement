@@ -8,9 +8,9 @@
           <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
                                   aria-expanded="false" href="#">Danh mục sản phẩm </a>
             <div class="dropdown-menu" role="menu">
-              <a class="dropdown-item" role="presentation"href="#">First Item</a>
-              <a class="dropdown-item" role="presentation" href="#">SecondItem</a>
-              <a class="dropdown-item" role="presentation" href="#">Third Item</a>
+              <ng-container *ngFor="let category of (categories$ | async)">
+                <a class="dropdown-item" role="presentation"href="#">{{category.category_name}}</a>
+              </ng-container>
             </div>
           </li>
         </ul>
