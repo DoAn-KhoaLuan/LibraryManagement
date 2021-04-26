@@ -1,6 +1,6 @@
 .box {
   width: 100%;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 7px;
   border: 1px solid #eee;
 }
@@ -14,11 +14,14 @@
   font-size: 1.2rem;
 }
 
-.setting-body, .setting-footer, .setting-header {
+.setting-body,
+.setting-footer,
+.setting-header {
   padding: 1.5rem;
 }
 
-.setting-body, .setting-header {
+.setting-body,
+.setting-header {
   border-bottom: 1px solid lightgray;
 }
 
@@ -29,7 +32,7 @@
 }
 
 .note {
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   text-align: left;
 }
 
@@ -302,7 +305,6 @@ a {
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
-  background: rgb(28, 28, 33);
   padding: 0px 0px 16px;
   margin-bottom: 24px;
   border-radius: 0px 0px 4px 4px;
@@ -314,8 +316,6 @@ a {
   align-self: stretch;
   border-top: 1px solid rgb(38, 38, 38);
 }
-
-
 
 .jGFkeY > .content .product-item {
   text-decoration: none;
@@ -479,8 +479,64 @@ img {
   text-align: center;
 }
 
-.disabled{
+.disabled {
   opacity: 0.6;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.jJGphj .search-summary .title {
+  padding: 16px 0px 0px 16px;
+}
+
+.gwxwjw {
+  clear: both;
+}
+
+.bvZuzo {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(38, 38, 38);
+  padding: 16px 0px 0px;
+}
+
+.hhXHWC {
+  margin-right: 10px;
+}
+
+.hhXHWC .sort-list {
+  display: inline-block;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.hhXHWC .sort-list a {
+  text-transform: capitalize;
+  cursor: pointer;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.54;
+  letter-spacing: normal;
+  color: rgb(191, 191, 191);
+  display: inline-block;
+  font-size: 13px;
+  margin: 0px 16px;
+  padding: 8px;
+}
+
+.VLxTK {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.VLxTK > div {
+  border: 1px solid rgb(102, 75, 0);
+  color: rgb(230, 217, 153);
+  padding: 16px 24px;
+  display: flex;
 }

@@ -1,18 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import {BookQuery} from "../../../../states/book-store/book.query";
+import { BookQuery } from '../../../../states/book-store/book.query';
+import { BookService } from '../../../../states/book-store/book.service';
+import { Router } from '@angular/router';
+import { BookStore } from '../../../../states/book-store/book.store';
 
 @Component({
   selector: 'app-shop-header',
   templateUrl: './shop-header.component.html',
-  styleUrls: ['./shop-header.component.scss']
+  styleUrls: ['./shop-header.component.scss'],
 })
 export class ShopHeaderComponent implements OnInit {
   categories$ = this.bookQuery.categories$;
   constructor(
-    private bookQuery: BookQuery
-  ) { }
+    private bookQuery: BookQuery,
+    private bookService: BookService,
+    private router: Router,
+    private bookStore: BookStore
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  async searchBooksByCategoryID(category_id) {
+    const req = {
+      category_id,
+    };
+    let books = await this.bookService.searchBooks(req);
+    let book_view = this.bookStore.getValue().book_list_view;
+    this.bookStore.update({
+      book_list_view: {
+        ...book_view,
+        items: books.books,
+        has_next: false,
+        has_prev: false,
+        current_page: 1,
+      },
+    });
+    this.router.navigateByUrl('/book-store/search');
   }
-
 }

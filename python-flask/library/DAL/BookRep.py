@@ -75,6 +75,9 @@ def SearchBooks(req: SearchBookReq):
     if req.book_name != None:
         all_books = all_books.filter(models.Books.book_name.contains(req.book_name))
 
+    if req.to_price != None:
+        all_books = all_books.filter(models.Books.retail_price.between(req.from_price, req.to_price))
+
     if req.category_id != None:
         all_books = all_books.filter(models.Books.category_id.contains(req.category_id))
 

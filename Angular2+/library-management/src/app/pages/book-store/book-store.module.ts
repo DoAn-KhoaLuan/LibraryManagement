@@ -9,6 +9,9 @@ import {ShopFooterComponent} from "./components/shop-footer/shop-footer.componen
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
+import {PipeModule} from "../../pipes/pipe/pipe.module";
+import {RatingModule} from "ng-starrating";
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   imports: [
@@ -16,7 +19,10 @@ import { DetailComponent } from './components/detail/detail.component';
     BookStoreRoutingModule,
     ShareComponentModule,
     FormsModule,
+    PipeModule,
+    RatingModule
   ],
-  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent]
+  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent],
+  bootstrap:    [ BookStoreComponent, HomeComponent ]
 })
 export class BookStoreModule { }
