@@ -6,14 +6,17 @@ import { BookStoreComponent } from './book-store.component';
 import { FormsModule } from '@angular/forms';
 import {ShopHeaderComponent} from "./components/shop-header/shop-header.component";
 import {ShopFooterComponent} from "./components/shop-footer/shop-footer.component";
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { HomeComponent } from './components/home/home.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
   imports: [
     CommonModule,
     BookStoreRoutingModule,
     ShareComponentModule,
-    FormsModule
+    FormsModule,
   ],
-  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent]
+  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent]
 })
 export class BookStoreModule { }

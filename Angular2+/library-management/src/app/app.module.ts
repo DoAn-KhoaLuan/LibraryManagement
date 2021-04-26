@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { ModalControllerModule } from './core/modal-controller/modal-controller.module';
 import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
@@ -15,6 +15,11 @@ import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ShareComponentModule } from './pages/components/share-component.module';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -42,7 +47,7 @@ import { ShareComponentModule } from './pages/components/share-component.module'
     //   useClass: AuthInterceptorService,
     //   multi: true
     // }
-  ],
+  { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
 
   schemas: [NO_ERRORS_SCHEMA]

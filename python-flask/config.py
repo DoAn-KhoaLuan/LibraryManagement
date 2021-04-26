@@ -11,3 +11,9 @@ ALLOWED_EXTENSIONS = ["png", "jpg", "jpeg", "gif"]
 CLOUD_NAME = 'dra7ojfcd'
 API_KEY = '651393896724639'
 API_SECRET = 'x--KfG2S4tUnsUi-VZWOZOi-3Zs'
+
+
+PAYPAL_WEBSITE = 'https://sandbox.paypal.com/developer/accounts/'
+PERSIONAL_EMAIL_PAYPAL = 'shinichi24567@gmail.com'
+BUSINESS_EMAIL_PAYPAL = 'business-shinichi24567@gmail.com'
+BUSINESS_and_PERSONAL_PASSWORD_PAYPAL = 'paypal123'

@@ -68,6 +68,12 @@ class Books(db.Model):
                f"'author': {self.author.serialize()},'old_amount': {self.old_amount},'new_amount': {self.new_amount},'image': {self.image},'page_number': {self.page_number}, " \
                f"'description ':{self.description},'cost_price': {self.cost_price},'retail_price': {self.retail_price},'discount': {self.discount},'ranking': {self.ranking})"
 
+class Comments(db.Model):
+    comment_id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.TEXT)
+    create_at = db.Column(db.DateTime)
+    book_id = db.Column(db.Integer)
+    customer_id = db.Column(db.Integer)
 
 class Borrowticketdetails(db.Model):
     borrow_ticket_id = db.Column(db.Integer, db.ForeignKey('borrowtickets.borrow_ticket_id'), primary_key=True)

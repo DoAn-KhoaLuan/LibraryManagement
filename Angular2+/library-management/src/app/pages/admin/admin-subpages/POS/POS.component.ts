@@ -1,7 +1,7 @@
 import { CustomerStore } from './../../../../states/customer-store/customer.store';
 import { BookStore } from './../../../../states/book-store/book.store';
 import { BookService } from './../../../../states/book-store/book.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { CustomerService } from 'src/app/states/customer-store/customer.service';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {Observable} from "rxjs";
@@ -18,6 +18,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./POS.component.scss']
 })
 export class POSComponent implements OnInit {
+  @ViewChild("paypalRef", {static: true}) private paypalRef: ElementRef;
   //Danh sách các Forms: Gio hàng, khách hàng, hóa đơn, sản phẩm
   order_lines: order_line[] = []
   search_keyword: string;
@@ -59,6 +60,39 @@ export class POSComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    window.paypal.Buttons({
+      style: {
+        layout: 'horizontal',
+        color: 'blue',
+        shape: 'rect',
+        label: 'paypal'
+      },
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [
+            {amount: {
+                value: '3',
+                currency_code: 'USD',
+                product_id: 12
+              }
+            }
+          ]
+        });
+      },
+      onApprove: async (data, actions) => {
+        const order = await actions.order.capture();
+        console.log(order);
+        // TODO : check order.status == "success" => gọi api CreateOrder
+        if (order.status === "COMPLETED" ) {
+          await this.CreateOrder();
+        }
+      },
+
+      onError: error => {
+        console.log(error);
+      }
+    })
+      .render(this.paypalRef.nativeElement);
     const internalOrderId =  this.route.snapshot.queryParamMap.get('internalOrderId');
     const errorCode =  parseInt(this.route.snapshot.queryParamMap.get('errorCode'));
     if (errorCode && errorCode !== 0) {
@@ -195,7 +229,7 @@ export class POSComponent implements OnInit {
       };
       await this.apiOrderService.CreateOrder(create_order_req).then(_ =>  {
         toastr.success('Thanh toán hóa đơn thành công');
-        location.reload();
+        // location.reload();
       });
 
     } catch (e) {

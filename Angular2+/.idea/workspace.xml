@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bdf6443-a587-4dc5-8672-55c0beb61967" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/library-management/src/global.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/POS/POS.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/POS/POS.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/POS/POS.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/POS/POS.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../python-flask/library/BLL/OrderSvc.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/BLL/OrderSvc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store-routing.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store-routing.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/library/DAL/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/library/DAL/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/miration/db_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/miration/db_create.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

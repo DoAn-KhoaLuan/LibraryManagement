@@ -7,12 +7,32 @@ import { AccountQuery } from 'src/app/states/account-store/account.query';
 import {MessageStore} from "../../states/message-store/message.store";
 import {MessageQuery} from "../../states/message-store/message.query";
 import {MessageService} from "../../states/message-store/message.service";
+import { addDays, formatDistance } from 'date-fns';
 @Component({
   selector: 'app-book-store',
   templateUrl: './book-store.component.html',
   styleUrls: ['./book-store.component.scss']
 })
 export class BookStoreComponent implements OnInit {
+  data = [
+    {
+      author: 'Han Solo',
+      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      content:
+        'We supply a series of design principles, practical patterns and high quality design resources' +
+        '(Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+      datetime: formatDistance(new Date(), addDays(new Date(), 1))
+    },
+    {
+      author: 'Han Solo',
+      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      content:
+        'We supply a series of design principles, practical patterns and high quality design resources' +
+        '(Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+      datetime: formatDistance(new Date(), addDays(new Date(), 2))
+    }
+  ];
+
   @ViewChild('mes',{static: false}) message: ElementRef;
   isDisplayMessage = false;
 
