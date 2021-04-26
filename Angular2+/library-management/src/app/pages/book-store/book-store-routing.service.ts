@@ -10,7 +10,6 @@ import {DetailComponent} from "./components/detail/detail.component";
 import {HomeComponent} from "./components/home/home.component";
 
 const routes: Routes = [
-  { path: '', component: BookStoreComponent},
   {
     path: '', component: BookStoreComponent, children: [
       {path: 'checkout', component: CheckoutComponent},

@@ -246,7 +246,6 @@ a {
       text-decoration: none;
       display: flex;
       position: relative;
-      border: 1px solid transparent;
       cursor: pointer;
 
       .wrap-product-item {
@@ -289,4 +288,172 @@ a {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: rgb(239, 239, 239);
+}
+
+.jFkAwY {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.jGFkeY {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  background: rgb(28, 28, 33);
+  padding: 0px 0px 16px;
+  margin-bottom: 24px;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.jGFkeY > .content {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: stretch;
+  background-color: rgb(28, 28, 33);
+  border-top: 1px solid rgb(38, 38, 38);
+}
+
+
+
+.jGFkeY > .content .product-item {
+  text-decoration: none;
+  display: flex;
+  position: relative;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+.gTeiZp {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  margin: 16px 0px;
+  padding: 16px 0px;
+  background: rgb(31, 31, 31);
+  text-align: center;
+  border-radius: 4px;
+}
+
+.gTeiZp .item {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-basis: 103px;
+  flex-shrink: 0;
+}
+
+.gTeiZp .item > img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.jGFkeY > .content .product-item {
+  text-decoration: none;
+  display: flex;
+  position: relative;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.khGMIT {
+  display: flex;
+  padding: 12px 16px;
+  color: rgb(191, 191, 191);
+  text-decoration: none;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.khGMIT .thumbnail {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  margin: 0px 12px;
+  text-align: center;
+}
+
+.khGMIT .badge-top {
+  position: absolute;
+  z-index: 2;
+}
+
+.khGMIT .badge-service {
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+
+.khGMIT .name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.khGMIT .name > span {
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0px 0px 4px;
+  line-height: 20px;
+}
+
+.khGMIT .rating-review {
+  display: flex;
+  margin-top: 4px;
+}
+
+.khGMIT .rating {
+  position: relative;
+  margin: 0px 4px 0px 0px;
+}
+
+.khGMIT .rating__average {
+  white-space: nowrap;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+
+.khGMIT .review {
+  font-size: 11px;
+  line-height: 16px;
+  color: rgb(191, 191, 191);
+}
+
+.khGMIT .price-discount {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.khGMIT .price-discount__discount {
+  font-size: 13px;
+  line-height: 20px;
+  border-radius: 2px;
+  background: rgb(192, 48, 58);
+  color: rgb(255, 255, 255);
+  padding: 0px 2px;
+  margin-left: 1rem;
+}
+
+.khGMIT .badge-benefits {
+  margin-top: 8px;
+}
+
+.khGMIT .badge-additional-info {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
 }
