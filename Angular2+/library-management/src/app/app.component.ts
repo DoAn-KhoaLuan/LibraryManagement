@@ -17,9 +17,10 @@ export class AppComponent implements OnInit{
               private locationService: LocationService,
               private supplierService: SupplierService) {}
   async ngOnInit() {
-     this.locationService.initLocations();
-     this.bookService.GetCategories({});
-     this.accountService.getRoles();
+    await this.accountService.SessionInfo();
+    await this.locationService.initLocations();
+    await this.bookService.GetCategories({});
+    await this.accountService.getRoles();
   }
 
 }

@@ -1,5 +1,6 @@
 import os
 import time
+from datetime import datetime
 from random import Random, randint
 # import requests
 from werkzeug.utils import secure_filename
@@ -19,6 +20,7 @@ import json
 
 from library.common.Rsp.SingleRsp import ErrorRsp
 # from library.controllers.UploadImageController import allowed_file
+from library.common.util import ConvertModelListToDictList
 
 
 @app.route('/admin/book-management/get-books', methods=['POST'])
@@ -109,3 +111,29 @@ def rateProduct():
     db.session.add(rateProduct);
     db.session.commit()
     return rateProduct.serialize()
+
+class CreateCommentReq:
+    def __init__(self, req):
+        self.customer_id = req['customer_id'] if 'customer_id' in req else 0
+        self.book_id = req['book_id'] if 'book_id' in req else None
+        self.content = req['content'] if 'content' in req else None
+
+@app.route('/admin/book-management/create-comment', methods=['POST'])
+def createComment():
+    req = CreateCommentReq(request.json)
+    comment = models.Comments(content=req.content,
+                              create_at=datetime.now(),
+                              customer_id=req.customer_id,
+                              book_id=req.book_id)
+    db.session.add(comment)
+    db.session.commit()
+    resCmt = comment.serialize()
+    resCmt["customer"]= models.Customers.query.get(req.customer_id).serialize()
+    return jsonify(resCmt);
+
+@app.route('/admin/book-management/get-comments', methods=['POST'])
+def getComments():
+    comments = models.Comments.query.filter(models.Comments.book_id == request.json["book_id"]).all()
+
+    return jsonify(ConvertModelListToDictList(comments));
+

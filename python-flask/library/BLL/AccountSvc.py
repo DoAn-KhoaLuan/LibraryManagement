@@ -180,6 +180,8 @@ def CreateEmployeeAccount(req):
 def extractToken(token):
     payload = jwt.decode(token, app.config['SECRET_KEY'])
     accountId = payload["account_id"]
+    print(accountId)
+
     account = AccountRep.getAccountById(accountId)
     return account
 

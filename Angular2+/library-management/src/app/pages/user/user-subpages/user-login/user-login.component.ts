@@ -32,11 +32,11 @@ export class UserLoginComponent implements OnInit {
     try{
       let login_form_data = this.login_form.value
       const login_req = {
-        accountName: login_form_data.user_name,
-        accountPassword: login_form_data.password,
+        user_name: login_form_data.user_name,
+        password: login_form_data.password,
       }
       await this.accountService.Login(login_req);
-      this.router.navigateByUrl('user');
+      this.router.navigateByUrl('/book-store/home');
       toastr.success("Đăng nhập thành công");
     } catch(e) {
       toastr.error("Đăng nhập thất bại", e.msg || e.message)

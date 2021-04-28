@@ -179,5 +179,5 @@ def CreateEmployeeAccount(req: CreateEmployeeAccountReq):
     return create_account.serialize(), create_employee.serialize()
 
 def getAccountById(id):
-    accountModel = models.Account.query.filter(models.Account.id == id).first()
+    accountModel = models.Accounts.query.filter(models.Accounts.account_id == id).first()
     return accountModel.serialize()

@@ -104,9 +104,6 @@ def SearchAccounts():
         info_accounts.append(account_info)
     return jsonify(info_accounts)
 
-
-
-
 @app.route('/admin/account-management/login', methods=['POST'])
 def LoginAccount():
     try:
@@ -114,6 +111,49 @@ def LoginAccount():
         result = AccountSvc.AuthenticateUser(req)
         res = LoginRsp(result).serialize()
         return jsonify(res)
+    except ErrorRsp as e:
+        return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
+
+class UpdateSessionReq():
+    def __init__(self,req):
+        self.access_token = req['access_token'] if 'access_token' in req else None
+
+@app.route('/update-session-info', methods=['POST'])
+def updateSession():
+    not_authenticated_msg = {
+        'message': 'Bạn không có quyền truy cập.',
+        'authenticated': False
+    }
+
+    invalid_msg = {
+        'message': 'Token không hợp lệ.',
+        'authenticated': False
+    }
+    expired_msg = {
+        'message': 'Token hết hạn sử dụng.',
+        'authenticated': False
+    }
+    try:
+        req = UpdateSessionReq(request.json)
+        account = AccountSvc.extractToken(req.access_token)
+        if (account['role']['role_id'] == 3):  # customer
+            search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
+            user = CustomerRep.SearchCustomers(search_customer_req)
+
+        if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
+            search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
+            user = EmployeeRep.SearchEmployees(search_employee_req)
+
+        result = {
+            'access_token': req.access_token,
+            'account': account,
+            'user_info': user[0] if len(user) > 0 else None
+        }
+        return jsonify(result)
+    except jwt.ExpiredSignatureError:
+        return jsonify(expired_msg), 401  # 401 is Unauthorized HTTP status code
+    except (jwt.InvalidTokenError) as e:
+        return jsonify(invalid_msg), 401
     except ErrorRsp as e:
         return json.dumps(e.__dict__, ensure_ascii=False).encode('utf8'), 401
 

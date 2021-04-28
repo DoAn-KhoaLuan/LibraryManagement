@@ -46,16 +46,17 @@
         </form>
         <div class="">
           <span class="material-icons"> account_circle </span>
-          <span class="navbar-text ml-2"
-            ><a href="#" class="login">Đăng nhập / </a></span
-          >
-          <span class="navbar-text"><a href="#" class="login">Đăng kí</a></span>
+          <span class="navbar-text ml-2 cursor-pointer" *ngIf="!((auth_info$ | async)?.user_info?.account?.role?.role_id == 3) " (click)="goToLoginView()">
+            <div  class="login">Đăng nhập / </div>
+          </span>
+          <span (click)="goToRegisterView()" class="navbar-text cursor-pointer" *ngIf="((auth_info$ | async)?.user_info?.account?.role?.role_id == 2) || !(auth_info$ | async)?.user_info"><div class="login" >Đăng kí</div></span>
+          <span (click)="goToRegisterView()" class="navbar-text cursor-pointer" *ngIf="(auth_info$ | async)?.user_info?.account?.role?.role_id == 3"><div  class="login" >Đăng xuất</div></span>
         </div>
-        <div class="ml-3 cart-wrapper">
-          <a class="shopping_cart" role="button" href="#">
+        <div class="ml-3 cart-wrapper" (click)="goToCheckOut()">
+          <div class="shopping_cart" role="button" href="#">
             <span class="material-icons"> shopping_cart </span>
             Giỏ hàng
-          </a>
+          </div>
         </div>
       </div>
     </div>

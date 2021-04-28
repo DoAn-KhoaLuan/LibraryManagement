@@ -75,6 +75,13 @@ class Comments(db.Model):
     book_id = db.Column(db.Integer)
     customer_id = db.Column(db.Integer)
 
+    def serialize(self):
+        return {
+            "comment_id": self.comment_id,
+            "content": self.content,
+            "book_id": self.book_id,
+            "customer_id": self.customer_id
+        }
 class Borrowticketdetails(db.Model):
     borrow_ticket_id = db.Column(db.Integer, db.ForeignKey('borrowtickets.borrow_ticket_id'), primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'), primary_key=True)
