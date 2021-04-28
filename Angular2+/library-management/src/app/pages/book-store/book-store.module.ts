@@ -13,6 +13,13 @@ import {PipeModule} from "../../pipes/pipe/pipe.module";
 import {RatingModule} from "ng-starrating";
 import { SearchComponent } from './components/search/search.component';
 import {BrowserModule} from "@angular/platform-browser";
+import {NzCommentModule} from "ng-zorro-antd/comment";
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {ScrollingModule} from "@angular/cdk/scrolling";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzListModule} from "ng-zorro-antd/list";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 @NgModule({
   imports: [
@@ -22,6 +29,13 @@ import {BrowserModule} from "@angular/platform-browser";
     FormsModule,
     PipeModule,
     RatingModule,
+    NzCommentModule,
+    NzAvatarModule,
+    ScrollingModule,
+    NzIconModule,
+    NzListModule,
+    NzFormModule,
+    NzButtonModule
   ],
   declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent],
   bootstrap:    [ BookStoreComponent, HomeComponent ]

@@ -100,8 +100,23 @@ export class AccountService {
     }
 
     async SessionInfo() {
-      return await this.accountApiService.CheckToken();
+      await this.accountApiService.CheckToken()
+        .then(login_res => {
+          this.accountStore.update({
+            auth_info: login_res,
+          })
+          localStorage.setItem('auth_info', JSON.stringify(this.accountQuery.getValue().auth_info));
+        })
+        .catch(err => {
+          console.log(err)
+          toastr.error(err?.message)
+          localStorage.removeItem('auth_info');
+        })
+      ;
+
+
     }
+
     Logout() {
         this.accountStore.reset();
         localStorage.removeItem('auth_info')

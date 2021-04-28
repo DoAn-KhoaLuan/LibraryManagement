@@ -14,10 +14,6 @@ export class AdminPageGuard implements CanActivate{
             take(1),
             tap(async auth => {
               let result = await this.accountService.SessionInfo();
-              if(result.authenticated == false) {
-                toastr.error(result.message)
-                localStorage.removeItem('auth_info');
-              }
             }),
             map(auth => {
               if(localStorage.getItem('auth_info')){

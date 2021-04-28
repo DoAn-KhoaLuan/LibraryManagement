@@ -23,6 +23,15 @@ export class ApiBookService {
     return await this.http.post(this.baseURL+"/admin/book-management/create-book",req).toPromise();
   }
 
+  async createComment(req) {
+    return await this.http.post(this.baseURL+"/admin/book-management/create-comment",req).toPromise();
+  }
+
+
+  async getComments(req) {
+    return await this.http.post(this.baseURL+"/admin/book-management/get-comments",req).toPromise();
+  }
+
   async SearchBooks(req) {
     return await this.http.post(this.baseURL+"/admin/book-management/search-books",req).toPromise();
   }

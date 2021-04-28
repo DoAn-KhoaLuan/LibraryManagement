@@ -13,24 +13,7 @@ import { StarRatingComponent } from 'ng-starrating';
   styleUrls: ['./book-store.component.scss']
 })
 export class BookStoreComponent implements OnInit {
-  data = [
-    {
-      author: 'Han Solo',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      content:
-        'We supply a series of design principles, practical patterns and high quality design resources' +
-        '(Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-      datetime: formatDistance(new Date(), addDays(new Date(), 1))
-    },
-    {
-      author: 'Han Solo',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      content:
-        'We supply a series of design principles, practical patterns and high quality design resources' +
-        '(Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-      datetime: formatDistance(new Date(), addDays(new Date(), 2))
-    }
-  ];
+
 
   @ViewChild('mes',{static: false}) message: ElementRef;
   isDisplayMessage = false;
@@ -109,5 +92,8 @@ export class BookStoreComponent implements OnInit {
     this.MessageScrollToBottom();
   }
 
+  handleSubmit() {
+
+  }
 }
 

@@ -36,7 +36,10 @@ export class ApiAccountService {
   }
 
   async CheckToken() {
-    return await this.http.get(this.baseURL+"/update-session-info").toPromise();
+    const req = {
+      access_token: JSON.parse(localStorage.getItem("auth_info"))?.access_token || null
+    };
+    return await this.http.post(this.baseURL+"/update-session-info", req).toPromise();
   }
   async SendResetPasswordEmailCustomer(req) {
     return await this.http.post(this.baseURL + "/send-reset-password-email-customer",req).toPromise();
