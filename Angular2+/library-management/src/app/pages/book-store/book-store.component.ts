@@ -1,13 +1,12 @@
-import { account } from './../../models/app-models';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebSocketService } from 'src/app/services/web-socket.service';
-import * as io from 'socket.io-client';
-import { Message } from 'src/app/models/app-models';
 import { AccountQuery } from 'src/app/states/account-store/account.query';
 import {MessageStore} from "../../states/message-store/message.store";
 import {MessageQuery} from "../../states/message-store/message.query";
 import {MessageService} from "../../states/message-store/message.service";
 import { addDays, formatDistance } from 'date-fns';
+import { StarRatingComponent } from 'ng-starrating';
+
 @Component({
   selector: 'app-book-store',
   templateUrl: './book-store.component.html',
@@ -109,5 +108,6 @@ export class BookStoreComponent implements OnInit {
     this.isDisplayMessage = !this.isDisplayMessage;
     this.MessageScrollToBottom();
   }
+
 }
 

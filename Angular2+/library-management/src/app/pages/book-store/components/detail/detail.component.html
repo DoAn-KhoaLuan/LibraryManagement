@@ -1,15 +1,18 @@
-<div class="Container-itwfbd-0 jFkAwY">
+<div class="Container-itwfbd-0 jFkAwY mt-5 pt-4">
   <div class="indexstyle__Wrapper-qd1z2k-0 llsmxc">
     <div class="style__ProductImagesStyle-sc-1e5ea5s-0 iTTtrw">
       <div class="group-images">
         <div class="thumbnail" data-view-id="pdp_main_view_gallery">
           <div class="ImageLens__Wrapper-uaw433-0 bhKhSH">
             <div class="container">
-              <div style="width:444px;height:444px;z-index:0">
-                <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC"><img
-                  src="https://salt.tikicdn.com/cache/w444/media/catalog/product/7/7/7703391591814-1-u2683-d20160709-t085119.u634.d20161011.t134215.433029.jpg"
-                  alt="Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ "
-                  class="PictureV2__StyledImage-tfuu67-1 hQOEQo"></div>
+              <div style="width: 444px; height: 444px; z-index: 0">
+                <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC">
+                  <img
+                    [src]="(detailBook$ | async)?.image || 'assets/images/default-book.png'"
+                    alt="Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ "
+                    class="PictureV2__StyledImage-tfuu67-1 hQOEQo"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -17,143 +20,293 @@
         <div class="image-badges"></div>
       </div>
       <div class="review-images">
-        <div class="review-images__list"><a data-view-id="pdp_main_view_photo" class="active">
-          <div>
-            <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC"><img
-              src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-1-u2683-d20160709-t085119.u634.d20161011.t134215.433029.jpg"
-              alt="product-img-0" class="PictureV2__StyledImage-tfuu67-1 hQOEQo"></div>
-          </div>
-        </a><a data-view-id="pdp_main_view_photo" class="">
-          <div>
-            <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC"><img
-              src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-2-u2683-d20160709-t085119.u634.d20161011.t134215.476495.jpg"
-              alt="product-img-1" class="PictureV2__StyledImage-tfuu67-1 hQOEQo"></div>
-          </div>
-        </a><a data-view-id="pdp_main_view_photo" class="">
-          <div>
-            <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC"><img
-              src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-3-u2683-d20160709-t085119.u634.d20161011.t134215.524418.jpg"
-              alt="product-img-2" class="PictureV2__StyledImage-tfuu67-1 hQOEQo"></div>
-          </div>
-        </a><a data-view-id="pdp_main_view_photo" class="">
-          <div>
-            <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC"><img
-              src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-4-u2683-d20160709-t085119.u634.d20161011.t134215.605025.jpg"
-              alt="product-img-3" class="PictureV2__StyledImage-tfuu67-1 hQOEQo"></div>
-          </div>
-        </a><a data-view-id="pdp_main_view_photo" class="">
-          <div>
-            <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC"><img
-              src="https://vcdn.tikicdn.com/cache/w64/ts/review/3e/bc/f9/762fa1f534fb8197d110fee8f1b02ee3.jpg"
-              alt="product-img-4" class="PictureV2__StyledImage-tfuu67-1 hQOEQo"></div>
-          </div>
-        </a><a data-view-id="pdp_main_view_gallery" class="open-gallery ">
-          <div>
-            <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC"><img
-              src="https://vcdn.tikicdn.com/cache/w64/ts/review/91/c0/c4/a8c24a1d2d4748c9e06bfbdd1c1c326d.jpg"
-              alt="product-img-5" class="PictureV2__StyledImage-tfuu67-1 hQOEQo"></div>
-          </div>
-          <span>Xem thêm 39 hình</span></a></div>
+        <div class="review-images__list">
+          <a data-view-id="pdp_main_view_photo" class="active">
+            <div>
+              <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC">
+                <img
+                  src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-1-u2683-d20160709-t085119.u634.d20161011.t134215.433029.jpg"
+                  alt="product-img-0"
+                  class="PictureV2__StyledImage-tfuu67-1 hQOEQo"
+                />
+              </div>
+            </div> </a
+          ><a data-view-id="pdp_main_view_photo" class="">
+            <div>
+              <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC">
+                <img
+                  src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-2-u2683-d20160709-t085119.u634.d20161011.t134215.476495.jpg"
+                  alt="product-img-1"
+                  class="PictureV2__StyledImage-tfuu67-1 hQOEQo"
+                />
+              </div>
+            </div> </a
+          ><a data-view-id="pdp_main_view_photo" class="">
+            <div>
+              <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC">
+                <img
+                  src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-3-u2683-d20160709-t085119.u634.d20161011.t134215.524418.jpg"
+                  alt="product-img-2"
+                  class="PictureV2__StyledImage-tfuu67-1 hQOEQo"
+                />
+              </div>
+            </div> </a
+          ><a data-view-id="pdp_main_view_photo" class="">
+            <div>
+              <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC">
+                <img
+                  src="https://salt.tikicdn.com/cache/w64/media/catalog/product/7/7/7703391591814-4-u2683-d20160709-t085119.u634.d20161011.t134215.605025.jpg"
+                  alt="product-img-3"
+                  class="PictureV2__StyledImage-tfuu67-1 hQOEQo"
+                />
+              </div>
+            </div> </a
+          ><a data-view-id="pdp_main_view_photo" class="">
+            <div>
+              <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC">
+                <img
+                  src="https://vcdn.tikicdn.com/cache/w64/ts/review/3e/bc/f9/762fa1f534fb8197d110fee8f1b02ee3.jpg"
+                  alt="product-img-4"
+                  class="PictureV2__StyledImage-tfuu67-1 hQOEQo"
+                />
+              </div>
+            </div> </a
+          ><a data-view-id="pdp_main_view_gallery" class="open-gallery">
+            <div>
+              <div class="PictureV2__StyledWrapImage-tfuu67-0 kttJTC">
+                <img
+                  src="https://vcdn.tikicdn.com/cache/w64/ts/review/91/c0/c4/a8c24a1d2d4748c9e06bfbdd1c1c326d.jpg"
+                  alt="product-img-5"
+                  class="PictureV2__StyledImage-tfuu67-1 hQOEQo"
+                />
+              </div>
+            </div>
+            <span>Xem thêm 39 hình</span></a
+          >
+        </div>
       </div>
     </div>
     <div class="indexstyle__StyledSeperate-qd1z2k-1 giarZk"></div>
     <div class="indexstyle__ProductContent-qd1z2k-2 drtSpW">
       <div class="header">
-        <div class="brand"><span class="brand-and-author "><h6>Thương hiệu:<!-- --> <a href="/thuong-hieu/blueup.html"
-                                                                                       data-view-id="pdp_details_view_brand">Blueup</a></h6></span>
-          <div class="bestseller"><p><span>Đứng thứ 2 trong </span> <a data-view-id="pdp_details_view_bestseller"
-                                                                       href="/bestsellers-month/flashcard-tieng-anh-toeic/c6264">Top
-            1000 <!-- -->Flashcard Tiếng Anh - Toeic<!-- --> bán chạy tháng này</a></p></div>
-          <div class="style__StyledProductAction-sc-1b8sgmz-0 dafovQ">
-            <div class="icon-wrap" data-view-id="pdp_details_like"><img
-              src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-like.svg"></div>
-            <div class="icon-wrap shareFB" data-view-id="pdp_details_share"><img
-              src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-account-social.svg"></div>
+        <div class="brand flex-column">
+          <span class="brand-and-author"
+            ><h4>
+              Thương hiệu:
+              <span
+                href="/thuong-hieu/blueup.html"
+                data-view-id="pdp_details_view_brand"
+                class="font-weight-bold"
+                > Blueup</span
+              >
+            </h4></span
+          >
+          <div class="bestseller">
+            <p>
+              <span>Đứng thứ 2 trong </span>
+              <a
+                data-view-id="pdp_details_view_bestseller"
+                href="/bestsellers-month/flashcard-tieng-anh-toeic/c6264"
+                >Top 1000
+                <!-- -->sản phẩm được yêu thích nhất<!-- --></a
+              >
+            </p>
+          </div>
+          <div class="style__StyledProductAction-sc-1b8sgmz-0 dafovQ d-flex flex-row my-3">
+            <div class="icon-wrap" data-view-id="pdp_details_like mr-3 pr-3">
+              <img
+                src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-like.svg"
+              />
+            </div>
+            <div class="icon-wrap shareFB" data-view-id="pdp_details_share">
+              <img
+                src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-account-social.svg"
+              />
+            </div>
           </div>
         </div>
-        <h1 class="title">
-          <div class="icon-inline-with-title"><a href="#" data-view-id="pdp_details_title_tikinow_logo"><img
-            src="https://salt.tikicdn.com/ts/upload/e9/68/49/50ac83c9f95bd008cc840e638f0f5791.png" alt="tikinow"></a>
-          </div>
-          Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ
+        <h1 class="title font-weight-bold">
+          {{(detailBook$ | async)?.book_name}}
         </h1>
-        <div class="indexstyle__Review-qd1z2k-3 djIasU"><p style="font-size:16px"
-                                                           class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"><i
-          class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i
-          class="icomoon icomoon-star"></i><span class="half-star"><i class="icomoon icomoon-star"></i><i
-          class="icomoon icomoon-star"></i></span></p><a class="number" data-view-id="pdp_main_view_review">(Xem 195
-          đánh giá)</a></div>
+        <div class="indexstyle__Review-qd1z2k-3 djIasU">
+          <p style="font-size: 16px" class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ">
+            <i class="icomoon icomoon-star"></i
+            ><i class="icomoon icomoon-star"></i
+            ><i class="icomoon icomoon-star"></i
+            ><i class="icomoon icomoon-star"></i
+            ><span class="half-star"
+              ><i class="icomoon icomoon-star"></i
+              ><i class="icomoon icomoon-star"></i
+            ></span>
+          </p>
+          <a class="number" data-view-id="pdp_main_view_review"
+            >(Xem {{(detailBook$ | async)?.rate_count}} đánh giá)</a
+          >
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="list-inline rating-list"
+                *ngFor="let star of stars" style="display: inline-block" >
+              <li (click)="countStar(star)"
+                  [ngClass]="{'selected': (star <= selectedStar)}">
+                <i class="fa fa-star"></i>
+              </li>
+            </ul>
+          </div>
+          <div class="btn btn-outline-app" style="padding-left: 15px; margin-left: 15px" (click)="rateStar()" >Đánh giá</div>
+        </div>
       </div>
       <div class="body">
         <div class="summary">
           <div class="left">
-            <div class="price-and-icon ">
+            <div class="price-and-icon">
               <div class="style__StyledProductPrice-sc-15mbtqi-0 hJdJUx">
-                <div class="product-price"><span class="product-price__current-price">130.100 ₫</span><span
-                  class="product-price__list-price">218.000 ₫</span><span
-                  class="product-price__discount-rate">-40%</span></div>
+                <div class="product-price">
+                  <span class="product-price__current-price">{{(detailBook$ | async)?.retail_price | vnd}}</span
+                  ><span class="product-price__list-price">{{(detailBook$ | async)?.retail_price * 1.3| vnd}}</span
+                  ><span class="product-price__discount-rate">-30%</span>
+                </div>
               </div>
               <div class="style-sc-11ucdwk-0 jbwqZc">
-                <div class="item"><img class="icon"
-                                       src="https://salt.tikicdn.com/ts/upload/2e/da/c9/4b9c0150392c753ccb65b2595500e9d6.png"
-                                       width="130" height="24"><img class="view-more"
-                                                                    src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/question.svg"><a
-                  data-view-index="0" data-view-id="pdp_minor_badge" class="view-more-link"
-                  href="https://hotro.tiki.vn/hc/vi/sections/900000370543-Ch%C6%B0%C6%A1ng-tr%C3%ACnh-R%E1%BA%BB-h%C6%A1n-ho%C3%A0n-ti%E1%BB%81n-"
-                  target="_blank"></a></div>
-                <div class="item"><img class="icon"
-                                       src="https://salt.tikicdn.com/ts/upload/7b/17/f7/4860983e93ea3c264ae0d932c58ec4f7.png"
-                                       width="48" height="24"><span>Hoàn tiền 15% tối đa 600k/tháng</span><img
-                  class="view-more"
-                  src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/question.svg"><a
-                  data-view-index="1" data-view-id="pdp_minor_badge" data-view-label="Hoàn tiền 15% tối đa 600k/tháng"
-                  class="view-more-link" href="https://tiki.vn/chuong-trinh/mo-the-tikicard?src=pdp_badge"
-                  target="_blank"></a></div>
+                <div class="item">
+                  <img
+                    class="icon"
+                    src="https://salt.tikicdn.com/ts/upload/2e/da/c9/4b9c0150392c753ccb65b2595500e9d6.png"
+                    width="130"
+                    height="24"
+                  /><img
+                    class="view-more"
+                    src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/question.svg"
+                  /><a
+                    data-view-index="0"
+                    data-view-id="pdp_minor_badge"
+                    class="view-more-link"
+                    href="https://hotro.tiki.vn/hc/vi/sections/900000370543-Ch%C6%B0%C6%A1ng-tr%C3%ACnh-R%E1%BA%BB-h%C6%A1n-ho%C3%A0n-ti%E1%BB%81n-"
+                    target="_blank"
+                  ></a>
+                </div>
+                <div class="item">
+                  <span>Hoàn tiền 15% tối đa 600k/tháng</span
+                  ><img
+                    class="view-more"
+                    src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/question.svg"
+                  /><a
+                    data-view-index="1"
+                    data-view-id="pdp_minor_badge"
+                    data-view-label="Hoàn tiền 15% tối đa 600k/tháng"
+                    class="view-more-link"
+                    href="https://tiki.vn/chuong-trinh/mo-the-tikicard?src=pdp_badge"
+                    target="_blank"
+                  ></a>
+                </div>
               </div>
             </div>
-            <div class="style__StyledDeliveryZone-sc-186hj1w-0 etdfsC delivery-zone">
-              <div data-view-id="pdp_main_change_address" class="delivery-zone__heading">
-                <div><span>Giao đến </span><span class="address">Q. Bình Thạnh, P. 19, Hồ Chí Minh</span> - <span
-                  class="address-change">ĐỔI ĐỊA CHỈ</span></div>
+            <div class="style__StyledProductPromotionBlock-sc-18dba87-0 dEZLTy"><div class="style__StyledCoupon-sc-8bmb3t-0 eLHrRT coupon" data-view-id="pdp_main_discount_coupon"><div class="coupon__text">1 Mã Giảm Giá</div><div class="coupon__tags"><div class="coupon__tag">Giảm 10%</div><img class="view-more-coupon" src="https://salt.tikicdn.com/ts/upload/63/43/b6/472934eece91531f0855b86a00a3b1a1.png"></div></div></div>
+            <div
+              class="style__StyledDeliveryZone-sc-186hj1w-0 etdfsC delivery-zone"
+            >
+              <div
+                data-view-id="pdp_main_change_address"
+                class="delivery-zone__heading"
+              >
+                <div>
+                  <span>Giao đến </span
+                  ><span class="address"
+                    >Q. Bình Thạnh, P. 19, Hồ Chí Minh</span
+                  >
+                  - <span class="address-change">ĐỔI ĐỊA CHỈ</span>
+                </div>
               </div>
               <div class="delivery-zone__inner">
-                <div class="style__StyledShippingInfo-sc-186hj1w-1 bsIxMC shipping-info">
+                <div
+                  class="style__StyledShippingInfo-sc-186hj1w-1 bsIxMC shipping-info"
+                >
                   <div class="shipping-info__inner disable-srcoll">
-                    <div class="shipping-info__item ">
-                      <div class="shipping-info__heading"><img
-                        src="https://salt.tikicdn.com/ts/upload/72/5e/10/8c1938c984cbd6cf2b73731d94ff01bf.png" alt=""
-                        class="shipping-info__heading-icon">
-                        <div class="shipping-info__heading-text">Giao Ngay 2H - 3H</div>
-                      </div>
-                      <div class="shipping-info__highlight">Trước 16:00 hôm nay (26/04)</div>
-                      <span><span class="shipping-info__fee-label">Vận chuyển:</span><span class="shipping-info__fee ">39.000 ₫</span><br></span>
-                    </div>
-                    <div class="shipping-info__item ">
+                    <div class="shipping-info__item">
                       <div class="shipping-info__heading">
-                        <div class="shipping-info__heading-text">Giao tiêu chuẩn</div>
+                        <h4 class="shipping-info__heading-text">
+                          Giao Ngay 2H - 3H
+                        </h4>
                       </div>
-                      <div class="shipping-info__highlight">Thứ 3, ngày 27 tháng 04</div>
-                      <span><span class="shipping-info__fee-label">Vận chuyển:</span><span class="shipping-info__fee ">14.000 ₫</span><br></span>
+                      <h4 class="shipping-info__highlight">
+                        Trước 16:00 hôm nay (26/04)
+                      </h4>
+                      <h4
+                        ><span class="shipping-info__fee-label"
+                          >Vận chuyển:</span
+                        ><span class="shipping-info__fee">39.000 ₫</span><br
+                      /></h4>
                     </div>
+                    <h4 class="shipping-info__item">
+                      <h4 class="shipping-info__heading">
+                        <h4 class="shipping-info__heading-text">
+                          Giao tiêu chuẩn
+                        </h4>
+                      </h4>
+                      <h4 class="shipping-info__highlight">
+                        Thứ 3, ngày 27 tháng 04
+                      </h4>
+                      <h4
+                        ><span class="shipping-info__fee-label"
+                          >Vận chuyển:</span
+                        ><span class="shipping-info__fee">14.000 ₫</span><br
+                      /></h4>
+                    </h4>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="DeliveryZone__StyledDeliveryZoneEmpty-sc-1maxvle-0 lijGxt"><div class="inner">Bạn hãy <span>NHẬP ĐỊA CHỈ</span> nhận hàng để được dự báo thời gian &amp; chi phí giao hàng một cách chính xác nhất.</div></div>
             <div class="indexstyle__AddToCart-qd1z2k-6 gyIkFE add-to-cart">
               <div class="qty-and-message">
-                <div class="QualityInput__Wrapper-sc-15mlmyf-0 iyaBQp"><p class="label">Số Lượng</p>
-                  <div class="group-input">
-                    <button class="disable"><img
-                      src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg">
-                    </button>
-                    <input type="text" value="1" class="input">
-                    <button><img
-                      src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"></button>
+                <div class="QualityInput__Wrapper-sc-15mlmyf-0 iyaBQp">
+                  <p class="label">Số Lượng: </p>
+                  <div class="d-flex align-items-center line-quantity">
+                    <div
+                      role="group"
+                      class="btn-group border group-quantity w-100 h-100"
+                    >
+                      <button
+                        type="button"
+                        class="btn btn-sm border-0 bg-transparent"
+                        (click)="DecreaseQuantity()"
+                      >
+                        <i class="fa fa-minus text-white"></i>
+                      </button>
+                      <input
+                        [(ngModel)]="quantity"
+                        type="number"
+                        class="number-input text-center editable"
+                        style="width: 8rem"
+                        (ngModelChange)="ChangeQuantity($event)"
+                        min="0"
+                      />
+                      <button
+                        type="button"
+                        class="btn btn-sm border-0 bg-transparent"
+                        (click)="IncreaseQuantity()"
+                      >
+                        <i class="fa fa-plus text-white"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="group-button">
-                <button class="btn btn-add-to-cart" data-view-id="pdp_add_to_cart_button">Chọn mua</button>
+                <button
+                  class="btn btn-add-to-cart"
+                  style="
+                    width: 200px;
+                    height: 50px;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                  "
+                  data-view-id="pdp_add_to_cart_button"
+                  (click)="addToChart()"
+                >
+                  Chọn mua
+                </button>
               </div>
             </div>
           </div>
@@ -164,263 +317,546 @@
 </div>
 
 <div class="Container-itwfbd-0 jFkAwY">
-  <div class="ProductSlide__Wrapper-sc-18ee076-0 bwVgyp"><h4 class="BlockTitle__Wrapper-qpz3fo-0 jHTCJn">Sản Phẩm Tương
-    Tự</h4>
+  <div class="ProductSlide__Wrapper-sc-18ee076-0 bwVgyp">
+    <h4 class="BlockTitle__Wrapper-qpz3fo-0 jHTCJn">Sản Phẩm Tương Tự</h4>
     <div class="slider-container">
       <div class="Slider__Wrapper-pmvh7n-0 fNfByj">
-        <div class="slick-slider slick-initialized" dir="ltr"><a data-role="none"
-                                                                 class="slick-arrow slick-prev slick-disabled"
-                                                                 style="display: block;"><span class="icon"><i
-          class="tikicon icon-arrow-back"></i></span></a>
+        <div class="slick-slider slick-initialized" dir="ltr">
+          <a
+            data-role="none"
+            class="slick-arrow slick-prev slick-disabled"
+            style="display: block"
+            ><span class="icon"><i class="tikicon icon-arrow-back"></i></span
+          ></a>
           <div class="slick-list">
-            <div class="slick-track" style="width: 4216px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
-              <div data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false"
-                   style="outline: none; width: 248px;">
+            <div
+              class="slick-track"
+              style="
+                width: 4216px;
+                opacity: 1;
+                transform: translate3d(0px, 0px, 0px);
+              "
+            >
+              <div
+                data-index="0"
+                class="slick-slide slick-active slick-current"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 248px"
+              >
                 <div>
-                  <div data-view-id="pdp_similar_products_item"
-                       title="Hộp Flash Cards - 600 Essential Words For The TOEIC" rel=""
-                       class="Item__Wrapper-m1oy8w-0 hmrZzB"><a
-                    href="https://tiki.vn/hop-flash-cards-600-essential-words-for-the-toeic-p588423.html?spid=22012788">
-                    <div class="Item__Picture-m1oy8w-1 evEsoa"><img
-                      src="https://salt.tikicdn.com/cache/280x280/media/catalog/product//6/0/600-essential-words-for-the-toeic.u634.d20160825.t090741.567650_1.jpg"
-                      alt="Hộp Flash Cards - 600 Essential Words For The TOEIC"
-                      class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr" style="width: auto; height: 100%; opacity: 1;">
-                    </div>
-                    <div class="title " style="max-height: 40px; height: auto;">Hộp Flash Cards - 600 Essential Words
-                      For The TOEIC
-                    </div>
-                    <div class="bottom" style="flex: unset;">
-                      <div class="Item__Review-m1oy8w-3 ibucdt"><p class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                                                                   style="font-size: 13px;"><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><span class="half-star"><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i></span></p>
-                        <p class="number">(9 nhận xét)</p></div>
-                    </div>
-                    <p class="price ">91.800 ₫<span class="percent ">-24%</span><span class="original ">120.000 ₫</span>
-                    </p></a></div>
+                  <div
+                    data-view-id="pdp_similar_products_item"
+                    title="Hộp Flash Cards - 600 Essential Words For The TOEIC"
+                    rel=""
+                    class="Item__Wrapper-m1oy8w-0 hmrZzB"
+                  >
+                    <a
+                      href="https://tiki.vn/hop-flash-cards-600-essential-words-for-the-toeic-p588423.html?spid=22012788"
+                    >
+                      <div class="Item__Picture-m1oy8w-1 evEsoa">
+                        <img
+                          src="https://salt.tikicdn.com/cache/280x280/media/catalog/product//6/0/600-essential-words-for-the-toeic.u634.d20160825.t090741.567650_1.jpg"
+                          alt="Hộp Flash Cards - 600 Essential Words For The TOEIC"
+                          class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
+                          style="width: auto; height: 100%; opacity: 1"
+                        />
+                      </div>
+                      <div class="title" style="max-height: 40px; height: auto">
+                        Hộp Flash Cards - 600 Essential Words For The TOEIC
+                      </div>
+                      <div class="bottom" style="flex: unset">
+                        <div class="Item__Review-m1oy8w-3 ibucdt">
+                          <p
+                            class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
+                            style="font-size: 13px"
+                          >
+                            <i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><span class="half-star"
+                              ><i class="icomoon icomoon-star"></i
+                              ><i class="icomoon icomoon-star"></i
+                            ></span>
+                          </p>
+                          <p class="number">(9 nhận xét)</p>
+                        </div>
+                      </div>
+                      <p class="price">
+                        91.800 ₫<span class="percent">-24%</span
+                        ><span class="original">120.000 ₫</span>
+                      </p></a
+                    >
+                  </div>
                 </div>
               </div>
-              <div data-index="1" class="slick-slide slick-active" tabindex="-1" aria-hidden="false"
-                   style="outline: none; width: 248px;">
+              <div
+                data-index="1"
+                class="slick-slide slick-active"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 248px"
+              >
                 <div>
-                  <div data-view-id="pdp_similar_products_item"
-                       title="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)" rel=""
-                       class="Item__Wrapper-m1oy8w-0 hmrZzB"><a
-                    href="https://tiki.vn/bo-katchup-flashcard-toeic-high-quality-trang-01t-p3019767.html?spid=14844279">
-                    <div class="Item__Picture-m1oy8w-1 evEsoa"><img
-                      src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/08085b485017aa74beb3ad6d1ceb15c6.jpg"
-                      alt="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)"
-                      class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr" style="width: auto; height: 100%; opacity: 1;">
-                    </div>
-                    <div class="title " style="max-height: 40px; height: auto;">Bộ KatchUp Flashcard TOEIC - High
-                      Quality - Trắng (01T)
-                    </div>
-                    <div class="bottom" style="flex: unset;">
-                      <div class="Item__Review-m1oy8w-3 ibucdt"><p class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                                                                   style="font-size: 13px;"><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i
-                        class="icomoon icomoon-star"></i></p>
-                        <p class="number">(2 nhận xét)</p></div>
-                    </div>
-                    <p class="price ">225.000 ₫<span class="percent ">-25%</span><span
-                      class="original ">300.000 ₫</span></p></a></div>
+                  <div
+                    data-view-id="pdp_similar_products_item"
+                    title="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)"
+                    rel=""
+                    class="Item__Wrapper-m1oy8w-0 hmrZzB"
+                  >
+                    <a
+                      href="https://tiki.vn/bo-katchup-flashcard-toeic-high-quality-trang-01t-p3019767.html?spid=14844279"
+                    >
+                      <div class="Item__Picture-m1oy8w-1 evEsoa">
+                        <img
+                          src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/08085b485017aa74beb3ad6d1ceb15c6.jpg"
+                          alt="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)"
+                          class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
+                          style="width: auto; height: 100%; opacity: 1"
+                        />
+                      </div>
+                      <div class="title" style="max-height: 40px; height: auto">
+                        Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)
+                      </div>
+                      <div class="bottom" style="flex: unset">
+                        <div class="Item__Review-m1oy8w-3 ibucdt">
+                          <p
+                            class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
+                            style="font-size: 13px"
+                          >
+                            <i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i>
+                          </p>
+                          <p class="number">(2 nhận xét)</p>
+                        </div>
+                      </div>
+                      <p class="price">
+                        225.000 ₫<span class="percent">-25%</span
+                        ><span class="original">300.000 ₫</span>
+                      </p></a
+                    >
+                  </div>
                 </div>
               </div>
-              <div data-index="2" class="slick-slide slick-active" tabindex="-1" aria-hidden="false"
-                   style="outline: none; width: 248px;">
+              <div
+                data-index="2"
+                class="slick-slide slick-active"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 248px"
+              >
                 <div>
-                  <div data-view-id="pdp_similar_products_item" title="Bộ KatchUp Flashcard TOEIC - Standard (01S)"
-                       rel="" class="Item__Wrapper-m1oy8w-0 hmrZzB"><a
-                    href="https://tiki.vn/bo-katchup-flashcard-toeic-standard-01s-p3019765.html?spid=14844273">
-                    <div class="Item__Picture-m1oy8w-1 evEsoa"><img
-                      src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/e6b6f59a7f6224c7354932a31d9c3052.jpg"
-                      alt="Bộ KatchUp Flashcard TOEIC - Standard (01S)"
-                      class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr" style="width: auto; height: 100%; opacity: 1;">
-                    </div>
-                    <div class="title " style="max-height: 40px; height: auto;">Bộ KatchUp Flashcard TOEIC - Standard
-                      (01S)
-                    </div>
-                    <div class="bottom" style="flex: unset;">
-                      <div class="Item__Review-m1oy8w-3 ibucdt"><p class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                                                                   style="font-size: 13px;"><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i
-                        class="icomoon icomoon-star disable"></i></p>
-                        <p class="number">(4 nhận xét)</p></div>
-                    </div>
-                    <p class="price ">180.000 ₫<span class="percent ">-25%</span><span
-                      class="original ">240.000 ₫</span></p></a></div>
+                  <div
+                    data-view-id="pdp_similar_products_item"
+                    title="Bộ KatchUp Flashcard TOEIC - Standard (01S)"
+                    rel=""
+                    class="Item__Wrapper-m1oy8w-0 hmrZzB"
+                  >
+                    <a
+                      href="https://tiki.vn/bo-katchup-flashcard-toeic-standard-01s-p3019765.html?spid=14844273"
+                    >
+                      <div class="Item__Picture-m1oy8w-1 evEsoa">
+                        <img
+                          src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/e6b6f59a7f6224c7354932a31d9c3052.jpg"
+                          alt="Bộ KatchUp Flashcard TOEIC - Standard (01S)"
+                          class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
+                          style="width: auto; height: 100%; opacity: 1"
+                        />
+                      </div>
+                      <div class="title" style="max-height: 40px; height: auto">
+                        Bộ KatchUp Flashcard TOEIC - Standard (01S)
+                      </div>
+                      <div class="bottom" style="flex: unset">
+                        <div class="Item__Review-m1oy8w-3 ibucdt">
+                          <p
+                            class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
+                            style="font-size: 13px"
+                          >
+                            <i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star disable"></i>
+                          </p>
+                          <p class="number">(4 nhận xét)</p>
+                        </div>
+                      </div>
+                      <p class="price">
+                        180.000 ₫<span class="percent">-25%</span
+                        ><span class="original">240.000 ₫</span>
+                      </p></a
+                    >
+                  </div>
                 </div>
               </div>
-              <div data-index="3" class="slick-slide slick-active" tabindex="-1" aria-hidden="false"
-                   style="outline: none; width: 248px;">
+              <div
+                data-index="3"
+                class="slick-slide slick-active"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 248px"
+              >
                 <div>
-                  <div data-view-id="pdp_similar_products_item" title="Bộ KatchUp Flashcard TOEIC - Best Quality (01B)"
-                       rel="" class="Item__Wrapper-m1oy8w-0 hmrZzB"><a
-                    href="https://tiki.vn/bo-katchup-flashcard-toeic-best-quality-01b-p3019769.html?spid=14844283">
-                    <div class="Item__Picture-m1oy8w-1 evEsoa"><img
-                      src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/e7e180f27a42007706e11fca72d072dd.jpg"
-                      alt="Bộ KatchUp Flashcard TOEIC - Best Quality (01B)"
-                      class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr" style="width: auto; height: 100%; opacity: 1;">
-                    </div>
-                    <div class="title " style="max-height: 40px; height: auto;">Bộ KatchUp Flashcard TOEIC - Best
-                      Quality (01B)
-                    </div>
-                    <div class="bottom" style="flex: unset;">
-                      <div class="Item__Review-m1oy8w-3 ibucdt"><p class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                                                                   style="font-size: 13px;"><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i><span class="half-star"><i
-                        class="icomoon icomoon-star"></i><i class="icomoon icomoon-star"></i></span></p>
-                        <p class="number">(7 nhận xét)</p></div>
-                    </div>
-                    <p class="price ">270.000 ₫<span class="percent ">-25%</span><span
-                      class="original ">360.000 ₫</span></p></a></div>
+                  <div
+                    data-view-id="pdp_similar_products_item"
+                    title="Bộ KatchUp Flashcard TOEIC - Best Quality (01B)"
+                    rel=""
+                    class="Item__Wrapper-m1oy8w-0 hmrZzB"
+                  >
+                    <a
+                      href="https://tiki.vn/bo-katchup-flashcard-toeic-best-quality-01b-p3019769.html?spid=14844283"
+                    >
+                      <div class="Item__Picture-m1oy8w-1 evEsoa">
+                        <img
+                          src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/e7e180f27a42007706e11fca72d072dd.jpg"
+                          alt="Bộ KatchUp Flashcard TOEIC - Best Quality (01B)"
+                          class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
+                          style="width: auto; height: 100%; opacity: 1"
+                        />
+                      </div>
+                      <div class="title" style="max-height: 40px; height: auto">
+                        Bộ KatchUp Flashcard TOEIC - Best Quality (01B)
+                      </div>
+                      <div class="bottom" style="flex: unset">
+                        <div class="Item__Review-m1oy8w-3 ibucdt">
+                          <p
+                            class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
+                            style="font-size: 13px"
+                          >
+                            <i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><i class="icomoon icomoon-star"></i
+                            ><span class="half-star"
+                              ><i class="icomoon icomoon-star"></i
+                              ><i class="icomoon icomoon-star"></i
+                            ></span>
+                          </p>
+                          <p class="number">(7 nhận xét)</p>
+                        </div>
+                      </div>
+                      <p class="price">
+                        270.000 ₫<span class="percent">-25%</span
+                        ><span class="original">360.000 ₫</span>
+                      </p></a
+                    >
+                  </div>
                 </div>
               </div>
-              <div data-index="4" class="slick-slide slick-active" tabindex="-1" aria-hidden="false"
-                   style="outline: none; width: 248px;">
+              <div
+                data-index="4"
+                class="slick-slide slick-active"
+                tabindex="-1"
+                aria-hidden="false"
+                style="outline: none; width: 248px"
+              >
                 <div>
-                  <div data-view-id="pdp_similar_products_item"
-                       title="600 Essential Flashcard For Ielts Blue Up (Phần 1)" rel=""
-                       class="Item__Wrapper-m1oy8w-0 hmrZzB"><a
-                    href="https://tiki.vn/600-essential-flashcard-for-ielts-blue-up-phan-1-p55067725.html?spid=89920638">
-                    <div class="Item__Picture-m1oy8w-1 evEsoa"><img
-                      src="https://salt.tikicdn.com/cache/280x280/ts/product/da/00/b3/5b0762b7a78d3dcd531d4e3a10ec055b.jpg"
-                      alt="600 Essential Flashcard For Ielts Blue Up (Phần 1)"
-                      class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr" style="width: auto; height: 100%; opacity: 1;">
-                    </div>
-                    <div class="title " style="max-height: 40px; height: auto;">600 Essential Flashcard For Ielts Blue
-                      Up (Phần 1)
-                    </div>
-                    <div class="bottom" style="flex: unset;">
-                      <div class="Item__Review-m1oy8w-3 ibucdt"></div>
-                    </div>
-                    <p class="price ">211.650 ₫<span class="percent ">-15%</span><span
-                      class="original ">249.000 ₫</span></p></a></div>
+                  <div
+                    data-view-id="pdp_similar_products_item"
+                    title="600 Essential Flashcard For Ielts Blue Up (Phần 1)"
+                    rel=""
+                    class="Item__Wrapper-m1oy8w-0 hmrZzB"
+                  >
+                    <a
+                      href="https://tiki.vn/600-essential-flashcard-for-ielts-blue-up-phan-1-p55067725.html?spid=89920638"
+                    >
+                      <div class="Item__Picture-m1oy8w-1 evEsoa">
+                        <img
+                          src="https://salt.tikicdn.com/cache/280x280/ts/product/da/00/b3/5b0762b7a78d3dcd531d4e3a10ec055b.jpg"
+                          alt="600 Essential Flashcard For Ielts Blue Up (Phần 1)"
+                          class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
+                          style="width: auto; height: 100%; opacity: 1"
+                        />
+                      </div>
+                      <div class="title" style="max-height: 40px; height: auto">
+                        600 Essential Flashcard For Ielts Blue Up (Phần 1)
+                      </div>
+                      <div class="bottom" style="flex: unset">
+                        <div class="Item__Review-m1oy8w-3 ibucdt"></div>
+                      </div>
+                      <p class="price">
+                        211.650 ₫<span class="percent">-15%</span
+                        ><span class="original">249.000 ₫</span>
+                      </p></a
+                    >
+                  </div>
                 </div>
               </div>
-              <div data-index="5" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="6" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="7" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="8" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="9" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="10" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="11" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="12" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="13" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="14" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="15" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
-              <div data-index="16" class="slick-slide" tabindex="-1" aria-hidden="true"
-                   style="outline: none; width: 248px;"></div>
+              <div
+                data-index="5"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="6"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="7"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="8"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="9"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="10"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="11"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="12"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="13"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="14"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="15"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
+              <div
+                data-index="16"
+                class="slick-slide"
+                tabindex="-1"
+                aria-hidden="true"
+                style="outline: none; width: 248px"
+              ></div>
             </div>
           </div>
-          <a data-role="none" class="slick-arrow slick-next" style="display: block;"><span class="icon"><i
-            class="tikicon icon-arrow-back"></i></span></a></div>
+          <a
+            data-role="none"
+            class="slick-arrow slick-next"
+            style="display: block"
+            ><span class="icon"><i class="tikicon icon-arrow-back"></i></span
+          ></a>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <div class="Container-itwfbd-0 jFkAwY">
   <div class="ProductDescription__Wrapper-fuzaih-0 iVoMSb">
-    <div class="left"><h4 class="BlockTitle__Wrapper-qpz3fo-0 jHTCJn">Thông tin chi tiết</h4>
+    <div class="left">
+      <h4 class="BlockTitle__Wrapper-qpz3fo-0 jHTCJn">Thông tin chi tiết</h4>
       <div class="group">
         <div class="content has-table">
           <table>
             <tbody>
-            <tr>
-              <td>Thương hiệu</td>
-              <td>Blueup</td>
-            </tr>
-            <tr>
-              <td>Xuất xứ</td>
-              <td>Việt Nam</td>
-            </tr>
-            <tr>
-              <td>Kích thước</td>
-              <td>9 x 12 cm</td>
-            </tr>
-            <tr>
-              <td>SKU</td>
-              <td>7704612462135</td>
-            </tr>
+              <tr>
+                <td>Thương hiệu</td>
+                <td>Blueup</td>
+              </tr>
+              <tr>
+                <td>Xuất xứ</td>
+                <td>Việt Nam</td>
+              </tr>
+              <tr>
+                <td>Kích thước</td>
+                <td>9 x 12 cm</td>
+              </tr>
+              <tr>
+                <td>SKU</td>
+                <td>7704612462135</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div class="group"><h4 class="BlockTitle__Wrapper-qpz3fo-0 jHTCJn">MÔ TẢ SẢN PHẨM</h4>
+      <div class="group">
+        <h4 class="BlockTitle__Wrapper-qpz3fo-0 jHTCJn">MÔ TẢ SẢN PHẨM</h4>
         <div class="content">
           <div class="ToggleContent__Wrapper-sc-1hm81e2-1 iGyNLs">
             <div class="ToggleContent__View-sc-1hm81e2-0 iDwhRg">
-              <div><p style="text-align: justify;"><span style="font-size: medium; color: #088ab7;"><strong>Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ</strong></span>
-              </p>
-                <p style="text-align: justify;"><strong>*** Có phải từ vựng là ác mộng của bạn?</strong></p>
-                <p style="text-align: justify;">+ Bạn học không nổi hằng trăm từ vựng TOEIC để thi</p>
-                <p style="text-align: justify;">+ Bạn quên các từ vựng vừa học chỉ sau một thời gian ngắn</p>
-                <p style="text-align: justify;">+ Bạn không có thời gian học từ vựng vì quá bận rộn</p>
-                <p style="text-align: justify;">+ Bạn thử mọi cách: từ điển, học gạo... vẫn không hiệu quả</p>
-                <p style="text-align: justify;">+ Học từ vựng quá khô khan, nhàm chán và buồn ngủ</p>
-                <p><img style="display: block; margin-left: auto; margin-right: auto;"
-                        title="Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ "
-                        src="https://tikicdn.com/media/catalog/product/7/7/7703391591814-1---copy-u2683-d20160709-t085119.u634.d20161011.t134215.383843.jpg"
-                        alt="Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ " width="400" height="400"></p>
-                <p style="text-align: justify;"><strong>*** Flashcard Blueup là giải pháp tối ưu cho bạn. Bởi
-                  vì:</strong></p>
-                <p style="text-align: justify;">1. Bạn sẽ <strong>học rất nhanh</strong>. Phương pháp flashcard đã được
-                  khoa học chứng minh, bạn sẽ thuộc đến 600 từ vựng trong 1 tháng và không phải lo lắng về từ vựng TOEIC
-                  nữa.</p>
-                <p style="text-align: justify;">2. <strong>Ghi nhớ mãi mãi. </strong>Nhờ vào mỗi từ vựng được minh họa
-                  bằng hình ảnh sinh động. Hình ảnh giúp não bộ ghi nhớ vượt trội và thậm chí sau thời gian dài, bạn vẫn
-                  nhớ được từ vựng đã học.</p>
-                <p style="text-align: justify;">3. <strong>Học mọi lúc mọi nơi</strong>. Thiết kế nhỏ gọn, tiện dụng nên
-                  bạn có thể mang theo và học mọi lúc. Giúp bạn tiết kiệm thời gian rãnh.</p>
-                <p style="text-align: justify;">4.<strong> Nội dung chất lượng</strong>. Được biên soạn kỹ lưỡng từ tài
-                  liệu "Barron's 600 essential words for the TOEIC". Bộ tài liệu danh tiếng và chính thống luyện thi
-                  TOEIC. Được kiểm duyệt bởi các chuyên gia trình độ cao và NXB Trẻ.</p>
-                <p style="text-align: justify;"><strong>*** Sản phẩm Flashcard Blueup Toeic phần 1 gồm những
-                  gì?</strong></p>
-                <p style="text-align: justify;">1. 600 thẻ từ vựng với từ tiếng Anh, ví dụ, nghĩa tiếng Việt và từ đồng
-                  nghĩa nếu có.</p>
-                <p style="text-align: justify;">2. Mỗi từ vựng đều được minh họa bằng hình ảnh trực quan, dễ nhớ.</p>
-                <p style="text-align: justify;">3. Tặng kèm 50 flashcard trắng để bạn tự tạo nội dung.</p>
-                <p style="text-align: justify;">4.&nbsp;Tặng kèm miễn phí hệ thống học tập và kiểm tra online tại
-                  www.blueup.vn. Mã kích hoạt có trong sản phẩm.</p>
-                <p style="text-align: justify;">Hệ thống cho phép:</p>
-                <p style="text-align: justify;">a. Cài đặt kế hoạch học tập và theo dõi tiến độ học.</p>
-                <p style="text-align: justify;">b. Các bài kiểm tra thông minh được tạo dựa vào quá trình học của
-                  bạn.</p>
-                <p style="text-align: justify;">c. Hệ thống nhắc nhở học tập thông minh.</p>
-                <p style="text-align: justify;">d. Nghe phát âm chuẩn.</p>
-                <p style="text-align: justify;">e. Học thêm hơn 2000 từ gia đình và đồng nghĩa. Nghe phát âm chuẩn. Bổ
-                  sung vốn từ và dễ dàng sử dụng trong nhiều tình huống.</p>
-                <p style="text-align: justify;"><strong>*** Hãy mua sản phẩm ngay</strong></p>
-                <p style="text-align: justify;">+ Hàng nghìn người đã học và thấy được hiệu quả của flashcard<a
-                  href="https://tiki.vn/checkout/cart/add?product_id=189453&amp;coupon_code=978847742">.</a></p>
-                <p style="text-align: justify;">+ Có bạn đã từng học được gần 1.000 từ vựng/ tháng và nhớ rất lâu.</p>
-                <p style="text-align: justify;">+ Hãy học bằng flashcard để đạt kết quả vượt trội và không còn lo về từ
-                  vựng nữa.</p>
-                <p>Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Tuy nhiên tuỳ vào từng loại sản phẩm hoặc
-                  phương thức, địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng
-                  cồng kềnh, ...</p></div>
+              <div>
+                <p style="text-align: justify">
+                  <span style="font-size: medium; color: #088ab7"
+                    ><strong
+                      >Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn
+                      Bộ</strong
+                    ></span
+                  >
+                </p>
+                <p style="text-align: justify">
+                  <strong>*** Có phải từ vựng là ác mộng của bạn?</strong>
+                </p>
+                <p style="text-align: justify">
+                  + Bạn học không nổi hằng trăm từ vựng TOEIC để thi
+                </p>
+                <p style="text-align: justify">
+                  + Bạn quên các từ vựng vừa học chỉ sau một thời gian ngắn
+                </p>
+                <p style="text-align: justify">
+                  + Bạn không có thời gian học từ vựng vì quá bận rộn
+                </p>
+                <p style="text-align: justify">
+                  + Bạn thử mọi cách: từ điển, học gạo... vẫn không hiệu quả
+                </p>
+                <p style="text-align: justify">
+                  + Học từ vựng quá khô khan, nhàm chán và buồn ngủ
+                </p>
+                <p>
+                  <img
+                    style="
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                    "
+                    title="Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ "
+                    [src]="(detailBook$ | async)?.image"
+                    alt="Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn Bộ "
+                    width="400"
+                    height="400"
+                  />
+                </p>
+                <p style="text-align: justify">
+                  <strong
+                    >*** Flashcard Blueup là giải pháp tối ưu cho bạn. Bởi
+                    vì:</strong
+                  >
+                </p>
+                <p style="text-align: justify">
+                  1. Bạn sẽ <strong>học rất nhanh</strong>. Phương pháp
+                  flashcard đã được khoa học chứng minh, bạn sẽ thuộc đến 600 từ
+                  vựng trong 1 tháng và không phải lo lắng về từ vựng TOEIC nữa.
+                </p>
+                <p style="text-align: justify">
+                  2. <strong>Ghi nhớ mãi mãi. </strong>Nhờ vào mỗi từ vựng được
+                  minh họa bằng hình ảnh sinh động. Hình ảnh giúp não bộ ghi nhớ
+                  vượt trội và thậm chí sau thời gian dài, bạn vẫn nhớ được từ
+                  vựng đã học.
+                </p>
+                <p style="text-align: justify">
+                  3. <strong>Học mọi lúc mọi nơi</strong>. Thiết kế nhỏ gọn,
+                  tiện dụng nên bạn có thể mang theo và học mọi lúc. Giúp bạn
+                  tiết kiệm thời gian rãnh.
+                </p>
+                <p style="text-align: justify">
+                  4.<strong> Nội dung chất lượng</strong>. Được biên soạn kỹ
+                  lưỡng từ tài liệu "Barron's 600 essential words for the
+                  TOEIC". Bộ tài liệu danh tiếng và chính thống luyện thi TOEIC.
+                  Được kiểm duyệt bởi các chuyên gia trình độ cao và NXB Trẻ.
+                </p>
+                <p style="text-align: justify">
+                  <strong
+                    >*** Sản phẩm Flashcard Blueup Toeic phần 1 gồm những
+                    gì?</strong
+                  >
+                </p>
+                <p style="text-align: justify">
+                  1. 600 thẻ từ vựng với từ tiếng Anh, ví dụ, nghĩa tiếng Việt
+                  và từ đồng nghĩa nếu có.
+                </p>
+                <p style="text-align: justify">
+                  2. Mỗi từ vựng đều được minh họa bằng hình ảnh trực quan, dễ
+                  nhớ.
+                </p>
+                <p style="text-align: justify">
+                  3. Tặng kèm 50 flashcard trắng để bạn tự tạo nội dung.
+                </p>
+                <p style="text-align: justify">
+                  4.&nbsp;Tặng kèm miễn phí hệ thống học tập và kiểm tra online
+                  tại www.blueup.vn. Mã kích hoạt có trong sản phẩm.
+                </p>
+                <p style="text-align: justify">Hệ thống cho phép:</p>
+                <p style="text-align: justify">
+                  a. Cài đặt kế hoạch học tập và theo dõi tiến độ học.
+                </p>
+                <p style="text-align: justify">
+                  b. Các bài kiểm tra thông minh được tạo dựa vào quá trình học
+                  của bạn.
+                </p>
+                <p style="text-align: justify">
+                  c. Hệ thống nhắc nhở học tập thông minh.
+                </p>
+                <p style="text-align: justify">d. Nghe phát âm chuẩn.</p>
+                <p style="text-align: justify">
+                  e. Học thêm hơn 2000 từ gia đình và đồng nghĩa. Nghe phát âm
+                  chuẩn. Bổ sung vốn từ và dễ dàng sử dụng trong nhiều tình
+                  huống.
+                </p>
+                <p style="text-align: justify">
+                  <strong>*** Hãy mua sản phẩm ngay</strong>
+                </p>
+                <p style="text-align: justify">
+                  + Hàng nghìn người đã học và thấy được hiệu quả của
+                  flashcard<a
+                    href="https://tiki.vn/checkout/cart/add?product_id=189453&amp;coupon_code=978847742"
+                    >.</a
+                  >
+                </p>
+                <p style="text-align: justify">
+                  + Có bạn đã từng học được gần 1.000 từ vựng/ tháng và nhớ rất
+                  lâu.
+                </p>
+                <p style="text-align: justify">
+                  + Hãy học bằng flashcard để đạt kết quả vượt trội và không còn
+                  lo về từ vựng nữa.
+                </p>
+                <p>
+                  Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành.
+                  Tuy nhiên tuỳ vào từng loại sản phẩm hoặc phương thức, địa chỉ
+                  giao hàng mà có thể phát sinh thêm chi phí khác như phí vận
+                  chuyển, phụ phí hàng cồng kềnh, ...
+                </p>
+              </div>
               <div class="gradient"></div>
             </div>
-            <a class="btn-more" data-view-id="pdp_view_description_button">Xem Thêm Nội Dung</a></div>
+            <a class="btn-more" data-view-id="pdp_view_description_button"
+              >Xem Thêm Nội Dung</a
+            >
+          </div>
         </div>
       </div>
     </div>
-    <div class="right "></div>
+    <div class="right"></div>
   </div>
 </div>

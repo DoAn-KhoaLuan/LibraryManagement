@@ -37,4 +37,8 @@ export class ApiBookService {
   async getBookByID(req) {
     return await this.http.post(this.baseURL+"/admin/book-management/get-book-by-id",req).toPromise();
   }
+
+  async rateStar(req) {
+    return await this.http.post(this.baseURL+"/admin/book-management/rate-product",req).toPromise();
+  }
 }

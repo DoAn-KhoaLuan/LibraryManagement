@@ -12,6 +12,7 @@ import { DetailComponent } from './components/detail/detail.component';
 import {PipeModule} from "../../pipes/pipe/pipe.module";
 import {RatingModule} from "ng-starrating";
 import { SearchComponent } from './components/search/search.component';
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { SearchComponent } from './components/search/search.component';
     ShareComponentModule,
     FormsModule,
     PipeModule,
-    RatingModule
+    RatingModule,
   ],
   declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent],
   bootstrap:    [ BookStoreComponent, HomeComponent ]

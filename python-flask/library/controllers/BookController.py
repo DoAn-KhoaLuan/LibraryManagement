@@ -97,15 +97,14 @@ class RateBooktReq:
 @app.route('/admin/book-management/rate-product', methods=['POST'])
 def rateProduct():
     req= RateBooktReq(request.json)
-    rateProduct: models.Product = models.Product.query.get(req.id)
+    rateProduct = models.Books.query.get(req.id)
 
-    oldStar = rateProduct.rateStar
-    oldCount = rateProduct.rateCount
+    oldStar = rateProduct.rate_star
+    oldCount = rateProduct.rate_count
     newStar = req.star
-
     avgStar = ((oldStar * oldCount) + newStar) / (oldCount + 1)
-    rateProduct.rateStar = avgStar
-    rateProduct.rateCount = oldCount + 1
+    rateProduct.rate_star = avgStar
+    rateProduct.rate_count = oldCount + 1
 
     db.session.add(rateProduct);
     db.session.commit()

@@ -290,3 +290,20 @@ a {
   padding-bottom: 30px;
   background-color: rgb(239, 239, 239);
 }
+
+.rating-list li {
+  float: right;
+  color: #ddd;
+  padding: 10px 5px;
+
+}
+
+.rating-list li:hover,
+.rating-list li:hover ~ li, .rating-list li.selected {
+  color: #ffd700;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}
