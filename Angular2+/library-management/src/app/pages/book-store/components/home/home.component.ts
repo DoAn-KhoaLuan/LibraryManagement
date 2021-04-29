@@ -4,6 +4,7 @@ import {BookService} from "../../../../states/book-store/book.service";
 import {BookStore} from "../../../../states/book-store/book.store";
 import { StarRatingComponent } from 'ng-starrating';
 import {ActivatedRoute, Router} from "@angular/router";
+import {TelegramService} from '../../../../services/telegram.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,10 +18,12 @@ export class HomeComponent implements OnInit {
     private bookQuery: BookQuery,
     private bookService: BookService,
     private bookStore: BookStore,
-    private router: Router
+    private router: Router,
+    private telegramService: TelegramService,
   ) { }
 
   async ngOnInit() {
+    await this.telegramService.testMessage();
     await this.bookService.getBooks(this.bookQuery.getValue().filter_page);
   }
 
