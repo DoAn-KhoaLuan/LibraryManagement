@@ -1,5 +1,4 @@
 import smtplib
-from datetime import time
 
 from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
@@ -18,8 +17,8 @@ app.config['DEFAULT_PARSERS'] = [
     'flask.ext.api.parsers.FormParser',
     'flask.ext.api.parsers.MultiPartParser'
 ]
-socketio = SocketIO(app, cors_allowed_origins="*")
 db = SQLAlchemy(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 from library import controllers
 

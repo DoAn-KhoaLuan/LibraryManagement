@@ -104,14 +104,16 @@
 .header-dark .navbar .form-inline .search-field {
   display:inline-block;
   width:95%;
-  background:none;
   border:none;
   border-bottom:1px solid transparent;
   border-radius:0;
-  color:#ccc;
+  color:black;
   box-shadow:none;
-  color:inherit;
   transition:border-bottom-color 0.3s;
+}
+
+.search-field::placeholder {
+  color: black;
 }
 
 .form-inline{

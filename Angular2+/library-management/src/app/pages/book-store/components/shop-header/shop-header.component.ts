@@ -4,6 +4,7 @@ import { BookService } from '../../../../states/book-store/book.service';
 import { Router } from '@angular/router';
 import { BookStore } from '../../../../states/book-store/book.store';
 import {AccountQuery} from "../../../../states/account-store/account.query";
+import {AccountService} from "../../../../states/account-store/account.service";
 
 @Component({
   selector: 'app-shop-header',
@@ -13,12 +14,14 @@ import {AccountQuery} from "../../../../states/account-store/account.query";
 export class ShopHeaderComponent implements OnInit {
   categories$ = this.bookQuery.categories$;
   auth_info$ = this.auth.auth_info$
+  book_name = '';
   constructor(
     private bookQuery: BookQuery,
     private bookService: BookService,
     private router: Router,
     private bookStore: BookStore,
     private auth: AccountQuery,
+    private accountService: AccountService,
   ) {}
 
   ngOnInit(): void {
@@ -52,5 +55,39 @@ export class ShopHeaderComponent implements OnInit {
 
   goToLoginView() {
     this.router.navigateByUrl('/user/login');
+  }
+  logout() {
+    this.accountService.Logout()
+  }
+
+  async SearchBooks() {
+    if(!this.book_name ) {
+      return
+    }
+    const req = {
+      book_name: this.book_name,
+    }
+    let books = await this.bookService.searchBooks(req);
+    let book_view = this.bookStore.getValue().book_list_view;
+    if(books.books.length) {
+      this.bookStore.update({
+        book_list_view: {...book_view,
+          items: books.books,
+          has_next: false,
+          has_prev: false,
+          current_page: 1
+        },
+      })
+    } else {
+      this.bookStore.update({
+        book_list_view: {...book_view,
+          items: [],
+          has_next: false,
+          has_prev: false,
+          current_page: 1
+        },
+      })
+    }
+    this.router.navigateByUrl('/book-store/search');
   }
 }

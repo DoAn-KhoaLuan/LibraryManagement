@@ -151,9 +151,9 @@ def GetTopSellerInMonth():
     best_sellers_in_month_model_arr = RevenueRep.GetBestSellerInMonth()
     for best_seller in best_sellers_in_month_model_arr:
         total_quantity_of_each_book_dict = dict()
-        total_quantity_of_each_book_dict['order_amount'] = int(best_seller[0])
-        total_quantity_of_each_book_dict['employee'] = best_seller[1].serialize()
-        total_quantity_of_each_book_dict['total_revenue'] = int(best_seller[2])
+        total_quantity_of_each_book_dict['order_amount'] = int(best_seller[0]) if int(best_seller[0]) != None else None
+        total_quantity_of_each_book_dict['employee'] = best_seller[1].serialize() if best_seller[1] != None else None
+        total_quantity_of_each_book_dict['total_revenue'] = int(best_seller[2]) if int(best_seller[2]) != None else None
         best_sellers_in_month_arr.append(total_quantity_of_each_book_dict)
     res_best_sellers_in_month = dict({
         'label': 'best_sellers_in_month',

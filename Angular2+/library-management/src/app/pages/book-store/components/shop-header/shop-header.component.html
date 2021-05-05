@@ -1,6 +1,6 @@
 <div class="header-dark">
   <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-    <div class="container">
+    <div class="container-fluid app-flex">
       <a class="navbar-brand" href="#">Company Name</a
       ><button
         class="navbar-toggler"
@@ -10,7 +10,7 @@
         <span class="sr-only">Toggle navigation</span
         ><span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navcol-1">
+      <div class="collapse navbar-collapse" id="navcol-1" style="flex-grow: 0">
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a
@@ -32,27 +32,17 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline mr-auto" target="_self">
-          <div class="form-group">
-            <input
-              placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn"
-              class="form-control search-field"
-              type="search"
-              name="search"
-              id="search-field"
-            />
-            <label for="search-field"><i class="fa fa-search"></i></label>
-          </div>
-        </form>
+        <input [(ngModel)]="book_name" type="text" class="form-control rounded-pill p-4 mr-3" style="width: 480px" placeholder="Nhập tên sách bạn muốn tìm kiếm" />
+        <div class="btn-app rounded-pill font-weight-bold" style="background: none; margin-right: 5rem" (click)="SearchBooks()">Tìm kiếm</div>
         <div class="">
           <span class="material-icons"> account_circle </span>
           <span class="navbar-text ml-2 cursor-pointer" *ngIf="!((auth_info$ | async)?.user_info?.account?.role?.role_id == 3) " (click)="goToLoginView()">
             <div  class="login">Đăng nhập / </div>
           </span>
           <span (click)="goToRegisterView()" class="navbar-text cursor-pointer" *ngIf="((auth_info$ | async)?.user_info?.account?.role?.role_id == 2) || !(auth_info$ | async)?.user_info"><div class="login" >Đăng kí</div></span>
-          <span (click)="goToRegisterView()" class="navbar-text cursor-pointer" *ngIf="(auth_info$ | async)?.user_info?.account?.role?.role_id == 3"><div  class="login" >Đăng xuất</div></span>
+          <span (click)="logout()" class="navbar-text cursor-pointer" *ngIf="(auth_info$ | async)?.user_info?.account?.role?.role_id == 3"><div  class="login" >Đăng xuất</div></span>
         </div>
-        <div class="ml-3 cart-wrapper" (click)="goToCheckOut()">
+        <div class="ml-5 cart-wrapper" (click)="goToCheckOut()">
           <div class="shopping_cart" role="button" href="#">
             <span class="material-icons"> shopping_cart </span>
             Giỏ hàng

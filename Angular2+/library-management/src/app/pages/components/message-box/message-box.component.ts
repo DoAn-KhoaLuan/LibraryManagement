@@ -53,7 +53,7 @@ export class MessageBoxComponent implements OnInit {
   }
 
    async GetConversationAndSetActive() {
-    if(this.accountQuery.getValue().auth_info.account.role.role_id == 3 && this.accountQuery.getValue().auth_info.account.role.role_name == "customer") {
+    if(this.accountQuery.getValue().auth_info.account.role.role_id == 3) {
       let req = {
         'customer_account_id': this.accountQuery.getValue().auth_info.account.account_id
       }

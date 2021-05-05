@@ -47,5 +47,5 @@
   <router-outlet></router-outlet>
 </div>
 <app-shop-footer></app-shop-footer>
-<app-message-box></app-message-box>
+<app-message-box *ngIf="(auth_info$ | async)?.account?.role?.role_id == 3"></app-message-box>
 

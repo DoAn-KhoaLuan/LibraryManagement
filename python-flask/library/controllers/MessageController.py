@@ -1,6 +1,6 @@
 from flask import request, jsonify, session
 from flask_cors import cross_origin
-from flask_socketio import send, join_room, leave_room
+from flask_socketio import send, join_room, leave_room, emit
 
 from library import app, socketio
 from library.BLL import MessageSvc
@@ -67,7 +67,6 @@ def on_leave(data):
     leave_room(room)
     send({"msg":"Someone has left the room"}, room=room)
 
-
-@socketio.on('connect',namespace="/")
-def test_connect():
-    print("client connected:")
+@socketio.on('message')
+def handle_message(data):
+    print('received message: ' + data)

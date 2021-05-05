@@ -20,10 +20,11 @@ export class BookStoreComponent implements OnInit {
 
   messages : any[] =[];
   message_list$ = this.messageQuery.messages_list$
+  auth_info$ = this.accountQuery.auth_info$
   constructor(private webSocketService: WebSocketService, private accountQuery:AccountQuery, private messageStore: MessageStore, private messageQuery: MessageQuery, private messageService: MessageService) { }
   chatText = ''
   async ngOnInit() {
-    if(this.accountQuery.getValue().auth_info?.current_account.role.role_id == 3 && this.accountQuery.getValue().auth_info.account.role.role_name == "customer") {
+    if(this.accountQuery.getValue().auth_info?.account.role.role_id == 3 && this.accountQuery.getValue().auth_info.account.role.role_name == "customer") {
       let req = {
         'customer_account_id': this.accountQuery.getValue().auth_info.account.account_id
       }

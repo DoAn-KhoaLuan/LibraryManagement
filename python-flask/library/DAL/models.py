@@ -56,8 +56,8 @@ class Books(db.Model):
 
     def serialize(self):
         return {"book_id": self.book_id, "book_name": self.book_name, "note": self.note,
-                "supplier": self.supplier.serialize(), "category": self.category.serialize(),
-                "author": self.author.serialize(),
+                "supplier": self.supplier.serialize() if self.supplier != None else None, "category": self.category.serialize() if self.category != None else None,
+                "author": self.author.serialize() if self.author != None else None,
                 "old_amount": self.old_amount, "new_amount": self.new_amount, "image": self.image,
                 "page_number": self.page_number, "description": self.description, "cost_price": self.cost_price,
                 "retail_price": self.retail_price, "discount": self.discount, "ranking": self.ranking, "rate_star": self.rate_star, "rate_count":self.rate_count,
@@ -108,8 +108,8 @@ class Borrowtickets(db.Model):
     borrow_ticket_detail = db.relationship('Borrowticketdetails', backref='borrowticket', lazy=True)
 
     def serialize(self):
-        return {"borrow_ticket_id": self.borrow_ticket_id, "customer": self.customer.serialize(), "note": self.note,
-                "employee": self.employee.serialize(), "quantity": self.quantity, "borrow_date": self.borrow_date,
+        return {"borrow_ticket_id": self.borrow_ticket_id, "customer": self.customer if self.customer != None else None, "note": self.note,
+                "employee": self.employee.serialize() if self.employee != None else None, "quantity": self.quantity, "borrow_date": self.borrow_date,
                 "appointment_date": self.appointment_date, "return_date": self.return_date, "status": self.status,
                 "delete_at": self.delete_at, "borrow_ticket_details": ConvertModelListToDictList(self.borrow_ticket_detail)}
 
@@ -186,7 +186,7 @@ class Conversations(db.Model):
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
                 'last_message': self.last_message,
-                'account': self.account.serialize(),
+                'account': self.account.serialize() if self.account != None else None,
                 'is_read': self.is_read
                 }
 
@@ -236,7 +236,7 @@ class Employees(db.Model):
 
     def serialize(self):
         return {"employee_id": self.employee_id, "identity_id": self.identity_id, "note": self.note,
-                "account": self.account.serialize(), "last_name": self.last_name, "first_name": self.first_name,
+                "account": self.account.serialize() if self.account != None else None, "last_name": self.last_name, "first_name": self.first_name,
                 "phone": self.phone, "birth_day": self.birth_date, "provinceId": self.province_id,
                 "districtId": self.district_id,
                 "wardId": self.ward_id,
@@ -261,7 +261,7 @@ class Orderdetails(db.Model):
     delete_at = db.Column(db.DateTime, default=None)
 
     def serialize(self):
-        return {"book": self.book.serialize(),"order_id": self.order_id, "note": self.note,
+        return {"book": self.book.serialize() if self.book != None else None,"order_id": self.order_id, "note": self.note,
                 "retail_price": self.retail_price, "quantity": self.quantity, "discount": self.discount,
                 "total": self.total, "delete_at": self.delete_at}
 
@@ -283,7 +283,7 @@ class Orders(db.Model):
     order_details = db.relationship('Orderdetails', backref="order", lazy=False)
 
     def serialize(self):
-        return {"order_id": self.order_id, "customer": self.customer.serialize(), "note": self.note,
+        return {"order_id": self.order_id, "customer": self.customer.serialize() if self.customer != None else None, "note": self.note,
                 "employee": self.employee.serialize() if  self.employee != None else None, "create_at": self.create_at,
                 "order_date": self.order_date, "total": self.total, "order_details": ConvertModelListToDictList(self.order_details),
                 "type": self.type,
@@ -321,7 +321,7 @@ class Schedules(db.Model):
     note = db.Column(db.String(1500))
 
     def serialize(self):
-        return {"id": self.schedule_id, "employee": self.employee.serialize(), "date": self.date,
+        return {"id": self.schedule_id, "employee": self.employee.serialize() if self.employee != None else None, "date": self.date,
                 "time_from": self.time_from, "time_to": self.time_to, "note": self.note,
                 "actual_hours": self.actual_hours, "expected_hours": self.expected_hours, "salary": self.salary,
                 "delete_at": self.delete_at}
@@ -338,7 +338,7 @@ class Stocktaketicketdetails(db.Model):
     old_quantity = db.Column(db.Integer)
 
     def serialize(self):
-        return {"stocktake_ticket": self.stocktaketicket.serialize(), "book": self.book.serialize(),
+        return {"stocktake_ticket": self.stocktaketicket.serialize() if self.stocktaketicket != None else None, "book": self.book.serialize() if self.book != None else None,
                 "new_quantity": self.new_quantity, "old_quantity": self.old_quantity}
 
     def __repr__(self):
@@ -355,7 +355,7 @@ class Stocktaketickets(db.Model):
     stocktaketicketdetails = db.relationship('Stocktaketicketdetails', backref="stocktaketicket", lazy=True)
 
     def serialize(self):
-        return {"stocktake_ticket_id": self.stocktake_ticket_id, "employee": self.employee.serialize(),
+        return {"stocktake_ticket_id": self.stocktake_ticket_id, "employee": self.employee.serialize() if self.employee != None else None,
                 "total_quantity": self.total_quantity, "date": self.date}
 
     def __repr__(self):

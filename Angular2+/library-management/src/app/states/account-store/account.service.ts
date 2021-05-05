@@ -119,7 +119,7 @@ export class AccountService {
         this.accountStore.reset();
         localStorage.removeItem('auth_info')
         this.router.navigateByUrl('/book-store');
-        toastr.warning("Bạn đã đăng xuất khỏi tài khoản !", "Đăng xuất thành công")
+        toastr.success("Bạn đã đăng xuất khỏi tài khoản !", "Đăng xuất thành công")
     }
 
     async SendResetPasswordEmailCustomer(email) {
