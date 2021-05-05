@@ -36,7 +36,7 @@ class LoginRsp():
         return {
             "access_token": self.access_token.decode('utf-8'),
             "user_info": self.user_info,
-            "current_account": self.account
+            "account": self.account
         }
 
 

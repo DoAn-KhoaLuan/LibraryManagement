@@ -1,13 +1,15 @@
-from library import app
+from datetime import datetime
+
+from library import app, db
 from library.BLL import OrderSvc
-from library.DAL import models
+from library.DAL import models, CategoryRep
+from library.DAL.models import Roles
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
 from flask import jsonify, request, make_response
 import json
 
-from library.common.Rsp.OrderRsp import SearchOrdersRsp
 from library.common.Rsp.SingleRsp import ErrorRsp
 from library.common.util import ConvertModelListToDictList
 
@@ -72,6 +74,111 @@ def SearchOrders():
     orders = ConvertModelListToDictList(orders)
     return jsonify(orders)
 
-@app.route("/admin/order-management/test-create-order-momo", methods=['POST', 'GET'])
+@app.route("/", methods=['POST', 'GET'])
 def TestCreateOrder():
-    return jsonify({'test': 111})
+    categoryDicts = [
+        {
+            "categoryName": "Điện thoại - Máy tính bảng",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Điện tử - Điện lạnh",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Phụ kiện - Thiết bị số",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Laptop - Thiết bị IT",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Máy ảnh - Quay phim",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Điện gia dụng",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Nhà cửa đời sống",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Hàng tiêu dùng - Thực phẩm",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Đồ chơi - Mẹ & Bé",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Làm đẹp - Sức khỏe",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Thời trang - Phụ kiện",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Thể thao - Dã ngoại",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Xe máy, oto, xe đạp",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Hàng quốc tế\", \"MÔ tả điênh thoại máy tính bảng",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Sách, VPP & Qùa tặng",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+        {
+            "categoryName": "Voucher, Dịch vụ, Thẻ cào",
+            "description": "MÔ tả điênh thoại máy tính bảng",
+            "note": "GHI CHÚ MÁY TINH BẢNG",
+            "createAt": datetime.now(),
+        },
+    ]
+    for category in categoryDicts:
+        categoryModel = models.Categories(
+            category_name=category['categoryName'],
+            description=category['description'],
+            note=category['note'],
+        )
+        CategoryRep.CreateCategory(categoryModel)
+    return "return"

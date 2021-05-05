@@ -9,11 +9,18 @@ from flask_socketio import SocketIO, send, emit, join_room, leave_room
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 bcrypt = Bcrypt(app)
 app.config.from_object('config')
+app.config['DEFAULT_PARSERS'] = [
+    'flask.ext.api.parsers.JSONParser',
+    'flask.ext.api.parsers.URLEncodedParser',
+    'flask.ext.api.parsers.FormParser',
+    'flask.ext.api.parsers.MultiPartParser'
+]
+socketio = SocketIO(app, cors_allowed_origins="*")
 db = SQLAlchemy(app)
 smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-socketio = SocketIO(app, cors_allowed_origins="*")
 from library import controllers
 
 

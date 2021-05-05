@@ -52,7 +52,7 @@ export class CustomerMessagesComponent implements OnInit, OnDestroy {
     }
     const sendMessageReq = {
       conversation_id : this.messageQuery.getValue().active_conversation?.conversation_id,
-      account_id : this.accountQuery.getValue().auth_info.current_account.account_id,
+      account_id : this.accountQuery.getValue().auth_info.account.account_id,
       content : this.chatText,
       room: this.messageQuery.getValue().active_conversation?.conversation_id,
     }

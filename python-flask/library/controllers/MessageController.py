@@ -1,4 +1,5 @@
 from flask import request, jsonify, session
+from flask_cors import cross_origin
 from flask_socketio import send, join_room, leave_room
 
 from library import app, socketio
@@ -35,31 +36,31 @@ def ReadConversation():
     _ = MessageSvc.ReadConversation(req)
     return jsonify({"is_success": True})
 
-@socketio.on('incoming-msg')
+@socketio.on('incoming-msg',  namespace="/")
+@cross_origin()
 def on_message(data):
     """Broadcast messages"""
     req = SendMessageReq(data)
+    print("data: ", data)
     result = MessageSvc.SendMessage(req)
     res = SendMessageRsp(result).serialize()
     room = data["room"]
-    print("on message naf")
     send(res, room=room)
 
 
-@socketio.on('join')
+@socketio.on('join',  namespace="/")
+@cross_origin()
 def on_join(data):
     """User joins a room"""
-    print('data', data)
+    print(data)
     session['auth_info']=data['auth_info']
     room = data["room"]
-    print('data: ', data)
-
     join_room(room)
-    print('join na')
     # send({"msg":"Someone has join the room"}, room=room)
 
 
-@socketio.on('leave')
+@socketio.on('leave',  namespace="/")
+@cross_origin()
 def on_leave(data):
     """User leaves a room"""
     room = data['room']
@@ -67,3 +68,6 @@ def on_leave(data):
     send({"msg":"Someone has left the room"}, room=room)
 
 
+@socketio.on('connect',namespace="/")
+def test_connect():
+    print("client connected:")

@@ -23,7 +23,7 @@ export class MessageService {
   async GetMoreMessageAndPushIntoStore(filter) {
     let res: GetItemsByPageRsp = await this.apiMessageService.GetMessages(filter);
     let new_messages = res.items;
-    let account_id_from_client = this.accountQuery.getValue().auth_info.current_account.account_id;
+    let account_id_from_client = this.accountQuery.getValue().auth_info.account.account_id;
 
     new_messages.forEach( mess => {
       if(mess.account_id == account_id_from_client) {
@@ -64,7 +64,7 @@ export class MessageService {
   async SendMessage(content) {
     const sendMessageReq = {
       conversation_id : this.messageQuery.getValue().active_conversation_id,
-      account_id : this.accountQuery.getValue().auth_info.current_account.account_id,
+      account_id : this.accountQuery.getValue().auth_info.account.account_id,
       content : content,
     }
     return await this.apiMessageService.SendMessage(sendMessageReq);

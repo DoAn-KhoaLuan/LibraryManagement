@@ -17,7 +17,7 @@ export class Account {
 }
 export class auth_info {
     access_token: string;
-    current_account: any;
+    account: any;
     user_info: any;
 }
 

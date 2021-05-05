@@ -6,7 +6,7 @@ import * as io from 'socket.io-client';
 })
 export class WebSocketService {
   public socket: any;
-  constructor() { 
+  constructor() {
     this.socket = io.connect('http://127.0.0.1:5000')
   }
 
