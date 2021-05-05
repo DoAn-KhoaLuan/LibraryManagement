@@ -32,7 +32,7 @@ def CreateOrder(order: CreateOrderReq):
 
     db.session.add(create_order)
     db.session.commit()
-
+    print(order.order_detail_list)
     for order_detail in order.order_detail_list:
         order_book = models.Books.query.get(order_detail['book_id'])
         order_book.new_amount -= order_detail['quantity']

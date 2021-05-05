@@ -1,5 +1,5 @@
 <div class="ng-container">
-  <h1 class="text-app text-center mt-5 font-weight-bolder">CHI TIẾT SẢN PHẨM</h1>
+  <h1 class="text-app text-center font-weight-bolder">CHI TIẾT SẢN PHẨM</h1>
   <div class="Container-itwfbd-0 jFkAwY  pt-3">
     <div class="indexstyle__Wrapper-qd1z2k-0 llsmxc">
       <div class="style__ProductImagesStyle-sc-1e5ea5s-0 iTTtrw">
@@ -290,6 +290,7 @@
                     <div class="d-flex align-items-center line-quantity">
                       <div
                         role="group"
+                        style="background: var(--app-color)"
                         class="btn-group border group-quantity w-100 h-100"
                       >
                         <button
@@ -380,7 +381,7 @@
                         class="Item__Wrapper-m1oy8w-0 hmrZzB"
                       >
                         <div
-                          (click)="redirectBook(book?.book_id)"
+                          (click)="redirectBook(book.book_id)"
                         >
                           <div class="Item__Picture-m1oy8w-1 evEsoa">
                             <img
@@ -807,40 +808,45 @@
           </div>
         </div>
         <h4 class="BlockTitle__Wrapper-qpz3fo-0 jHTCJn">BÌNH LUẬN</h4>
-        <nz-comment>
-          <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="user.avatar"></nz-avatar>
-          <nz-comment-content>
-            <nz-form-item class="w-50">
-              <textarea [(ngModel)]="inputValue" nz-input rows="4" class="w-100"></textarea>
-            </nz-form-item>
-            <nz-form-item>
-              <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!inputValue" (click)="handleSubmit()">
-                Thêm bình luận
-              </button>
-            </nz-form-item>
-          </nz-comment-content>
-        </nz-comment>
-        <ng-container *ngFor="let cmt of comments">
-          <div style="padding: 1rem;">
-            <nz-comment [nzAuthor]="cmt?.customer?.customer_name || 'Khách lẻ'" [nzDatetime]="cmt?.distanceTime">
-              <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]=" cmt?.customer?.image || '//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'"></nz-avatar>
+        <div class="group">
+          <div class="content">
+            <nz-comment>
+              <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="user.avatar"></nz-avatar>
               <nz-comment-content>
-                <p>
-                  {{cmt?.content}}
-                </p>
+                <nz-form-item class="w-50">
+                  <textarea [(ngModel)]="inputValue" nz-input rows="4" class="w-100"></textarea>
+                </nz-form-item>
+                <nz-form-item>
+                  <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!inputValue" (click)="handleSubmit()">
+                    Thêm bình luận
+                  </button>
+                </nz-form-item>
               </nz-comment-content>
-              <nz-comment-action>
-                <i nz-tooltip nzTitle="Like" nz-icon nzType="like" [nzTheme]="likes > 0 ? 'twotone' : 'outline'" (click)="like()"></i>
-                <span class="count like">{{ likes }}</span>
-              </nz-comment-action>
-              <nz-comment-action>
-                <i nz-tooltip nzTitle="Dislike" nz-icon nzType="dislike" [nzTheme]="dislikes > 0 ? 'twotone' : 'outline'" (click)="dislike()"></i>
-                <span class="count dislike">{{ dislikes }}</span>
-              </nz-comment-action>
-              <nz-comment-action>Trả lời</nz-comment-action>
             </nz-comment>
+            <ng-container *ngFor="let cmt of comments">
+              <div style="padding: 1rem;">
+                <nz-comment [nzAuthor]="cmt?.customer?.customer_name || 'Khách lẻ'" [nzDatetime]="cmt?.distanceTime">
+                  <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]=" cmt?.customer?.image || '//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'"></nz-avatar>
+                  <nz-comment-content>
+                    <p>
+                      {{cmt?.content}}
+                    </p>
+                  </nz-comment-content>
+                  <nz-comment-action>
+                    <i nz-tooltip nzTitle="Like" nz-icon nzType="like" [nzTheme]="likes > 0 ? 'twotone' : 'outline'" (click)="like()"></i>
+                    <span class="count like">{{ likes }}</span>
+                  </nz-comment-action>
+                  <nz-comment-action>
+                    <i nz-tooltip nzTitle="Dislike" nz-icon nzType="dislike" [nzTheme]="dislikes > 0 ? 'twotone' : 'outline'" (click)="dislike()"></i>
+                    <span class="count dislike">{{ dislikes }}</span>
+                  </nz-comment-action>
+                  <nz-comment-action>Trả lời</nz-comment-action>
+                </nz-comment>
+              </div>
+            </ng-container>
           </div>
-        </ng-container>
+        </div>
+
       </div>
       <div class="right"></div>
     </div>

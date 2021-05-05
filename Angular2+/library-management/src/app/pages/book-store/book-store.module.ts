@@ -3,7 +3,7 @@ import { BookStoreRoutingModule } from './book-store-routing.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookStoreComponent } from './book-store.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ShopHeaderComponent} from "./components/shop-header/shop-header.component";
 import {ShopFooterComponent} from "./components/shop-footer/shop-footer.component";
 import { CheckoutComponent } from './components/checkout/checkout.component';
@@ -20,6 +20,8 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzListModule} from "ng-zorro-antd/list";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {MaterialModule} from "../../shared/material.module";
+import {MatInputModule} from "../../shared/mat-input/mat-input.module";
 
 @NgModule({
   imports: [
@@ -35,7 +37,10 @@ import {NzButtonModule} from "ng-zorro-antd/button";
     NzIconModule,
     NzListModule,
     NzFormModule,
-    NzButtonModule
+    NzButtonModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    MatInputModule,
   ],
   declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent],
   bootstrap:    [ BookStoreComponent, HomeComponent ]

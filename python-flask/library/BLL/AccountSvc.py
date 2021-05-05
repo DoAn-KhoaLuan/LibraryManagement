@@ -77,7 +77,7 @@ def AuthenticateUser(acc: LoginReq):
         payload = {
             'account_id': account['account_id'],
             'iat': datetime.utcnow(),
-            'exp': datetime.utcnow() + timedelta(minutes=30)
+            'exp': datetime.utcnow() + timedelta(minutes=300000)
         }
         access_token = jwt.encode(payload, secect_key)
         result = {
@@ -97,7 +97,7 @@ def SendResetPasswordEmailCustomer(req: SendResetPasswordEmailReq):
     payload = {
         'account_id': account['account_id'],
         'iat': datetime.utcnow(),
-        'exp': datetime.utcnow() + timedelta(minutes=30)
+        'exp': datetime.utcnow() + timedelta(minutes=300000)
     }
     reset_email_token = jwt.encode(payload, secect_key).decode('utf-8')
 
@@ -126,7 +126,7 @@ def SendResetPasswordEmailEmployee(req: SendResetPasswordEmailReq):
     payload = {
         'account_id': account['account_id'],
         'iat': datetime.utcnow(),
-        'exp': datetime.utcnow() + timedelta(minutes=30)
+        'exp': datetime.utcnow() + timedelta(minutes=300000)
     }
     reset_email_token = jwt.encode(payload, secect_key).decode('utf-8')
 

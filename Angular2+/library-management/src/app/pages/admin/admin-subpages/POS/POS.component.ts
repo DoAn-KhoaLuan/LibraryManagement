@@ -60,39 +60,6 @@ export class POSComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    window.paypal.Buttons({
-      style: {
-        layout: 'horizontal',
-        color: 'blue',
-        shape: 'rect',
-        label: 'paypal'
-      },
-      createOrder: (data, actions) => {
-        return actions.order.create({
-          purchase_units: [
-            {amount: {
-                value: '3',
-                currency_code: 'USD',
-                product_id: 12
-              }
-            }
-          ]
-        });
-      },
-      onApprove: async (data, actions) => {
-        const order = await actions.order.capture();
-        console.log(order);
-        // TODO : check order.status == "success" => gọi api CreateOrder
-        if (order.status === "COMPLETED" ) {
-          await this.CreateOrder();
-        }
-      },
-
-      onError: error => {
-        console.log(error);
-      }
-    })
-      .render(this.paypalRef.nativeElement);
     const internalOrderId =  this.route.snapshot.queryParamMap.get('internalOrderId');
     const errorCode =  parseInt(this.route.snapshot.queryParamMap.get('errorCode'));
     if (errorCode && errorCode !== 0) {
@@ -102,11 +69,6 @@ export class POSComponent implements OnInit {
         this.router.navigateByUrl('/admin/pos-management');
       })
     }
-    // console.log("error code: " , this.route.snapshot.queryParamMap.get('extraData').split(";")[0]);
-    //
-    // if (errorCode) {
-    // }
-
     await this.customerService.GetCustomers(this.filter);
     await this.bookService.getBooks(this.filter)
     this.books= this.bookQuery.getValue().book_list_view.items
@@ -245,7 +207,7 @@ export class POSComponent implements OnInit {
   async CreateOrderByMomo() {
     try {
       const create_order_req = {
-        customer_id: this.customer_item.customer_id,
+        customer_id: this.customer_item.customer_id || 1,
         employee_id: JSON.parse(localStorage.getItem('auth_info')).user_info.employee_id,
         order_date: Date.now(),
         type:'offline',

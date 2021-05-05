@@ -355,8 +355,8 @@
 }
 
 .iVoMSb .left .group .content {
-  width: 920px;
   padding: 20px;
+  width: 100%;
   display: inline-block;
   color: rgb(36, 36, 36);
   line-height: 21px;
@@ -377,6 +377,9 @@
   border-bottom: 0px;
 }
 
+.content {
+  width: 100%!important;
+}
 .iVoMSb .left .group .content table tr td:first-child {
   width: 220px;
   vertical-align: top;

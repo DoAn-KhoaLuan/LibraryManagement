@@ -284,7 +284,7 @@ class Orders(db.Model):
 
     def serialize(self):
         return {"order_id": self.order_id, "customer": self.customer.serialize(), "note": self.note,
-                "employee": self.employee.serialize(), "create_at": self.create_at,
+                "employee": self.employee.serialize() if  self.employee != None else None, "create_at": self.create_at,
                 "order_date": self.order_date, "total": self.total, "order_details": ConvertModelListToDictList(self.order_details),
                 "type": self.type,
                 "delete_at": self.delete_at}

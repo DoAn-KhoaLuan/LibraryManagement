@@ -108,8 +108,6 @@ export class AccountService {
           localStorage.setItem('auth_info', JSON.stringify(this.accountQuery.getValue().auth_info));
         })
         .catch(err => {
-          console.log(err)
-          toastr.error(err?.message)
           localStorage.removeItem('auth_info');
         })
       ;

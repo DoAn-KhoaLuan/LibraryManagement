@@ -9,11 +9,12 @@ import {CheckoutComponent} from "./components/checkout/checkout.component";
 import {DetailComponent} from "./components/detail/detail.component";
 import {HomeComponent} from "./components/home/home.component";
 import {SearchComponent} from "./components/search/search.component";
+import {UserPageGuard} from "../../auth-guard";
 
 const routes: Routes = [
   {
     path: '', component: BookStoreComponent, children: [
-      {path: 'checkout', component: CheckoutComponent},
+      {path: 'checkout', component: CheckoutComponent, canActivate: [UserPageGuard]},
       {path: 'home', component: HomeComponent},
       {path: 'search', component: SearchComponent},
       {path: 'detail/:id', component: DetailComponent},

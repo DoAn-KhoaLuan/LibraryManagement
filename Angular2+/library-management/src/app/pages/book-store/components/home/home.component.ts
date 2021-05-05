@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.telegramService.testMessage();
+    // await this.telegramService.testMessage();
     await this.bookService.getBooks(this.bookQuery.getValue().filter_page);
   }
 

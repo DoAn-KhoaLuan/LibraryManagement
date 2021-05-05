@@ -55,7 +55,7 @@ export class DetailComponent implements OnInit {
   ];
   book_id;
   detailBook$ = this.bookQuery.detail_book$
-  quantity = 0;
+  quantity = 1;
   selectedStar: number;
   constructor(
     private route: ActivatedRoute,
@@ -72,10 +72,8 @@ export class DetailComponent implements OnInit {
     }
     this.book_id = req.book_id;
     let detail_book = await this.bookService.getBookByID(req);
-    console.log(detail_book.rate_star)
     detail_book.rate_star = Math.ceil(detail_book.rate_star)
     this.bookService.setDetailBook(detail_book);
-    console.log(this.bookQuery.getValue().detail_book)
     await  this.apiBookService.getComments({
       book_id: this.book_id
     }).then(cmts => {
@@ -112,15 +110,28 @@ export class DetailComponent implements OnInit {
 
   addToChart() {
     if (this.quantity == 0) {
-      toastr.error("Vui lòng chọn số lượng sản phẩm")
+      return toastr.error("Vui lòng chọn số lượng sản phẩm")
     }
     let order_details = [];
     order_details = JSON.parse(localStorage.getItem("order_details")) || []
+    const found_book = order_details.find(chart_book => chart_book?.book?.book_id == this.bookQuery.getValue().detail_book.book_id)
+
+    if (found_book) {
+      order_details.forEach(detail => {
+        if (detail?.book?.book_id == this.bookQuery.getValue().detail_book.book_id) {
+          detail.quantity += this.quantity
+        }
+      })
+      localStorage.setItem("order_details", JSON.stringify(order_details))
+      toastr.success("Thêm sản phẩm vào giỏ hàng thành công")
+      return;
+    }
     order_details.push({
       book: this.bookQuery.getValue().detail_book,
       quantity: this.quantity
     });
     localStorage.setItem("order_details", JSON.stringify(order_details))
+    toastr.success("Thêm sản phẩm vào giỏ hàng thành công")
   }
 
   countStar(star) {
@@ -141,10 +152,9 @@ export class DetailComponent implements OnInit {
       star: this.selectedStar
     }
 
-    await this.apiBookService.rateStar(req).then(_ => {
-      toastr.success("Đánh giá sản phẩm thành công")
-      this.selectedStar = 0
-    })
+    const res = await this.apiBookService.rateStar(req)
+    toastr.success("Đánh giá sản phẩm thành công")
+    this.selectedStar = 0
   }
   like(): void {
     this.likes = 1;
