@@ -2,16 +2,21 @@ import { ForgotPasswordModalComponent } from './../../../components/forgot-passw
 import { ModalController } from './../../../../core/modal-controller/modal-controller.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AccountService } from 'src/app/states/account-store/account.service';
 import { AccountStore } from 'src/app/states/account-store/account.store';
+import {ApiAccountService} from "../../../../API/api-account.service";
+import {WebSocketService} from "../../../../services/web-socket.service";
+import {Observable} from "rxjs";
+import {AccountQuery} from "../../../../states/account-store/account.query";
 
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss']
 })
-export class UserLoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit, OnDestroy {
+  loginGoogle$;
   loading = false;
   login_form = this.fb.group({
     user_name: [''],
@@ -22,12 +27,28 @@ export class UserLoginComponent implements OnInit {
     private accountService: AccountService,
     private accountStore: AccountStore,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private apiAccountService: ApiAccountService,
+    private webSocketService: WebSocketService,
+    private accountQuery: AccountQuery,
     ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.loginGoogle$ = this.webSocketService.listen('login-google').subscribe(async (res: any) => {
+      if (res?.success) {
+        this.accountStore.update({
+          auth_info: res?.data,
+        });
+        localStorage.setItem('auth_info', JSON.stringify(this.accountQuery.getValue().auth_info));
+        this.router.navigateByUrl("book-store/home");
+      }
+    });
+    this.webSocketService.emit('join', {'auth_info': JSON.parse(localStorage.getItem('auth_info')), 'room': 0});
   }
 
+  ngOnDestroy() {
+    this.loginGoogle$.unsubscribe();
+  }
   async Login() {
     try{
       let login_form_data = this.login_form.value
@@ -53,5 +74,11 @@ export class UserLoginComponent implements OnInit {
     });
     modal.show().then();
     modal.onDismiss().then();
+  }
+
+
+  async loginGoogle() {
+    const res = await this.apiAccountService.LoginGoogle();
+    window.open(res?.url,"_blank");
   }
 }

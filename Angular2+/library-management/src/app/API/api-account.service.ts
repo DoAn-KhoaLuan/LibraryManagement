@@ -31,6 +31,9 @@ export class ApiAccountService {
     return await this.http.post(this.baseURL+"/admin/account-management/search-accounts",req).toPromise();
   }
 
+  async LoginGoogle() {
+    return await this.http.post(this.baseURL+"/gLogin", {}).toPromise();
+  }
   async Login(req) {
     return await this.http.post(this.baseURL+"/admin/account-management/login",req).toPromise();
   }

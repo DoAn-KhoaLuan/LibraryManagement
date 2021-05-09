@@ -58,18 +58,22 @@
             </div>
             <input id="password" type="password" class="rounded-pill form-control" placeholder="Nhập mật khẩu"  name="password" formControlName="password"/>
           </div>
-          <div class="rounded-pill d-block w-100 btn-outline-app" type="button" (click)="Login()">
+          <div class="d-block w-100 btn-outline-app" type="button" (click)="Login()">
             <!-- <i class="fa fa-spinner fa-spin mr-2" *ngIf="loading"></i> -->
             Đăng nhập
+          </div>
+          <div class="mt-2 d-block w-100 btn-outline-app btn-google" (click)="loginGoogle()">
+            Đăng nhập bằng Google
+            <i class="fa fa-google ml-2"></i>
           </div>
         </div>
         <div class=" text-white forgot d-inline-block mt-2" style="cursor: pointer;"  (click)="OpenForgotPasswordModal()">
           Quên mật khẩu?
         </div>
       </div>
-    </div>  
+    </div>
     <div class="login-footer">
-      <div class="left-side px-4 py-1 d-flex justify-content-around" style="font-size: 13px; font-weight: 100px;">
+      <div class="left-side px-4 py-1 d-flex justify-content-around" style="font-size: 13px; font-weight: 100px">
         <div class="">
           <b class="brand-text" style="color: var(--app-color);">Thư quán Trường đại học Mở Thành phố Hồ Chí Minh</b>
           <div class="d-flex">

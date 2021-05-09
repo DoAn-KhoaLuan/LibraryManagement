@@ -47,6 +47,14 @@ def on_message(data):
     room = data["room"]
     send(res, room=room)
 
+@socketio.on('login-google')
+@cross_origin()
+def login_google():
+    """Broadcast messages"""
+    data = "ạdksajdklsa"
+    print("data: ", data)
+    send({"msg":"LOGIN GOOGLE has join the room"}, room = 0)
+
 
 @socketio.on('join',  namespace="/")
 @cross_origin()

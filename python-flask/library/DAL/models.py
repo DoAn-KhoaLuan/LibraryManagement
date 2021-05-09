@@ -137,7 +137,7 @@ class Categories(db.Model):
 
 class Customers(db.Model):
     customer_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)
-    identity_id = db.Column(db.String(50), nullable=False, unique=True)
+    identity_id = db.Column(db.String(50), unique=True)
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     student_code = db.Column(db.String(50))
     last_name = db.Column(db.String(50))

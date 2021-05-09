@@ -121,3 +121,25 @@
   }
 }
 
+.btn-google {
+    &:hover {
+        opacity: 0.85;
+    }
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 0px;
+    white-space: nowrap;
+    padding: 0px;
+    font-size: 14px;
+    border-radius: 4px;
+    user-select: none;
+    height: 41px;
+    line-height: 41px;
+    outline: none;
+    background: rgb(223, 74, 50);
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+}

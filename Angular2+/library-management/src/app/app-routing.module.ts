@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'user/register', canActivate:[LoginViewGuard], component: UserRegisterAccountComponent},
   { path: 'user/login',  canActivate:[LoginViewGuard],  component: UserLoginComponent },
   { path: 'reset-password', component: ResetPasswordComponent},
+  { path: 'gLogin/gCallback', component: ResetPasswordComponent},
   { path: '', redirectTo: 'book-store',pathMatch: 'full'},
   { path: '**', redirectTo: 'book-store' },
 ];

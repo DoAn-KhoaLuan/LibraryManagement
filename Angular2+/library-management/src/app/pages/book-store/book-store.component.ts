@@ -6,6 +6,7 @@ import {MessageQuery} from "../../states/message-store/message.query";
 import {MessageService} from "../../states/message-store/message.service";
 import { addDays, formatDistance } from 'date-fns';
 import { StarRatingComponent } from 'ng-starrating';
+import {ApiAccountService} from "../../API/api-account.service";
 
 @Component({
   selector: 'app-book-store',
@@ -21,8 +22,8 @@ export class BookStoreComponent implements OnInit {
   messages : any[] =[];
   message_list$ = this.messageQuery.messages_list$
   auth_info$ = this.accountQuery.auth_info$
-  constructor(private webSocketService: WebSocketService, private accountQuery:AccountQuery, private messageStore: MessageStore, private messageQuery: MessageQuery, private messageService: MessageService) { }
-  chatText = ''
+  constructor(private webSocketService: WebSocketService, private apiAccountService: ApiAccountService, private accountQuery:AccountQuery, private messageStore: MessageStore, private messageQuery: MessageQuery, private messageService: MessageService) { }
+  chatText = '';
   async ngOnInit() {
     if(this.accountQuery.getValue().auth_info?.account.role.role_id == 3 && this.accountQuery.getValue().auth_info.account.role.role_name == "customer") {
       let req = {
@@ -96,5 +97,6 @@ export class BookStoreComponent implements OnInit {
   handleSubmit() {
 
   }
+
 }
 
