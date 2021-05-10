@@ -11,12 +11,8 @@ export class DashboardComponent implements OnInit {
     {
       itemName: "Thư quán",
       url: "sell-dashboard"
-    },
-    {
-      itemName: "Thư viện",
-      url: "management-dashboard"
-    },
-  ]
+    }
+  ];
   constructor(
     private orderService: OrderService
   ) { }

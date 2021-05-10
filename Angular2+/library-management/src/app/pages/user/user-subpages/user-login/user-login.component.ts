@@ -35,6 +35,7 @@ export class UserLoginComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.loginGoogle$ = this.webSocketService.listen('login-google').subscribe(async (res: any) => {
+      console.log("res: ", res)
       if (res?.success) {
         this.accountStore.update({
           auth_info: res?.data,

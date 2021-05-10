@@ -16,7 +16,8 @@ from library.common.Req.EmployeeReq import SearchEmployeesReq
 
 from library.common.Rsp.SingleRsp import ErrorRsp
 
-from library.DAL import AccountRep, CustomerRep, EmployeeRep, MessageRep
+from library.DAL import AccountRep, CustomerRep, EmployeeRep, MessageRep, models
+from library.common.util import ConvertModelListToDictList
 
 
 def CreateAccount(req):
@@ -66,13 +67,12 @@ def AuthenticateUser(acc: LoginReq):
     try:
         account = AccountRep.Authenticate(acc)
         if (account['role']['role_id'] == 3):  # customer
-            search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
-            user = CustomerRep.SearchCustomers(search_customer_req)
+            user = (models.Customers.query.filter(models.Customers.account_id == account['account_id'], models.Customers.account_id != None).first().serialize())
+
 
         if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
-            search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
-            user = EmployeeRep.SearchEmployees(search_employee_req)
-
+            user = (models.Employees.query.filter(models.Employees.account_id == account['account_id'],
+                                                  models.Employees.account_id != None).first().serialize())
         secect_key = app.config['SECRET_KEY']
         payload = {
             'account_id': account['account_id'],
@@ -83,7 +83,7 @@ def AuthenticateUser(acc: LoginReq):
         result = {
             'access_token': access_token,
             'account': account,
-            'user_info': user[0] if len(user) > 0 else None
+            'user_info': user,
         }
         return result
     except ErrorRsp as e:

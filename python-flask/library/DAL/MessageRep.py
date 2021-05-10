@@ -53,11 +53,11 @@ def CreateConversation(req):
     create_conversation = models.Conversations(customer_account_id=req['customer_account_id'], created_at=datetime.utcnow())
     db.session.add(create_conversation)
     db.session.commit()
-    return create_conversation.serialize()
+    return create_conversation.serialize() if create_conversation != None else None
 
 def GetConversationByCustomerAccountId(req:GetConversationByCustomerAccountIdReq):
     conversation = models.Conversations.query.filter(models.Conversations.customer_account_id == req.customer_account_id).first()
-    return conversation.serialize()
+    return conversation.serialize() if conversation != None else None
 
 def GetAllConversations():
     all_conversations = models.Conversations.query.order_by(desc(models.Conversations.updated_at)).all()

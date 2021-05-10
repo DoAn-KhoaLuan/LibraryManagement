@@ -1,7 +1,7 @@
 import { ShareComponentModule } from './../components/share-component.module';
 import { BookStoreRoutingModule } from './book-store-routing.service';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BookStoreComponent } from './book-store.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ShopHeaderComponent} from "./components/shop-header/shop-header.component";
@@ -12,7 +12,6 @@ import { DetailComponent } from './components/detail/detail.component';
 import {PipeModule} from "../../pipes/pipe/pipe.module";
 import {RatingModule} from "ng-starrating";
 import { SearchComponent } from './components/search/search.component';
-import {BrowserModule} from "@angular/platform-browser";
 import {NzCommentModule} from "ng-zorro-antd/comment";
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {ScrollingModule} from "@angular/cdk/scrolling";
@@ -22,6 +21,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {MaterialModule} from "../../shared/material.module";
 import {MatInputModule} from "../../shared/mat-input/mat-input.module";
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   imports: [
@@ -41,8 +41,12 @@ import {MatInputModule} from "../../shared/mat-input/mat-input.module";
     ReactiveFormsModule,
     MaterialModule,
     MatInputModule,
+    PipeModule
   ],
-  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent],
-  bootstrap:    [ BookStoreComponent, HomeComponent ]
+  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent, SettingsComponent],
+  bootstrap:    [ BookStoreComponent, HomeComponent ],
+  providers: [
+    DatePipe,
+  ],
 })
 export class BookStoreModule { }

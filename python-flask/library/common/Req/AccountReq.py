@@ -73,7 +73,6 @@ class CreateCustomerAccountReq():
         # customer
         self.identity_id = req['identity_id'] if 'identity_id' in req else None
         self.account_id = req['account_id'] if 'account_id' in req else None
-        self.student_code = req['student_code'] if 'student_code' in req else None
         self.last_name = req['last_name'] if 'last_name' in req else None
         self.first_name = req['first_name'] if 'first_name' in req else None
         self.email = req['email'] if 'email' in req else None
@@ -84,6 +83,7 @@ class CreateCustomerAccountReq():
         self.province_id = req['province_id'] if 'province_id' in req else None
         self.district_id = req['district_id'] if 'district_id' in req else None
         self.ward_id = req['ward_id'] if 'ward_id' in req else None
+        self.image = req['image'] if 'image' in req else None
 
 
 class CreateEmployeeAccountReq():

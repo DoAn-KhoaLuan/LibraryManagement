@@ -137,17 +137,17 @@ def updateSession():
         req = UpdateSessionReq(request.json)
         account = AccountSvc.extractToken(req.access_token)
         if (account['role']['role_id'] == 3):  # customer
-            search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
-            user = CustomerRep.SearchCustomers(search_customer_req)
+            user = (models.Customers.query.filter(models.Customers.account_id == account['account_id'],
+                                                  models.Customers.account_id != None).first().serialize())
 
         if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
-            search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})
-            user = EmployeeRep.SearchEmployees(search_employee_req)
+            user = (models.Employees.query.filter(models.Employees.account_id == account['account_id'],
+                                                  models.Employees.account_id != None).first().serialize())
 
         result = {
             'access_token': req.access_token,
             'account': account,
-            'user_info': user[0] if len(user) > 0 else None
+             'user_info': user,
         }
         return jsonify(result)
     except jwt.ExpiredSignatureError:

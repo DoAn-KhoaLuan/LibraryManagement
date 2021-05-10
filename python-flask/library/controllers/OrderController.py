@@ -4,6 +4,7 @@ from library import app, db
 from library.BLL import OrderSvc
 from library.DAL import models, CategoryRep
 from library.DAL.models import Roles
+from library.auth import user_required
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
@@ -57,7 +58,8 @@ def DeleteOrder():
 
 
 @app.route("/admin/order-management/search-orders", methods=['POST', 'GET'])
-def SearchOrders():
+@user_required
+def SearchOrders(session):
     req = SearchItemsReq(request.json)
     if (req.order_id):
         orders = models.Orders.query.filter(models.Orders.order_id == req.order_id)
@@ -66,6 +68,9 @@ def SearchOrders():
     orders = models.Orders.query.all()
     if req.type != None:
         orders = [order for order in orders if order.type == req.type]
+
+    if req.customer_id != None:
+        orders = [order for order in orders if order.customer != None and order.customer.customer_id == (req.customer_id)]
 
     if req.customer_phone != None:
         orders = [order for order in orders if order.customer != None and order.customer.phone == (req.customer_phone)]

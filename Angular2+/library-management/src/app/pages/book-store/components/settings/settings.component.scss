@@ -1,0 +1,35 @@
+.list-info-item {
+  cursor: pointer;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 7px 18px;
+  color: rgb(74, 74, 74);
+  border-radius: 5px;
+  &.active {
+    background-color: rgb(201, 198, 198);
+    color: rgb(0, 0, 0);
+  }
+  .fa {
+    width: 24px;
+    height: 24px;
+    margin: 0px 22px 0px 0px;
+    font-size: 24px;
+    color: rgb(155, 155, 155);
+  }
+}
+.right-container {
+  min-height: 686px;
+  background: white;
+}
+
+.right-title {
+}
+
+.setting-box {
+  background: white;
+}
+
+app-material-input-autocomplete::ng-deep input {
+  color: black;
+}

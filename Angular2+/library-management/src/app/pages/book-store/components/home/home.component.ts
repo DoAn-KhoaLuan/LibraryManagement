@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {BookQuery} from "../../../../states/book-store/book.query";
 import {BookService} from "../../../../states/book-store/book.service";
 import {BookStore} from "../../../../states/book-store/book.store";
-import { StarRatingComponent } from 'ng-starrating';
 import {ActivatedRoute, Router} from "@angular/router";
 import {TelegramService} from '../../../../services/telegram.service';
 @Component({
@@ -34,12 +33,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
-    alert(`Old Value:${$event.oldValue},
-      New Value: ${$event.newValue},
-      Checked Color: ${$event.starRating.checkedcolor},
-      Unchecked Color: ${$event.starRating.uncheckedcolor}`);
-  }
   onDetail(id) {
     this.router.navigateByUrl("/book-store/detail/" + id);
   }

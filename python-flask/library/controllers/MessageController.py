@@ -64,7 +64,7 @@ def on_join(data):
     session['auth_info']=data['auth_info']
     room = data["room"]
     join_room(room)
-    # send({"msg":"Someone has join the room"}, room=room)
+    send({"msg":"Someone has join the room"}, room=room)
 
 
 @socketio.on('leave',  namespace="/")

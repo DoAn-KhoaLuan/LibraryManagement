@@ -10,6 +10,7 @@ import {DetailComponent} from "./components/detail/detail.component";
 import {HomeComponent} from "./components/home/home.component";
 import {SearchComponent} from "./components/search/search.component";
 import {UserPageGuard} from "../../auth-guard";
+import {SettingsComponent} from './components/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       {path: 'checkout', component: CheckoutComponent, canActivate: [UserPageGuard]},
       {path: 'home', component: HomeComponent},
       {path: 'search', component: SearchComponent},
+      {path: 'settings', component: SettingsComponent, canActivate: [UserPageGuard]},
       {path: 'detail/:id', component: DetailComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home'},

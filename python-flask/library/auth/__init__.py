@@ -31,7 +31,7 @@ def user_required(function):
         try:
             token = auth_headers[1]
             account = AccountSvc.extractToken(token)
-            if account["role_id"] == 3:
+            if account["role"]["role_id"] == 3:
                 user_info = Customers.query.filter(Customers.delete_at == None,
                                               Customers.account_id == account["account_id"])
                 session = {

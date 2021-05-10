@@ -78,6 +78,7 @@ def gCallback():
     userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
     uri, headers, body = client.add_token(userinfo_endpoint)
     userinfo_response = requests.get(uri, headers=headers, data=body)
+    print("userinfo_response: ", userinfo_response.json())
     if userinfo_response.json().get("email_verified"):
         unique_id = userinfo_response.json()["sub"]
         users_email = userinfo_response.json()["email"]
@@ -86,6 +87,8 @@ def gCallback():
         first_name = userinfo_response.json()["given_name"]
     else:
         return "User email not available or not verified by Google.", 400
+
+
     customer = getCustomerByEmail(users_email)
     if customer != None:
         account = getAccountByID(customer.account_id)
@@ -106,8 +109,8 @@ def gCallback():
         db.session.commit()
 
     if (account['role']['role_id'] == 3):  # customer
-        search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
-        user = CustomerRep.SearchCustomers(search_customer_req)
+        user = (models.Customers.query.filter(models.Customers.account_id == account['account_id'],
+                                              models.Customers.account_id != None).first().serialize())
     secect_key = app.config['SECRET_KEY']
     payload = {
         'account_id': account['account_id'],
@@ -118,11 +121,12 @@ def gCallback():
     result = {
         'access_token': access_token,
         'account': account,
-        'user_info': user[0] if len(user) > 0 else None
+        'user_info':user,
     }
     res = LoginRsp(result).serialize()
+    print(res)
     socketio.emit('login-google', {"data": res, "success": True}, room=0)
-    return render_template('hello.html')
+    return render_template("hello.html")
 
 def getAccountByID(account_id):
     account = models.Accounts.query.filter(models.Accounts.account_id == account_id).first()

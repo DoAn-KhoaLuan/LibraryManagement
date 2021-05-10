@@ -122,14 +122,15 @@ def CreateCustomerAccount(req: CreateCustomerAccountReq):
                                        last_name=req.last_name,
                                        first_name=req.first_name,
                                        phone=req.phone,
-                                       student_code=req.student_code,
                                        birth_date=req.birth_date,
                                        address=req.address,
                                        gender=req.gender,
                                        province_id=req.province_id,
                                        district_id=req.district_id,
                                        ward_id=req.ward_id,
-                                       email=req.email)
+                                       email=req.email,
+                                       image=req.image,
+                                       )
 
     db.session.add(create_customer)
     db.session.commit()

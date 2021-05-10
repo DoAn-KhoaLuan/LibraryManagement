@@ -2,11 +2,7 @@ from sqlalchemy import or_
 
 from library import db
 from library.common.Req import GetItemsByPageReq
-from library.common.Req.AccountReq import SendResetPasswordEmailReq
-from library.common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq
 from library.common.Req.CustomerReq import CreateCustomerReq, UpdateCustomerReq, DeleteCustomerReq, SearchCustomersReq
-from library.common.Rsp.CustomerRsp import SearchCustomersRsp
-from library.common.util import ConvertModelListToDictList
 from library.DAL import models
 from flask import jsonify, json
 from library.DAL.models import Accounts
@@ -28,13 +24,16 @@ def CreatCustomer(req: CreateCustomerReq):
                                        last_name=req.last_name,
                                        first_name=req.first_name,
                                        phone=req.phone,
-                                       student_code=req.student_code,
                                        birth_date=req.birth_date,
                                        address=req.address,
                                        gender=req.gender,
                                        email=req.email,
                                        note=req.note,
-                                       delete_at=req.delete_at)
+                                       delete_at=req.delete_at,
+                                       province_id = req.province_id,
+                                        district_id = req.district_id,
+                                        ward_id = req.ward_id,
+    )
     db.session.add(create_customer)
     db.session.commit()
     return create_customer.serialize()
@@ -47,13 +46,16 @@ def UpdateCustomer(req: UpdateCustomerReq):
     update_customer.last_name = req.last_name
     update_customer.first_name = req.first_name
     update_customer.phone = req.phone
-    update_customer.student_code = req.student_code
     update_customer.birth_date = req.birth_date
     update_customer.address = req.address
     update_customer.gender = req.gender
     update_customer.email = req.email
     update_customer.note = req.note
     update_customer.delete_at = req.delete_at
+    update_customer.image = req.image
+    update_customer.province_id = req.province_id
+    update_customer.district_id = req.district_id
+    update_customer.ward_id = req.ward_id
     db.session.commit()
     return update_customer.serialize()
 

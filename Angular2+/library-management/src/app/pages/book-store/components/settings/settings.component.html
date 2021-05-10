@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3 left-container mr-3">
+      <h2 class="p-4">Tài khoản của Kim Hải</h2>
+      <div class="list-info">
+        <ng-container *ngFor="let item of item_list">
+          <div class="list-info-item" (click)="changeView(item.view)" [class.active]="item?.view == view">
+            <span class="my-2">{{item?.title}}</span>
+          </div>
+        </ng-container>
+       
+      </div>
+    </div>
+    <ng-container *ngIf="view == 'customer_info'">
+      <div class="col-8 right-container">
+        <h2 class="p-4 right-title mb-0">Thông tin tài khoản</h2>
+        <div class="content-info">
+          <div class="setting-body">
+            <div class="row py-3">
+              <div class="col-2 app-flex"><b>Họ: </b></div>
+              <div class="col-10 ">
+                <input type="text" class="form-control" placeholder="Nhập họ"
+                       [(ngModel)]="auth_info?.user_info.last_name"
+                />
+              </div>
+           
+            </div>
+            <div class="row py-3">
+              <div class="col-2 app-flex"><b>Tên: </b></div>
+              <div class="col-10 ">
+                <input type="text" class="form-control"  placeholder="Nhập tên"
+                       [(ngModel)]="auth_info?.user_info.first_name"
+                />
+              </div>
+            </div>
+            <div class="row py-3">
+              <div class="col-2 app-flex"><b>Ngày sinh: </b></div>
+              <div class="col-10 ">
+                <input type="date" class="form-control" placeholder="Nhập vào ngày sinh" [(ngModel)]="auth_info?.user_info.birth_day"/>
+              </div>
+            </div>
+            <div class="row py-3">
+              <div class="col-2 app-flex"><b>Giới tính: </b></div>
+              <div class="col-10">
+                <select class="form-control" placeholder="Chọn giới tính" [(ngModel)]="auth_info?.user_info.gender">
+                  <option value="" selected autofocus>Chọn giới tính</option>
+                  <option [value]="true" style="background-color: white; color: var(--app-color)">Nam</option>
+                  <option [value]="false" style="background-color: white; color: var(--app-color)">Nữ</option>
+                </select>
+              </div>
+            </div>
+            <div class="row py-3">
+              <div class="col-2 app-flex"><b>Chứng minh thư: </b></div>
+              <div class="col-10 ">
+                <input type="text" class="form-control" placeholder="Nhập chứng minh thư"
+                       [(ngModel)]="auth_info?.user_info.identity_id"
+                />
+              </div>
+            </div>
+            <div class="row py-3">
+              <ng-container [formGroup]="locationForm">
+                <div class="col-2 app-flex"><b>Địa chỉ: </b></div>
+                <div class="col-10">
+                  <div class="row">
+                    <app-material-input-autocomplete
+                      placeholder="Chọn tỉnh thành" textLabel="Tỉnh thành (*)" [options]="provincesList$ | async"
+                      [displayMap]="displayMap" [valueMap]="valueMap" register="true"
+                      formControlName="provinceCode" class="col">
+                    </app-material-input-autocomplete>
+                    <app-material-input-autocomplete
+                      placeholder="Chọn quận huyện" textLabel="Quận huyện (*)" [options]="(districtsList$ | async) || []"
+                      [displayMap]="displayMap" [valueMap]="valueMap"  class="col"
+                      formControlName="districtCode">
+                    </app-material-input-autocomplete>
+                    <app-material-input-autocomplete
+                      placeholder="Chọn phường xã" textLabel="Phường xã (*)" [options]="(wardsList$ | async) || []"
+                      [displayMap]="displayMap" [valueMap]="valueMap"  class="col"
+                      formControlName="wardCode">
+                    </app-material-input-autocomplete>
+                  </div>
+                  <div class="form-group d-flex flex-row mt-3">
+                    <input type="text" class="form-control" placeholder="Nhập địa chỉ" autofocus
+                           formControlName="address"/>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="setting-footer ">
+            <div class="btn-outline-app ml-auto" (click)="UpdateUser()">
+              Cập nhật
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container  *ngIf="view == 'order'">
+      <div class="col-8 right-container">
+        <h2 class="p-4 right-title mb-0">Danh sách đơn hàng</h2> 
+        <div class="row">
+          <div class="col-2 font-weight-bold">Mã đơn hàng</div>
+          <div class="col-2 font-weight-bold">Ngày mua</div>
+          <div class="col-5 font-weight-bold">Sản phẩm</div>
+          <div class="col-2 font-weight-bold">Tổng tiền</div>
+        </div>
+        <ng-container  *ngFor="let order_item of (order_list$ | async)?.items.slice().reverse()  , let i = index">
+          <div class="row my-5">
+            <div class="col-2 app-color">{{order_item?.order_id | standardizedId}}</div>
+            <div class="col-2">{{order_item?.order_date | date: 'dd/MM/yyyy'|| '-'}}  </div>
+            <div class="col-5 d-flex flex-column">
+              <ng-container *ngFor="let detail of order_item?.order_details">
+                <div>- {{detail?.book?.book_name}}</div>
+              </ng-container>
+            </div>
+            <div class="col-2">{{order_item?.total | vnd}}</div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
