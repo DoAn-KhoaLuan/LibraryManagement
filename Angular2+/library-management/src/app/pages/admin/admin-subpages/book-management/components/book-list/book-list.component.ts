@@ -41,7 +41,7 @@ export class BookListComponent implements OnInit {
 
   async SearchBooks() {
     if(!this.searchKeyword && !this.book_id && !this.category_id && !this.supplier_id) {
-      await this.onRequestNewPage();
+      return await this.onRequestNewPage();
     }
     const req = {
       book_id: this.book_id,

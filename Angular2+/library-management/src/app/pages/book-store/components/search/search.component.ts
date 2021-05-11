@@ -56,11 +56,11 @@ export class SearchComponent implements OnInit {
     }
     const req = {
       book_id: this.book_id,
-      book_name: this.searchKeyword,
-      category_id: this.category_id,
-      supplier_id: this.supplier_id,
-      from_price: this.from_price || 0.0,
-      to_price: this.to_price || 0.0,
+      book_name: this.searchKeyword || null,
+      category_id: this.category_id || null,
+      supplier_id: this.supplier_id || null,
+      from_price: this.from_price || null,
+      to_price: this.to_price || null,
     };
     let books = await this.bookService.searchBooks(req);
     let book_view = this.bookStore.getValue().book_list_view;

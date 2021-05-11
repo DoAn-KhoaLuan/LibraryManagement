@@ -6,6 +6,7 @@ import {FormBuilder} from "@angular/forms";
 import {combineLatest} from "rxjs";
 import {map} from "rxjs/operators";
 import {LocationQuery} from "../../../../states/location-store";
+import { TelegramService } from 'src/app/services/telegram.service';
 
 @Component({
   selector: 'app-checkout',
@@ -30,6 +31,7 @@ export class CheckoutComponent implements OnInit {
     private router: Router,
     private auth: AccountQuery,
     private locationQuery: LocationQuery,
+    private telegramService: TelegramService
   ) { }
 
   provincesList$ = this.locationQuery.select('provincesList');
@@ -58,9 +60,11 @@ export class CheckoutComponent implements OnInit {
   valueMap = option => option && option.code || null;
   async ngOnInit() {
     this.cartBooks = JSON.parse(localStorage.getItem("order_details"));
-    this.cartBooks.forEach(detail => {
-      this.total += detail.quantity * detail.book.retail_price
-    })
+    if (this.cartBooks?.length > 0) {
+      this.cartBooks.forEach(detail => {
+        this.total += detail.quantity * detail.book.retail_price
+      })
+    }
     window.paypal.Buttons({
       style: {
         layout: 'horizontal',
@@ -115,7 +119,8 @@ export class CheckoutComponent implements OnInit {
         total: parseInt(total.toFixed(0)),
         order_detail_list: order_lines
       };
-      await this.apiOrderService.CreateOrder(create_order_req).then(_ =>  {
+      await this.apiOrderService.CreateOrder(create_order_req).then(async order =>  {
+        await this.telegramService.sendCreateOrder(order)
         toastr.success('Thanh toán hóa đơn thành công');
         this.router.navigateByUrl("/book-store/home")
         localStorage.removeItem("order_details")

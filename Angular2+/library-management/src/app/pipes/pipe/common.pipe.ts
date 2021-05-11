@@ -55,7 +55,7 @@ export class VND implements PipeTransform {
       const result = valueString.replace(/./g, (match, p1, p2) => {
         return p1 && match !== "," && ((p2.length - p1) % 3 === 0) ? '.' + match : match;
       });
-      return `${value < 0 ? '-' : ''}${result} đ`;
+      return `${value < 0 ? '-' : ''}${result} ₫`;
     }
   }
 }

@@ -122,6 +122,7 @@ class Categories(db.Model):
     category_id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
     books = db.relationship("Books", backref="category", lazy=False)
     category_name = db.Column(db.String(50))
+    image = db.Column(db.String(1500))
     description = db.Column(db.String(1500))
     note = db.Column(db.String(1500))
     delete_at = db.Column(db.DateTime, default=None)
@@ -129,7 +130,7 @@ class Categories(db.Model):
 
     def serialize(self):
         return {"category_id": self.category_id, "category_name": self.category_name, "note": self.note,
-                "description": self.description, "delete_at": self.delete_at}
+                "description": self.description, "delete_at": self.delete_at, "image": self.image}
 
     def __repr__(self):
         return f"Category('{self.category_id}','{self.category_name}','{self.note}','{self.description}', '{self.delete_at}')"

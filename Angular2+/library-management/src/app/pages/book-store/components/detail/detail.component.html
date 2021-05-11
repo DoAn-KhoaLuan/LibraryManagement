@@ -1,7 +1,7 @@
 <div class="ng-container">
   <h1 class="text-app text-center font-weight-bolder">CHI TIẾT SẢN PHẨM</h1>
   <div class="Container-itwfbd-0 jFkAwY  pt-3">
-    <div class="indexstyle__Wrapper-qd1z2k-0 llsmxc">
+    <div class="indexstyle__Wrapper-qd1z2k-0 llsmxc pt-3">
       <div class="style__ProductImagesStyle-sc-1e5ea5s-0 iTTtrw">
         <div class="group-images">
           <div class="thumbnail" data-view-id="pdp_main_view_gallery">
@@ -228,60 +228,6 @@
                 </div>
               </div>
               <div class="style__StyledProductPromotionBlock-sc-18dba87-0 dEZLTy"><div class="style__StyledCoupon-sc-8bmb3t-0 eLHrRT coupon" data-view-id="pdp_main_discount_coupon"><div class="coupon__text">1 Mã Giảm Giá</div><div class="coupon__tags"><div class="coupon__tag">Giảm 10%</div><img class="view-more-coupon" src="https://salt.tikicdn.com/ts/upload/63/43/b6/472934eece91531f0855b86a00a3b1a1.png"></div></div></div>
-              <div
-                class="style__StyledDeliveryZone-sc-186hj1w-0 etdfsC delivery-zone"
-              >
-                <div
-                  data-view-id="pdp_main_change_address"
-                  class="delivery-zone__heading"
-                >
-                  <div>
-                  <span>Giao đến </span
-                  ><span class="address"
-                  >Q. Bình Thạnh, P. 19, Hồ Chí Minh</span
-                  >
-                    - <span class="address-change">ĐỔI ĐỊA CHỈ</span>
-                  </div>
-                </div>
-                <div class="delivery-zone__inner">
-                  <div
-                    class="style__StyledShippingInfo-sc-186hj1w-1 bsIxMC shipping-info"
-                  >
-                    <div class="shipping-info__inner disable-srcoll">
-                      <div class="shipping-info__item">
-                        <div class="shipping-info__heading">
-                          <h4 class="shipping-info__heading-text">
-                            Giao Ngay 2H - 3H
-                          </h4>
-                        </div>
-                        <h4 class="shipping-info__highlight">
-                          Trước 16:00 hôm nay (26/04)
-                        </h4>
-                        <h4
-                        ><span class="shipping-info__fee-label"
-                        >Vận chuyển:</span
-                        ><span class="shipping-info__fee">39.000 ₫</span><br
-                        /></h4>
-                      </div>
-                      <h4 class="shipping-info__item">
-                        <h4 class="shipping-info__heading">
-                          <h4 class="shipping-info__heading-text">
-                            Giao tiêu chuẩn
-                          </h4>
-                        </h4>
-                        <h4 class="shipping-info__highlight">
-                          Thứ 3, ngày 27 tháng 04
-                        </h4>
-                        <h4
-                        ><span class="shipping-info__fee-label"
-                        >Vận chuyển:</span
-                        ><span class="shipping-info__fee">14.000 ₫</span><br
-                        /></h4>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div class="DeliveryZone__StyledDeliveryZoneEmpty-sc-1maxvle-0 lijGxt"><div class="inner">Bạn hãy <span>NHẬP ĐỊA CHỈ</span> nhận hàng để được dự báo thời gian &amp; chi phí giao hàng một cách chính xác nhất.</div></div>
               <div class="indexstyle__AddToCart-qd1z2k-6 gyIkFE add-to-cart">
                 <div class="qty-and-message">
@@ -373,26 +319,26 @@
                     aria-hidden="false"
                     style="outline: none; width: 248px"
                   >
-                    <div>
+                    <div class="app-flex flex-column">
                       <div
                         data-view-id="pdp_similar_products_item"
                         title="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)"
                         rel=""
                         class="Item__Wrapper-m1oy8w-0 hmrZzB"
                       >
-                        <div
+                        <div  class="app-flex flex-column"
                           (click)="redirectBook(book.book_id)"
                         >
                           <div class="Item__Picture-m1oy8w-1 evEsoa">
                             <img
-                              src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/08085b485017aa74beb3ad6d1ceb15c6.jpg"
+                              [src]="book?.image || 'assets/images/default-book.png'"
                               alt="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)"
                               class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
                               style="width: auto; height: 100%; opacity: 1"
                             />
                           </div>
                           <div class="title" style="max-height: 40px; height: auto">
-                            Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)
+                            {{book.book_name}}
                           </div>
                           <div class="bottom" style="flex: unset">
                             <div class="Item__Review-m1oy8w-3 ibucdt">
@@ -410,217 +356,15 @@
                             </div>
                           </div>
                           <p class="price">
-                            225.000 ₫<span class="percent">-25%</span
-                          ><span class="original">300.000 ₫</span>
+                            {{book.retail_price.toFixed(0) | vnd}}<span class="percent">-30%</span
+                          ><span class="original">{{(book.retail_price * 1.3).toFixed(0) | vnd}}</span>
                           </p></div
                         >
                       </div>
                     </div>
                   </div>
                 </ng-container>
-                <div
-                  data-index="1"
-                  class="slick-slide slick-active"
-                  tabindex="-1"
-                  aria-hidden="false"
-                  style="outline: none; width: 248px"
-                >
-                  <div>
-                    <div
-                      data-view-id="pdp_similar_products_item"
-                      title="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)"
-                      rel=""
-                      class="Item__Wrapper-m1oy8w-0 hmrZzB"
-                    >
-                      <a
-                        href="https://tiki.vn/bo-katchup-flashcard-toeic-high-quality-trang-01t-p3019767.html?spid=14844279"
-                      >
-                        <div class="Item__Picture-m1oy8w-1 evEsoa">
-                          <img
-                            src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/08085b485017aa74beb3ad6d1ceb15c6.jpg"
-                            alt="Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)"
-                            class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
-                            style="width: auto; height: 100%; opacity: 1"
-                          />
-                        </div>
-                        <div class="title" style="max-height: 40px; height: auto">
-                          Bộ KatchUp Flashcard TOEIC - High Quality - Trắng (01T)
-                        </div>
-                        <div class="bottom" style="flex: unset">
-                          <div class="Item__Review-m1oy8w-3 ibucdt">
-                            <p
-                              class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                              style="font-size: 13px"
-                            >
-                              <i class="icomoon icomoon-star"></i
-                              ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i>
-                            </p>
-                            <p class="number">(2 nhận xét)</p>
-                          </div>
-                        </div>
-                        <p class="price">
-                          225.000 ₫<span class="percent">-25%</span
-                        ><span class="original">300.000 ₫</span>
-                        </p></a
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-index="2"
-                  class="slick-slide slick-active"
-                  tabindex="-1"
-                  aria-hidden="false"
-                  style="outline: none; width: 248px"
-                >
-                  <div>
-                    <div
-                      data-view-id="pdp_similar_products_item"
-                      title="Bộ KatchUp Flashcard TOEIC - Standard (01S)"
-                      rel=""
-                      class="Item__Wrapper-m1oy8w-0 hmrZzB"
-                    >
-                      <a
-                        href="https://tiki.vn/bo-katchup-flashcard-toeic-standard-01s-p3019765.html?spid=14844273"
-                      >
-                        <div class="Item__Picture-m1oy8w-1 evEsoa">
-                          <img
-                            src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/e6b6f59a7f6224c7354932a31d9c3052.jpg"
-                            alt="Bộ KatchUp Flashcard TOEIC - Standard (01S)"
-                            class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
-                            style="width: auto; height: 100%; opacity: 1"
-                          />
-                        </div>
-                        <div class="title" style="max-height: 40px; height: auto">
-                          Bộ KatchUp Flashcard TOEIC - Standard (01S)
-                        </div>
-                        <div class="bottom" style="flex: unset">
-                          <div class="Item__Review-m1oy8w-3 ibucdt">
-                            <p
-                              class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                              style="font-size: 13px"
-                            >
-                              <i class="icomoon icomoon-star"></i
-                              ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star disable"></i>
-                            </p>
-                            <p class="number">(4 nhận xét)</p>
-                          </div>
-                        </div>
-                        <p class="price">
-                          180.000 ₫<span class="percent">-25%</span
-                        ><span class="original">240.000 ₫</span>
-                        </p></a
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-index="3"
-                  class="slick-slide slick-active"
-                  tabindex="-1"
-                  aria-hidden="false"
-                  style="outline: none; width: 248px"
-                >
-                  <div>
-                    <div
-                      data-view-id="pdp_similar_products_item"
-                      title="Bộ KatchUp Flashcard TOEIC - Best Quality (01B)"
-                      rel=""
-                      class="Item__Wrapper-m1oy8w-0 hmrZzB"
-                    >
-                      <a
-                        href="https://tiki.vn/bo-katchup-flashcard-toeic-best-quality-01b-p3019769.html?spid=14844283"
-                      >
-                        <div class="Item__Picture-m1oy8w-1 evEsoa">
-                          <img
-                            src="https://salt.tikicdn.com/cache/280x280/ts/product/c3/15/c3/e7e180f27a42007706e11fca72d072dd.jpg"
-                            alt="Bộ KatchUp Flashcard TOEIC - Best Quality (01B)"
-                            class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
-                            style="width: auto; height: 100%; opacity: 1"
-                          />
-                        </div>
-                        <div class="title" style="max-height: 40px; height: auto">
-                          Bộ KatchUp Flashcard TOEIC - Best Quality (01B)
-                        </div>
-                        <div class="bottom" style="flex: unset">
-                          <div class="Item__Review-m1oy8w-3 ibucdt">
-                            <p
-                              class="Stars__Wrapper-sc-1t6kjxa-0 iQZcjJ"
-                              style="font-size: 13px"
-                            >
-                              <i class="icomoon icomoon-star"></i
-                              ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i
-                            ><span class="half-star"
-                            ><i class="icomoon icomoon-star"></i
-                            ><i class="icomoon icomoon-star"></i
-                            ></span>
-                            </p>
-                            <p class="number">(7 nhận xét)</p>
-                          </div>
-                        </div>
-                        <p class="price">
-                          270.000 ₫<span class="percent">-25%</span
-                        ><span class="original">360.000 ₫</span>
-                        </p></a
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-index="4"
-                  class="slick-slide slick-active"
-                  tabindex="-1"
-                  aria-hidden="false"
-                  style="outline: none; width: 248px"
-                >
-                  <div>
-                    <div
-                      data-view-id="pdp_similar_products_item"
-                      title="600 Essential Flashcard For Ielts Blue Up (Phần 1)"
-                      rel=""
-                      class="Item__Wrapper-m1oy8w-0 hmrZzB"
-                    >
-                      <a
-                        href="https://tiki.vn/600-essential-flashcard-for-ielts-blue-up-phan-1-p55067725.html?spid=89920638"
-                      >
-                        <div class="Item__Picture-m1oy8w-1 evEsoa">
-                          <img
-                            src="https://salt.tikicdn.com/cache/280x280/ts/product/da/00/b3/5b0762b7a78d3dcd531d4e3a10ec055b.jpg"
-                            alt="600 Essential Flashcard For Ielts Blue Up (Phần 1)"
-                            class="LazyLoadImage__Wrapper-sc-12s4rj6-0 qixAr"
-                            style="width: auto; height: 100%; opacity: 1"
-                          />
-                        </div>
-                        <div class="title" style="max-height: 40px; height: auto">
-                          600 Essential Flashcard For Ielts Blue Up (Phần 1)
-                        </div>
-                        <div class="bottom" style="flex: unset">
-                          <div class="Item__Review-m1oy8w-3 ibucdt"></div>
-                        </div>
-                        <p class="price">
-                          211.650 ₫<span class="percent">-15%</span
-                        ><span class="original">249.000 ₫</span>
-                        </p></a
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-index="5"
-                  class="slick-slide"
-                  tabindex="-1"
-                  aria-hidden="true"
-                  style="outline: none; width: 248px"
-                ></div>
-
+               
               </div>
             </div>
             <a
@@ -814,7 +558,7 @@
               <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="user.avatar"></nz-avatar>
               <nz-comment-content>
                 <nz-form-item class="w-50">
-                  <textarea [(ngModel)]="inputValue" nz-input rows="4" class="w-100"></textarea>
+                  <textarea [(ngModel)]="inputValue" nz-input rows="4" class="w-100" placeholder="Vui lòng nhập nội dung đánh giá..."></textarea>
                 </nz-form-item>
                 <nz-form-item>
                   <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!inputValue" (click)="handleSubmit()">
@@ -826,7 +570,7 @@
             <ng-container *ngFor="let cmt of comments">
               <div style="padding: 1rem;">
                 <nz-comment [nzAuthor]="cmt?.customer?.customer_name || 'Khách lẻ'" [nzDatetime]="cmt?.distanceTime">
-                  <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]=" cmt?.customer?.image || '//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'"></nz-avatar>
+                  <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]=" cmt?.customer?.image || 'assets/images/default-avatar.png'"></nz-avatar>
                   <nz-comment-content>
                     <p>
                       {{cmt?.content}}

@@ -33,7 +33,7 @@ export class DetailComponent implements OnInit {
   ]
   user = {
     author: 'Khách hàng',
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+    avatar: 'assets/images/default-avatar.png'
   };
   data = [
     {
@@ -80,7 +80,7 @@ export class DetailComponent implements OnInit {
       this.comments = this.comments.concat(cmts)
       this.comments.forEach(cmt => cmt.distanceTime = formatDistance(new Date(), addDays(new Date(), 1)));
     })
-    this.apiBookService.GetBooks({
+    await this.apiBookService.GetBooks({
       page: 1,
       per_page: 4,
     }).then(res => {

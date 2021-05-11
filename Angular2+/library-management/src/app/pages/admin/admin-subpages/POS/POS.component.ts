@@ -11,6 +11,7 @@ import {order_line} from "../../../../models/app-models";
 import {BookQuery} from "../../../../states/book-store/book.query";
 import {ApiOrderService} from "../../../../API/api-order.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { TelegramService } from 'src/app/services/telegram.service';
 
 @Component({
   selector: 'app-POS',
@@ -57,6 +58,7 @@ export class POSComponent implements OnInit {
     private apiOrderService: ApiOrderService,
     private router: Router,
   private route: ActivatedRoute,
+    private telegramService: TelegramService,
   ) { }
 
   async ngOnInit() {
@@ -189,9 +191,10 @@ export class POSComponent implements OnInit {
         note: this.order.note,
         order_detail_list: this.order_lines
       };
-      await this.apiOrderService.CreateOrder(create_order_req).then(_ =>  {
+      await this.apiOrderService.CreateOrder(create_order_req).then(async order =>  {
+        await this.telegramService.sendCreateOrder(order)
         toastr.success('Thanh toán hóa đơn thành công');
-        // location.reload();
+        location.reload();
       });
 
     } catch (e) {

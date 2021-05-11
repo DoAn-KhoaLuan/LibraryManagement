@@ -324,6 +324,14 @@ a {
   cursor: pointer;
 }
 
+.content > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+  }
+}
 img {
   max-width: 100%;
 }
@@ -343,7 +351,7 @@ img {
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
-  flex-basis: 103px;
+  flex-basis: 131px;
   flex-shrink: 0;
 }
 
@@ -372,6 +380,13 @@ img {
   justify-content: space-between;
 }
 
+.info {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .khGMIT .thumbnail {
   flex-shrink: 0;
   width: 200px;
@@ -379,7 +394,7 @@ img {
   margin: 0px 12px;
   text-align: center;
   img {
-    width: 200px;
+    width: 150px;
     height: 200px;
     object-fit: fill;
   }

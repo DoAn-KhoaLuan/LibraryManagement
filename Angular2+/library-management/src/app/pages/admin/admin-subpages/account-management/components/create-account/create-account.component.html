@@ -18,7 +18,7 @@
             <input accept="image/png,image/jpg,image/jpeg,image/gif" name = "file"  class="d-none" type="file"  (change)="onChangeLogo($event)"/>
           </label>
         </div>
-        <h1 class="text-app text-center font-weight-bold">Hình ảnh đại diện</h1>
+        <h1 class="text-app text-center font-weight-bold mt-2">Hình ảnh đại diện</h1>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
         </div>
         <ng-container [formGroup]="locationForm">
           <div class="row py-3">
-            <div class="col-2 app-flex">Địa chỉ: </div>
+            <div class="col-2 app-flex font-weight-bold">Địa chỉ: </div>
             <div class="col-9">
               <div class="form-group d-flex flex-row">
                 <select class="form-control mr-3" formControlName="provinceCode"  >

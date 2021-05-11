@@ -71,19 +71,22 @@ def SearchBooks(req: SearchBookReq):
         model_books = models.Books.query.filter(models.Books.book_id == req.book_id)
         return ConvertModelListToDictList(model_books)
 
-    all_books = models.Books.query
-    if req.book_name != None:
-        all_books = all_books.filter(models.Books.book_name.contains(req.book_name))
-
-    if req.to_price != None:
-        all_books = all_books.filter(models.Books.retail_price.between(req.from_price, req.to_price))
-
+    all_books = models.Books.query.all()
     if req.category_id != None:
-        all_books = all_books.filter(models.Books.category_id.contains(req.category_id))
+        all_books = [book for book in all_books if book.category_id == req.category_id]
+
+    if req.book_name != None:
+        all_books = [book for book in all_books if book.book_name == req.book_name or book.book_name == (req.book_name)]
+
+    if req.author_id != None:
+        all_books = [book for book in all_books if book.author.author_id == req.author_id]
 
     if req.supplier_id != None:
-            all_books = all_books.filter(models.Books.supplier_id.contains(req.supplier_id))
+        all_books = [book for book in all_books if book.supplier_id == req.supplier_id]
 
-    books = ConvertModelListToDictList(all_books.all())
+    if req.to_price != None:
+        all_books = [book for book in all_books if book.retail_price >= req.from_price and  book.retail_price <= req.to_price]
+
+    books = ConvertModelListToDictList(all_books)
     return books
 

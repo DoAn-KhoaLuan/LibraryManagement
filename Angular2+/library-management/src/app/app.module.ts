@@ -41,6 +41,7 @@ registerLocaleData(en);
     ShareComponentModule
   ],
   providers: [
+    
     // { provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }},
     // {
     //   provide: HTTP_INTERCEPTORS,
@@ -49,7 +50,7 @@ registerLocaleData(en);
     // }
   { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
-
+  
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

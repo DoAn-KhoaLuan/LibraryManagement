@@ -39,54 +39,63 @@ def insertCategories():
             "description": "MÔ tả điênh thoại máy tính bảng",
             "note": "GHI CHÚ MÁY TINH BẢNG",
             "createAt": datetime.now(),
+            "image": "https://vnwriter.net/wp-content/uploads/2017/06/sach-toi-tu-duy-toi-thanh-dat.jpg"
         },
         {
             "categoryName": "Tiểu thuyết",
             "description": "MÔ tả điênh thoại máy tính bảng",
             "note": "GHI CHÚ MÁY TINH BẢNG",
             "createAt":datetime.now(),
+            "image": "https://upload.wikimedia.org/wikipedia/vi/2/23/Tiengchimhot2012.jpg"
         },
         {
             "categoryName": "Kiến thức - Bách khoa",
             "description": "MÔ tả điênh thoại máy tính bảng",
             "note": "GHI CHÚ MÁY TINH BẢNG",
             "createAt":datetime.now(),
+            "image": "https://salt.tikicdn.com/ts/product/8c/64/c9/8b1ec9939b56751c44eeddcf7a7bc9fe.jpg"
         },
         {
             "categoryName":"Sách kỹ năng làm việc",
             "description":"MÔ tả điênh thoại máy tính bảng",
             "note":"GHI CHÚ MÁY TINH BẢNG",
             "createAt":datetime.now(),
+            "image": "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/400x400/9df78eab33525d08d6e5fb8d27136e95/k/y/kynangvietbaocaohieuqua_bia1.jpg"
         },
         {
             "categoryName":"Sách nghệ thuật sách đẹp",
             "description":"MÔ tả điênh thoại máy tính bảng",
             "note":"GHI CHÚ MÁY TINH BẢNG",
             "createAt":datetime.now(),
+            "image":"https://chi.vn/data/files/image-20200929151745-10.jpeg"
         },
         {
             "categoryName": "Sách tư liệu",
             "description": "MÔ tả điênh thoại máy tính bảng",
             "note": "GHI CHÚ MÁY TINH BẢNG",
             "createAt": datetime.now(),
+            "image":"https://bizweb.dktcdn.net/100/116/097/files/vn-267.jpg?v=1567161580877",
         },
         {
             "categoryName":"Sách, VPP & Qùa tặng",
             "description":"MÔ tả điênh thoại máy tính bảng",
             "note": "GHI CHÚ MÁY TINH BẢNG",
             "createAt": datetime.now(),
+            "image":"https://lh3.googleusercontent.com/proxy/byLkDPXBQs8TbsUk9xSLp1p_mqxdey-7ly-efDHa1sotUPLGQ4tkpdEZJtvSny9sN4tsxbfHbUle836DVEht_1vLQjZLdlmAyp3RZHl1lVCsdm8NmP16T4JZK-bFsxP0_hm-ohK5WQ"
         },
         {
             "categoryName":"Voucher, Dịch vụ, Thẻ cào",
             "description":"MÔ tả điênh thoại máy tính bảng",
             "note": "GHI CHÚ MÁY TINH BẢNG",
             "createAt": datetime.now(),
+            "image":"https://img.timviec.com.vn/2020/10/voucher-la-gi-3.jpg"
         },
     ]
     for category in categoryDicts:
         categoryModel = models.Categories(
                              category_name = category['categoryName'],
                              description = category['description'],
+                                image = category['image'],
                              note = category['note'],
                         )
         CategoryRep.CreateCategory(categoryModel)

@@ -8,6 +8,7 @@ import {FormBuilder} from '@angular/forms';
 import {combineLatest} from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
 import {LocationQuery} from '../../../../states/location-store';
+import { TelegramService } from 'src/app/services/telegram.service';
 
 @Component({
   selector: 'app-user-register-account',
@@ -45,7 +46,8 @@ export class UserRegisterAccountComponent implements OnInit {
     private accountService: AccountService,
     private locationQuery: LocationQuery,
     private router: Router,
-    private util: UtilService
+    private util: UtilService,
+    private telegramService: TelegramService
   ) {
   }
 
@@ -119,6 +121,9 @@ export class UserRegisterAccountComponent implements OnInit {
       };
 
       let resp = await this.accountService.CreateAccountAndCustomer(info_req);
+      const account = resp[0];
+      const customer = resp[1];
+      await this.telegramService.sendCreateCustomerAccount(account, customer);
       this.router.navigateByUrl('/user/login');
       toastr.success('Tạo mới tài khoản thành công');
     } catch (e) {

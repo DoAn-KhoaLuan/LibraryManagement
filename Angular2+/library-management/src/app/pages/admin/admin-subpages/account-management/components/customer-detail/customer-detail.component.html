@@ -6,7 +6,7 @@
     <div class="d-flex flex-row p-5 mb-4">
       <div class="avatar col-3 mb-4">
         <div class="d-flex flex-column">
-          <img src='../../../../../../../assets/images/default-book.png' style="height: 100%; width: 100%; object-fit: cover;" alt="Avatar" />
+          <img [src]="(detail_customer$ | async)?.image || 'assets/images/default-avatar.png'" style="height: 100%; width: 100%; object-fit: cover;" alt="Avatar" />
           <h1 class="text-app text-left font-weight-bold text-center my-4">Mã khách hàng: {{(detail_customer$ | async)?.customer_id | standardizedId}}</h1>
         </div>
       </div>
@@ -86,7 +86,7 @@
     <div class="d-flex flex-row p-5 mb-4" [formGroup]="updateCustomerForm">
       <div class="avatar col-3 mb-4">
         <div class="d-flex flex-column">
-          <img src='../../../../../../../assets/images/default-book.png' style="height: 390px; width: 390px; object-fit: cover;" alt="Avatar" />
+          <img src='../../../../../../../assets/images/default-avatar.png' style="height: 390px; width: 390px; object-fit: cover;" alt="Avatar" />
         </div>
       </div>
       <div class=" col-9 d-flex flex-column">

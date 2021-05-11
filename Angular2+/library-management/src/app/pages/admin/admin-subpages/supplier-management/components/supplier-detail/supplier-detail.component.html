@@ -3,14 +3,8 @@
     <h1 class="font-weight-bold">Thông tin chi tiết nhà cung cấp <span>{{ (detail_supplier$ | async)?.contact_name}}</span></h1>
   </div>
   <ng-container *ngIf="!isEditing, else updateForm">
-    <div class="d-flex flex-row p-5 mb-4">
-      <div class="avatar col-3 mb-4">
-        <div class="d-flex flex-column">
-          <img src='assets/images/default-book.png' style="height: 100%; width: 100%; object-fit: cover;" alt="Avatar" />
-          <h1 class="text-app text-left font-weight-bold text-center my-4">Mã nhà cung cấp: {{(detail_supplier$ | async)?.supplier_id | standardizedId}}</h1>
-        </div>
-      </div>
-      <div class=" col-9 d-flex flex-column">
+    <div class="d-flex flex-row p-5 mb-4 app-flex">
+      <div class=" col-6 d-flex flex-column">
         <div class="d-flex flex-column">
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Mã nhà cung cấp: </b></div>
@@ -71,14 +65,8 @@
     </div>
   </ng-container>
   <ng-template #updateForm>
-    <div class="d-flex flex-row p-5 mb-4" [formGroup]="updateSupplierForm">
-      <div class="avatar col-3 mb-4">
-        <div class="d-flex flex-column">
-          <img src='assets/images/default-book.png' style="height: 100%; width: 100%; object-fit: cover;" alt="Avatar" />
-          <h1 class="text-app text-left font-weight-bold text-center my-4">Mã nhà cung cấp: {{(detail_supplier$ | async)?.supplier_id | standardizedId}}</h1>
-        </div>
-      </div>
-      <div class=" col-9 d-flex flex-column">
+    <div class="d-flex flex-row p-5 mb-4 app-flex" [formGroup]="updateSupplierForm">
+      <div class=" col-6 d-flex flex-column">
         <div class="d-flex flex-column">
           <div class="row py-3">
             <div class="col-2 app-flex"><b>Tên nhà cung cấp: </b></div>
