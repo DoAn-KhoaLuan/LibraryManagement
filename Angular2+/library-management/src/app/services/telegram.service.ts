@@ -67,7 +67,6 @@ Tổng tiền: ${this.moneyFormat(order?.total)}
 Hình thức: ${order?.type == "online" ? "Mua hàng online" : "Mua tại chỗ"}
     `;
     try {
-      console.log(order)
       await this.sendMessage(this.groupId, msg);
     } catch (e) {
       debug.log('ERROR in send testMessage: ', e);

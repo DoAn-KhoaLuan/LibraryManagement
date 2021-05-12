@@ -53,9 +53,6 @@ def SearchEmployees():
     if req.phone != None:
         employees = employees.filter(models.Employees.phone.contains(req.phone))
 
-    if req.identity_id != None:
-        employees = employees.filter(models.Employees.identity_id.contains(req.identity_id))
-
     employees = employees.filter(models.Employees.delete_at == None)
     employees = ConvertModelListToDictList(employees.all())
     return jsonify(employees)

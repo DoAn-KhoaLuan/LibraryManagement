@@ -241,7 +241,7 @@ a {
     align-self: stretch;
     background-color: rgb(255, 255, 255);
     border-top: 1px solid rgb(242, 242, 242);
-
+    justify-content: space-between;
     .product-item {
       text-decoration: none;
       display: flex;
@@ -312,6 +312,7 @@ a {
   flex-wrap: wrap;
   align-self: stretch;
   border-top: 1px solid rgb(38, 38, 38);
+  justify-content: space-between;
 }
 
 
@@ -394,7 +395,7 @@ img {
   margin: 0px 12px;
   text-align: center;
   img {
-    width: 150px;
+    width: 200px;
     height: 200px;
     object-fit: fill;
   }

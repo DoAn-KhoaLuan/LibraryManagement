@@ -29,7 +29,7 @@ export class ShopHeaderComponent implements OnInit {
 
   async searchBooksByCategoryID(category_id) {
     const req = {
-      category_id,
+      category_id : category_id || null,
     };
     let books = await this.bookService.searchBooks(req);
     let book_view = this.bookStore.getValue().book_list_view;
@@ -65,7 +65,7 @@ export class ShopHeaderComponent implements OnInit {
       return
     }
     const req = {
-      book_name: this.book_name,
+      book_name: this.book_name || null,
     }
     let books = await this.bookService.searchBooks(req);
     let book_view = this.bookStore.getValue().book_list_view;

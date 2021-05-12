@@ -1,6 +1,5 @@
 class CreateCustomerReq():
     def __init__(self, req):
-        self.identity_id = req['identity_id'] if 'identity_id' in req else None
         self.account_id = req['account_id'] if 'account_id' in req else None
         self.last_name = req['last_name'] if 'last_name' in req else None
         self.first_name = req['first_name'] if 'first_name' in req else None
@@ -19,7 +18,6 @@ class CreateCustomerReq():
 class UpdateCustomerReq():
     def __init__(self, req):
         self.customer_id = req['customer_id'] if 'customer_id' in req else None
-        self.identity_id = req['identity_id'] if 'identity_id' in req else None
         self.account_id = req['account_id'] if 'account_id' in req else None
         self.last_name = req['last_name'] if 'last_name' in req else None
         self.first_name = req['first_name'] if 'first_name' in req else None
@@ -45,5 +43,4 @@ class SearchCustomersReq():
     def __init__(self, req):
         self.customer_id = req['customer_id'] if 'customer_id' in req else None
         self.account_id = req['account_id'] if 'account_id' in req else None
-        self.identity_id = req['identity_id'] if 'identity_id' in req else None
         self.phone = req['phone'] if 'phone' in req else None

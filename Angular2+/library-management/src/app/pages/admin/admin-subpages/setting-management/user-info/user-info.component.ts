@@ -26,7 +26,6 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     this.subscription = this.accountQuery.auth_info$.subscribe(auth_info => {
       this.user_info = auth_info.user_info
     })
-    console.log(this.user_info)
   }
 
   ngOnDestroy() {

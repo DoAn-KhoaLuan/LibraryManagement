@@ -37,6 +37,11 @@ export class AdminPageGuard implements CanActivate {
       map((auth) => {
         if (localStorage.getItem('auth_info')) {
           const auth_info = JSON.parse(localStorage.getItem('auth_info'));
+          if (auth_info.account.role.role_id == 3) {
+            this.accountStore.reset();
+            localStorage.removeItem('auth_info')
+            return this.router.createUrlTree(['/admin/login']);
+          }
           if (
             auth_info.access_token &&
             (auth_info.account.role.role_id == 1 ||
@@ -76,6 +81,11 @@ export class UserPageGuard implements CanActivate {
       map((auth) => {
         if (localStorage.getItem('auth_info')) {
           const auth_info = JSON.parse(localStorage.getItem('auth_info'));
+          if (auth_info.account.role.role_id == 1 || auth_info.account.role.role_id == 2) {
+            this.accountStore.reset();
+            localStorage.removeItem('auth_info')
+            return this.router.createUrlTree(['/user/login']);
+          }
           if (
             auth_info.access_token &&
             (auth_info.account.role.role_id == 3)

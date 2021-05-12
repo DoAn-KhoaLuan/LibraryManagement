@@ -84,8 +84,6 @@ export class SettingsComponent implements OnInit {
   async ngOnInit() {
     this.auth_info = this.accountQuery.getValue().auth_info;
     this.auth_info.user_info.birth_day = this.datePipe.transform(this.auth_info.user_info.birth_day, 'yyyy-MM-dd')
-    console.log(this.auth_info);
-    console.log(this.auth_info.user_info.birth_day);
     this.locationForm.patchValue({
       provinceCode: this.auth_info.user_info.province_id,
       districtCode: this.auth_info.user_info.district_id,
@@ -111,7 +109,6 @@ export class SettingsComponent implements OnInit {
           note: user_info.note,
           image: user_info.image,
           email: user_info.email,
-          identity_id: user_info.identity_id,
           phone: user_info.phone,
           province_id: form_data.provinceCode,
           district_id: form_data.districtCode,

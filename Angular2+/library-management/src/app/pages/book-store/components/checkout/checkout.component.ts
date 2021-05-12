@@ -93,7 +93,6 @@ export class CheckoutComponent implements OnInit {
       },
 
       onError: error => {
-        console.log(error);
       }
     })
       .render(this.paypalRef.nativeElement);

@@ -117,7 +117,7 @@ def CreateCustomerAccount(req: CreateCustomerAccountReq):
         db.session.rollback()
         raise ErrorRsp(code=400, message='số điện thoại, chứng minh nhân dân hoặc email đẫ tồn tại',
                        msg='số điện thoại, chứng minh nhân dânhoặc email đẫ tồn tại')
-    create_customer = models.Customers(identity_id=req.identity_id,
+    create_customer = models.Customers(
                                        account_id=create_account.account_id,
                                        last_name=req.last_name,
                                        first_name=req.first_name,
@@ -142,7 +142,7 @@ def CreateEmployeeAccount(req: CreateEmployeeAccountReq):
     is_exist_account_name_employee = models.Accounts.query.filter(models.Accounts.account_name == req.account_name).first()
     is_exist_email_phone_employee = models.Employees.query.filter(or_(models.Employees.email == req.email,
                                                                       models.Employees.phone == req.phone,
-                                                                      models.Employees.identity_id == req.identity_id)).first()
+                                                                      )).first()
     if is_exist_account_name_employee:
         raise ErrorRsp(code=400, message='Tài khoản tồn tại', msg='Tài khoản tồn tại')
 
@@ -157,7 +157,7 @@ def CreateEmployeeAccount(req: CreateEmployeeAccountReq):
         db.session.rollback()
         raise ErrorRsp(code=400, message='số điện thoại, chứng minh nhân dân hoặc email đẫ tồn tại',
                        msg='số điện thoại, chứng minh nhân dân hoặc email đẫ tồn tại')
-    create_employee = models.Employees(identity_id=req.identity_id,
+    create_employee = models.Employees(
                                        account_id=create_account.account_id,
                                        last_name=req.last_name,
                                        first_name=req.first_name,

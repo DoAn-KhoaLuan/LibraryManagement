@@ -44,35 +44,28 @@
 
 
     <div class="search-summary">
-      <div class="title">
-        <h1>Kết quả tìm kiếm:</h1>
-        <h4>{{ (book_list_view$ | async)?.items.length }} sản phẩm</h4>
-      </div>
-      <div class="Sorter__Root-sc-1u1tc3w-0 gwxwjw">
-
-        <div class="Sorter__Bottom-sc-1u1tc3w-2 bvZuzo py-2">
-          <div data-view-id="search_sort_container" class="Sorter__Tabs-sc-1u1tc3w-3 hhXHWC">
-            <div class="sort-list">
-              <a data-view-id="search_sort_item" data-view-index="0" class="" href="#"
-                style="color: black; font-weight: bold; font-size: 1.3rem;">Phổ biến</a><a
-                data-view-id="search_sort_item" data-view-index="1" class="" href="#"
-                style="color: black; font-weight: bold;font-size: 1.3rem;">Bán chạy</a><a
-                data-view-id="search_sort_item" data-view-index="2" class="" href="#"
-                style="color: black; font-weight: bold;font-size: 1.3rem;">Hàng mới</a><a
-                data-view-id="search_sort_item" data-view-index="3" class="" href="#"
-                style="color: black; font-weight: bold;font-size: 1.3rem;">Giá thấp</a><a
-                data-view-id="search_sort_item" data-view-index="4" class="active" href="#"
-                style="color: black; font-weight: bold;font-size: 1.3rem;">Giá cao</a>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="category layout-box">
-        <h2>Tất cả sản phẩm</h2>
+        <h2>Kết quả tìm kiếm (<span>{{ (book_list_view$ | async)?.items.length }} sản phẩm</span>)</h2>
         <div data-view-id="home_infinity_tab_content" data-view-index="0"
           class="style__StyledInfiniteScroll-sc-1xjioqa-0 jGFkeY">
           <div class="content">
-            <h5 class="row app-flex my-3">
+            <h4 class="Sorter__Bottom-sc-1u1tc3w-2 bvZuzo py-2">
+              <div data-view-id="search_sort_container" class="Sorter__Tabs-sc-1u1tc3w-3 hhXHWC">
+                <div class="sort-list">
+                  <a data-view-id="search_sort_item" data-view-index="0" class="" href="#"
+                    style="color: black; font-weight: bold; font-size: 1.3rem;">Phổ biến</a><a
+                    data-view-id="search_sort_item" data-view-index="1" class="" href="#"
+                    style="color: black; font-weight: bold;font-size: 1.3rem;">Bán chạy</a><a
+                    data-view-id="search_sort_item" data-view-index="2" class="" href="#"
+                    style="color: black; font-weight: bold;font-size: 1.3rem;">Hàng mới</a><a
+                    data-view-id="search_sort_item" data-view-index="3" class="" href="#"
+                    style="color: black; font-weight: bold;font-size: 1.3rem;">Giá thấp</a><a
+                    data-view-id="search_sort_item" data-view-index="4" class="active" href="#"
+                    style="color: black; font-weight: bold;font-size: 1.3rem;">Giá cao</a>
+                </div>
+              </div>
+            </h4>
+            <h5 class="row app-flex my-4 justify-content-between">
               <input type="text" class="form-control  col-3 p-4 mr-3" placeholder="Nhập mã sách"
                 [(ngModel)]="book_id" />
               <input type="text" class="form-control col-3 p-4 mr-3" placeholder="Nhập tên sách"

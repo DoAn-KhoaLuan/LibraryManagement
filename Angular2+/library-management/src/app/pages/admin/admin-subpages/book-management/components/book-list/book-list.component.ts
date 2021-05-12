@@ -44,10 +44,10 @@ export class BookListComponent implements OnInit {
       return await this.onRequestNewPage();
     }
     const req = {
-      book_id: this.book_id,
-      book_name: this.searchKeyword,
-      category_id: this.category_id,
-      supplier_id: this.supplier_id
+      book_id: this.book_id || null,
+      book_name: this.searchKeyword || null,
+      category_id: this.category_id || null,
+      supplier_id: this.supplier_id || null
     }
     let books = await this.bookService.searchBooks(req);
     let book_view = this.bookStore.getValue().book_list_view;

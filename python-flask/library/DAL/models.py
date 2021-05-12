@@ -33,7 +33,7 @@ class Accounts(db.Model):
 
 class Books(db.Model):
     book_id = db.Column(db.Integer, autoincrement=True, nullable=False, primary_key=True, unique=True)
-    book_name = db.Column(db.String(50), nullable=False)
+    book_name = db.Column(db.String(150), nullable=False)
     supplier_id = db.Column(db.Integer, db.ForeignKey('suppliers.supplier_id'))
     category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
     author_id = db.Column(db.Integer, db.ForeignKey('authors.author_id'))
@@ -50,6 +50,7 @@ class Books(db.Model):
     rate_count = db.Column(db.Integer, name="rate_count", default=0)
     delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))
+    comments = db.relationship('Comments', backref='book', lazy=True)
     order_details = db.relationship('Orderdetails', backref='book', lazy=True)
     borrow_ticket_details = db.relationship('Borrowticketdetails', backref='book', lazy=True)
     def serialize(self):
@@ -70,7 +71,7 @@ class Comments(db.Model):
     comment_id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.TEXT)
     create_at = db.Column(db.DateTime)
-    book_id = db.Column(db.Integer)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.book_id'))
     customer_id = db.Column(db.Integer)
 
     def serialize(self):
@@ -78,7 +79,8 @@ class Comments(db.Model):
             "comment_id": self.comment_id,
             "content": self.content,
             "book_id": self.book_id,
-            "customer_id": self.customer_id
+            "customer_id": self.customer_id,
+            'book': self.book.serialize() if self.book != None else None,
         }
 
 class Borrowticketdetails(db.Model):
@@ -137,7 +139,6 @@ class Categories(db.Model):
 
 class Customers(db.Model):
     customer_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)
-    identity_id = db.Column(db.String(50), unique=True)
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     last_name = db.Column(db.String(50))
     first_name = db.Column(db.String(50))
@@ -155,7 +156,7 @@ class Customers(db.Model):
     orders = db.relationship('Orders', backref='customer', lazy=True)
     borrow_tickets = db.relationship('Borrowtickets', backref='customer', lazy=True)
     def serialize(self):
-        return {"customer_id": self.customer_id, "identity_id": self.identity_id, "note": self.note,
+        return {"customer_id": self.customer_id, "note": self.note,
                 "account": self.account.serialize() if self.account != None else None, "last_name": self.last_name,
                 "first_name": self.first_name, "email": self.email, "phone": self.phone, "birth_day": str(self.birth_date),
                 "province_id": self.province_id,
@@ -165,7 +166,7 @@ class Customers(db.Model):
                 }
 
     def __repr__(self):
-        return f"Customer('{self.customer_id}','{self.identity_id}','{self.note}','{self.account.serialize()}'," \
+        return f"Customer('{self.customer_id}','','{self.note}','{self.account.serialize()}'," \
                f"','{self.last_name}','{self.email}','{self.birth_date}','{self.address}'," \
                f"'{self.gender}','{self.phone}', '{self.delete_at}')"
 
@@ -212,7 +213,6 @@ class Messages(db.Model):
 
 class Employees(db.Model):
     employee_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False, unique=True)
-    identity_id = db.Column(db.String(50), nullable=False, unique=True)
     account_id = db.Column(db.Integer, db.ForeignKey('accounts.account_id'), unique=True)
     last_name = db.Column(db.String(50), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
@@ -232,7 +232,7 @@ class Employees(db.Model):
     orders = db.relationship('Orders', backref='employee', lazy=True)
     borrow_tickets = db.relationship('Borrowtickets', backref='employee', lazy=True)
     def serialize(self):
-        return {"employee_id": self.employee_id, "identity_id": self.identity_id, "note": self.note,
+        return {"employee_id": self.employee_id,  "note": self.note,
                 "account": self.account.serialize() if self.account != None else None, "last_name": self.last_name, "first_name": self.first_name,
                 "phone": self.phone, "birth_day": self.birth_date, "provinceId": self.province_id,
                 "districtId": self.district_id,
@@ -242,7 +242,7 @@ class Employees(db.Model):
                 "hire_date": self.hire_date}
 
     def __repr__(self):
-        return f"Employee('{self.employee_id}','{self.identity_id}','{self.note}','{self.account.serialize()}','{self.first_name}'" \
+        return f"Employee('{self.employee_id}','','{self.note}','{self.account.serialize()}','{self.first_name}'" \
                f",'{self.last_name}','{self.phone}','{self.birth_date}','{self.address}','{self.gender}','{self.image}'" \
                f",'{self.basic_rate}', '{self.delete_at}', '{self.hire_date}', '{self.email}')"
 

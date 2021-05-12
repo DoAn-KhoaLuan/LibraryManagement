@@ -99,11 +99,11 @@
                 <form class="example-form">
                   <mat-form-field class="example-full-width w-100">
                     <input type="text" placeholder="Mã đọc giả" aria-label="Number" matInput  [formControl]="customer_control"
-                           [matAutocomplete]="customerAuto">
+                           [matAutocomplete]="customerAuto" (change)="onCustomerChange()">
                     <mat-autocomplete autoActiveFirstOption #customerAuto="matAutocomplete">
-                      <mat-option *ngFor="let customer of customer_filtered_options | async" [value]="customer?.customer_id">
+                      <mat-option *ngFor="let customer of customer_filtered_options | async" [value]="customer">
                         <b>
-                          {{customer?.customer_id }} - {{customer?.last_name }} {{customer?.first_name }}
+                          {{customer}}
                         </b>
                       </mat-option>
                     </mat-autocomplete>
@@ -218,9 +218,6 @@
         <div class="setting-footer d-block">
           <div class="row px-0 pb-1">
             <div class="btn-app btn-block w-100" style="font-size: 1.5rem" (click)="CreateOrder()">Thanh toán hóa đơn <i class="fas fa-cart-plus text-white" style="height: 1.5rem"></i></div>
-          </div>
-          <div class="row px-0 pb-1">
-            <div class="btn-outline-app btn-block w-100" style="font-size: 1.5rem"  #paypalRef></div>
           </div>
           <div class="row px-0 pb-1">
             <div class="btn-app btn-block w-100" style="background: #ae2070; font-size: 1.5rem" (click)="CreateOrderByMomo()">Thanh toán hóa đơn bằng MOMO

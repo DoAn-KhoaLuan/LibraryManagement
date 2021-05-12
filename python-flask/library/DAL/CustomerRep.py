@@ -19,7 +19,7 @@ def GetCustomersByPage(req: GetItemsByPageReq):
 
 
 def CreatCustomer(req: CreateCustomerReq):
-    create_customer = models.Customers(identity_id=req.identity_id,
+    create_customer = models.Customers(
                                        account_id=req.account_id,
                                        last_name=req.last_name,
                                        first_name=req.first_name,
@@ -41,7 +41,6 @@ def CreatCustomer(req: CreateCustomerReq):
 
 def UpdateCustomer(req: UpdateCustomerReq):
     update_customer = models.Customers.query.get(req.customer_id)
-    update_customer.identity_id = req.identity_id
     update_customer.account_id = req.account_id
     update_customer.last_name = req.last_name
     update_customer.first_name = req.first_name
@@ -71,7 +70,7 @@ def DeleteCustomer(req: DeleteCustomerReq):
 def SearchCustomers(req: SearchCustomersReq):
     search_customer = models.Customers.query.filter(or_(models.Customers.customer_id == req.customer_id,
                                                         models.Customers.account_id == req.account_id,
-                                                        models.Customers.identity_id == req.identity_id,
+
                                                         models.Customers.phone == req.phone)).all()
     customers = ConvertModelListToDictList(search_customer)
     return customers

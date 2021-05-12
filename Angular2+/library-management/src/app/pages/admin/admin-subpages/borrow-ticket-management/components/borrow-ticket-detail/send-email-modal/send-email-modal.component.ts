@@ -19,7 +19,6 @@ export class SendEmailModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.borrowTicketQuery.getValue().detail_borrow_ticket.customer.email)
   }
 
   dismissModal() {

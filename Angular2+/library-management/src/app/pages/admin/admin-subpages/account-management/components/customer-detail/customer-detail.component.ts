@@ -38,7 +38,6 @@ export class CustomerDetailComponent implements OnInit {
     updateCustomerForm = this.fb.group({
       customer_id: [''],
       customer_name: [''],
-      identity_id:[''],
       student_code: [''],
       last_name: [''],
       first_name: [''],
@@ -119,7 +118,6 @@ export class CustomerDetailComponent implements OnInit {
       'customer_name': store_detail_customer?.last_name + ' '+store_detail_customer?.first_name,
       'email': store_detail_customer?.email,
       'address': store_detail_customer?.address,
-      'identity_id': store_detail_customer?.identity_id,
       'phone': store_detail_customer?.phone,
       'gender': store_detail_customer?.gender,
       'birth_date':this.datePipe.transform(store_detail_customer?.birth_day, 'yyyy-MM-dd'),

@@ -41,18 +41,17 @@ def ReadConversation():
 def on_message(data):
     """Broadcast messages"""
     req = SendMessageReq(data)
-    print("data: ", data)
     result = MessageSvc.SendMessage(req)
     res = SendMessageRsp(result).serialize()
     room = data["room"]
     send(res, room=room)
+    return "DSafsda"
 
 @socketio.on('login-google')
 @cross_origin()
 def login_google():
     """Broadcast messages"""
     data = "ạdksajdklsa"
-    print("data: ", data)
     send({"msg":"LOGIN GOOGLE has join the room"}, room = 0)
 
 
@@ -60,12 +59,11 @@ def login_google():
 @cross_origin()
 def on_join(data):
     """User joins a room"""
-    print(data)
     session['auth_info']=data['auth_info']
     room = data["room"]
     join_room(room)
     send({"msg":"Someone has join the room"}, room=room)
-
+    return "dsfds"
 
 @socketio.on('leave',  namespace="/")
 @cross_origin()
@@ -75,6 +73,3 @@ def on_leave(data):
     leave_room(room)
     send({"msg":"Someone has left the room"}, room=room)
 
-@socketio.on('message')
-def handle_message(data):
-    print('received message: ' + data)

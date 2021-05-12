@@ -112,8 +112,20 @@
   }
 }
 
-app-material-input-autocomplete::ng-deep{
+app-material-input-autocomplete::ng-deep {
+  * {
+    color: white;
+  }
+  color: white;
   .mat-form-field-appearance-outline .mat-form-field-infix {
-    width: 150px;
+    width: 200;
+  }
+
+  label {
+    color: white;
+  }
+
+  &::placeholder {
+    color: white;
   }
 }

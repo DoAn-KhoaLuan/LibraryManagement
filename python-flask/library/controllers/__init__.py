@@ -106,7 +106,6 @@ def initAdminAccount():
         "account_name": "admin",
         "account_password":"123456789",
         # Employee
-        "identity_id": "078088006138",
         "last_name": "Nguyễn Văn",
         "first_name": "Kim Hải",
         "phone": "0865248526",
@@ -131,7 +130,7 @@ def initRoles():
     db.session.commit()
 
 def initAnomyCustomer():
-    indepentCustomer = Customers(customer_id=1, identity_id=0, first_name="Khách lẻ")
+    indepentCustomer = Customers(customer_id=1, first_name="Khách lẻ")
     db.session.add(indepentCustomer)
     db.session.commit()
 

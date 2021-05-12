@@ -55,7 +55,7 @@ export class SearchComponent implements OnInit {
       return toastr.error('Khoảng giá tiền sản phẩm không hợp lệ');
     }
     const req = {
-      book_id: this.book_id,
+      book_id: this.book_id || null,
       book_name: this.searchKeyword || null,
       category_id: this.category_id || null,
       supplier_id: this.supplier_id || null,

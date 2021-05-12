@@ -27,7 +27,6 @@ export class UserRegisterAccountComponent implements OnInit {
     phone: '',
     birthDate: '',
     gender: '',
-    identity_id: ""
   });
 
   locationForm = this.fb.group({
@@ -107,7 +106,6 @@ export class UserRegisterAccountComponent implements OnInit {
       const info_req = {
         account_name: form_data.userName || null,
         account_password: form_data.password || null,
-        identity_id: form_data.identity_id || null,
         last_name: form_data.lastName || null,
         first_name: form_data.firstName || null,
         phone: form_data.phone || null,

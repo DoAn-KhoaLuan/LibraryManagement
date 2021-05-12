@@ -71,7 +71,6 @@ class CreateCustomerAccountReq():
         self.role_id = req['role_id'] if 'role_id' in req else None
         self.account_password = req['account_password'] if 'account_password' in req else None
         # customer
-        self.identity_id = req['identity_id'] if 'identity_id' in req else None
         self.account_id = req['account_id'] if 'account_id' in req else None
         self.last_name = req['last_name'] if 'last_name' in req else None
         self.first_name = req['first_name'] if 'first_name' in req else None
@@ -93,7 +92,6 @@ class CreateEmployeeAccountReq():
         self.role_id = req['role_id'] if 'role_id' in req else None
         self.account_password = req['account_password'] if 'account_password' in req else None
         # Employee
-        self.identity_id = req['identity_id'] if 'identity_id' in req else None
         self.last_name = req['last_name'] if 'last_name' in req else None
         self.first_name = req['first_name'] if 'first_name' in req else None
         self.phone = req['phone'] if 'phone' in req else None

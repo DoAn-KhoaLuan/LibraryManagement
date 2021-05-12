@@ -20,6 +20,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./create-borrow-ticket.component.scss']
 })
 export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
+  today = new Date().toDateString();
   all_customers = [];
   customer_control = new FormControl();
   customer_options: string[] = [];
@@ -80,13 +81,13 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
     this.all_customers = this.customerQuery.getValue().customer_list_view.items;
 
     this.all_books.forEach(book => {
-      this.book_options.push(book.book_id.toString());
+      this.book_options.push(book.book_id + " - " + book.book_name.toString());
     })
     this.book_filtered_options = this.book_control.valueChanges.pipe(
       startWith(''),
       map(value => this._bookFilter(value)),
       tap(() => {
-        if(parseInt(this.book_control.value)){
+        if((this.book_control.value)){
           this.book_item = this.all_books.find(book => book.book_id == parseInt(this.book_control.value))
         }
       })
@@ -94,7 +95,7 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
 
 
     this.all_customers.forEach(customer => {
-      this.customer_options.push(customer.customer_id.toString());
+      this.customer_options.push(`${customer.customer_id.toString()} - ${customer.last_name} ${customer.first_name}`);
     })
     this.customer_filtered_options = this.customer_control.valueChanges.pipe(
       startWith(''),
@@ -180,4 +181,48 @@ export class CreateBorrowTicketComponent implements OnInit, OnDestroy {
 
     this.ngOnInit();
   }
+
+  async onBookChange() {
+    const req = {
+      book_id : Number(this.book_control.value),
+      book_name : this.book_control.value,
+    }
+    let res = await this.bookService.searchBooks(req);
+    const books = res.books;
+    this.book_options = [];
+    books.forEach(book => {
+      this.book_options.push(book.book_id + " - " + book.book_name.toString());
+    })
+    this.book_filtered_options = this.book_control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._bookFilter(value)),
+      tap(() => {
+        if(this.book_control.value){
+          this.book_item = this.all_books.find(book => book.book_id == parseInt(this.book_control.value))
+        }
+      })
+    );
+  }
+
+  async onCustomerChange() {
+    const req = {
+      customer_id : Number(this.customer_control.value),
+      customer_name : this.customer_control.value,
+    }
+    let customers = await this.customerService.SearchCustomers(req);
+    this.customer_options = [];
+    customers.forEach(customer => {
+      this.customer_options.push(`${customer.customer_id.toString()} - ${customer.last_name} ${customer.first_name}`);
+    })
+    this.customer_filtered_options = this.customer_control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._customerFilter(value)),
+      tap(() => {
+        if(this.customer_control.value){
+          this.customer_item = this.all_customers.find(cus => cus.customer_id == parseInt(this.customer_control.value))
+        }
+      })
+    );
+  }
+
 }

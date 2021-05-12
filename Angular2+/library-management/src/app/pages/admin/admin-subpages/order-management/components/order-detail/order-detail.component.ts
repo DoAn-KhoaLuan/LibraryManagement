@@ -14,6 +14,7 @@ import { OrderStore } from 'src/app/states/order-store/order.store';
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit, OnChanges {
+  total_quantity = 0;
   filter = {
     page : 1,
     per_page: 1000
@@ -65,7 +66,9 @@ export class OrderDetailComponent implements OnInit, OnChanges {
     const detail_order = res[0];
 
     this.OrderService.setDetailOrder(detail_order);
-
+    detail_order.order_details.forEach(detail => {
+      this.total_quantity += detail.quantity
+    })
     const current_date = new Date().getTime();
     const return_date = new Date(this.OrderQuery.getValue().detail_order.return_date).getTime();
     const appointment_date = new Date(this.OrderQuery.getValue().detail_order.appointment_date).getTime();

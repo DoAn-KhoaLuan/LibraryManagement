@@ -21,7 +21,6 @@ export class CreateAccountComponent implements OnInit {
     confirm_password: [''],
     first_name: '',
     last_name: '',
-    identity_id: '',
     email:'',
     phone: '',
     birthdate: '',
@@ -83,7 +82,6 @@ export class CreateAccountComponent implements OnInit {
       confirm_password: [''],
       first_name: '',
       last_name: '',
-      identity_id: '',
       email:'',
       phone: '',
       birthdate: '',
@@ -106,10 +104,6 @@ export class CreateAccountComponent implements OnInit {
         return toastr.error("Tạo mới tài khoản thất bại", "Mật khẩu nhập lại không chính xác")
       }
 
-      if(!form_data.identity_id) {
-        return toastr.error("Tạo mới tài khoản thất bại", "Vui lòng nhập chứng minh nhân dân")
-      }
-
       if(!this.util.validatePhoneNumber(form_data.phone)) {
         return;
       }
@@ -122,7 +116,6 @@ export class CreateAccountComponent implements OnInit {
         account_password: form_data.password,
         confirm_account_password: form_data.confirm_password,
 
-        identity_id: form_data.identity_id,
         last_name: form_data.last_name,
         first_name: form_data.first_name,
         phone: form_data.phone,

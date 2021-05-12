@@ -136,7 +136,6 @@ export class DetailComponent implements OnInit {
 
   countStar(star) {
     this.selectedStar = star;
-    console.log('Value of star', star);
   }
 
   async rateStar() {
@@ -188,7 +187,6 @@ export class DetailComponent implements OnInit {
 
   redirectBook(book_id) {
     this.router.navigateByUrl("/book-store/detail/" + book_id)
-    console.log(book_id)
     setTimeout(()=>{
       window.location.reload();
     }, 500  );

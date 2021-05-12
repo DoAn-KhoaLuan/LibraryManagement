@@ -77,7 +77,7 @@ def owner_required(function):
 
             token = auth_headers[1]
             account = AccountSvc.extractToken(token)
-            if (account["role_id"] == 1 or account["role_id"] == 2):
+            if (account["role"]["role_id"] == 1 or account["role_id"] == 2):
                 user_info = Employees.query.filter(Employees.delete_at == None,
                                                    Employees.account_id == account["account_id"])
                 session = {

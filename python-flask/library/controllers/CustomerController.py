@@ -1,3 +1,5 @@
+from sqlalchemy import or_
+
 from library import app
 from library.BLL import CustomerSvc
 from library.DAL import models
@@ -49,15 +51,16 @@ def SearchCustomers():
         customers = models.Customers.query.filter(models.Customers.customer_id == req.customer_id)
         return jsonify(ConvertModelListToDictList(customers))
 
-    customers = models.Customers.query
+    all_customers = models.Customers.query.all()
+    if req.customer_name != None:
+        all_customers = models.Customers.query.filter((models.Customers.first_name.ilike(f'%{req.customer_name}%'))).all()
+
+
     if req.phone != None:
-        customers = customers.filter(models.Customers.phone.contains(req.phone))
+        all_customers = [customer for customer in all_customers if customer.phone == req.phone]
 
-    if req.identity_id != None:
-        customers = customers.filter(models.Customers.identity_id.contains(req.identity_id))
-
-    customers = customers.filter(models.Customers.delete_at == None)
-    customers = ConvertModelListToDictList(customers.all())
+    all_customers = [customer for customer in all_customers if customer.delete_at == None]
+    customers = ConvertModelListToDictList(all_customers)
     return jsonify(customers)
 
 

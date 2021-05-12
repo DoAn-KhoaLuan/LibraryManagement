@@ -39,7 +39,6 @@ export class AccountDetailComponent implements OnInit {
     updateAccountForm = this.fb.group({
       account_id: [''],
       account_name: [''],
-      identity_id:[''],
       student_code: [''],
       last_name: [''],
       first_name: [''],
@@ -103,7 +102,6 @@ export class AccountDetailComponent implements OnInit {
       'account_name': store_detail_account?.last_name + ' '+store_detail_account?.first_name,
       'email': store_detail_account?.email,
       'address': store_detail_account?.address,
-      'identity_id': store_detail_account?.identity_id,
       'phone': store_detail_account?.phone,
       'gender': store_detail_account?.gender,
       'birth_date':this.datePipe.transform(store_detail_account?.birth_day, 'yyyy-MM-dd'),

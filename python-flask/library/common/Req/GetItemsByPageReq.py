@@ -14,7 +14,6 @@ class SearchItemsReq():
         self.customer_id = req['customer_id'] if 'customer_id' in req else None
         self.customer_name = req['customer_name'] if 'customer_name' in req else None
         self.employee_id = req['employee_id'] if 'employee_id' in req else None
-        self.identity_id = req['identity_id'] if 'identity_id' in req else None
         self.email = req['email'] if 'email' in req else None
         self.phone = req['phone'] if 'phone' in req else None
         self.account_name = req['account_name'] if 'account_name' in req else None
@@ -25,3 +24,4 @@ class SearchItemsReq():
         self.author_id = req['author_id'] if 'author_id' in req else 0
         self.category_id = req['category_id'] if 'category_id' in req else 0
         self.supplier_id = req['supplier_id'] if 'supplier_id' in req else 0
+        self.borrow_ticket_id = req['borrow_ticket_id'] if 'borrow_ticket_id' in req else 0

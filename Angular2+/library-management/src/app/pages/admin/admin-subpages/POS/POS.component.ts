@@ -76,19 +76,13 @@ export class POSComponent implements OnInit {
     this.books= this.bookQuery.getValue().book_list_view.items
     this.all_customers = this.customerQuery.getValue().customer_list_view.items;
     this.all_customers.forEach(customer => {
-      let customer_option = {
-        customer_id: customer.customer_id,
-        last_name: customer.last_name,
-        first_name: customer.first_name,
-      }
-      this.customer_options.push(customer_option);
+      this.customer_options.push(`${customer.customer_id.toString()} - ${customer.last_name} ${customer.first_name}`);
     })
     this.customer_filtered_options = this.customer_control.valueChanges.pipe(
       startWith(''),
       map(value => this._customerFilter(value)),
       tap(() => {
-
-        if(this.customer_control.value){
+        if(parseInt(this.customer_control.value)){
           this.customer_item = this.all_customers.find(customer => customer.customer_id == parseInt(this.customer_control.value))
         }
       })
@@ -96,12 +90,33 @@ export class POSComponent implements OnInit {
   }
 
   private _customerFilter(value: string): string[] {
-    return this.customer_options.filter(customer =>  customer.first_name.toString().toLowerCase().includes(value)  || customer.last_name.toString().includes(value) || customer.customer_id.toString().toLowerCase().includes(value));
+    return this.customer_options.filter(customer => customer.toLowerCase().indexOf(value) === 0);
   }
 
   ClearCustomer() {
     this.customer_control.setValue("");
     this.customer_item = null;
+  }
+
+  async onCustomerChange() {
+    const req = {
+      customer_id : Number(this.customer_control.value),
+      customer_name : this.customer_control.value,
+    }
+    let customers = await this.customerService.SearchCustomers(req);
+    this.customer_options = [];
+    customers.forEach(customer => {
+      this.customer_options.push(`${customer.customer_id.toString()} - ${customer.last_name} ${customer.first_name}`);
+    })
+    this.customer_filtered_options = this.customer_control.valueChanges.pipe(
+      startWith(''),
+      map(value => this._customerFilter(value)),
+      tap(() => {
+        if(this.customer_control.value){
+          this.customer_item = this.all_customers.find(cus => cus.customer_id == parseInt(this.customer_control.value))
+        }
+      })
+    );
   }
 
   AddToChart(book) {

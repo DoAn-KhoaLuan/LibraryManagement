@@ -7,13 +7,13 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="assets/images/slider.png.jpg" alt="First slide" />
+          <img class="d-block w-100" src="assets/images/slider-1.png" alt="First slide" />
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="assets/images/slider.png.jpg" alt="Second slide" />
+          <img class="d-block w-100" src="assets/images/slider-2.jpg" alt="Second slide" />
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="assets/images/slider.png.jpg" alt="Third slide" />
+          <img class="d-block w-100" src="assets/images/slider-3.png" alt="Third slide" />
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -52,34 +52,34 @@
         </span>
       </div>
       <div class="body">
-        <ng-container *ngFor="let item of [1, 2, 3]">
+        <ng-container *ngFor="let item of special_books">
           <a class="item">
             <div class="picture-group">
               <div style="width: 86px">
                 <div>
                   <img
-                    src="https://salt.tikicdn.com/cache/280x280/ts/product/67/22/e1/a24b8ae53cb4262f4d64a3c4424976b9.jpg"
+                    [src]="item.image_1"
                     alt="title" />
                 </div>
               </div>
               <div style="width: 86px">
                 <div>
                   <img
-                    src="https://salt.tikicdn.com/cache/280x280/ts/product/8b/7b/ad/83867b1a4941dd0980758a51da34bc54.jpg"
+                  [src]="item.image_2"
                     alt="title" />
                 </div>
               </div>
               <div style="width: 86px">
                 <div>
                   <img
-                    src="https://salt.tikicdn.com/cache/280x280/ts/product/13/74/16/35ec5e0ed226489a3f36f79751c5310d.jpg"
+                  [src]="item.image_3"
                     alt="title" />
                 </div>
               </div>
             </div>
             <div class="content">
-              <span class="title">đậu hà lan</span>
-              <span class="sub-title">356 sản phẩm</span>
+              <span class="title">{{item.title}}</span>
+              <span class="sub-title">{{item.amount}} sản phẩm</span>
             </div>
           </a>
         </ng-container>
@@ -125,21 +125,35 @@
       </div>
 
       <div class="content">
-        <ng-container *ngFor="let item of [1, 2, 3, 4]">
-          <a class="product-item">
-            <span class="wrap-product-item">
-              <div class="thumbnail">
-                <img
-                  src="https://salt.tikicdn.com/cache/280x280/ts/product/82/89/db/70c5df10f8291a39365b335bcb152f78.jpg" />
-              </div>
-              <div class="info">
-                <div class="product-name">
-                  Đồng hồ treo tường vân đá thời trang
+        <ng-container *ngFor="let product of (book_list_view$ | async)?.items.slice(0,4)">
+          <div style="width: 20%; margin: 1.5rem" (click)="onDetail(product.book_id)">
+            <a class="product-item" data-view-id="home_infinity_products">
+              <span class="style__StyledItem-sc-1bp67fh-0 khGMIT">
+                <div>
+                  <div class="thumbnail">
+                    <div class="badge-top"></div>
+                    <img [src]="product?.image ||
+                        'assets/images/default-book.png'
+                      " alt="Combo 3 Tập Độc Giả Và Nhân Vật Chính Đích Thị Là Chân Tình (Tập 3-4-5) " />
+                  </div>
+                  <div class="info">
+                    <div class="badge-service"></div>
+                    <div class="name">
+                      <span>{{ product?.book_name }} </span>
+                    </div>
+                    <div class="price-discount">
+                      <div class="price-discount__price">
+                        {{ product?.retail_price | vnd }}
+                      </div>
+                      <div class="price-discount__discount">-30%</div>
+                    </div>
+                    <div class="badge-under-price"></div>
+                    <div class="badge-benefits"></div>
+                    <div class="badge-additional-info"></div>
+                  </div>
                 </div>
-                <div class="price">277.000Đ</div>
-              </div>
-            </span>
-          </a>
+              </span></a>
+          </div>
         </ng-container>
       </div>
     </div>

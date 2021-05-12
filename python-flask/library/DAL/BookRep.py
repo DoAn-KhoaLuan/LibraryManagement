@@ -72,11 +72,15 @@ def SearchBooks(req: SearchBookReq):
         return ConvertModelListToDictList(model_books)
 
     all_books = models.Books.query.all()
+    if req.book_name != None:
+        all_books = models.Books.query.filter(models.Books.book_name.ilike(f'%{req.book_name}%')).all()
+    print(all_books)
+
     if req.category_id != None:
         all_books = [book for book in all_books if book.category_id == req.category_id]
-
-    if req.book_name != None:
-        all_books = [book for book in all_books if book.book_name == req.book_name or book.book_name == (req.book_name)]
+    print(req.book_name)
+    # if req.book_name != None:
+    #     all_books = [book for book in all_books if book.book_name == req.book_name]
 
     if req.author_id != None:
         all_books = [book for book in all_books if book.author.author_id == req.author_id]

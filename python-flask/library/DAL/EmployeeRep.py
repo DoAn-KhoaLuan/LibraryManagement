@@ -22,7 +22,7 @@ def GetEmployeesbyPage(req: GetItemsByPageReq):
 
 
 def CreateEmployee(req: CreateEmployeeReq):
-    create_employee = models.Employees(identity_id=req.identity_id,
+    create_employee = models.Employees(
                                        account_id=req.account_id,
                                        last_name=req.last_name,
                                        first_name=req.first_name,
@@ -43,7 +43,6 @@ def CreateEmployee(req: CreateEmployeeReq):
 
 def UpdateEmployee(req: UpdateEmployeeReq):
     update_employee = models.Employees.query.get(req.employee_id)
-    update_employee.identity_id = req.identity_id if req.identity_id is not None else update_employee.identity_id
     update_employee.account_id = req.account_id if req.account_id is not None else update_employee.account_id
     update_employee.last_name = req.last_name if req.last_name is not None else update_employee.last_name
     update_employee.first_name = req.first_name if req.first_name is not None else update_employee.first_name
@@ -73,7 +72,6 @@ def DeleteEmployee(req: DeleteEmployeeReq):
 def SearchEmployees(req: SearchEmployeesReq):
     search_employee = models.Employees.query.filter(or_(models.Employees.first_name == req.first_name,
                                                         models.Employees.last_name == req.last_name,
-                                                        models.Employees.identity_id == req.identity_id,
                                                         models.Employees.account_id == req.account_id,
                                                         models.Employees.phone == req.phone,
                                                         models.Employees.employee_id == req.employee_id)).all()

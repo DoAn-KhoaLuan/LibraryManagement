@@ -74,7 +74,7 @@
                    formControlName="firstName"/>
           </div>
           <ng-container [formGroup]="locationForm">
-            <div class="form-group d-flex flex-row">
+            <div class="form-group d-flex flex-row justify-content-between">
               <app-material-input-autocomplete
                 placeholder="Chọn tỉnh thành" textLabel="Tỉnh thành (*)" [options]="provincesList$ | async"
                 [displayMap]="displayMap" [valueMap]="valueMap" register="true"
@@ -103,10 +103,6 @@
           <div class="form-group">
             <input type="text" class="rounded-pill  form-control" placeholder="Nhập số điện thoại" autofocus
                    formControlName="phone"/>
-          </div>
-          <div class="form-group">
-            <input type="text" class="rounded-pill  form-control" placeholder="Nhập chứng minh thư" autofocus
-                   formControlName="identity_id"/>
           </div>
           <div class="form-group">
             <input type="date" id="birthDate" name="birthDate" class="rounded-pill  form-control"

@@ -82,7 +82,6 @@ export class LocationService {
   async listProvinces() {
     try {
       const res = await this.locationApi.listProvinces();
-      console.log('res: ', res);
       res.provinces = LocationService.sortProvinces(res.provinces);
       const provinces = res.provinces.map(p => new Province({
         ...p,

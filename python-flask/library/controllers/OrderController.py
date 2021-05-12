@@ -4,7 +4,7 @@ from library import app, db
 from library.BLL import OrderSvc
 from library.DAL import models, CategoryRep
 from library.DAL.models import Roles
-from library.auth import user_required
+from library.auth import user_required, owner_required
 from library.common.Req.GetItemsByPageReq import GetItemsByPageReq, SearchItemsReq
 from library.common.Req.OrderReq import CreateOrderReq, UpdateOrderReq, DeleteOrderReq, SearchOrdersReq
 from library.common.Rsp.GetImtesByPageRsp import GetItemsByPageRsp
@@ -58,7 +58,7 @@ def DeleteOrder():
 
 
 @app.route("/admin/order-management/search-orders", methods=['POST', 'GET'])
-@user_required
+@owner_required
 def SearchOrders(session):
     req = SearchItemsReq(request.json)
     if (req.order_id):

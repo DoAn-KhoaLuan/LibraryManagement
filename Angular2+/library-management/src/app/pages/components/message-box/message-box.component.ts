@@ -75,7 +75,6 @@ export class MessageBoxComponent implements OnInit {
       content : this.chatText,
       room: this.messageQuery.getValue().active_conversation?.conversation_id
     }
-    console.log("send msg", sendMessageReq)
     this.webSocketService.emit('incoming-msg', sendMessageReq);
     this.chatText='';
 

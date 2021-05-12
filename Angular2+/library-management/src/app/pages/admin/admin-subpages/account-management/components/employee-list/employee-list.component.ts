@@ -18,7 +18,6 @@ export class EmployeeListComponent implements OnInit {
   currentPaginationOpt = new PaginationOpt();
   searchForm = this.fb.group({
     employee_id: '',
-    identity_id: '',
     phone: '',
   });
   constructor(
@@ -52,15 +51,13 @@ export class EmployeeListComponent implements OnInit {
     let {
       employee_id,
       phone,
-      identity_id
     } = this.searchForm.value;
-    if (!employee_id && !phone && !identity_id) {
+    if (!employee_id && !phone) {
       return await this.onRequestNewPage();
     }
     const req = {
       employee_id: employee_id || null,
       phone: phone || null,
-      identity_id: identity_id || null
     };
     let employees = await this.employeeService.SearchEmployees(req);
     this.employeeStore.update({

@@ -38,7 +38,6 @@ export class EmployeeDetailComponent implements OnInit {
     updateEmployeeForm = this.fb.group({
       employee_id: [''],
       employee_name: [''],
-      identity_id:[''],
       student_code: [''],
       last_name: [''],
       first_name: [''],
@@ -116,7 +115,6 @@ export class EmployeeDetailComponent implements OnInit {
       'employee_name': store_detail_employee?.last_name + ' '+store_detail_employee?.first_name,
       'email': store_detail_employee?.email,
       'address': store_detail_employee?.address,
-      'identity_id': store_detail_employee?.identity_id,
       'phone': store_detail_employee?.phone,
       'gender': store_detail_employee?.gender,
       'basic_rate': store_detail_employee?.basic_rate,

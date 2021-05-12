@@ -18,7 +18,6 @@ export class CustomerListComponent implements OnInit {
   currentPaginationOpt = new PaginationOpt();
   searchForm = this.fb.group({
     customer_id: '',
-    identity_id: '',
     phone: '',
   });
   constructor(
@@ -51,15 +50,13 @@ export class CustomerListComponent implements OnInit {
     let {
       customer_id,
       phone,
-      identity_id
     } = this.searchForm.value;
-    if (!customer_id && !phone && !identity_id) {
+    if (!customer_id && !phone) {
       return await this.onRequestNewPage();
     }
     const req = {
       customer_id: customer_id || null,
       phone: phone || null,
-      identity_id: identity_id || null
     };
     let customers = await this.customerService.SearchCustomers(req);
     this.customerStore.update({
