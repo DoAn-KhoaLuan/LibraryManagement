@@ -1,6 +1,6 @@
 <ng-container>
   <div class="d-flex justify-content-center align-items-center text-app font-weight-bold">
-    <h1 class="font-weight-bold">Thông tin chi tiết tài khoản <span>{{ (detail_account$ | async)?.account.account_name}}</span></h1>
+    <h1 class="font-weight-bold">Thông tin chi tiết tài khoản <span>{{ (detail_account$ | async)?.account?.account_name}}</span></h1>
   </div>
   <ng-container *ngIf="!isEditing, else updateForm">
     <div class="d-flex flex-row p-5 mb-4">
@@ -17,11 +17,11 @@
         <div class="d-flex flex-column">
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Mã tài khoản: </b></div>
-            <div class="col-9 text-app font-weight-bold">{{((detail_account$ | async)?.account?.account_id | standardizedId ) || '-'}}</div>
+            <div class="col-9 text-app font-weight-bold">{{((detail_account$ | async)?.account_id | standardizedId ) || '-'}}</div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Tên tài khoản: </b></div>
-            <div class="col-9 text-app font-weight-bold">{{(detail_account$ | async)?.account?.account_name || '-'}}</div>
+            <div class="col-9 text-app font-weight-bold">{{(detail_account$ | async)?.account_name || '-'}}</div>
           </div>
           <div class="row py-3">
             <div class="col-2 text-center font-weight-bold"><b>Vai trò: </b></div>

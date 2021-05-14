@@ -22,6 +22,7 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {MaterialModule} from "../../shared/material.module";
 import {MatInputModule} from "../../shared/mat-input/mat-input.module";
 import { SettingsComponent } from './components/settings/settings.component';
+import { CompareBookModalComponent } from './components/detail/components/compare-book-modal/compare-book-modal.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     MatInputModule,
     PipeModule
   ],
-  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent, SettingsComponent],
+  declarations: [BookStoreComponent, ShopHeaderComponent, ShopFooterComponent, CheckoutComponent, HomeComponent, DetailComponent, SearchComponent, SettingsComponent, CompareBookModalComponent],
   bootstrap:    [ BookStoreComponent, HomeComponent ],
   providers: [
     DatePipe,

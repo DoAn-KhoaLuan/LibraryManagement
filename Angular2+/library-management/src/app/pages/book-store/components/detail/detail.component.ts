@@ -5,6 +5,8 @@ import {BookQuery} from "../../../../states/book-store/book.query";
 import {ApiBookService} from "../../../../API/api-book.service";
 import {addDays, formatDistance} from "date-fns";
 import {AccountQuery} from "../../../../states/account-store/account.query";
+import { ModalController } from 'src/app/core/modal-controller/modal-controller.service';
+import { CompareBookModalComponent } from './components/compare-book-modal/compare-book-modal.component';
 
 
 @Component({
@@ -63,7 +65,8 @@ export class DetailComponent implements OnInit {
     private bookQuery: BookQuery,
     private apiBookService: ApiBookService,
     private accountQuery: AccountQuery,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController,
   ) {}
 
   async ngOnInit() {
@@ -73,13 +76,16 @@ export class DetailComponent implements OnInit {
     this.book_id = req.book_id;
     let detail_book = await this.bookService.getBookByID(req);
     detail_book.rate_star = Math.ceil(detail_book.rate_star)
-    this.bookService.setDetailBook(detail_book);
     await  this.apiBookService.getComments({
       book_id: this.book_id
     }).then(cmts => {
       this.comments = this.comments.concat(cmts)
       this.comments.forEach(cmt => cmt.distanceTime = formatDistance(new Date(), addDays(new Date(), 1)));
+      detail_book.comments = cmts
     })
+    this.bookService.setDetailBook(detail_book);
+
+
     await this.apiBookService.GetBooks({
       page: 1,
       per_page: 4,
@@ -166,7 +172,6 @@ export class DetailComponent implements OnInit {
   }
 
   async handleSubmit() {
-    this.submitting = true;
     const req = {
       customer_id:  this.accountQuery.getValue().auth_info?.user_info?.customer_id || 1 ,
       content: this.inputValue,
@@ -174,15 +179,17 @@ export class DetailComponent implements OnInit {
     }
     await this.apiBookService.createComment(req).then(cmt=> {
       this.inputValue = "";
-      this.comments.push({
+      console.log(cmt)
+      this.comments.unshift({
         author: cmt?.customer?.customer_name,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+        avatar: `${cmt?.customer?.image || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}`,
         content: cmt.content,
-        distanceTime: formatDistance(cmt.create_at, addDays(new Date(), 1)),
+        distanceTime: formatDistance(new Date(cmt.create_at), addDays(new Date(), 1 )),
         create_at:cmt.create_at
       })
+      toastr.success("Bạn đã bình luận thành công")
     })
-    this.submitting = false;
+  
   }
 
   redirectBook(book_id) {
@@ -190,5 +197,15 @@ export class DetailComponent implements OnInit {
     setTimeout(()=>{
       window.location.reload();
     }, 500  );
+  }
+
+  compare() {
+    const modal = this.modalController.create({
+      component: CompareBookModalComponent,
+      cssClass: "modal-lg",
+      componentProps: {
+      },
+    });
+    modal.show().then();
   }
 }

@@ -19,7 +19,7 @@ PERSIONAL_EMAIL_PAYPAL = 'shinichi24567@gmail.com'
 BUSINESS_EMAIL_PAYPAL = 'business-shinichi24567@gmail.com'
 BUSINESS_and_PERSONAL_PASSWORD_PAYPAL = 'paypal123'
 
-
+#https://console.cloud.google.com/
 GOOGLE_CLIENT_ID = '258914989074-2rkptjvoc5mv1biv91pg4hhqd1igc9fs.apps.googleusercontent.com'
 GOOGLE_CLIENT_SECRET = '1DtIDHTRYgVUQtdiGB_FNdXh'
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"

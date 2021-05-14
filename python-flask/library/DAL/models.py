@@ -80,6 +80,7 @@ class Comments(db.Model):
             "content": self.content,
             "book_id": self.book_id,
             "customer_id": self.customer_id,
+            "create_at": self.create_at,
             'book': self.book.serialize() if self.book != None else None,
         }
 

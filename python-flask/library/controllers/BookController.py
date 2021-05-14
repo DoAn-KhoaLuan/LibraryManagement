@@ -1,5 +1,6 @@
 import os
 import time
+import urllib
 from datetime import datetime
 from random import Random, randint
 # import requests
@@ -134,6 +135,38 @@ def createComment():
 @app.route('/admin/book-management/get-comments', methods=['POST'])
 def getComments():
     comments = models.Comments.query.filter(models.Comments.book_id == request.json["book_id"]).all()
+    return jsonify(ConvertModelListToDictList(comments))
 
-    return jsonify(ConvertModelListToDictList(comments));
+@app.route('/admin/book-management/compare-book', methods=['POST'])
+def compareBook():
+    book_name = request.json['book_name']
 
+    tikiBook = getBookFromTiki(book_name)
+
+    list_compare =[]
+    list_compare.append(tikiBook)
+    return jsonify(list_compare)
+
+def getBookFromTiki(book_name):
+    book_name_words = book_name.split(" ")
+    get_books_url = "https://tiki.vn/api/v2/products?q=" + ("+".join(book_name_words))
+    book = {}
+    get_books_req = urllib.request.Request(get_books_url)
+    fs = urllib.request.urlopen(get_books_req)
+    response = fs.read()
+    fs.close()
+    books_json_res = json.loads(response)
+    book_id = books_json_res["data"][1]["id"]
+    req = urllib.request.Request("https://tiki.vn/api/v2/products/" + str(book_id))
+    f = urllib.request.urlopen(req)
+    response = f.read()
+    f.close()
+    book_json_res = json.loads(response)
+    book["book_name"] = book_json_res["name"]
+    book["retail_price"] = book_json_res["price"]
+    book["rate_star"] = book_json_res["rating_average"]
+    book["rate_count"] = book_json_res["review_count"]
+    book["review_count"] = book_json_res["review_count"]
+    book["store"] = "Tiki"
+
+    return book

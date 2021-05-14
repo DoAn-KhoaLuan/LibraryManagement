@@ -72,9 +72,7 @@ def CreateOrderByMomo(req: CreateOrderReq):
     data = json.dumps(data)
 
     clen = len(data)
-    req = urllib.request.Request(endpoint,data.encode('utf-8'),
-                                 {'Content-Type': 'application/json', 'Content-Length': clen}
-                                 )
+    req = urllib.request.Request(endpoint, data.encode('utf-8'), {'Content-Type': 'application/json', 'Content-Length': clen})
     f = urllib.request.urlopen(req)
 
     response = f.read()

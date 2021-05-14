@@ -51,4 +51,8 @@ export class ApiBookService {
   async rateStar(req) {
     return await this.http.post(this.baseURL+"/admin/book-management/rate-product",req).toPromise();
   }
+
+  async compareBook(req) {
+    return await this.http.post(this.baseURL+"/admin/book-management/compare-book",req).toPromise();
+  }
 }

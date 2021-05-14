@@ -62,8 +62,9 @@ def SearchAccounts():
         for account in ConvertModelListToDictList(accounts):
             user_info = {}
             if (account['role']['role_id'] == 3):  # customer
-                search_customer_req = SearchCustomersReq({'account_id': account['account_id']})
-                user_info = CustomerRep.SearchCustomers(search_customer_req)
+                all_customers = models.Customers.query.all()
+                all_customers = [customer for customer in all_customers if (customer.account_id == account['account_id'] and customer.delete_at == None)]
+                user_info = ConvertModelListToDictList(all_customers)
 
             if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
                 search_employee_req = SearchEmployeesReq({'account_id': account['account_id']})

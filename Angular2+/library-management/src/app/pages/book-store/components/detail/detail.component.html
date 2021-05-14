@@ -180,6 +180,7 @@
               </ul>
             </div>
             <div class="btn btn-outline-app px-5" style="padding-left: 15px; margin-left: 15px" (click)="rateStar()" >Đánh giá</div>
+            <div class=" btn-app px-5" style="padding-left: 15px; margin-left: 15px" (click)="compare()" >So sánh</div>
           </div>
         </div>
         <div class="body">
@@ -415,10 +416,12 @@
                   <p style="text-align: justify">
                   <span style="font-size: medium; color: #088ab7"
                   ><strong
-                  >Hộp Blueup TOEIC 600 Essential Flashcards For Toeic Trọn
-                      Bộ</strong
+                  >{{(detailBook$ | async)?.book_name}}</strong
                   ></span
                   >
+                  </p>
+                  <p style="text-align: justify">
+                    <strong>{{(detailBook$ | async)?.description}}</strong>
                   </p>
                   <p style="text-align: justify">
                     <strong>*** Có phải từ vựng là ác mộng của bạn?</strong>
@@ -595,5 +598,4 @@
       <div class="right"></div>
     </div>
   </div>
-
 </div>

@@ -57,6 +57,7 @@ export class AccountDetailComponent implements OnInit {
     const res = await this.accountService.SearchAccounts(account_id);
     const detail_account = res[0];
     this.accountService.SetDetailAccount(detail_account);
+    console.log(detail_account)
   }
 
   async ngOnChanges() {

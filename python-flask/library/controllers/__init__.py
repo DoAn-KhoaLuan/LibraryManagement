@@ -122,7 +122,7 @@ def initAdminAccount():
 
 def initRoles():
     role1 = Roles(role_id=1, role_name="admin");
-    role2 = Roles(role_id=2,role_name= "admin-manager");
+    role2 = Roles(role_id=2, role_name= "admin-manager");
     role3 = Roles(role_id=3, role_name="user");
     db.session.add(role1)
     db.session.add(role2)
