@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { SendEmailModalComponent } from './admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/send-email-modal/send-email-modal.component';
 import { ScheduleManagementComponent } from './admin-subpages/schedule-management/schedule-management.component';
+import { CreateRoleModalComponent } from './admin-subpages/account-management/components/role-list/create-role-modal/create-role-modal.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { ScheduleManagementComponent } from './admin-subpages/schedule-managemen
     MaterialModule,
     SidebarMenuModule
   ],
-  declarations: [AdminComponent, BookManagementComponent, SendEmailModalComponent, ScheduleManagementComponent],
+  declarations: [AdminComponent, BookManagementComponent, SendEmailModalComponent, ScheduleManagementComponent, CreateRoleModalComponent,],
   exports: [BookManagementComponent]
 })
 export class AdminModule { }

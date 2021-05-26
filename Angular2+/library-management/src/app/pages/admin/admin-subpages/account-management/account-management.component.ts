@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AccountQuery} from '../../../../states/account-store/account.query';
 
 @Component({
   selector: 'app-account-management',
@@ -23,8 +24,15 @@ export class AccountManagementComponent implements OnInit {
       itemName: "Danh sách nhân viên",
       url: "employee-list"
     },
-  ]
-  constructor() { }
+    {
+      itemName: "Danh sách vai trò",
+      url: "role-list"
+    },
+  ];
+  auth_info$ = this.accountQuery.auth_info$;
+  constructor(
+    private accountQuery: AccountQuery
+  ) { }
 
   ngOnInit() {
   }

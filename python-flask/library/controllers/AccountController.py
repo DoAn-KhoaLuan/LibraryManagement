@@ -19,7 +19,7 @@ from library.DAL import EmployeeRep, CustomerRep, AccountRep, models, LocationRe
 import smtplib
 from email.message import EmailMessage
 
-from library.common.util import ConvertModelListToDictList
+from library.common.util import ConvertModelListToDictList, ConvertModelListToJson
 
 
 @app.route('/admin/account-management/create-account', methods=['POST'])
@@ -245,3 +245,10 @@ def getWards():
 def getRoles():
     rolesModel = models.Roles.query.filter(models.Roles.delete_at == None).all()
     return jsonify(ConvertModelListToDictList(rolesModel))
+
+@app.route('/admin/role-management/create-role', methods=['POST'])
+def createRole():
+    role = models.Roles(role_name=request.json["role_name"], note=request.json["note"])
+    db.session.add(role)
+    db.session.commit()
+    return jsonify(role.serialize())

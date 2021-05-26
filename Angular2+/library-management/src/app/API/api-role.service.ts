@@ -11,8 +11,19 @@ export class ApiRoleService {
   constructor(private http: HttpService, private apiAppService: ApiAppService) {
     this.baseURL = this.apiAppService.baseURL;
   }
+  mapDisplayName = {
+    "admin": "Người quản trị",
+    "admin-manager": "Nhân viên quản lý",
+    "user": "Quản lý",
+  }
   async GetRoles() {
-    return await this.http.post(this.baseURL+"/admin/role-management/get-roles", {}).toPromise();
+    return await this.http.post(this.baseURL+"/admin/role-management/get-roles", {}).toPromise().then(roles => roles.map(role => {
+      const display_name = this.mapDisplayName[role?.role_name] || role?.role_name;
+      return {
+        ...role,
+        display_name
+      };
+    }));
   }
 
   async UpdateRole(req) {

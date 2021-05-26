@@ -62,6 +62,8 @@ import {DashboardComponent} from './admin-subpages/dashboard/dashboard.component
 import {SellDashboardComponent} from './admin-subpages/dashboard/components/sell-dashboard/sell-dashboard.component';
 import {ShareComponentModule} from '../components/share-component.module';
 import {ScheduleManagementComponent} from './admin-subpages/schedule-management/schedule-management.component';
+import {RoleListComponent} from './admin-subpages/account-management/components/role-list/role-list.component';
+import {RoleRowComponent} from './admin-subpages/account-management/components/role-list/role-row/role-row.component';
 
 const routes: Routes = [
   {
@@ -99,6 +101,7 @@ const routes: Routes = [
           {path: 'customer-list', component: CustomerListComponent},
           {path: 'customer-detail/:id', component: CustomerDetailComponent},
           {path: 'employee-list', component: EmployeeListComponent},
+          {path: 'role-list', component: RoleListComponent},
           {path: 'employee-detail/:id', component: EmployeeDetailComponent},
           {path: '', redirectTo: 'account-list', pathMatch: 'full'},
           {path: '**', redirectTo: 'account-list'},
@@ -176,7 +179,7 @@ const routes: Routes = [
 @NgModule({
   imports: [ShareComponentModule, CommonModule, RouterModule.forChild(routes), FormsModule, MaterialModule, ItemTableModule, MatInputModule, PaginationModule, PipeModule],
   exports: [RouterModule, CreateBookComponent, AddSupplierModalComponent, AddAuthorModalComponent, AddCategoryModalComponent],
-  declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent, SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent, SettingManagementComponent, UserInfoComponent, AccountInfoComponent, UpdateUserModalComponent, BorrowTicketManagementComponent, BorrowTicketListComponent, BorrowTicketRowComponent, ConfirmFinishBorrowTicketModalComponent, ConfirmFinishBorrowTicketModalComponent, BorrowTicketDetailComponent, CreateBorrowTicketComponent, POSComponent, OrderListComponent, OrderDetailComponent, OrderRowComponent, OrderManagementComponent, MessageManagementComponent, CustomerMessagesComponent, EmployeeMessagesComponent, DashboardComponent, SellDashboardComponent, ManagementDashboardComponent, ConfirmDeleteModalComponent],
+  declarations: [LoginComponent, CreateBookComponent, AddSupplierModalComponent, AddCategoryModalComponent, BookListComponent, RoleListComponent, RoleRowComponent, BookRowComponent, BookDetailComponent, ConfirmDeleteModalComponent, AddAuthorModalComponent, CustomerListComponent, CustomerManagementComponent, CustomerRowComponent, CustomerDetailComponent, ConfirmDeleteCustomerComponent, EmployeeManagementComponent, EmployeeListComponent, EmployeeRowComponent, EmployeeDetailComponent, ConfirmDeleteEmployeeComponent, SupplierListComponent, SupplierRowComponent, SupplierManagementComponent, SupplierDetailComponent, CreateSupplierComponent, AccountManagementComponent, AccountListComponent, AccountRowComponent, AccountDetailComponent, CreateAccountComponent, ChangePasswordModalComponent, SettingManagementComponent, UserInfoComponent, AccountInfoComponent, UpdateUserModalComponent, BorrowTicketManagementComponent, BorrowTicketListComponent, BorrowTicketRowComponent, ConfirmFinishBorrowTicketModalComponent, ConfirmFinishBorrowTicketModalComponent, BorrowTicketDetailComponent, CreateBorrowTicketComponent, POSComponent, OrderListComponent, OrderDetailComponent, OrderRowComponent, OrderManagementComponent, MessageManagementComponent, CustomerMessagesComponent, EmployeeMessagesComponent, DashboardComponent, SellDashboardComponent, ManagementDashboardComponent, ConfirmDeleteModalComponent],
   providers: [
     DatePipe,
   ]
