@@ -81,7 +81,7 @@ def SearchBorrowTicket(req: SearchBorrowTicketReq):
 
 
 def FinishBorrowTicket(req: FinishBorrowTicketReq):
-    finish_borrow_ticket = models.Borrowtickets.query.get(req.borrow_ticket_id);
-    finish_borrow_ticket.return_date = datetime.now()
+    finish_borrow_ticket = models.Borrowtickets.query.get(req.borrow_ticket_id)
+    appointment_date = finish_borrow_ticket.appointment_date
     db.session.commit()
     return finish_borrow_ticket.serialize()

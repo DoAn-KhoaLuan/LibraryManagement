@@ -7,6 +7,11 @@ class OrderType(Enum):
     ONLINE  = "online"
     OFFLINE = "offline"
 
+class BorrowTicketStatus(Enum):
+    Borrowing = "B"
+    Lating = "L"
+    LateFinish = "LF"
+    F = "F"
 class Accounts(db.Model):
     account_id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.role_id'))
@@ -104,7 +109,7 @@ class Borrowtickets(db.Model):
     borrow_date = db.Column(db.DateTime)
     appointment_date = db.Column(db.DateTime)
     return_date = db.Column(db.DateTime)
-    status = db.Column(db.Boolean)
+    status = db.Column(db.String(20))
     delete_at = db.Column(db.DateTime, default=None)
     note = db.Column(db.String(1500))
     borrow_ticket_detail = db.relationship('Borrowticketdetails', backref='borrowticket', lazy=True)

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from library import app
 from flask import jsonify, request, make_response
 import json
@@ -55,6 +57,7 @@ def DeleteBorrowTicket():
 
 @app.route('/admin/borrow-ticket-management/get-borrow-ticket', methods=['POST', 'GET'])
 def SearchBorrowTicket():
+    req = SearchItemsReq(request.json)
     req = SearchBorrowTicketReq(request.json)
     result = BorrowTicketSvc.SearchBorrowTicket(req)
     res = SearchBorrowTicketRsp(result).serialize()
@@ -74,6 +77,36 @@ def searchBorrowTickets():
     if (req.borrow_ticket_id):
         borrow_tickets = models.Borrowtickets.query.filter(models.Borrowtickets.borrow_ticket_id == req.borrow_ticket_id)
         return jsonify({"borrow_tickets": ConvertModelListToDictList(borrow_tickets)})
+
+    borrow_tickets = models.Borrowtickets.query.all()
+    if req.customer_name != None:
+        all_customers = models.Customers.query.filter((models.Customers.first_name.ilike(f'%{req.customer_name}%'))).all()
+        customer_ids = []
+        for customer in (all_customers):
+            customer_ids.append(customer.customer_id)
+        borrow_tickets = models.Borrowtickets.query.filter(models.Borrowtickets.customer_id.in_(customer_ids))
+
+    if req.customer_phone != None:
+        all_customers = models.Customers.query.filter((models.Customers.phone.ilike(f'%{req.customer_phone}%'))).all()
+        customer_ids = []
+        for customer in (all_customers):
+            customer_ids.append(customer.customer_id)
+        borrow_tickets = models.Borrowtickets.query.filter(models.Borrowtickets.customer_id.in_(customer_ids))
+
+    if req.borrow_ticket_status != None and req.borrow_ticket_status != "":
+        current_date = datetime.now()
+        if req.borrow_ticket_status == "B":
+            borrow_tickets = models.Borrowtickets.query.filter( (models.Borrowtickets.appointment_date >= current_date), (models.Borrowtickets.return_date == None) )
+        if req.borrow_ticket_status == "L":
+            borrow_tickets = models.Borrowtickets.query.filter((models.Borrowtickets.appointment_date < current_date),
+                                                               (models.Borrowtickets.return_date == None))
+        if req.borrow_ticket_status == "LF":
+            borrow_tickets = models.Borrowtickets.query.filter((models.Borrowtickets.return_date > models.Borrowtickets.appointment_date),
+                                                               (models.Borrowtickets.return_date != None))
+        if req.borrow_ticket_status == "F":
+            borrow_tickets = models.Borrowtickets.query.filter(
+                (models.Borrowtickets.return_date <= models.Borrowtickets.appointment_date),
+                (models.Borrowtickets.return_date != None))
     return jsonify({
         "borrow_tickets":ConvertModelListToDictList(borrow_tickets)
     })

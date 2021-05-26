@@ -25,3 +25,4 @@ class SearchItemsReq():
         self.category_id = req['category_id'] if 'category_id' in req else 0
         self.supplier_id = req['supplier_id'] if 'supplier_id' in req else 0
         self.borrow_ticket_id = req['borrow_ticket_id'] if 'borrow_ticket_id' in req else 0
+        self.borrow_ticket_status = req['borrow_ticket_status'] if 'borrow_ticket_status' in req else None
