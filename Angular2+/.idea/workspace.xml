@@ -1,14 +1,417 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bdf6443-a587-4dc5-8672-55c0beb61967" name="Default Changelist" comment="">
+    <list default="true" id="fa49b81e-3a8e-45a1-9ee4-950416ef13a5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../python-flask/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/LibraryManagement.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/account-store/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-management/src/app/states/account-store/account.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/browserslist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-account.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-app.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-author.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-book-category.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-book.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-borrow-ticket.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-customer.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-employee.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-location.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-message.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-order.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-role.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-schedule.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-stocktake.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-supplier.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/API/api-telegram.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/auth-guard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/auth-interceptor.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/base-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/dialog-controller.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/dialog.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/modal-action.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/modal-container.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/modal-controller.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/modal-controller.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/core/modal-controller/modal.interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/login.guard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/models/Location.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/models/app-models.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/models/req.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/models/resp.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-routing.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/POS/POS.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/POS/POS.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/POS/POS.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/account-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/account-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/account-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/account-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/account-detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/account-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/change-password-modal/change-password-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/change-password-modal/change-password-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/change-password-modal/change-password-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/confirm-delete-account/confirm-delete-account.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/confirm-delete-account/confirm-delete-account.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-detail/confirm-delete-account/confirm-delete-account.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-list/account-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-list/account-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-list/account-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-list/account-row/account-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-list/account-row/account-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/account-list/account-row/account-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/create-account/create-account.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/create-account/create-account.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/create-account/create-account.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-detail/confirm-delete-customer/confirm-delete-customer.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-detail/confirm-delete-customer/confirm-delete-customer.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-detail/confirm-delete-customer/confirm-delete-customer.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-detail/customer-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-detail/customer-detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-detail/customer-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-list/customer-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-list/customer-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-list/customer-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-list/customer-row/customer-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-list/customer-row/customer-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/customer-list/customer-row/customer-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-detail/confirm-delete-employee/confirm-delete-employee.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-detail/confirm-delete-employee/confirm-delete-employee.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-detail/confirm-delete-employee/confirm-delete-employee.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-detail/employee-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-detail/employee-detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-detail/employee-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-list/employee-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-list/employee-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-list/employee-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-list/employee-row/employee-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-list/employee-row/employee-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/employee-list/employee-row/employee-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/create-role-modal/create-role-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/create-role-modal/create-role-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/create-role-modal/create-role-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/role-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/role-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/role-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/role-row/role-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/role-row/role-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/account-management/components/role-list/role-row/role-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/book-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/book-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/book-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-author-modal/add-author-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-author-modal/add-author-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-author-modal/add-author-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-category-modal/add-category-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-category-modal/add-category-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-category-modal/add-category-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-supplier-modal/add-supplier-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-supplier-modal/add-supplier-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/add-supplier-modal/add-supplier-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-detail/book-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-detail/book-detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-detail/book-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-detail/confirm-delete-modal/confirm-delete-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-detail/confirm-delete-modal/confirm-delete-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-detail/confirm-delete-modal/confirm-delete-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-list/book-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-list/book-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-list/book-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-list/book-row/book-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-list/book-row/book-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/book-list/book-row/book-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/create-book/create-book.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/create-book/create-book.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/book-management/components/create-book/create-book.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/borrow-ticket-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/borrow-ticket-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/borrow-ticket-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/borrow-ticket-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/borrow-ticket-detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/borrow-ticket-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/confirm-delete-modal/confirm-delete-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/confirm-delete-modal/confirm-delete-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/confirm-delete-modal/confirm-delete-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/send-email-modal/send-email-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/send-email-modal/send-email-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-detail/send-email-modal/send-email-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/borrow-ticket-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/borrow-ticket-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/borrow-ticket-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/borrow-ticket-row/borrow-ticket-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/borrow-ticket-row/borrow-ticket-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/borrow-ticket-row/borrow-ticket-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/confirm-finish-borrow-ticket-modal/confirm-finish-borrow-ticket-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/confirm-finish-borrow-ticket-modal/confirm-finish-borrow-ticket-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/borrow-ticket-list/confirm-finish-borrow-ticket-modal/confirm-finish-borrow-ticket-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/create-borrow-ticket/create-borrow-ticket.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/create-borrow-ticket/create-borrow-ticket.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/borrow-ticket-management/components/create-borrow-ticket/create-borrow-ticket.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/customer-management/customer-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/customer-management/customer-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/customer-management/customer-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/components/management-dashboard/management-dashboard.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/components/management-dashboard/management-dashboard.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/components/management-dashboard/management-dashboard.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/components/sell-dashboard/sell-dashboard.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/components/sell-dashboard/sell-dashboard.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/components/sell-dashboard/sell-dashboard.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/dashboard.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/dashboard.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/dashboard/dashboard.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/employee-management/employee-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/employee-management/employee-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/employee-management/employee-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/login/login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/login/login.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/login/login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/components/customer-messages/customer-messages.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/components/customer-messages/customer-messages.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/components/customer-messages/customer-messages.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/components/employee-messages/employee-messages.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/components/employee-messages/employee-messages.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/components/employee-messages/employee-messages.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/message-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/message-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/message-management/message-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-detail/confirm-delete-modal/confirm-delete-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-detail/confirm-delete-modal/confirm-delete-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-detail/confirm-delete-modal/confirm-delete-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-detail/order-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-detail/order-detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-detail/order-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-list/order-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-list/order-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-list/order-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-list/order-row/order-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-list/order-row/order-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/components/order-list/order-row/order-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/order-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/order-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/order-management/order-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/schedule-management/schedule-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/schedule-management/schedule-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/schedule-management/schedule-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/account-info/account-info.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/account-info/account-info.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/account-info/account-info.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/setting-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/setting-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/setting-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/user-info/update-user-modal/update-user-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/user-info/update-user-modal/update-user-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/user-info/update-user-modal/update-user-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/user-info/user-info.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/user-info/user-info.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/setting-management/user-info/user-info.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/create-supplier/create-supplier.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/create-supplier/create-supplier.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/create-supplier/create-supplier.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-detail/confirm-delete-modal/confirm-delete-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-detail/confirm-delete-modal/confirm-delete-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-detail/confirm-delete-modal/confirm-delete-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-detail/supplier-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-detail/supplier-detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-detail/supplier-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-list/supplier-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-list/supplier-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-list/supplier-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-list/supplier-row/supplier-row.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-list/supplier-row/supplier-row.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/components/supplier-list/supplier-row/supplier-row.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/supplier-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/supplier-management.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin-subpages/supplier-management/supplier-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/admin/admin.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store-routing.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/book-store.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/checkout/checkout.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/checkout/checkout.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/checkout/checkout.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/detail/components/compare-book-modal/compare-book-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/detail/components/compare-book-modal/compare-book-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/detail/components/compare-book-modal/compare-book-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/detail/detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/detail/detail.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/detail/detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/home/home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/search/search.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/search/search.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/search/search.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/settings/settings.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/settings/settings.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/settings/settings.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-footer/shop-footer.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-footer/shop-footer.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-footer/shop-footer.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/book-store/components/shop-header/shop-header.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/dashboard-box/dashboard-box.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/dashboard-box/dashboard-box.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/dashboard-box/dashboard-box.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/forgot-password-modal/forgot-password-modal.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/forgot-password-modal/forgot-password-modal.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/forgot-password-modal/forgot-password-modal.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/item-table/item-table.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/item-table/item-table.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/item-table/item-table.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/item-table/item-table.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/message-box/message-box.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/message-box/message-box.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/message-box/message-box.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/reset-password/reset-password.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/reset-password/reset-password.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/reset-password/reset-password.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/share-component.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/sidebar-menu/sidebar-menu.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/sidebar-menu/sidebar-menu.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/sidebar-menu/sidebar-menu.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/components/sidebar-menu/sidebar-menu.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user-routing.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user-subpages/user-login/user-login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user-subpages/user-login/user-login.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user-subpages/user-login/user-login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user-subpages/user-register-account/user-register-account.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user-subpages/user-register-account/user-register-account.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user-subpages/user-register-account/user-register-account.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pages/user/user.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pipes/pipe/common.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pipes/pipe/location.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pipes/pipe/pipe.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/pipes/pipe/safe-html.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/scss/_cdk-material.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/scss/admin.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/scss/app.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/scss/buttons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/scss/main.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/scss/modal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/scss/variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/services/http.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/services/telegram.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/services/util.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/services/web-socket.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/ValueAccessorBase.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/array-handler.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/mat-input/mat-input.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/mat-input/mat-input.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/mat-input/mat-input.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/mat-input/mat-input.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/material-input-autocomplete/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/material-input-autocomplete/material-input-autocomplete.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/material-input-autocomplete/material-input-autocomplete.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/material-input-autocomplete/material-input-autocomplete.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/material-input.interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/material.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/page-pagination/page-pagination.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/page-pagination/page-pagination.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/page-pagination/page-pagination.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/page-pagination/page-pagination.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/shared/string-handler.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/account-store/account.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/account-store/account.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/account-store/account.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/book-store/book.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/book-store/book.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/book-store/book.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/borrow-ticket-store/borrow-ticket.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/borrow-ticket-store/borrow-ticket.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/borrow-ticket-store/borrow-ticket.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/customer-store/customer.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/customer-store/customer.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/customer-store/customer.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/employee-store/employee.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/employee-store/employee.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/employee-store/employee.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/location-store/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/location-store/location.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/location-store/location.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/location-store/location.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/message-store/message.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/message-store/message.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/message-store/message.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/order-store/order.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/order-store/order.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/order-store/order.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/supplier-store/supplier.query.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/supplier-store/supplier.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/app/states/supplier-store/supplier.store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/books/80.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/books/khoinghie[.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/books/midmap.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/books/mmen.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/books/nguphap.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/books/thekey.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/OuLogo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/barcode.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/category-item.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/default-avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/default-book.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/library-login.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/library-register-user.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/library.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/loading.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/message.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/momo-icon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/search_icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/slider-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/slider-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/slider-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/slider.png.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/assets/images/writer.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/global.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/theme.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/src/typing.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-management/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/miration/db_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/../python-flask/once/init_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../python-flask/miration/send_mail.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +421,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1rb4gscRlsrVBtfxL4Xp9LIDrtn" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1t4QlbbEydGMW1f4uiMKcd7FxFW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -31,19 +442,46 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ts.external.directory.path" value="C:\Users\Admin\Desktop\workspace\LibraryManagement\Angular2+\library-management\node_modules\typescript\lib" />
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="E2E Tests (library-management)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1bdf6443-a587-4dc5-8672-55c0beb61967" name="Default Changelist" comment="" />
-      <created>1619231571457</created>
+      <changelist id="fa49b81e-3a8e-45a1-9ee4-950416ef13a5" name="Default Changelist" comment="" />
+      <created>1622026035597</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1619231571457</updated>
-      <workItem from="1619231580480" duration="597000" />
-      <workItem from="1619408121764" duration="592000" />
-      <workItem from="1620138964278" duration="744000" />
-      <workItem from="1620196369821" duration="548000" />
+      <updated>1622026035597</updated>
+      <workItem from="1622026038501" duration="6889000" />
+      <workItem from="1622102923696" duration="20000" />
     </task>
     <servers />
   </component>
