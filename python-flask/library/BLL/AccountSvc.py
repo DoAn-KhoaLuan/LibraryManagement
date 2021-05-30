@@ -67,9 +67,8 @@ def AuthenticateUser(acc: LoginReq):
     try:
         account = AccountRep.Authenticate(acc)
         if (account['role']['role_id'] == 3):  # customer
-            user = (models.Customers.query.filter(models.Customers.account_id == account['account_id'], models.Customers.account_id != None).first().serialize())
-
-
+            user = (models.Customers.query.filter(models.Customers.account_id == account['account_id'],
+                                                  models.Customers.account_id != None).first().serialize())
         if (account['role']['role_id'] == 1 or account['role']['role_id'] == 2):  # admin, manager
             user = (models.Employees.query.filter(models.Employees.account_id == account['account_id'],
                                                   models.Employees.account_id != None).first().serialize())

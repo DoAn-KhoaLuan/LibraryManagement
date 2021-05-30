@@ -9,17 +9,24 @@ from flask import url_for, session, request, jsonify, render_template
 from oauthlib.oauth2 import WebApplicationClient
 from requests_oauthlib import OAuth2Session
 
-from config import GOOGLE_DISCOVERY_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
+
 from library import app, db, socketio
 from library.DAL import models, EmployeeRep, CustomerRep
 from library.DAL.AccountRep import CreateAccount
 from library.common.Req.AccountReq import CreateAccountReq, LoginRsp
-from library.common.Req.CustomerReq import SearchCustomersReq
-from library.controllers.MessageController import login_google
 
+
+from config import GOOGLE_DISCOVERY_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
+def get_google_auth(state=None, token=None):
+    if token:
+        return OAuth2Session(Auth.CLIENT_ID, token=token)
+    if state:
+        return OAuth2Session(Auth.CLIENT_ID, state=state, redirect_uri=Auth.REDIRECT_URI)
+    oauth = OAuth2Session(Auth.CLIENT_ID, redirect_uri=Auth.REDIRECT_URI, scope=Auth.SCOPE)
+    return oauth
 
 class Auth:
     CLIENT_ID = ('258914989074-2rkptjvoc5mv1biv91pg4hhqd1igc9fs.apps.googleusercontent.com')
@@ -29,13 +36,6 @@ class Auth:
     TOKEN_URI = 'https://accounts.google.com/o/oauth2/token'
     USER_INFO = 'https://www.googleapis.com/userinfo/v2/me'
 
-def get_google_auth(state=None, token=None):
-    if token:
-        return OAuth2Session(Auth.CLIENT_ID, token=token)
-    if state:
-        return OAuth2Session(Auth.CLIENT_ID, state=state, redirect_uri=Auth.REDIRECT_URI)
-    oauth = OAuth2Session(Auth.CLIENT_ID, redirect_uri=Auth.REDIRECT_URI, scope=Auth.SCOPE)
-    return oauth
 
 @app.route("/gLogin", methods=['POST', 'GET'])
 def gLogin():
