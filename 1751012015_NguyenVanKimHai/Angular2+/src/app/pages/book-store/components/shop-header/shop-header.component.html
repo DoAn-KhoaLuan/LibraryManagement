@@ -1,0 +1,60 @@
+<div class="header-dark">
+  <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+    <div class="container-fluid app-flex">
+      <a class="navbar-brand" href="#" style=" font-size: 28px;">Thư quán OU</a><button class="navbar-toggler"
+        data-toggle="collapse" data-target="#navcol-1">
+        <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navcol-1" style="flex-grow: 0">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+              style="color: white;" href="#">Danh mục
+            </a>
+            <div class="dropdown-menu" role="menu">
+              <ng-container *ngFor="let category of categories$ | async">
+                <a class="dropdown-item" role="presentation"
+                  (click)="searchBooksByCategoryID(category.category_id)">{{ category.category_name }}
+                </a>
+              </ng-container>
+            </div>
+          </li>
+        </ul>
+        <input [(ngModel)]="book_name" type="text" class="form-control rounded-pill p-4 mr-3" style="width: 480px"
+          placeholder="Nhập tên sách bạn muốn tìm kiếm" />
+        <div class="btn-app rounded-pill font-weight-bold" style="background: none; margin-right: 2.5rem"
+          (click)="SearchBooks()">Tìm kiếm</div>
+        <div class="app-flex">
+          <span class="material-icons" *ngIf="(auth_info$ | async)?.user_info?.account?.role?.role_id != 3">
+            account_circle </span>
+          <span class="ml-2 cursor-pointer" *ngIf="((auth_info$ | async)?.user_info?.account?.role?.role_id !== 3)"
+            (click)="goToLoginView()">
+            <div class="login">Đăng nhập / </div>
+          </span>
+          <span (click)="goToRegisterView()" class=" cursor-pointer"
+            *ngIf="((auth_info$ | async)?.user_info?.account?.role?.role_id !== 3)">
+            <div class="login">Đăng kí</div>
+          </span>
+          <span (click)="logout()" class="cursor-pointer"
+            *ngIf="(auth_info$ | async)?.user_info?.account?.role?.role_id == 3">
+            <div class="app-flex mr-5">
+              <img [src]="(auth_info$ | async)?.user_info?.image || 'assets/images/default-avatar.png'" class="profile-icon">
+              <div>Tài khoản,<br>{{(auth_info$ | async)?.user_info?.first_name}}</div> 
+            </div>
+          </span>
+
+          <span (click)="logout()" class="cursor-pointer"
+            *ngIf="(auth_info$ | async)?.user_info?.account?.role?.role_id == 3">
+            <div class="login">Đăng xuất</div>
+          </span>
+        </div>
+        <div class="ml-5 cart-wrapper" (click)="goToCheckOut()">
+          <div class="shopping_cart" role="button" href="#">
+            <span class="material-icons"> shopping_cart </span>
+            Giỏ hàng
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

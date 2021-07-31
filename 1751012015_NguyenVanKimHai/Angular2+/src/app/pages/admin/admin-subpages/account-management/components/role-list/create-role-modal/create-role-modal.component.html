@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <div class="modal-title big-font">
+    Thêm vai trò
+  </div>
+  <div class="close" (click)="dismissModal()">
+    <span class="text-large">&times;</span>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="row py-3">
+    <div class="col-3 app-flex"><b>Tên vai trò: </b></div>
+    <div class="col-9">
+      <input type="text" class="form-control" placeholder="Nhập tên vai trò" name="role_name" [(ngModel)]="role.role_name"
+      />
+    </div>
+  </div>
+  <div class="row py-3">
+    <div class="col-3 app-flex"><b>Ghi chú: </b></div>
+    <div class="col-9">
+      <textarea class="form-control" placeholder="Nhập ghi chú" [(ngModel)]="role.note"></textarea>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-app btn-outline-app" (click)="dismissModal()">Đóng</button>
+  <button class="btn btn-app text-white" (click)="CreateRole()">
+    Xác nhận
+  </button>
+</div>

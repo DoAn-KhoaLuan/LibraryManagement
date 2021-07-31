@@ -1,0 +1,51 @@
+<app-item-table>
+  <ng-template #header></ng-template>
+  <ng-template #emptyItem>
+    <p>Day la the item nà</p>
+  </ng-template>
+  <ng-template #item>
+    <div class="search-form row app-flex mb-3"  [formGroup]="searchForm">
+      <input type="text" class="form-control rounded-pill col-2 p-4 mr-3" placeholder="Nhập mã hóa đơn" formControlName="order_id"/>
+      <input type="text" class="form-control rounded-pill col-2 p-4 mr-3" placeholder="Nhập số điện thoại KH" formControlName="customer_phone"/>
+      <select class="form-control col-2 p-2 rounded-pill mr-3" name="role" formControlName="type">
+        <option value="" selected>Chọn hình thức thanh toán
+        </option>
+        <option *ngFor="let type of  orderTypes" [ngValue]="type.type_name" class="font-weight-bold">
+          {{type?.display_name}}
+          <div class=" px-3 py-2">
+            <i class="fa fa-plus"></i>
+          </div>
+        </option>
+      </select>
+      <!--      <select class="form-control col-2 p-2 rounded-pill mr-3" name="category" [(ngModel)]="category_id"  >-->
+      <!--        <option value="" selected>Chọn thể loại-->
+      <!--        </option>-->
+      <!--        <option *ngFor="let category of categories$ | async" [ngValue]="category.category_id" class="font-weight-bold">-->
+      <!--          {{category?.category_name}}-->
+      <!--          <div class=" px-3 py-2">-->
+      <!--            <i class="fa fa-plus"></i>-->
+      <!--          </div>-->
+      <!--        </option>-->
+      <!--      </select>-->
+      <div class="btn-app rounded-pill col-1" (click)="search()">Tìm kiếm</div>
+    </div>
+
+    <div class=" d-flex flex-column h-100">
+      <div class="table mt-3">
+        <div class="table-header row font-weight-bold text-uppercase ng-star-inserted align-items-center my-3">
+          <div class="col text-app text-center" style="max-width: 200px;">Mã hóa đơn </div>
+          <div class="col text-app text-center" style="max-width: 200px;">Mã đọc giả</div>
+          <div class="col text-app text-center" style="max-width: 200px;">Tổng tiền</div>
+          <div class="col text-app text-center" style="max-width: 200px;">Hình thức</div>
+          <div class="col text-app text-center" style="max-width: 200px;">Tổng SL</div>
+          <div class="col text-app text-center" >Ghi chú</div>
+        </div>
+      </div>
+      <ng-container *ngFor="let order_item of (order_list$ | async)?.items.slice().reverse()  , let i = index">
+        <app-order-row [order_item]="order_item" (click)="onViewOrderDetail(order_item.order_id)"></app-order-row>
+      </ng-container>
+      <app-page-pagination class="mt-auto" (navigate)="navigate($event)" [paginationOpt]="current_pagination_opt$" [currentPage]="current_page$ | async">
+      </app-page-pagination>
+    </div>
+  </ng-template>
+</app-item-table>

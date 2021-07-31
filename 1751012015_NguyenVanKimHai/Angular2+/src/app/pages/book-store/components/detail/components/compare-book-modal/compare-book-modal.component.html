@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <div class="modal-title big-font">
+      So sánh sản phẩm
+    </div>
+    <div class="close" (click)="dismissModal()">
+      <span class="text-large">&times;</span>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+        <div class="col-3 text-center">
+            <div class="font-weight-bold">Thương hiệu</div>
+            <div class="font-weight-bold">Giá bán</div>
+            <div class="font-weight-bold">Đánh giá</div>
+            <div class="font-weight-bold">Số lượt đánh giá</div>
+            <div class="font-weight-bold">Số lượt bình luận</div>
+        </div>
+        <div class="col text-center">
+            <div class="font-weight-bold">OU Store</div>
+            <div>{{(book_detail$ | async)?.retail_price | vnd}}</div>
+            <div>
+                <ul class="list-inline rating-list"
+                  *ngFor="let star of stars" style="display: inline-block" >
+                <li 
+                    [ngClass]="{'selected': (star <= (book_detail$ | async)?.rate_star)}">
+                  <i class="fa fa-star"></i>
+                </li>
+              </ul>
+            </div>
+            <div>{{(book_detail$ | async)?.rate_count}} đánh giá</div>
+            <div>{{(book_detail$ | async)?.comments.length}} bình luận</div>
+        </div>
+        <ng-container *ngFor="let book of compare_books">
+            <div class="col text-center">
+                <div class="font-weight-bold">{{book?.store}}</div>
+                <div>{{(book)?.retail_price | vnd}}</div>
+                <div>
+                    <ul class="list-inline rating-list"
+                      *ngFor="let star of stars" style="display: inline-block" >
+                    <li 
+                        [ngClass]="{'selected': (star <= (book)?.rate_star)}">
+                      <i class="fa fa-star"></i>
+                    </li>
+                  </ul>
+                </div>
+                <div>{{(book)?.rate_count}} đánh giá</div>
+                <div>{{(book)?.review_count}} bình luận</div>
+            </div>
+        </ng-container>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-app btn-outline-app" (click)="dismissModal()">Đóng</button>
+  </div>
+  

@@ -1,0 +1,43 @@
+th, td {
+    text-align: center;
+}
+
+
+.rating-list li {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+  
+  }
+  
+  .rating-list-2 li {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+  
+  }
+  
+ .rating-list li.selected {
+    color: #ffd700;
+  }
+  
+  .rating-list-2 li.selected {
+    color: #ffd700;
+  }
+  
+  .rating-list {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: 0;
+  }
+  
+  .rating-list-2 {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    list-style: none;
+  }
+
+  .col > div, .col-3 > div {
+    min-height: 50px;
+  }
