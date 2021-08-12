@@ -11,6 +11,7 @@ SQLALCHEMY_DATABASE_URI = "mysql+pymysql://" + USERNAME + ":" + DATABASE_PASSWOR
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 #-----------MAIL--------------
+#https://www.google.com/settings/security/lesssecureapps (Enable)
 MAIL_SERVER = 'smp.googlemail.com'
 MAIL_USERNAME = "shinichi24567@gmail.com" ##Tài khoản gmail dùng để gửi email
 MAIL_PASSWORD = "shinichi24567123"  ##Mật khẩu gmail dùng để gửi email
